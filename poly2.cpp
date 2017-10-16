@@ -20,16 +20,40 @@ void delBlank(char* a) {
 }
 
 void delVar(char* poly, char* var) {
-    int i = 0, left = 0;
+    int i = 0, left = 0, j = 0;
     while(*(poly + i) != '\0') {
         if(*(poly + i) == '=') {
-
+            for(j = left; j <= i; j++) {
+                // 如果匹配到var，则删除var所在的项
+                if(*(poly + j) == *var) {
+                    if(*(poly + j + 1) == *(var + 1) && *(poly + j + 2) == *(var + 2) && *(poly + j + 3) == *(var + 3)
+                       && *(poly + j + 4) == *(var + 4) && *(poly + j + 5) == *(var + 5)) {
+                        int k = j;
+                        while(*(poly + k) != '=' && *(poly + k) != '+' && *(poly + k) != '-') {
+                            *(poly + k) = ' ';
+                            k++;
+                        }
+                        k = j;
+                        while(k != left - 1) {
+                            if(*(poly + k) == '+' || *(poly + k) == '-') {
+                                *(poly + k) = ' ';
+                                break;
+                            }
+                            *(poly + k) = ' ';
+                            k--;
+                        }
+                    }
+                }
+            }
+            left = j;
         }
+        i++;
     }
 }
 
+// 找到形如 x^n = 0 的项
 int findVar(char* poly, char* var) {
-    int i = 0, left = 0;
+    int i = 0, left = 0, j = 0;
     int numOfBracket = 0;
     while(*(poly + i) != '\0') {
         if(*(poly + i) == '[') {
@@ -38,12 +62,13 @@ int findVar(char* poly, char* var) {
         }
         if(*(poly + i) == '=') {
             if(numOfBracket == 1) {
-                for(int j = 0; j <= 5; j++) {
+                for(j = 0; j <= 5; j++) {
                     *(var + j) = *(poly + left + j);
                 }
                 *(var + j) = '\0';
                 return 1;
             }
+            numOfBracket = 0;
         }
         i++;
     }
@@ -51,9 +76,26 @@ int findVar(char* poly, char* var) {
     return 0;
 }
 
+// 找到形如 xy = 0 的项
+int findVar2(char* poly, char * var) {
+    int i = 0, left = 0;
+    int numOfPlusSub = 0;
+    while(*(poly + i) != '\0') {
+        if(*(poly + i) == '+' || *(poly + i) == '-') {
+            numOfPlusSub++;
+        }
+        if(*(poly + i) == '=') {
+            if(numOfPlusSub == 0) {
+                //todo
+            }
+        }
+    }
+    return 0;
+}
+
 int main()
 {
-    char polyFileName[] = "";
+    char polyFileName[] = "C:\\Users\\zhangshutao\\Desktop\\MathematicaCode\\poly.txt";
 
     FILE* pFile;
     char strLine[LEN];
@@ -64,14 +106,20 @@ int main()
     }
 
     fgets(strLine, LEN, pFile);
+    printf("%s\n", strLine);
     int len = strlen(strLine);   // 字符串strLine 的长度
 
     // 删除字符串的空格
     delBlank(strLine);
 
+    printf("%s\n", strLine);
+
     char var[VAR_LEN];  // 变量数组
 
     while(findVar(strLine, var)) {
         delVar(strLine, var);
+        delBlank(strLine);
+        printf("%s]=0\n", var);
     }
+    printf("%s\n", strLine);
 }
