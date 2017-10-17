@@ -80,15 +80,18 @@ int findVar(char* poly, char* var) {
 int findVar2(char* poly, char * var) {
     int i = 0, left = 0;
     int numOfPlusSub = 0;
+
     while(*(poly + i) != '\0') {
-        if(*(poly + i) == '+' || *(poly + i) == '-') {
+        if((*(poly + i) == '+' || *(poly + i) == '-') && i != 0 && *(poly + i - 1) != '=') {
             numOfPlusSub++;
         }
         if(*(poly + i) == '=') {
             if(numOfPlusSub == 0) {
                 //todo
+                return 1;
             }
         }
+        i++;
     }
     return 0;
 }
@@ -106,13 +109,14 @@ int main()
     }
 
     fgets(strLine, LEN, pFile);
-    printf("%s\n", strLine);
+    //printf("%s\n", strLine);
+
     int len = strlen(strLine);   // 字符串strLine 的长度
 
     // 删除字符串的空格
     delBlank(strLine);
 
-    printf("%s\n", strLine);
+    //printf("%s\n", strLine);
 
     char var[VAR_LEN];  // 变量数组
 
