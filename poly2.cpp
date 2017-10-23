@@ -8,8 +8,9 @@
 typedef struct _POLYS {
     char poly[LEN];
     struct _POLYS *next;
-}POLYS;
+}* POLYS;
 
+//删除字符串*a中的空格
 void delBlank(char* a) {
     int i = 0, j = 0;
     while(*(a + i) != '\0') {
@@ -59,6 +60,7 @@ void delVar(char* poly, char* var) {
         }
         i++;
     }
+    delBlank(poly);  // 删除含有var的项后，再删除空格
 }
 
 // 找到形如 x^n = 0 的项
@@ -118,54 +120,61 @@ int main()
 
     FILE* pFile;
     //char strLine[LEN];
-    POLYS polys;
-    polys.next = NULL;
+    POLYS headPolys, tailPolys, curPolys, newPolys;  // 链表首节点,尾节点,当前节点,新的节点
+    tailPolys = headPolys = (POLYS)malloc(sizeof(struct _POLYS));
+    headPolys->next = NULL;
 
     if((pFile = fopen(polyFileName, "r")) == NULL) {
         printf("无法打开文件");
         return -1;
     }
 
-    fgets(polys.poly, LEN, pFile);
+    fgets(headPolys->poly, LEN, pFile);
     //printf("%s\n", strLine);
 
-    int len = strlen(polys.poly);   // 字符串strLine 的长度
+    int len = strlen(headPolys->poly);   // 字符串strLine 的长度
 
     // 删除字符串的空格
-    delBlank(polys.poly);
+    delBlank(headPolys->poly);
 
-    printf("%s\n", polys.poly);
+    printf("%s\n", headPolys->poly);
 
     char var[VAR_LEN];  // 变量数组
 
-    while(findVar(polys.poly, var)) {
-        delVar(polys.poly, var);
-        delBlank(polys.poly);
+    while(findVar(headPolys->poly, var)) {
+        delVar(headPolys->poly, var);
         printf("%s]=0\n", var);
     }
-    printf("%s\n", polys.poly);
-
+    printf("%s\n", headPolys->poly);
 
     char item[100];
-    if(findVar2(polys.poly, item)){
-        printf("%s\n", item);
-        int i = 0, j = 0;
-        while(*(item + i) != '\0') {
-            if(*(item + i) == '[') {
-                for(j = 0; j <= 5; j++) {
-                    *(var + j) = *(item + i + j);
+    while(headPolys != NULL){
+        if(findVar2(headPolys->poly, item)){
+            printf("项: %s\n", item);
+            int i = 0, j = 0;
+            while(*(item + i) != '\0') {
+                if(*(item + i) == '[') {
+                    for(j = 0; j <= 5; j++) {
+                        *(var + j) = *(item + i + j);
+                    }
+                    *(var + j) = '\0';
+                    printf("%s\n", var);
+                    newPolys = (POLYS)malloc(sizeof(struct _POLYS));
+                    newPolys->next = NULL;
+                    strcpy(newPolys->poly, headPolys->poly);
+                    delVar(newPolys->poly, var);
+                    printf("%s\n", newPolys->poly);
+
+                    tailPolys->next = newPolys;
+                    tailPolys = tailPolys->next;
                 }
-                *(var + j) = '\0';
-                printf("%s\n", var);
-                POLYS newPolys;
-                newPolys.next = NULL;
-                strcpy(newPolys.poly, polys.poly);
-                delVar(newPolys.poly, var);
-                printf("%s\n", newPolys.poly);
+                i++;
             }
-            i++;
+
+            curPolys = headPolys;
+            headPolys = headPolys->next;
+            //free(curPolys->next);
+            //free(curPolys);
         }
     }
-
-
 }
