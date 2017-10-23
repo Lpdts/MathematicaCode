@@ -118,7 +118,25 @@ int findVar2(char* poly, char* item) {
         i++;
     }
     *(item + j) = '\0';
-    // todo 去重
+    // 去重
+    for(int k = 0; *(item + k) != '\0'; k++) {
+        if(*(item + k) == '[') {
+            for(int t = k + 6; *(item + t) != '\0'; t++) {
+                if(*(item + t) == '['){
+                    if(*(item + k + 1) == *(item + t + 1) && *(item + k + 2) == *(item + t + 2) &&
+                       *(item + k + 3) == *(item + t + 3) && *(item + k + 4) == *(item + t + 4) &&
+                       *(item + k + 5) == *(item + t + 5)) {
+                        int m;
+                        for(m = t; *(item + m) != ']'; m++) {
+                            *(item + m) = ' ';
+                        }
+                        *(item + m) = ' ';
+                    }
+                }
+            }
+        }
+    }
+    delBlank(item);
     return value;
 }
 
