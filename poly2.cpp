@@ -92,6 +92,7 @@ int findVar(char* poly, char* var) {
 int findVar2(char* poly, char* item) {
     int i = 0, j = 0, left = 0;  // xy=0项的左侧
     int numOfPlusSub = 0;  // +,-的个数，去掉第一个后个数为零则为xy=0的项
+    int value = 0;  // 函数返回值
 
     while(*(poly + i) != '\0') {
         if((*(poly + i) == '+' || *(poly + i) == '-') && i != 0 && *(poly + i - 1) != '=') {
@@ -99,19 +100,26 @@ int findVar2(char* poly, char* item) {
         }
         if(*(poly + i) == '=' && *(poly + i - 1) != '=') { // 去掉==的情况
             if(numOfPlusSub == 0) {
-                for(j = 0; left + j < i; j++) {
+                /*for(j = 0; left + j < i; j++) {
                     *(item + j) = *(poly + left + j);
                 }
                 *(item + j) = '\0';
-                return 1;
+                return 1;*/
+                for(int k = 0; left + k <= i; k++) {
+                    *(item + j) = *(poly + left + k);
+                    j++;
+                }
+                value = 1;
             }else {
                 numOfPlusSub = 0;
-                left = i + 1;
             }
+            left = i + 1;
         }
         i++;
     }
-    return 0;
+    *(item + j) = '\0';
+    // todo 去重
+    return value;
 }
 
 int main()
