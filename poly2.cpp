@@ -25,9 +25,26 @@ void delBlank(char* a) {
     *(a + j) = '\0';
 }
 
-// ´Ó×Ö·û´®*polyÖÐ
+// ´Ó×Ö·û´®*polyÖÐ É¾³ý×Ö·û´®*str
 void delStr(char *poly, char* str){
-
+    delBlank(poly);   // É¾³ý¿Õ¸ñ
+    for(int i = 0; *(poly + i) != '\0'; i++) {
+        if(*(poly + i) == *str) {
+            int f = 1;
+            for(int j = 1; *(str + j) != '\0'; j++) {
+                if(*(poly + i + j) != *(str + j)) {
+                    f = 0;
+                    break;
+                }
+            }
+            if(f){
+                for(int j = 0; *(str + j) != '\0'; j++) {
+                    *(poly + i + j) = ' ';
+                }
+            }
+        }
+    }
+    delBlank(poly);
 }
 
 void delVar(char* poly, char* var) {
@@ -136,7 +153,7 @@ int findVar2(char* poly, char* item) {
             }
         }
     }
-    delBlank(item);
+    delBlank(item);  // É¾³ý¿Õ¸ñ
     return value;
 }
 
