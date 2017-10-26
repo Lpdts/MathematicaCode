@@ -44,7 +44,7 @@ void delStr(char *poly, char* str){
             }
         }
     }
-    delBlank(poly);
+    delBlank(poly);  // 删除空格
 }
 
 void delVar(char* poly, char* var) {
@@ -107,6 +107,16 @@ int findVar(char* poly, char* var) {
 
 // 找到形如 xy = 0 的项
 int findVar2(char* poly, char* item) {
+
+    char var[VAR_LEN];  // 变量数组
+    // 删除x^n = 0 的项
+    while(findVar(poly, var)) {
+        delVar(poly, var);
+        printf("%s]=0\n", var);
+    }
+    printf("%s\n", poly);
+    system("pause");
+
     int i = 0, j = 0, left = 0;  // xy=0项的左侧
     int numOfPlusSub = 0;  // +,-的个数，去掉第一个后个数为零则为xy=0的项
     int value = 0;  // 函数返回值
@@ -173,23 +183,15 @@ int main()
     }
 
     fgets(headPolys->poly, LEN, pFile);
-    //printf("%s\n", strLine);
+    printf("%s\n", headPolys->poly);
+
+    delStr(headPolys->poly, "Subscript");    //Subscript   Subsuperscript
+    delStr(headPolys->poly, "Subsuperscript");
+    printf("%s\n", headPolys->poly);
 
     int len = strlen(headPolys->poly);   // 字符串strLine 的长度
 
-    // 删除字符串的空格
-    delBlank(headPolys->poly);
-
-    printf("%s\n", headPolys->poly);
-
     char var[VAR_LEN];  // 变量数组
-
-    while(findVar(headPolys->poly, var)) {
-        delVar(headPolys->poly, var);
-        printf("%s]=0\n", var);
-    }
-    printf("%s\n", headPolys->poly);
-
     char item[100];
     while(headPolys != NULL){
         if(findVar2(headPolys->poly, item)){
