@@ -114,8 +114,8 @@ int findVar2(char* poly, char* item) {
         delVar(poly, var);
         printf("%s]=0\n", var);
     }
-    printf("%s\n", poly);
-    system("pause");
+    //printf("%s\n", poly);
+    //system("pause");
 
     int i = 0, j = 0, left = 0;  // xy=0项的左侧
     int numOfPlusSub = 0;  // +,-的个数，去掉第一个后个数为零则为xy=0的项
@@ -185,6 +185,7 @@ int main()
     fgets(headPolys->poly, LEN, pFile);
     printf("%s\n", headPolys->poly);
 
+    // 预处理
     delStr(headPolys->poly, "Subscript");    //Subscript   Subsuperscript
     delStr(headPolys->poly, "Subsuperscript");
     printf("%s\n", headPolys->poly);
@@ -209,17 +210,22 @@ int main()
                     strcpy(newPolys->poly, headPolys->poly);
                     delVar(newPolys->poly, var);
                     printf("%s\n", newPolys->poly);
+                    //system("pause");
 
                     tailPolys->next = newPolys;
                     tailPolys = tailPolys->next;
                 }
                 i++;
             }
-
-            curPolys = headPolys;
-            headPolys = headPolys->next;
-            //free(curPolys->next);
-            //free(curPolys);
+        }else {
+            printf("结果 ****************\n");
+            printf("%s\n", headPolys->poly);
+            printf("*********************\n");
         }
+        system("pause");
+        curPolys = headPolys;
+        headPolys = headPolys->next;
+        //free(curPolys->next);
+        //free(curPolys);
     }
 }
