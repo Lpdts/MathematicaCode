@@ -1,0 +1,12 @@
+{-Subscript[a, 0,1] Subscript[a, 1,0]+Subscript[a, 0,0] Subscript[a, 1,1]+12 Subsuperscript[a, 2,0, 2]==0,
+,-2 Subscript[a, 0,2] Subscript[a, 1,0]+2 Subscript[a, 0,0] Subscript[a, 1,2]+24 Subscript[a, 2,0] Subscript[a, 2,1]==0,
+,-Subscript[a, 0,2] Subscript[a, 1,1]+Subscript[a, 0,1] Subscript[a, 1,2]+12 Subsuperscript[a, 2,1, 2]+24 Subscript[a, 2,0] Subscript[a, 2,2]==0,
+,24 Subscript[a, 2,1] Subscript[a, 2,2]==0,
+,12 Subsuperscript[a, 2,2, 2]==0,
+,-2 Subscript[a, 0,1] Subscript[a, 2,0]+2 Subscript[a, 0,0] Subscript[a, 2,1]==0,
+,-4 Subscript[a, 0,2] Subscript[a, 2,0]+4 Subscript[a, 0,0] Subscript[a, 2,2]==0,
+,-2 Subscript[a, 0,2] Subscript[a, 2,1]+2 Subscript[a, 0,1] Subscript[a, 2,2]==0,
+,-Subscript[a, 1,1] Subscript[a, 2,0]+Subscript[a, 1,0] Subscript[a, 2,1]==0,
+,-2 Subscript[a, 1,2] Subscript[a, 2,0]+2 Subscript[a, 1,0] Subscript[a, 2,2]==0,
+,-Subscript[a, 1,2] Subscript[a, 2,1]+Subscript[a, 1,1] Subscript[a, 2,2]==0,
+}
