@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define LEN 2048   // 数组strLine 的长度
+#define LEN 204800   // 数组strLine 的长度
 #define VAR_LEN 8  // 变量的长度
 
 typedef struct _POLYS {
@@ -182,6 +182,16 @@ int main()
         return -1;
     }
 
+    fseek(pFile, 0, SEEK_END);
+    int len = ftell(pFile);
+    printf("%d\n", len);
+    rewind(pFile);
+    fread(headPolys->poly, 1, len, pFile);
+    //*(headPolys->poly + len) = '\0';
+    printf("%s\n", headPolys->poly);
+    printf("%d\n", strlen(headPolys->poly));
+    return 0;
+
     fgets(headPolys->poly, LEN, pFile);
     printf("%s\n", headPolys->poly);
 
@@ -190,13 +200,11 @@ int main()
     delStr(headPolys->poly, "Subsuperscript");
     printf("%s\n", headPolys->poly);
 
-    int len = strlen(headPolys->poly);   // 字符串strLine 的长度
-
     char var[VAR_LEN];  // 变量数组
     char item[100];
     while(headPolys != NULL){
         if(findVar2(headPolys->poly, item)){
-            printf("项: %s\n", item);
+            //printf("项: %s\n", item);
             int i = 0, j = 0;
             while(*(item + i) != '\0') {
                 if(*(item + i) == '[') {
@@ -204,12 +212,12 @@ int main()
                         *(var + j) = *(item + i + j);
                     }
                     *(var + j) = '\0';
-                    printf("%s\n", var);
+                    //printf("%s\n", var);
                     newPolys = (POLYS)malloc(sizeof(struct _POLYS));
                     newPolys->next = NULL;
                     strcpy(newPolys->poly, headPolys->poly);
                     delVar(newPolys->poly, var);
-                    printf("%s\n", newPolys->poly);
+                    //printf("%s\n", newPolys->poly);
                     //system("pause");
 
                     tailPolys->next = newPolys;
@@ -222,7 +230,7 @@ int main()
             printf("%s\n", headPolys->poly);
             printf("*********************\n");
         }
-        system("pause");
+        //system("pause");
         curPolys = headPolys;
         headPolys = headPolys->next;
         //free(curPolys->next);
