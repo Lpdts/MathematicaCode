@@ -47,6 +47,25 @@ void delStr(char *poly, char* str){
     delBlank(poly);  // 删除空格
 }
 
+// 删除字符串中连续的等号
+void delContinousEqual(char* s) {
+    delBlank(s); // 删除空格
+    int i = 0;
+    int f = 0;
+    while(*(s + i) != '\0') {
+        if(*(s + i) == '=') {
+            if(f == 1) {
+                *(s + i) = ' ';
+            }
+            f = 1;
+        }else {
+            f = 0;
+        }
+        i++;
+    }
+    delBlank(s); // 删除空格
+}
+
 void delVar(char* poly, char* var) {
     int i = 0, left = 0, j = 0;
     while(*(poly + i) != '\0') {
@@ -78,6 +97,7 @@ void delVar(char* poly, char* var) {
         i++;
     }
     delBlank(poly);  // 删除含有var的项后，再删除空格
+    delContinousEqual(poly); // 删除可能含有的连续等号
 }
 
 // 找到形如 x^n = 0 的项
@@ -112,7 +132,7 @@ int findVar2(char* poly, char* item) {
     // 删除x^n = 0 的项
     while(findVar(poly, var)) {
         delVar(poly, var);
-        printf("%s]=0\n", var);
+        //printf("%s]=0\n", var);
     }
     //printf("%s\n", poly);
     //system("pause");
@@ -167,12 +187,26 @@ int findVar2(char* poly, char* item) {
     return value;
 }
 
+
+// 判断字符串*s1 和 *s2 是否相等
+int isStrEqual(char* s1, char* s2) {
+    int i = 0;
+    while(*(s1 + i) != '\0' && *(s2 + i) != '\0') {
+        if(*(s1 + i) != *(s2 + i)) {
+            return 0;
+        }
+        i++;
+    }
+    if(*(s1 + i) != '\0' || *(s2 + i) != '\0')
+        return 0;
+    return 1;
+}
+
 int main()
 {
-    char polyFileName[] = "poly.txt";
+    char polyFileName[] = "poly7.txt";  // 文件路径
 
     FILE* pFile;
-    //char strLine[LEN];
     POLYS headPolys, tailPolys, curPolys, newPolys;  // 链表首节点,尾节点,当前节点,新的节点
     tailPolys = headPolys = (POLYS)malloc(sizeof(struct _POLYS));
     headPolys->next = NULL;
@@ -187,18 +221,15 @@ int main()
     printf("%d\n", len);
     rewind(pFile);
     fread(headPolys->poly, 1, len, pFile);
-    //*(headPolys->poly + len) = '\0';
-    printf("%s\n", headPolys->poly);
-    printf("%d\n", strlen(headPolys->poly));
-    return 0;
-
-    fgets(headPolys->poly, LEN, pFile);
-    printf("%s\n", headPolys->poly);
 
     // 预处理
-    delStr(headPolys->poly, "Subscript");    //Subscript   Subsuperscript
+    delStr(headPolys->poly, "\n");
+    delStr(headPolys->poly, "{");
+    delStr(headPolys->poly, "=0,}");
+    delStr(headPolys->poly, "=0,,");
+    delStr(headPolys->poly, "Subscript");
     delStr(headPolys->poly, "Subsuperscript");
-    printf("%s\n", headPolys->poly);
+    printf("%s\n%d\n", headPolys->poly, strlen(headPolys->poly));
 
     char var[VAR_LEN];  // 变量数组
     char item[100];
@@ -227,8 +258,14 @@ int main()
             }
         }else {
             printf("结果 ****************\n");
+            for(int i = 0; *(headPolys->poly + i) != '\0'; i++) {
+                if(*(headPolys->poly + i) == '='){
+                    *(headPolys->poly + i) = '\n';
+                }
+            }
             printf("%s\n", headPolys->poly);
             printf("*********************\n");
+            //system("pause");
         }
         //system("pause");
         curPolys = headPolys;
