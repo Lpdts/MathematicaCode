@@ -3,7 +3,7 @@
 #include <string.h>
 
 #define LEN 204800   // 数组strLine 的长度
-#define VAR_LEN 8  // 变量的长度
+#define VAR_LEN 16  // 变量的长度
 
 typedef struct _POLYS {
     char poly[LEN];
@@ -111,9 +111,19 @@ int findVar(char* poly, char* var) {
         }
         if(*(poly + i) == '=') {
             if(numOfBracket == 1) {
-                for(j = 0; j <= 5; j++) {
+                int commaNum = 0;
+                for(j = 0; *(poly + left + j) != ']'; j++) {
+                    if(*(poly + left + j) == ',') {
+                        commaNum++;
+                    }
+                    if(commaNum == 3) {
+                        break;
+                    }
                     *(var + j) = *(poly + left + j);
                 }
+                /*for(j = 0; j <= 5; j++) {
+                    *(var + j) = *(poly + left + j);
+                }*/
                 *(var + j) = '\0';
                 return 1;
             }
@@ -204,7 +214,7 @@ int isStrEqual(char* s1, char* s2) {
 
 int main()
 {
-    char polyFileName[] = "poly7.txt";  // 文件路径
+    char polyFileName[] = "poly4.txt";  // 文件路径
 
     FILE* pFile;
     POLYS headPolys, tailPolys, curPolys, newPolys;  // 链表首节点,尾节点,当前节点,新的节点
