@@ -73,8 +73,16 @@ void delVar(char* poly, char* var) {
             for(j = left; j <= i; j++) {
                 // 如果匹配到var，则删除var所在的项
                 if(*(poly + j) == *var) {
-                    if(*(poly + j + 1) == *(var + 1) && *(poly + j + 2) == *(var + 2) && *(poly + j + 3) == *(var + 3)
-                       && *(poly + j + 4) == *(var + 4) && *(poly + j + 5) == *(var + 5)) {
+                    int f = 1;
+                    for(int t = 1; *(var + t) !='\0'; t++) {
+                        if(*(poly + j + t) != *(var + t)) {
+                            f = 0;
+                            break;
+                        }
+                    }
+                    /*if(*(poly + j + 1) == *(var + 1) && *(poly + j + 2) == *(var + 2) && *(poly + j + 3) == *(var + 3)
+                       && *(poly + j + 4) == *(var + 4) && *(poly + j + 5) == *(var + 5)) */
+                    if(f == 1){
                         int k = j;
                         while(*(poly + k) != '=' && *(poly + k) != '+' && *(poly + k) != '-') {
                             *(poly + k) = ' ';
@@ -178,11 +186,28 @@ int findVar2(char* poly, char* item) {
     // 去重
     for(int k = 0; *(item + k) != '\0'; k++) {
         if(*(item + k) == '[') {
+            int commaNum = 0, len = 0;
+            for(; *(item + k + len) != ']'; len++) {
+                if(*(item + k + len) == ',') {
+                    commaNum++;
+                }
+                if(commaNum == 3) {
+                    break;
+                }
+            }
             for(int t = k + 6; *(item + t) != '\0'; t++) {
                 if(*(item + t) == '['){
-                    if(*(item + k + 1) == *(item + t + 1) && *(item + k + 2) == *(item + t + 2) &&
+                    int f = 1;
+                    for(int n = 1; n < len; n++) {
+                        if(*(item + k + n) != *(item + t + n)) {
+                            f = 0;
+                            break;
+                        }
+                    }
+                    /*if(*(item + k + 1) == *(item + t + 1) && *(item + k + 2) == *(item + t + 2) &&
                        *(item + k + 3) == *(item + t + 3) && *(item + k + 4) == *(item + t + 4) &&
-                       *(item + k + 5) == *(item + t + 5)) {
+                       *(item + k + 5) == *(item + t + 5)) */
+                    if(f == 1) {
                         int m;
                         for(m = t; *(item + m) != ']'; m++) {
                             *(item + m) = ' ';
@@ -249,10 +274,21 @@ int main()
             int i = 0, j = 0;
             while(*(item + i) != '\0') {
                 if(*(item + i) == '[') {
-                    for(j = 0; j <= 5; j++) {
+                    int commaNum = 0;
+                    for(j = 0; *(item + i + j) != ']'; j++) {
+                        if(*(item + i + j) == ',') {
+                            commaNum++;
+                        }
+                        if(commaNum == 3) {
+                            break;
+                        }
                         *(var + j) = *(item + i + j);
                     }
                     *(var + j) = '\0';
+                    /*for(j = 0; j <= 5; j++) {
+                        *(var + j) = *(item + i + j);
+                    }
+                    *(var + j) = '\0';*/
                     //printf("%s\n", var);
                     newPolys = (POLYS)malloc(sizeof(struct _POLYS));
                     newPolys->next = NULL;
