@@ -150,9 +150,9 @@ int findVar2(char* poly, char* item) {
     // 删除x^n = 0 的项
     while(findVar(poly, var)) {
         delVar(poly, var);
-        //printf("%s]=0\n", var);
+        printf("单项： %s]=0\n", var);
     }
-    //printf("%s\n", poly);
+    printf("%s\n", poly);
     //system("pause");
 
     int i = 0, j = 0, left = 0;  // xy=0项的左侧
@@ -237,6 +237,13 @@ int isStrEqual(char* s1, char* s2) {
     return 1;
 }
 
+// 将字符串写入到文件中
+void writeToFile(char *s) {
+    FILE *pFile = fopen("result.txt", "a");
+    fprintf(pFile, "%s\n", s);
+    fclose(pFile);
+}
+
 int main()
 {
     char polyFileName[] = "poly4.txt";  // 文件路径
@@ -303,14 +310,17 @@ int main()
                 i++;
             }
         }else {
-            printf("结果 ****************\n");
+            //printf("结果 ****************\n");
+            writeToFile("结果 ****************");
             for(int i = 0; *(headPolys->poly + i) != '\0'; i++) {
                 if(*(headPolys->poly + i) == '='){
                     *(headPolys->poly + i) = '\n';
                 }
             }
-            printf("%s\n", headPolys->poly);
-            printf("*********************\n");
+            //printf("%s\n", headPolys->poly);
+            //printf("*********************\n");
+            writeToFile(headPolys->poly);
+            writeToFile("*********************");
             //system("pause");
         }
         //system("pause");
