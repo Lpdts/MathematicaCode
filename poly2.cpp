@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define LEN 204800   // 数组strLine 的长度
+#define LEN 12650  //2048000 // 数组strLine 的长度
 #define VAR_LEN 16  // 变量的长度
 
 typedef struct _POLYS {
@@ -152,7 +152,7 @@ int findVar2(char* poly, char* item) {
         delVar(poly, var);
         printf("单项： %s]=0\n", var);
     }
-    printf("%s\n", poly);
+    //printf("%s\n", poly);
     //system("pause");
 
     int i = 0, j = 0, left = 0;  // xy=0项的左侧
@@ -265,19 +265,22 @@ int main()
     fread(headPolys->poly, 1, len, pFile);
 
     // 预处理
-    delStr(headPolys->poly, "\n");
-    delStr(headPolys->poly, "{");
-    delStr(headPolys->poly, "=0,}");
-    delStr(headPolys->poly, "=0,,");
-    delStr(headPolys->poly, "Subscript");
-    delStr(headPolys->poly, "Subsuperscript");
+    delStr(headPolys->poly, (char*)"\n");
+    delStr(headPolys->poly, (char*)"{");
+    delStr(headPolys->poly, (char*)"=0,}");
+    delStr(headPolys->poly, (char*)"=0,,");
+    delStr(headPolys->poly, (char*)"Subscript");
+    delStr(headPolys->poly, (char*)"Subsuperscript");
     printf("%s\n%d\n", headPolys->poly, strlen(headPolys->poly));
 
     char var[VAR_LEN];  // 变量数组
     char item[100];
     while(headPolys != NULL){
+        printf("%s\n", headPolys->poly);
         if(findVar2(headPolys->poly, item)){
-            //printf("项: %s\n", item);
+            //printf("%s\n", headPolys->poly);
+            printf("项: %s\n", item);
+            //system("pause");
             int i = 0, j = 0;
             while(*(item + i) != '\0') {
                 if(*(item + i) == '[') {
@@ -292,14 +295,17 @@ int main()
                         *(var + j) = *(item + i + j);
                     }
                     *(var + j) = '\0';
+
                     /*for(j = 0; j <= 5; j++) {
                         *(var + j) = *(item + i + j);
                     }
                     *(var + j) = '\0';*/
-                    //printf("%s\n", var);
+                    printf("%s\n", var);
                     newPolys = (POLYS)malloc(sizeof(struct _POLYS));
                     newPolys->next = NULL;
+
                     strcpy(newPolys->poly, headPolys->poly);
+                    printf("test\n");
                     delVar(newPolys->poly, var);
                     //printf("%s\n", newPolys->poly);
                     //system("pause");
@@ -311,7 +317,7 @@ int main()
             }
         }else {
             //printf("结果 ****************\n");
-            writeToFile("结果 ****************");
+            writeToFile((char*)"结果 ****************");
             for(int i = 0; *(headPolys->poly + i) != '\0'; i++) {
                 if(*(headPolys->poly + i) == '='){
                     *(headPolys->poly + i) = '\n';
@@ -320,13 +326,13 @@ int main()
             //printf("%s\n", headPolys->poly);
             //printf("*********************\n");
             writeToFile(headPolys->poly);
-            writeToFile("*********************");
+            writeToFile((char*)"*********************");
             //system("pause");
         }
         //system("pause");
         curPolys = headPolys;
         headPolys = headPolys->next;
         //free(curPolys->next);
-        //free(curPolys);
+        free(curPolys);
     }
 }
