@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define LEN 12650  //2048000 // 数组strLine 的长度
+#define LEN 2048000  //12650 // 数组strLine 的长度
 #define VAR_LEN 16  // 变量的长度
 
 typedef struct _POLYS {
@@ -274,7 +274,7 @@ int main()
     printf("%s\n%d\n", headPolys->poly, strlen(headPolys->poly));
 
     char var[VAR_LEN];  // 变量数组
-    char item[100];
+    char item[LEN];
     while(headPolys != NULL){
         printf("%s\n", headPolys->poly);
         if(findVar2(headPolys->poly, item)){
@@ -305,7 +305,6 @@ int main()
                     newPolys->next = NULL;
 
                     strcpy(newPolys->poly, headPolys->poly);
-                    printf("test\n");
                     delVar(newPolys->poly, var);
                     //printf("%s\n", newPolys->poly);
                     //system("pause");
