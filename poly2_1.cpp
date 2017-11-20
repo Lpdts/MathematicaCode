@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define LEN 2048000  //12650 // 数组strLine 的长度
+#define LEN 102400  //12650 // 数组strLine 的长度
 #define VAR_LEN 16  // 变量的长度
 
 typedef struct _POLYS {
@@ -236,9 +236,19 @@ int isStrEqual(char* s1, char* s2) {
         return 0;
     return 1;
 }
+//复制s2内容到s1
+void copyStr(char* s1, char* s2) {
+    int i = 0;
+    while(*(s2+i) != '\0') {
+        *(s1+i) =  *(s2+i);
+        i++;
+    }
+    *(s1+i) = '\0';
+}
 
 // 保存中间结果到文件中
 void saveStrToFile(char *s) {
+    printf("%s\n", s);
     FILE *pFile = fopen("temp.txt", "a");
     fprintf(pFile, "%s\n", s);
     fflush(pFile);
@@ -248,7 +258,7 @@ void saveStrToFile(char *s) {
 void getStrFromFile(char *s, int line) {
     FILE *pFile = fopen("temp.txt", "r");
     while(line--) {
-        fgets(s, LEN, pFile);
+        fscanf(pFile, "%s", s);
     }
     fflush(pFile);
     fclose(pFile);
@@ -263,14 +273,11 @@ void writeToFile(char *s) {
 
 int main()
 {
-    char polyFileName[] = "poly2.txt";  // 文件路径
+    char polyFileName[] = "poly4.txt";  // 文件路径
 
     FILE* pFile;
     char strLine[LEN];
     char strTemp[LEN];
-    //POLYS headPolys, tailPolys, curPolys, newPolys;  // 链表首节点,尾节点,当前节点,新的节点
-    //tailPolys = headPolys = (POLYS)malloc(sizeof(struct _POLYS));
-    //headPolys->next = NULL;
 
     if((pFile = fopen(polyFileName, "r")) == NULL) {
         printf("无法打开文件");
@@ -300,8 +307,7 @@ int main()
     int curLine = 1, allLine = 1;
     while(curLine <= allLine) {
         getStrFromFile(strLine, curLine);
-        printf("%d\n", findVar2(strLine, item));
-        if(findVar2(strLine, item)){
+        if(findVar2(strLine, item) == 1){
             //printf("%s\n", strLine);
             printf("项: %s\n", item);
             //system("pause");
@@ -320,6 +326,8 @@ int main()
                     }
                     *(var + j) = '\0';
                     printf("%s\n", var);
+                    //printf("%s\n", strLine);
+                    //printf("%d\n", strlen(strLine));
                     strcpy(strTemp, strLine);
                     delVar(strTemp, var);
                     saveStrToFile(strTemp);
