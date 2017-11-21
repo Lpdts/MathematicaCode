@@ -268,9 +268,6 @@ int main()
     FILE* pFile;
     char strLine[LEN];
     char strTemp[LEN];
-    //POLYS headPolys, tailPolys, curPolys, newPolys;  // 链表首节点,尾节点,当前节点,新的节点
-    //tailPolys = headPolys = (POLYS)malloc(sizeof(struct _POLYS));
-    //headPolys->next = NULL;
 
     if((pFile = fopen(polyFileName, "r")) == NULL) {
         printf("无法打开文件");
