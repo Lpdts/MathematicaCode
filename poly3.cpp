@@ -33,7 +33,7 @@ void delContinousEqual(string& s) {
 
 void delVar(string& poly, string& var) {
     int i = 0, left = 0, j = 0;
-    while(i < poly.length()) {
+    while(i < poly.length() && poly[i] != '#') {
         if(poly[i] == '=') {
             for(j = left; j <= i; j++) {
                 // 如果匹配到var，则删除var所在的项
@@ -73,11 +73,13 @@ void delVar(string& poly, string& var) {
 }
 
 // 找到形如 x^n = 0 的项
-int findVar(string& poly, string& var) {
-    cout<<poly<<endl<<endl;
+int findVar(string& oriPoly, string& var) {
+    //cout<<poly<<endl;
+    string poly = oriPoly.substr(0, oriPoly.find_first_of("#"));
+
     int i = 0, left = 0, j = 0;
     int numOfBracket = 0;
-    while(i < poly.length()) {
+    while(i < poly.length() && poly[i] != '#') {
         if(poly[i] == '[') {
             numOfBracket++;
             left = i;   // 记录左中括号的位置
@@ -100,25 +102,27 @@ int findVar(string& poly, string& var) {
         }
         i++;
     }
-    cout<<var<<endl;
     // 不存在，返回0
     return 0;
 }
 
 // 找到形如 xy = 0 的项
-int findVar2(string& poly, string& item) {
+int findVar2(string& oriPoly, string& item) {
     string var;  // 变量数组
     // 删除x^n = 0 的项
-    while(findVar(poly, var)) {
-        delVar(poly, var);
-        cout<<"单项： %s]=0"<<var<<endl;
+    while(findVar(oriPoly, var)) {
+        delVar(oriPoly, var);
+        cout<<"单项："<<var<<"]=0"<<endl;
+        //cout<<oriPoly<<endl;
     }
+
+    string poly = oriPoly.substr(0, oriPoly.find_first_of("#"));
 
     int i = 0, j = 0, left = 0;  // xy=0项的左侧
     int numOfPlusSub = 0;  // +,-的个数，去掉第一个后个数为零则为xy=0的项
     int value = 0;  // 函数返回值
 
-    while(i < poly.length()) {
+    while(i < poly.length() && poly[i] != '#') {
         if((poly[i] == '+' || poly[i] == '-') && i != 0 && poly[i - 1] != '=') {
             numOfPlusSub++;
         }
@@ -177,9 +181,10 @@ int findVar2(string& poly, string& item) {
 
 int main()
 {
-    char polyFileName[] = "poly2.txt";  // 文件路径
+    char polyFileName[] = "poly6.txt";  // 文件路径
 
     ifstream inputFile(polyFileName);
+    ofstream outFile("result.txt");   // 结果输出文件
 
     string strLine, temp;
 
@@ -202,10 +207,62 @@ int main()
 
     cout<<strLine<<endl<<strLine.length()<<endl;
 
+    strLine += "#";
+
     string var;  // 变量字符串
     string item;
-    if(findVar2(strLine, item)){
-        cout<<"项: "<<item<<endl;
+    while(strLine.length() > 0) {
+        if(findVar2(strLine, item)){
+            cout<<"项: "<<item<<endl;
+            system("pause");
+            int i = 0, j = 0;
+            while(i < item.length()) {
+                if(item[i] == '[') {
+                    int commaNum = 0;
+                    for(j = 0; item[i + j] != ']'; j++) {
+                        if(item[i + j] == ',') {
+                            commaNum++;
+                        }
+                        if(commaNum == 3) {
+                            break;
+                        }
+                        var += item[i + j];
+                    }
+                    //cout<<var<<endl;
+
+                    int loc = strLine.find_first_of("#");
+                    temp = strLine.substr(0, loc + 1);
+                    delVar(temp, var);
+                    //cout<<temp<<endl;
+                    strLine += temp;
+
+                    var.clear();
+                }
+                i++;
+            }
+        }else {
+            int loc = strLine.find_first_of("#");
+            outFile<<"结果********"<<endl;
+            string sub = strLine.substr(0, loc);
+            int left = 0, right = 0;
+            while(right < sub.length()) {
+                if(sub[right] == '=') {
+                    outFile<<sub.substr(left, right - left)<<endl;
+                    left = right + 1;
+                }
+                right++;
+            }
+            outFile<<"************"<<endl;
+        }
+        int loc = strLine.find_first_of("#");
+        //cout<<strLine<<endl<<strLine.length()<<endl;
+        strLine.erase(0, loc + 1);
+        //cout<<strLine<<endl<<strLine.length()<<endl;
+        item.clear();
+        system("pause");
     }
+
+    outFile.close();
+
     return 0;
 }
