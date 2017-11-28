@@ -113,6 +113,8 @@ int findVar2(string& oriPoly, string& item) {
     while(findVar(oriPoly, var)) {
         delVar(oriPoly, var);
         cout<<"单项："<<var<<"]=0"<<endl;
+        //system("pause");
+        var.clear();
         //cout<<oriPoly<<endl;
     }
 
@@ -179,6 +181,45 @@ int findVar2(string& oriPoly, string& item) {
 
 }
 
+// 如果poly 已包含temp, 则不拼接
+void appendStr(string& poly, string& temp) {
+    int flag = 0;
+    int i = 0;
+    while(i < poly.length()) {
+        if(i == 0) {
+            int f = 1;
+            for(int j = 0; j < temp.length(); j++) {
+                if(poly[i + j] != temp[j]) {
+                    f = 0;
+                    break;
+                }
+            }
+            if(f) {
+                flag = 1;
+                break;
+            }
+        }
+        if(poly[i] == '#') {
+            int f = 1;
+            for(int j = 0; j < temp.length(); j++) {
+                if(poly[i + 1 + j] != temp[j]) {
+                    f = 0;
+                    break;
+                }
+            }
+            if(f) {
+                flag = 1;
+                break;
+            }
+        }
+        i++;
+    }
+
+    if(flag == 0) {
+        poly += temp;
+    }
+}
+
 int main()
 {
     char polyFileName[] = "poly6.txt";  // 文件路径
@@ -214,7 +255,7 @@ int main()
     while(strLine.length() > 0) {
         if(findVar2(strLine, item)){
             cout<<"项: "<<item<<endl;
-            system("pause");
+            //system("pause");
             int i = 0, j = 0;
             while(i < item.length()) {
                 if(item[i] == '[') {
@@ -234,7 +275,7 @@ int main()
                     temp = strLine.substr(0, loc + 1);
                     delVar(temp, var);
                     //cout<<temp<<endl;
-                    strLine += temp;
+                    appendStr(strLine, temp); //strLine += temp;
 
                     var.clear();
                 }
@@ -259,7 +300,7 @@ int main()
         strLine.erase(0, loc + 1);
         //cout<<strLine<<endl<<strLine.length()<<endl;
         item.clear();
-        system("pause");
+        //system("pause");
     }
 
     outFile.close();
