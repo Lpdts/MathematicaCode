@@ -245,9 +245,36 @@ void writeToFile(char *s) {
     fclose(pFile);
 }
 
+// 判断链表中是否含有strLine
+int isExist(char* strLine, POLYS headPolys){
+    POLYS curPolys = headPolys;
+    while(curPolys) {
+        int i = 0, j = 0;
+        int flag = 1;
+        while(*(strLine + i) != '\0' && *(curPolys->poly + j) != '\0') {
+            if(*(strLine + i) != *(curPolys->poly + j)) {
+                flag = 0;
+                break;
+            }
+            i++;
+            j++;
+            if(*(strLine + i) != '\0' && *(curPolys->poly + j) == '\0' ||
+               *(strLine + i) == '\0' && *(curPolys->poly + j) != '\0') {
+                flag = 0;
+                break;
+            }
+        }
+        if(flag == 1) {
+            return true;
+        }
+        curPolys = curPolys->next;
+    }
+    return false;
+}
+
 int main()
 {
-    char polyFileName[] = "poly7.txt";  // 文件路径
+    char polyFileName[] = "poly6.txt";  // 文件路径
 
     char strLine[LEN];
 
@@ -309,19 +336,22 @@ int main()
                     }
                     *(var + j) = '\0';*/
                     printf("%s\n", var);
-                    newPolys = (POLYS)malloc(sizeof(struct _POLYS));
-                    newPolys->next = NULL;
 
                     strcpy(strLine, headPolys->poly);
                     delVar(strLine, var);
 
-                    newPolys->poly = (char*)malloc((strlen(strLine)+1)*sizeof(char));
-                    strcpy(newPolys->poly, strLine);
-                    //printf("%s\n", newPolys->poly);
-                    //system("pause");
+                    // 如果链表不存在，则加入链表
+                    if(!isExist(strLine, headPolys)) {
+                        newPolys = (POLYS)malloc(sizeof(struct _POLYS));
+                        newPolys->next = NULL;
+                        newPolys->poly = (char*)malloc((strlen(strLine)+1)*sizeof(char));
+                        strcpy(newPolys->poly, strLine);
+                        //printf("%s\n", newPolys->poly);
+                        //system("pause");
 
-                    tailPolys->next = newPolys;
-                    tailPolys = tailPolys->next;
+                        tailPolys->next = newPolys;
+                        tailPolys = tailPolys->next;
+                    }
                 }
                 i++;
             }
