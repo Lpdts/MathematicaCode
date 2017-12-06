@@ -2,11 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define LEN 2048000  //12650 // 数组strLine 的长度
+#define LEN 102400  //12650 // 数组strLine 的长度
 #define VAR_LEN 16  // 变量的长度
 
 typedef struct _POLYS {
-    char poly[LEN];
+    char *poly;
+    //char poly[LEN];
     struct _POLYS *next;
 }* POLYS;
 
@@ -246,7 +247,9 @@ void writeToFile(char *s) {
 
 int main()
 {
-    char polyFileName[] = "poly4.txt";  // 文件路径
+    char polyFileName[] = "poly7.txt";  // 文件路径
+
+    char strLine[LEN];
 
     FILE* pFile;
     POLYS headPolys, tailPolys, curPolys, newPolys;  // 链表首节点,尾节点,当前节点,新的节点
@@ -262,16 +265,21 @@ int main()
     int len = ftell(pFile);
     printf("%d\n", len);
     rewind(pFile);
-    fread(headPolys->poly, 1, len, pFile);
+    fread(strLine, 1, len, pFile);
 
     // 预处理
-    delStr(headPolys->poly, (char*)"\n");
-    delStr(headPolys->poly, (char*)"{");
-    delStr(headPolys->poly, (char*)"=0,}");
-    delStr(headPolys->poly, (char*)"=0,,");
-    delStr(headPolys->poly, (char*)"Subscript");
-    delStr(headPolys->poly, (char*)"Subsuperscript");
-    printf("%s\n%d\n", headPolys->poly, strlen(headPolys->poly));
+    delStr(strLine, (char*)"\n");
+    delStr(strLine, (char*)"{");
+    delStr(strLine, (char*)"=0,}");
+    delStr(strLine, (char*)"=0,,");
+    delStr(strLine, (char*)"Subscript");
+    delStr(strLine, (char*)"Subsuperscript");
+    printf("%s\n%d\n", strLine, strlen(strLine));
+
+    len = strlen(strLine);
+
+    headPolys->poly = (char*)malloc((len+1)*sizeof(char));
+    strcpy(headPolys->poly, strLine);
 
     char var[VAR_LEN];  // 变量数组
     char item[LEN];
@@ -304,8 +312,11 @@ int main()
                     newPolys = (POLYS)malloc(sizeof(struct _POLYS));
                     newPolys->next = NULL;
 
-                    strcpy(newPolys->poly, headPolys->poly);
-                    delVar(newPolys->poly, var);
+                    strcpy(strLine, headPolys->poly);
+                    delVar(strLine, var);
+
+                    newPolys->poly = (char*)malloc((strlen(strLine)+1)*sizeof(char));
+                    strcpy(newPolys->poly, strLine);
                     //printf("%s\n", newPolys->poly);
                     //system("pause");
 

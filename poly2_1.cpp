@@ -273,7 +273,7 @@ void writeToFile(char *s) {
 
 int main()
 {
-    char polyFileName[] = "poly4.txt";  // 文件路径
+    char polyFileName[] = "poly2.txt";  // 文件路径
 
     FILE* pFile;
     char strLine[LEN];
