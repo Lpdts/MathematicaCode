@@ -245,6 +245,20 @@ void writeToFile(char *s) {
     fclose(pFile);
 }
 
+// 将二维的坐标转为一维
+void changeCoor(char *s){
+    delBlank(s);  // 删除空格
+    int i = 0;
+    while(*(s+i) != '\0') {
+        if(*(s+i) == '[') {
+            char cm[5], cn[5];
+            int m = atoi(cm);
+            int n = atoi(cn);
+
+        }
+    }
+}
+
 // 判断链表中是否含有strLine
 int isExist(char* strLine, POLYS headPolys){
     POLYS curPolys = headPolys;
@@ -356,15 +370,16 @@ int main()
                 i++;
             }
         }else {
-            //printf("结果 ****************\n");
             writeToFile((char*)"结果 ****************");
             for(int i = 0; *(headPolys->poly + i) != '\0'; i++) {
                 if(*(headPolys->poly + i) == '='){
                     *(headPolys->poly + i) = '\n';
                 }
             }
-            //printf("%s\n", headPolys->poly);
-            //printf("*********************\n");
+
+            //将二维坐标转化为一维
+            //changeCoor(headPolys->poly);
+
             writeToFile(headPolys->poly);
             writeToFile((char*)"*********************");
             //system("pause");
