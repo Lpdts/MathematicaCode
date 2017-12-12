@@ -1,0 +1,184 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      5314,        175]
+NotebookOptionsPosition[      4843,        154]
+NotebookOutlinePosition[      5229,        171]
+CellTagsIndexPosition[      5186,        168]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Clear", "[", "\"\<*\>\"", "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.7143073459314365`*^9, 3.7143074785812654`*^9}, 
+   3.714654765690588*^9, 3.721558610562873*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"\[CapitalGamma]", "[", 
+   RowBox[{"x", ",", "t"}], "]"}], "=", 
+  FractionBox[
+   RowBox[{"\[Eta]", "[", 
+    RowBox[{"x", ",", "t"}], "]"}], 
+   RowBox[{"k", " ", 
+    RowBox[{"v", "[", 
+     RowBox[{"x", ",", "t"}], "]"}]}]]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Equ1", "=", 
+   RowBox[{
+    RowBox[{"D", "[", 
+     RowBox[{
+      RowBox[{"\[CapitalGamma]", "[", 
+       RowBox[{"x", ",", "t"}], "]"}], ",", "x"}], "]"}], "-", 
+    RowBox[{"k", " ", "u"}], "-", 
+    RowBox[{"k", " ", 
+     RowBox[{"v", " ", "[", 
+      RowBox[{"x", ",", "t"}], "]"}], 
+     SuperscriptBox[
+      RowBox[{"\[CapitalGamma]", "[", 
+       RowBox[{"x", ",", "t"}], "]"}], "2"]}], "+", 
+    RowBox[{"2", " ", "I", " ", "\[Lambda]", " ", 
+     RowBox[{"\[CapitalGamma]", "[", 
+      RowBox[{"x", ",", "t"}], "]"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Cancel", "[", "Equ1", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Equ2", "=", 
+  RowBox[{"B", "-", 
+   RowBox[{"C", " ", 
+    SuperscriptBox[
+     RowBox[{"\[CapitalGamma]", "[", 
+      RowBox[{"x", ",", "t"}], "]"}], "2"]}], "+", 
+   RowBox[{"2", " ", "A", " ", 
+    RowBox[{"\[CapitalGamma]", "[", 
+     RowBox[{"x", ",", "t"}], "]"}]}]}]}]}], "Input",
+ CellChangeTimes->{{3.721639944211809*^9, 3.721640144752493*^9}, {
+  3.721640174921131*^9, 3.7216402660405674`*^9}, {3.721640323368662*^9, 
+  3.721640370480897*^9}}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{"\[Eta]", "[", 
+   RowBox[{"x", ",", "t"}], "]"}], 
+  RowBox[{"k", " ", 
+   RowBox[{"v", "[", 
+    RowBox[{"x", ",", "t"}], "]"}]}]]], "Output",
+ CellChangeTimes->{{3.7216400147430954`*^9, 3.7216400368331995`*^9}, {
+   3.721640070335644*^9, 3.7216400960560985`*^9}, 3.7216401468258343`*^9, 
+   3.721640268110549*^9, {3.7216403309831953`*^9, 3.7216403728970485`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"-", "k"}], " ", "u"}], "+", 
+  FractionBox[
+   RowBox[{"2", " ", "\[ImaginaryI]", " ", "\[Lambda]", " ", 
+    RowBox[{"\[Eta]", "[", 
+     RowBox[{"x", ",", "t"}], "]"}]}], 
+   RowBox[{"k", " ", 
+    RowBox[{"v", "[", 
+     RowBox[{"x", ",", "t"}], "]"}]}]], "-", 
+  FractionBox[
+   SuperscriptBox[
+    RowBox[{"\[Eta]", "[", 
+     RowBox[{"x", ",", "t"}], "]"}], "2"], 
+   RowBox[{"k", " ", 
+    RowBox[{"v", "[", 
+     RowBox[{"x", ",", "t"}], "]"}]}]], "-", 
+  FractionBox[
+   RowBox[{
+    RowBox[{"\[Eta]", "[", 
+     RowBox[{"x", ",", "t"}], "]"}], " ", 
+    RowBox[{
+     SuperscriptBox["v", 
+      TagBox[
+       RowBox[{"(", 
+        RowBox[{"1", ",", "0"}], ")"}],
+       Derivative],
+      MultilineFunction->None], "[", 
+     RowBox[{"x", ",", "t"}], "]"}]}], 
+   RowBox[{"k", " ", 
+    SuperscriptBox[
+     RowBox[{"v", "[", 
+      RowBox[{"x", ",", "t"}], "]"}], "2"]}]], "+", 
+  FractionBox[
+   RowBox[{
+    SuperscriptBox["\[Eta]", 
+     TagBox[
+      RowBox[{"(", 
+       RowBox[{"1", ",", "0"}], ")"}],
+      Derivative],
+     MultilineFunction->None], "[", 
+    RowBox[{"x", ",", "t"}], "]"}], 
+   RowBox[{"k", " ", 
+    RowBox[{"v", "[", 
+     RowBox[{"x", ",", "t"}], "]"}]}]]}]], "Output",
+ CellChangeTimes->{{3.7216400147430954`*^9, 3.7216400368331995`*^9}, {
+   3.721640070335644*^9, 3.7216400960560985`*^9}, 3.7216401468258343`*^9, 
+   3.721640268110549*^9, {3.7216403309831953`*^9, 3.72164037290256*^9}}],
+
+Cell[BoxData[
+ RowBox[{"B", "+", 
+  FractionBox[
+   RowBox[{"2", " ", "A", " ", 
+    RowBox[{"\[Eta]", "[", 
+     RowBox[{"x", ",", "t"}], "]"}]}], 
+   RowBox[{"k", " ", 
+    RowBox[{"v", "[", 
+     RowBox[{"x", ",", "t"}], "]"}]}]], "-", 
+  FractionBox[
+   RowBox[{"C", " ", 
+    SuperscriptBox[
+     RowBox[{"\[Eta]", "[", 
+      RowBox[{"x", ",", "t"}], "]"}], "2"]}], 
+   RowBox[{
+    SuperscriptBox["k", "2"], " ", 
+    SuperscriptBox[
+     RowBox[{"v", "[", 
+      RowBox[{"x", ",", "t"}], "]"}], "2"]}]]}]], "Output",
+ CellChangeTimes->{{3.7216400147430954`*^9, 3.7216400368331995`*^9}, {
+   3.721640070335644*^9, 3.7216400960560985`*^9}, 3.7216401468258343`*^9, 
+   3.721640268110549*^9, {3.7216403309831953`*^9, 3.7216403729075603`*^9}}]
+}, Open  ]]
+},
+WindowSize->{1904, 997},
+WindowMargins->{{-8, Automatic}, {Automatic, 0}},
+Magnification:>1.2 Inherited,
+FrontEndVersion->"10.3 for Microsoft Windows (64-bit) (2015\:5e7411\:67084\
+\:65e5)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 202, 4, 56, "Input"],
+Cell[CellGroupData[{
+Cell[785, 28, 1407, 39, 190, "Input"],
+Cell[2195, 69, 404, 9, 56, "Output"],
+Cell[2602, 80, 1476, 48, 61, "Output"],
+Cell[4081, 130, 746, 21, 61, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
