@@ -284,12 +284,13 @@ $(44)$ Ê½¼´Îª·½³ÌµÄ B\"acklund ±ä»»¡£ÒÔ $u_{0} = 0, \lambda = i\eta$ ($\eta$ ÊÇ³
 \section{Darboux ±ä»»ºÍ¹Ö²¨½â}
 ¶ÔÓÚ·½³Ì$(1)$£¬µ±Âú×ãÒÔÏÂµÄÔ¼ÊøÌõ¼þÊ±
 \begin{align}
-  & a_{1}(t) = \pm\frac{1}{2}\sqrt{1-12\delta}a_{3}(t) \\
-  & a_{2}(t) = \pm\sqrt{1-12\delta}a_{3}(t) \\
-  & a_{4}(t) = 6a_{3}(t) \\
-  & a_{5}(t) = -3a_{3}(t) \\
-  & a_{6}(t) = \gamma a_{3}(t) \\
-  & a_{7}(t) = \delta a_{3}(t)
+  & a_{1}(t) = \pm\frac{1}{2}\sqrt{1-12\delta}\epsilon \\
+  & a_{2}(t) = \pm\sqrt{1-12\delta}\epsilon \\
+  & a_{3}(t) = \epsilon \\
+  & a_{4}(t) = 6\epsilon \\
+  & a_{5}(t) = -3\epsilon \\
+  & a_{6}(t) = \gamma \epsilon \\
+  & a_{7}(t) = \delta \epsilon
 \end{align}
 ¼´
 \begin{equation}
@@ -319,8 +320,8 @@ $(44)$ Ê½¼´Îª·½³ÌµÄ B\"acklund ±ä»»¡£ÒÔ $u_{0} = 0, \lambda = i\eta$ ($\eta$ ÊÇ³
 \end{align}
 ²¢ÇÒ
 \begin{align}
-& k=e^{\left[\mathrm{i}\left(\pm \frac{1}{6}\sqrt{1-12\delta}x + \frac{1}{108}(108\gamma \mp \sqrt{1-12\delta} \mp 6\sqrt{1-12\delta}\delta)\int a_{3}(t)dt\right)\right]} \\
-& b(t) = a_{3}(t)
+& k=e^{\left[\mathrm{i}\left(\pm \frac{1}{6}\sqrt{1-12\delta}x + \frac{1}{108}\epsilon(108\gamma \mp \sqrt{1-12\delta} \mp 6\sqrt{1-12\delta}\delta)t\right)\right]} \\
+& b(t) = \epsilon
 \end{align}
 Ê¹µÃ
 \begin{equation}
@@ -334,5 +335,59 @@ $(44)$ Ê½¼´Îª·½³ÌµÄ B\"acklund ±ä»»¡£ÒÔ $u_{0} = 0, \lambda = i\eta$ ($\eta$ ÊÇ³
 \begin{equation}
   \Phi = (r, s, w)^{T}
 \end{equation}
+Éè Lax ¶ÔµÄ Darboux ±ä»»Îª
+\begin{equation}
+    \widetilde{\Phi}= T\Phi
+\end{equation}
+ÓÉ
+\begin{equation}
+  \widetilde{\Phi}_{x} = (T\Phi)_{x} = T_{x}\Phi + T\Phi_{x} = T_{x}\Phi + TU\Phi = (T_{x} + TU)\Phi = \widetilde{U}\widetilde{\Phi} = \widetilde{U}T\Phi
+\end{equation}
+¿ÉÖª
+\begin{equation}
+  T_{x} + TU = \widetilde{U}T
+\end{equation}
+Í¬Àí¿ÉÖª
+\begin{equation}
+  T_{t} + TV = \widetilde{V}T
+\end{equation}
+¹¹Ôì´ï²¼¾ØÕóÈçÏÂ
+\begin{equation}
+  T = (\lambda-\lambda_{1}^{*})I - (\lambda_{1}^{*} - \lambda_{1})P_{1}, \quad P_{1} = \frac{\Phi_{1}\Phi_{1}^{\dag}}{\Phi_{1}^{\dag}\Phi}
+\end{equation}
+ÆäÖÐ $\Phi_{1}^{\dag}$ ±íÊ¾ $\Phi_{1}$ µÄ¹²éî×ªÖÃ, $\Phi_{1}=\Phi(x,t,\lambda_{1})$ ÊÇ Lax ¶Ôµ± $\lambda = \lambda_{1}$ Ê±µÄ»ù±¾½â£¬$\Phi_{1} = (r_{1}, s_{1}, w_{1})^{T}, \quad \Phi_{1}^{\dag}=(r_{1}^{*}, s_{1}^{*}, w_{1}^{*})$
+Éè
+\begin{align}
+  & U = \lambda U_{0} + \widetilde{U_{1}} \\
+  & V = b(t)(\lambda^{3}V_{0} + \lambda^{2}\widetilde{V_{1}} + \lambda \widetilde{V_{2}} + \widetilde{V_{3}})
+\end{align}
+¹Ê¿ÉµÃ
+\begin{align*}
+  & T_{x} + TU = \widetilde{U}T \Rightarrow T_{x}+TU = (\lambda U_{0} + \widetilde{U_{1}})T \\
+  \Rightarrow & -(\lambda_{1}^{*}-\lambda_{1})P_{1x}+[(\lambda-\lambda_{1}^{*})I-(\lambda_{1}^{*}-\lambda_{1})P_{1}](\lambda U_{0} + U_{1})= (\lambda U_{0} + \widetilde{U_{1}})[(\lambda-\lambda_{1}^{*})I-(\lambda_{1}^{*}-\lambda_{1})P_{1}]
+\end{align*}
+ÕûÀíÉÏÊ½ÖÐµÄ $\lambda$ µÄÏµÊý
+\begin{equation*}
+  -\lambda_{1}^{*}U_{0}+U_{1}-(\lambda_{1}^{*}-\lambda_{1})P_{1}U_{0} = -\lambda_{1}^{*}U_{0}-(\lambda_{1}^{*}-\lambda_{1})U_{0}P_{1}+\widetilde{U_{1}}
+\end{equation*}
+ÓÚÊÇ¿ÉµÃ $U_{1}, \widetilde{U_{1}}$ µÄ¹ØÏµ£¨¿Õ¼ä²¿·ÖµÄ²»±äÐÔ£©Îª
+\begin{equation}
+  \widetilde{U_{1}} = U_{1}+(\lambda_{1}^{*}-\lambda_{1})[U_{0}, P_{1}]
+\end{equation}
+¾­¼ÆËã¿ÉµÃ
+\begin{equation}
+  [U_{0}, P_{1}] = U_{0}P_{1}-P_{1}U_{0} = \frac{1}{|r_{1}|^{2}+|s_{1}|^{2}+|w_{1}|^{2}}\begin{pmatrix}
+                                                 0 & -\frac{1}{2}\mathrm{i}r_{1}s_{1}^{*} & -\frac{1}{2}\mathrm{i}r_{1}w_{1}^{*} \\
+                                                 \frac{1}{2}\mathrm{i}s_{1}r_{1}^{*} & 0 & 0 \\
+                                                 \frac{1}{2}\mathrm{i}w_{1}r_{1}^{*} & 0 & 0
+                                               \end{pmatrix}
+\end{equation}
+¸ù¾Ý $U_{1}$ µÄÐÎÊ½¿ÉµÃµ½´ï²¼±ä»»Îª
+\begin{equation}
+  u = u_{0} + (\lambda_{1}^{*}-\lambda_{1})\frac{\mathrm{i}r_{1}s_{1}^{*}}{2k^{*}(|r_{1}|^{2}+|s_{1}|^{2}+|w_{1}|^{2})}
+\end{equation}
+
+
+
 \end{CJK}
 \end{document}
