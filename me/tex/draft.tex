@@ -434,6 +434,49 @@ $$MUM^{-1} = \begin{pmatrix}
                           -2\alpha & -(\mathrm{i}+\sqrt{3})\alpha & 0 \\
                           -2\alpha & 0 & (\mathrm{i}-\sqrt{3})\alpha
                         \end{pmatrix} = \vartheta\widetilde{U_{2}}\vartheta^{-1} \\
+  & = \begin{pmatrix}
+        \frac{1}{2}(\mathrm{i}-\sqrt{3}) & -\frac{1}{2\alpha} & 0 \\
+        \frac{1}{2}(1-\mathrm{i}\sqrt{3}) & \frac{\mathrm{i}+\sqrt{3}}{4\alpha} & -\frac{1}{4\alpha^{2}} \\
+        1 & 0 & 0
+      \end{pmatrix}
+      \begin{pmatrix}
+        0 & 1 & 0 \\
+        0 & 0 & 1 \\
+        0 & 0 & 0
+      \end{pmatrix}
+      \begin{pmatrix}
+        0 & 0 & 1 \\
+        -2\alpha & 0 & (\mathrm{i}-\sqrt{3})\alpha \\
+        -2(\mathrm{i}+\sqrt{3})\alpha^{2} & -4\alpha^{2} & -2(1+\sqrt{3}\mathrm{i})\alpha^{2}
+      \end{pmatrix}
+\end{align}
+\begin{align}
+  & \widetilde{V_{1}} = \vartheta\widetilde{V_{2}}\vartheta^{-1} = \vartheta\begin{pmatrix}
+  \frac{1}{12}\mathrm{i}K & -\frac{1}{12}(1+396\alpha^{2})\epsilon & -3\sqrt{3}\alpha\epsilon \\
+   -\frac{1}{12}(1+\sqrt{3}\mathrm{i})\alpha K & 0 & -\frac{1}{12}(1+396\alpha^{2})\epsilon \\
+   \frac{\alpha^{2}K}{\sqrt{3}} & \frac{1}{12}(-1+\sqrt{3}\mathrm{i})\alpha K & -\frac{1}{12}\mathrm{i}K
+  \end{pmatrix}\vartheta^{-1}
+\end{align}
+其中 $K = (\alpha+276\alpha^{3})\epsilon+12(-\kappa+k_{2})$
+\begin{align}
+  & (M\Phi)_{x} = \widetilde{U_{1}}M\Phi = \vartheta\widetilde{U_{2}}\vartheta^{-1}M\Phi \Rightarrow (\vartheta^{-1}M\Phi)_{x} = \widetilde{U_{2}}(\vartheta^{-1}M\Phi) \\
+  & (M\Phi)_{t} = \widetilde{V_{1}}M\Phi = \vartheta\widetilde{V_{2}}\vartheta^{-1}M\Phi \Rightarrow (\vartheta^{-1}M\Phi)_{t} = \widetilde{V_{2}}(\vartheta^{-1}M\Phi)
+\end{align}
+令 $\Omega = \vartheta^{-1}M\Phi = (\Omega_{1}, \Omega_{2}, \Omega_{3})^{T}$，则由上式可得
+\begin{align}
+  & \Omega_{1x} = \Omega_{2} \\
+  & \Omega_{2x} = \Omega_{3} \\
+  & \Omega_{3x} = 0 \\
+  & \Omega_{1t} = -\frac{1}{12}(1+396\alpha^{2})\epsilon\Omega_{2} - 3\sqrt{3}\alpha\epsilon\Omega_{3}  \\
+  & \Omega_{2t} = -\frac{1}{12}(1+396\alpha^{2})\epsilon\Omega_{3} \\
+  & \Omega_{3t} = 0
+\end{align}
+解得
+\begin{align}
+  & \Omega_{1} = \frac{1}{2}m_{3}x^{2} - \frac{1}{12}(1+396\alpha^{2})\epsilon xt + m_{2}x - \frac{1}{12}(1+396\alpha^{2})\epsilon(m_{3}xt - \frac{1}{24}(1+396\alpha^{2})\epsilon t^{2} + m_{2}t)  \\
+  & - 3\sqrt{3}\alpha\epsilon m_{3}t + \frac{1}{12}(1+396\alpha^{2})\epsilon x\\
+  & \Omega_{2} = m_{3}x -\frac{1}{12}(1+396\alpha^{2})\epsilon t + m_{2} \\
+  & \Omega_{3} = m_{3}
 \end{align}
 
 \end{CJK}
