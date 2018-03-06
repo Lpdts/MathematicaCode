@@ -386,8 +386,55 @@ $(44)$  Ωº¥Œ™∑Ω≥Ãµƒ B\"acklund ±‰ªª°£“‘ $u_{0} = 0, \lambda = i\eta$ ($\eta$  «≥
 \begin{equation}
   u = u_{0} + (\lambda_{1}^{*}-\lambda_{1})\frac{\mathrm{i}r_{1}s_{1}^{*}}{2k^{*}(|r_{1}|^{2}+|s_{1}|^{2}+|w_{1}|^{2})}
 \end{equation}
-
-
+»°∑Ω≥Ã (1) µƒ÷÷◊”Ω‚Œ™ $u=\rho e^{\mathrm{i}(\omega x + \kappa t)}$£¨¡Ó $k=e^{\mathrm{i}(k_{1}x+k_{2}t)}$
+‘Úø…÷™
+\begin{equation}
+  U = \begin{pmatrix}
+        -\frac{\mathrm{i}\lambda}{3} & -\rho e^{\mathrm{i}\theta} & -\rho e^{-\mathrm{i}\theta} \\
+        \rho e^{-\mathrm{i}\theta} & \frac{\mathrm{i}\lambda}{6} & 0 \\
+        \rho e^{\mathrm{i}\theta} & 0 & \frac{\mathrm{i}\lambda}{6}
+      \end{pmatrix}
+\end{equation}
+∆‰÷– $\theta = (\omega-k_{1})x + (\kappa - k_{2})t$£¨”… $\Phi_{x} = U\Phi$ ø…÷™
+\begin{align}
+  & r_{1x} = -\frac{\mathrm{i}\lambda}{3}r_{1} - \rho e^{\mathrm{i\theta}}s_{1} - \rho e^{-\mathrm{i}\theta}w_{1} \\
+  & s_{1x} = \rho e^{-\mathrm{i}\theta}r_{1} + \frac{\mathrm{i}\lambda}{6}s_{1} \\
+  & w_{1x} = \rho e^{\mathrm{i}\theta}r_{1} + \frac{\mathrm{i}\lambda}{6}w_{1}
+\end{align}
+¡Ó $$M = \begin{pmatrix}
+         1 & 0 & 0 \\
+         0 & e^{\mathrm{i}\theta} & 0 \\
+         0 & 0 & e^{-\mathrm{i}\theta}
+       \end{pmatrix}$$
+‘Ú $$|M| = 1,\quad M^{-1} = \begin{pmatrix}
+               1 & 0 & 0 \\
+               0 & e^{-\mathrm{i}\theta} & 0 \\
+               0 & 0 & e^{\mathrm{i}\theta}
+             \end{pmatrix}$$
+$$MUM^{-1} = \begin{pmatrix}
+               -\frac{\mathrm{i}\lambda}{3} & -\rho & -\rho \\
+               \rho & \frac{\mathrm{i}\lambda}{6} & 0 \\
+               \rho & 0 & \frac{\mathrm{i}\lambda}{6}
+             \end{pmatrix}$$
+À˘“‘
+\begin{align*}
+  & (M\Phi)_{x} = M_{x}\Phi+M\Phi_{x} = M_{x}\Phi+MU\Phi \\
+  = & M_{x}(M^{-1}M)\Phi + MU(M^{-1}M)\Phi = (M_{x}M^{-1}+MUM^{-1})M\Phi = \widetilde{U_{1}}M\Phi
+\end{align*}
+∆‰÷– $\widetilde{U_{1}}=\begin{pmatrix}
+                        -\frac{\mathrm{i}\lambda}{3} & -\rho & -\rho \\
+                        \rho & \frac{1}{6}\mathrm{i}(\lambda+6\omega-6k_{1}) & 0 \\
+                        \rho & 0 & \frac{1}{6}\mathrm{i}(\lambda-6\omega+6k_{1})
+                      \end{pmatrix}$ \\
+Õ¨¿Ì $$(M\Phi)_{t} = \widetilde{V_{1}}M\Phi$$
+¡Ó $\rho = -2\alpha, \quad \lambda = 6\sqrt{3}\alpha\mathrm{i}, \quad \omega-k_{1} = -\alpha$£¨‘Úø…µ√
+\begin{align}
+  & \widetilde{U_{1}} = \begin{pmatrix}
+                          2\sqrt{3}\alpha & 2\alpha & 2\alpha \\
+                          -2\alpha & -(\mathrm{i}+\sqrt{3})\alpha & 0 \\
+                          -2\alpha & 0 & (\mathrm{i}-\sqrt{3})\alpha
+                        \end{pmatrix} = \vartheta\widetilde{U_{2}}\vartheta^{-1} \\
+\end{align}
 
 \end{CJK}
 \end{document}
