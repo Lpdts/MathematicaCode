@@ -457,12 +457,13 @@ $$MUM^{-1} = \begin{pmatrix}
    \frac{\alpha^{2}K}{\sqrt{3}} & \frac{1}{12}(-1+\sqrt{3}\mathrm{i})\alpha K & -\frac{1}{12}\mathrm{i}K
   \end{pmatrix}\vartheta^{-1}
 \end{align}
-其中 $K = (\alpha+276\alpha^{3})\epsilon+12(-\kappa+k_{2})$
+其中 $K = (\alpha+276\alpha^{3})\epsilon+12(-\kappa+k_{2})$ \\
+由以上可得
 \begin{align}
   & (M\Phi)_{x} = \widetilde{U_{1}}M\Phi = \vartheta\widetilde{U_{2}}\vartheta^{-1}M\Phi \Rightarrow (\vartheta^{-1}M\Phi)_{x} = \widetilde{U_{2}}(\vartheta^{-1}M\Phi) \\
   & (M\Phi)_{t} = \widetilde{V_{1}}M\Phi = \vartheta\widetilde{V_{2}}\vartheta^{-1}M\Phi \Rightarrow (\vartheta^{-1}M\Phi)_{t} = \widetilde{V_{2}}(\vartheta^{-1}M\Phi)
 \end{align}
-令 $\Omega = \vartheta^{-1}M\Phi = (\Omega_{1}, \Omega_{2}, \Omega_{3})^{T}$，则由上式可得
+满足 $K=0$ 的条件下，令 $\Omega = \vartheta^{-1}M\Phi = (\Omega_{1}, \Omega_{2}, \Omega_{3})^{T}$，则由上式可得
 \begin{align}
   & \Omega_{1x} = \Omega_{2} \\
   & \Omega_{2x} = \Omega_{3} \\
@@ -473,10 +474,35 @@ $$MUM^{-1} = \begin{pmatrix}
 \end{align}
 解得
 \begin{align}
-  & \Omega_{1} = \frac{1}{2}m_{3}x^{2} - \frac{1}{12}(1+396\alpha^{2})\epsilon xt + m_{2}x - \frac{1}{12}(1+396\alpha^{2})\epsilon(m_{3}xt - \frac{1}{24}(1+396\alpha^{2})\epsilon t^{2} + m_{2}t)  \\
-  & - 3\sqrt{3}\alpha\epsilon m_{3}t + \frac{1}{12}(1+396\alpha^{2})\epsilon x\\
-  & \Omega_{2} = m_{3}x -\frac{1}{12}(1+396\alpha^{2})\epsilon t + m_{2} \\
-  & \Omega_{3} = m_{3}
+  \Omega_{1} & = \frac{1}{2}m_{3}x^{2} - \frac{1}{12}(1+396\alpha^{2})\epsilon m_{3}xt + m_{2}x +\frac{1}{144}\epsilon \left[-12(1+396\alpha^{2})m_{2}t-432\sqrt{3}\alpha m_{3}t \right.  \notag\\
+  & \left. +\frac{1}{2}(1+396\alpha^{2})^{2}\epsilon m_{3}t^{2}\right] +m_{1} \\
+  \Omega_{2} & = m_{3}x -\frac{1}{12}(1+396\alpha^{2})\epsilon m_{3}t + m_{2} \\
+  \Omega_{3} & = m_{3}
+\end{align}
+故
+\begin{equation}
+  \Phi = \begin{pmatrix}
+           r_{1} \\
+           s_{1} \\
+           w_{1}
+         \end{pmatrix} = M^{-1}\vartheta \begin{pmatrix}
+                                           \Omega_{1} \\
+                                           \Omega_{2} \\
+                                           \Omega_{3}
+                                         \end{pmatrix} = \begin{pmatrix}
+                                                           \frac{1}{2}\left(-\frac{\Omega_{2}}{\alpha}+(\mathrm{i}-\sqrt{3})\Omega_{1}\right)  \\
+                                                           \frac{1}{4}e^{-\mathrm{i}\theta}\left(-\frac{m_{3}}{\alpha^{2}}+\frac{(\mathrm{i}+\sqrt{3})\Omega_{2}}{\alpha} + 2(1-\mathrm{i}\sqrt{3})\Omega_{1}\right)  \\
+                                                           e^{\mathrm{i}\theta}\Omega_{1}\
+                                                         \end{pmatrix}
+\end{equation}
+因此怪波解为
+\begin{equation}
+  u(x,t) = u_{0}(x,t)\left(1+\frac{6\sqrt{3}\alpha r_{1}s_{1}^{*}}{\rho e^{\mathrm{i}\theta}(|r_{1}|^{2}+|s_{1}|^{2}+|w_{1}|^{2})}\right)
+\end{equation}
+并且满足约束条件
+\begin{align}
+  & K = (\alpha+276\alpha^{3})\epsilon+12(-\kappa+k_{2}) = 0 \\
+  & \kappa + \omega^{2}a_{1} - \rho^{2}a_{2} - \omega^{3}a_{3} + \rho^{2}\omega a_{4} - a_{6} + \omega a_{7} = 0
 \end{align}
 
 \end{CJK}
