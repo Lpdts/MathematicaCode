@@ -1,0 +1,248 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{titlesec}
+\usepackage{geometry}
+\usepackage{cite}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage[colorlinks,linkcolor=blue,filecolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+
+\renewcommand{\baselinestretch}{1.2}
+
+\title{\large\bfseries Soliton Solution, B\"acklund Transformation, Conservation Laws, and rogue wave solution for a generalized variable-coefficient Sasa-Satsuma-like equation}
+\author{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+A generalized variable-coefficient Sasa-Satsuma-like equation which can describe the ultra short pulses in optical fiber communications and propagation of deep ocean waves is investigated in this Letter. With symbolic computation help, Lax pair and Riccati-type auto-B\"acklund transformation are constructed. Based on the result, the explicit one-soliton solutions is obtained and an infinite number of conservation laws are derived recursively. In additionally, exact explicit rogue wave solution is presented by use of a Darboux transformation under certain conditions. \\
+\indent\textbf{Keywords:} Variable-coefficient Sasa-Satsuma-like equation, Lax Pair, B\"acklund transformation, Conservation law, Rogue-wave pair
+\end{abstract}
+
+\section{Introduction}
+Sasa-Satsuma equation (SSE) is one of the nonlinear evolution equations (NLEEs), which has attracted much attentions and studied in recent years. It is used to describe and explain many phenomenons in different fields such as fluid dynamics, plasma physics, and optical fiber communications.\cite{1,2,3,4,5,6,7,8,9} When under different conditions or complex scenes, the variable-coefficient NLEEs are able to describe various situations more realistically than their constant-coefﬁcient counterparts.\cite{8,9} In this Letter we will investigate a generalized and expanded Sasa-Satsuma equation with variable coefficients as follows,
+\begin{align}
+  & \mathrm{i}u_{t} + a_{1}(t)u_{xx} + a_2(t)|u|^{2}u + a_3(t)\mathrm{i}u_{xxx} + a_{4}(t)\mathrm{i}(|u|^{2}u)_{x} + a_{5}(t)\mathrm{i}(|u|^{2})_{x}u + a_{6}(t)u = 0,   \label{1}
+\end{align}
+where $u$ denotes the complex envelope of the wave field, and all coefficients $a_{1}(t), \cdots, a_{6}(t)$ are real functions of $t$, describing the effects of group velocity dispersion, self-phase modulation, third order dispersion, self-steepening and self-frequency shifting via stimulated Raman scattering respectively.
+
+This Letter is arranged as follows. In Section 2, based on the extended AKNS system, the Lax pair of Eq.\eqref{1} will be constructed. In Section 3, Riccati-type auto-B\"acklund transformations will be presented and then one-soliton of Eq.\eqref{1} will be provided via the obtained B\"acklund transformation. And an infinite number of recursive conservation laws will be derived in Section 4. In Section 5, A twisted rogue-wave pair will be given under certain constraints. Finally, we will get conclusion and discussion in Section 6.
+
+\section{Lax Pair}
+    The Lax pair may ensure the complete integrability of a NLEE, and can be used to obtain B\"acklund transformation, soliton solutions and conservation laws\cite{7}. To construct the Lax pair of Eq.(1), we extend AKNS procedure and introduce the function $a(t)$ and $b(t)$ as below,
+\begin{align}
+  & \Phi_{x} = U\Phi = a(t)(\lambda U_{0} + U_{1})\Phi  \label{2}\\
+  & \Phi_{t} = V\Phi = b(t)(\lambda^{3}V_{0} + \lambda^{2}V_{1} + \lambda V_{2} + V_{3})\Phi  \label{3}
+\end{align}
+where $\Phi=(\Phi_{1}, \Phi_{2}, \Phi_{3})^{T}$, $\lambda$ is a parameter independent of $x$ and $t$, $U$ and $V$ are two $3 \times 3$ matrices, which must satisfy the compatibility condition $U_{t} - V_{x} + UV - VU = 0$.
+
+In the following procedure, we assume the matrices $U_{0}, U_{1}, V_{0}, V_{1}, V_{2}$ and $V_{3}$ can be determined in the following forms:
+\begin{align}
+  & U_{0} = \begin{pmatrix}
+             -\mathrm{i} & 0 & 0 \\
+              0 & \mathrm{i} & 0 \\
+              0 & 0 & \mathrm{i}
+            \end{pmatrix}, \label{4} \\ \notag\\
+  & U_{1} = \begin{pmatrix}
+              0 & ku^{*} & k^{*}u \\
+              -k^{*}u & 0 & 0 \\
+              -ku^{*} & 0 & 0
+            \end{pmatrix}, \label{5} \\ \notag\\
+  & V_{0} = \frac{2}{3}U_{0}, \quad V_{1} = \frac{2}{3}U_{1}, \\ \notag\\
+  & V_{2} = \begin{pmatrix}
+              2A_{1} & kA_{2} & -k^{*}A_{2}^{*} \\
+              -k^{*}A_{2}^{*} & A_{1}^{*} & -(k^{*})^{2}A_{3}^{*} \\
+              kA_{2} & k^{2}A_{3} & A_{1}^{*}
+            \end{pmatrix}, \\ \notag\\
+  & V_{3} = \begin{pmatrix}
+              0 & kA_{4} & k^{*}A_{4}^{*} \\
+              -k^{*}A_{4}^{*} & A_{5} & 0 \\
+              -kA_{4} & 0 & A_{5}^{*}
+            \end{pmatrix}, \label{8}
+\end{align}
+with $k=e^{\mathrm{i}[k_{1}x + k_{2}(t)]}$, and substituting them into the compatibility condition yield
+\begin{align}
+  & \alpha = \frac{1}{2a^{2}} \\
+  & \beta = 2\sqrt{3C_{2}}a \\
+  & a(t) = a \\
+  & b(t) = 6a^{3}a_{3}(t) \\
+  & k = \delta \mathrm{Exp}\left[\mathrm{i}\left(-\frac{\beta}{2}x + \left( -6a^{3}C_{1} + \frac{3C_{2}\beta}{2\alpha}\right) \int a_{3}(t)dt + \int a_{6}(t)dt \right)\right] \\
+  & A_{1} = \mathrm{i}C_{2} + \frac{1}{3}\mathrm{i}\delta^{2}uu^{*} \\
+  & A_{2} = \frac{\beta u^{*} + 2\mathrm{i}u^{*}_{x}}{6a} \\
+  & A_{3} = -\frac{\mathrm{i}}{3}(u^{*})^{2} \\
+  & A_{4} = -C_{2}u^{*} + \frac{- 2\delta^{2}u(u^{*})^{2} + \mathrm{i}\alpha\beta u^{*}_{x} - \alpha u^{*}_{xx}}{3}  \\
+  & A_{5} = \mathrm{i}C_{1} + \frac{\delta^{2}}{6a}(uu^{*}_{x} - \mathrm{i}\beta uu^{*} - u^{*}u_{x})
+\end{align}
+under the constraint
+\begin{align}
+  & a_{2}(t) = \beta a_{5}(t) \label{18}
+\end{align}
+where $C_{1}, C_{2}, a, \delta$ are unconstrained parameters, and $*$ denotes the complex conjugate. It can be verified that the compatibility condition $\Phi_{xt} = \Phi_{tx}$ with Eqs.\eqref{2}-\eqref{8} leads to Eq.\eqref{1}.
+
+\section{Auto-B\"acklund transformation}
+The B\"acklund transformation is a useful method to construct the solutions of NLEEs. We can get a new analytic solution form a known solution via the B\"acklund transformation\cite{7,10}. First, we construct the B\"acklund transformation of Eq.\eqref{1} in Riccati form.
+
+By introducing the function $\Gamma_{1}(x,t), \Gamma_{2}(x,t)$ as
+\begin{equation}
+  \Gamma_{1} = \frac{\phi_{1}}{\phi_{3}}, \quad \Gamma_{2} = \frac{\phi_{2}}{\phi_{3}}
+\end{equation}
+Lax pair \eqref{2} and \eqref{3} can be reduced to the following $\Gamma$-Riccati system,
+\begin{align}
+  \Gamma_{1x} &= a(k^{*}u - 2\mathrm{i}\lambda \Gamma_{1} + ku^{*}\Gamma_{2} + ku^{*}\Gamma_{1}^{2}) \label{22} \\
+  \Gamma_{2x} &= a(-uk^{*}\Gamma_{1} + ku^{*}\Gamma_{1}\Gamma_{2})  \label{23}
+\end{align}
+We can define a transformation from $(\Gamma_{1}, \Gamma_{2}, \lambda, u)$ to $(\Gamma_{1}^{'}, \Gamma_{2}^{'}, \lambda^{'}, u^{'})$, which keeps the forms of \eqref{22} and \eqref{23} invariant. For simplicity, the transformation can be tried by giving $\Gamma_{1}^{'} = \Gamma_{1}, \Gamma_{2}^{'} = \Gamma_{2}$ together with $\lambda^{'} = \lambda^{*}$, and then we can get the following relationships:
+\begin{equation}
+  u^{'} - u = \frac{2\mathrm{i}\Gamma_{1}\Gamma_{2}(\lambda^{*}-\lambda)}{2k^{*}\Gamma_{2} + k^{*}\Gamma_{1}^{2}} \label{24}
+\end{equation}
+The Eq.\eqref{24} can be regard as the BT for \eqref{1}, and we can obtain a series of new accurate solutions from a given seed solution. For instance, by choosing $u_{0} = 0$ and $\lambda = i\eta$ ($\eta$ is a real constant), we obtain the following pseudopotentials via \eqref{22} and \eqref{23}:
+\begin{align}
+  & \Gamma_{1} = f(t)\mathrm{Exp}[2a\eta x] \\
+  & \Gamma_{2} = g(t)
+\end{align}
+where $f(t)$ and $g(t)$ are two arbitrary integral function of $t$. Follow the same method as described above, $f(t)$ and $g(t)$ are determined by $\Gamma_{1t}$ and $\Gamma_{2t}$, then we can obtain the expressions of $\Gamma_{1}, \Gamma_{2}$ as shown below,
+\begin{align}
+  & \Gamma_{1} = d_{1}\mathrm{Exp}\left[2a\eta x + (6\mathrm{i}a^{3}C_{1} - 8a^{3}\eta^{3} - 18a^{3}\eta C_{2})\int a_{3}(t)dt\right] \label{27}\\
+  & \Gamma_{2} = d_{2}\mathrm{Exp}\left[12\mathrm{i}a^{3}C_{1}\int a_{3}(t)dt\right] \label{28}
+\end{align}
+where $d_{1}, d_{2}$ are two complex integral constants. And after verification we get that $d_{2} = 1$. Substituting Eqs.\eqref{27} and \eqref{28} into \eqref{24}, we can get the solitary-wave solutions for Eq.\eqref{1},
+\begin{align}
+    u(x,t) = \frac{4\eta d_{1}\mathrm{Exp}\Big[(2a\eta-\frac{\mathrm{i}\beta}{2})x + (8a^{3}\eta^{3}+\frac{3\mathrm{i}\beta C_{2}}{2\alpha} + 18a^{3}\eta C_{2})\int a_{3}(t)dt + \mathrm{i}\int a_{6}(t)dt\Big]}{\delta d_{1}^{2}\mathrm{Exp}[4a\eta x] + 2\delta \mathrm{Exp}\Big[(16a^{3}\eta^{3}+36a^{3}\eta C_{2})\int a_{3}(t)dt\Big]}
+\end{align}
+
+\section{Infinite Number of Conservation Laws}
+The soliton presented in last section reveals that the existence of an infinite number of conservation laws, which provides a compelling evidence to show the integrability of Eq.\eqref{1} in the Liouville sense\cite{1,7,8}. In this section, we will construct an infinite number of conservation laws through the B\"acklund Transformation.
+
+Firstly, assume $\Phi$ has the form as follow\cite{1,7},
+\begin{equation}\label{30}
+  \Phi = (\phi_{1}, \phi_{2}, \phi_{3})^{T}.
+\end{equation}
+Substitution of Eqs.\eqref{4} and \eqref{5} into Eq.\eqref{2} gives rise to
+\begin{align}
+  & \phi_{1x} = a(-\mathrm{i}\lambda\phi_{1} + ku^{*}\phi_{2} +k^{*}u\phi_{3}) \label{31}\\
+  & \phi_{2x} = a(-k^{*}u\phi_{1} + \mathrm{i}\lambda\phi_{2}) \label{32} \\
+  & \phi_{3x} = a(-ku^{*}\phi_{1} + \mathrm{i}\lambda\phi_{3}) \label{33}
+\end{align}
+Defining another two associated Riccati variables in terms of $T_{1} = \phi_{2}/\phi_{1}$ and $T_{2} = \phi_{3}/\phi_{1}$ and substituting them into Eqs.\eqref{31}-\eqref{33}, we derive the following two Riccati equations,
+\begin{align}
+  T_{1x} &= a(-k^{*}u + 2\mathrm{i}\lambda T_{1} - ku^{*}T_{1}^{2} - k^{*}uT_{1}T_{2}) \label{34}\\
+  T_{2x} &= a(-ku^{*} + 2\mathrm{i}\lambda T_{2} - k^{*}uT_{2}^{2} - ku^{*}T_{1}T_{2}) \label{35}
+\end{align}
+In order to search for series of solutions of Eqs.\eqref{34} and \eqref{35}, we assume that $T_{1}$ and $T_{2}$ are in the forms,
+\begin{align}
+  & T_{1} = \sum_{n=0}^{\infty}c_{n}\lambda^{-n} \label{36} \\
+  & T_{2} = \sum_{n=0}^{\infty}d_{n}\lambda^{-n} \label{37}
+\end{align}
+Substituting the above expressions into \eqref{34}, the recursion relations are given by
+\begin{align}
+  & c_{0} = 0, \quad c_{1} = \frac{k^{*}u}{2\mathrm{i}}, \\
+  & 2a\mathrm{i}c_{n+2} = c_{n+1,x} + a\sum_{m=0}^{n+1}(c_{m}c_{n+1-m}ku^{*} + c_{m}d_{n+1-m}k^{*}u).
+\end{align}
+Similarly, via \eqref{35}, we can find the recursion relations,
+\begin{align}
+  & d_{0} = 0, \quad d_{1} = \frac{ku^{*}}{2\mathrm{i}}, \\
+  & 2a\mathrm{i}d_{n+2} = d_{n+1,x} + a\sum_{m=0}^{n+1}(d_{m}d_{n+1-m}k^{*}u + d_{m}c_{n+1-m}ku^{*}).
+\end{align}
+Substituting the recursion relations of $c_{n}$ and $d_{n}$ into Eq.\eqref{36} and \eqref{37}, then we can get the explicit expressions of $T_{1}$ and $T_{2}$. Thus, inserting $T_{1}$ and $T_{2}$ into the compatibility condition $(\mathrm{ln}\phi_{1})_{xt} = (\mathrm{ln}\phi_{1})_{tx}$, an infinite number of conservation laws can be generated as
+\begin{equation}
+  \frac{\partial D_{n}}{\partial t} = \frac{\partial F_{n}}{\partial x}\quad(n = 1, 2, \cdots)
+\end{equation}
+where $D_{n}$ and $F_{n}$ are called the conserved density and flux. Accordingly, the first three conserved quantities are given as,
+\begin{align}
+  D_{1} =& -\mathrm{i}a\delta^{2} uu^{*} \\
+  F_{1} =&\ b(t)\delta^{2} \left[\frac{1}{3}\mathrm{i}u^{2}(u^{*})^{2} + \frac{2}{3}\mathrm{i}\delta^{2}u^{2}(u^{*})^{2} - \frac{\beta u^{*}u_{x}}{4a^{2}} + \frac{\beta uu^{*}_{x}}{4a^{2}} - \frac{\mathrm{i}u_{x}u^{*}_{x}}{6a^{2}} + \frac{\mathrm{i}u^{*}u_{xx}}{6a^{2}} + \frac{\mathrm{i}uu^{*}_{xx}}{6a^{2}} \right] \\
+  D_{2} =& -\frac{1}{4}\delta^{2} (uu^{*}_{x} + u_{x}u^{*}) \\
+  F_{2} =&\ b(t)\delta^{2} \left[\frac{(1+2\delta^{2})u(u^{*})^{2}u_{x}}{6a} + \frac{(1+2\delta^{2})u^{2}u^{*}u^{*}_{x}}{6a} + \frac{\mathrm{i}\beta u^{*}u_{xx}}{16a^{3}} - \frac{\mathrm{i}\beta uu^{*}_{xx}}{16a^{3}} + \frac{u^{*}u_{xxx}}{24a^{3}} \right. \notag \\
+  & \left. + \frac{uu^{*}_{xxx}}{24a^{3}} \right] \\
+  D_{3} =&\ \delta^{2}\left[\frac{1}{2}\mathrm{i}au^{2}(u^{*})^{2} - \frac{\beta u^{*}u_{x}}{8a} + \frac{\beta uu^{*}_{x}}{8a} + \frac{\mathrm{i}u^{*}u_{xx}}{8a} + \frac{\mathrm{i}uu^{*}_{xx}}{8a} - \frac{\mathrm{i}\beta^{2}uu^{*}}{16a}\right] \\
+  F_{3} =&\ b(t)\delta^{2} \left[\frac{\mathrm{i}\beta^{2}\delta^{2}u^{2}(u^{*})^{2}}{8a^{2}} - \frac{2}{3}\mathrm{i}\delta^{2}u^{3}(u^{*})^{3} - \frac{\beta^{3}u^{*}u_{x}}{64a^{4}} + \frac{\beta u(u^{*})^{2}u_{x}}{8a^{2}} + \frac{\beta\delta^{2}(u^{*})^{2}u_{x}}{4a^{2}}  \right. \notag \\
+  & \left. - \frac{\mathrm{i}(u^{*})^{2}(u_{x})^{2}}{24a^{2}} - \frac{\mathrm{i}\delta^{2}(u^{*})^{2}(u_{x})^{2}}{16a^{2}} + \frac{\beta^{3}uu^{*}_{x}}{64a^{4}} - \frac{\beta u^{2}u^{*}u^{*}_{x}}{8a^{2}} - \frac{\beta\delta^{2}u^{2}u^{*}u^{*}_{x}}{4a^{2}} - \frac{7\mathrm{i}\beta^{2}u_{x}u^{*}_{x}}{96a^{4}} \right. \notag \\
+  & \left. - \frac{\mathrm{i}uu^{*}u_{x}u^{*}_{x}}{6a^{2}} - \frac{\mathrm{i}\delta^{2}uu^{*}u_{x}u^{*}_{x}}{8a^{2}} - \frac{\mathrm{i}u^{2}(u^{*}_{x})^{2}}{24a^{2}} - \frac{\mathrm{i}\delta^{2}u^{2}(u^{*}_{x})^{2}}{16a^{2}} + \frac{\mathrm{i}\beta^{2}u^{*}u_{xx}}{24a^{4}} - \frac{\mathrm{i}u(u^{*})^{2}u_{xx}}{6a^{2}} \right. \notag \\
+  & \left. - \frac{\mathrm{i}\delta^{2}u(u^{*})^{2}u_{xx}}{4a^{2}} - \frac{7\beta u^{*}_{x}u_{xx}}{96a^{4}} + \frac{\mathrm{i}\beta^{2}uu^{*}_{xx}}{24a^{4}} -\frac{\mathrm{i}u^{2}u^{*}u^{*}_{xx}}{6a^{2}} - \frac{\mathrm{i}\delta^{2}u^{2}u^{*}u^{*}_{xx}}{4a^{2}} + \frac{7\beta u_{x}u^{*}_{xx}}{96a^{4}} \right. \notag \\
+  & \left.  - \frac{\mathrm{i}u_{xx}u^{*}_{xx}}{24a^{4}} + \frac{5\beta u^{*}u_{xxx}}{96a^{4}} + \frac{\mathrm{i}u^{*}_{x}u_{xxx}}{48a^{4}} - \frac{5\beta uu^{*}_{xxx}}{96a^{4}} + \frac{\mathrm{i}u_{x}u^{*}_{xxx}}{48a^{4}} - \frac{\mathrm{i}u^{*}u_{xxxx}}{48a^{4}} - \frac{\mathrm{i}uu^{*}_{xxxx}}{48a^{4}} \right]
+\end{align}
+
+\section{Twisted rogue-wave pair}
+Rogue waves(RWs), which is used to describe a special phenomenon of nonlinear waves, have various nonlinear structures\cite{1,2,11,12,13}. When Eq.\eqref{1} under the following constraints,
+\begin{align}
+  & a_{1}(t) = \pm\frac{1}{2}a_{3}(t) \\
+  & a_{2}(t) = \pm a_{3}(t) \\
+  & a_{4}(t) = 6a_{3}(t) \\
+  & a_{5}(t) = -3a_{3}(t)
+\end{align}
+we can write the resultant Darboux transformation based on Lax pair as
+\begin{equation}\label{56}
+  u = u_{0} + (\lambda^{*}-\lambda)\frac{\mathrm{i}rs^{*}}{2k^{*}(|r|^{2}+|s|^{2}+|w|^{2})}
+\end{equation}
+with
+\begin{align}
+  & k=\mathrm{Exp}\left[\mathrm{i}\left(\pm \frac{1}{6}x + \frac{1}{108}\left(108\int a_{6}(t)dt \mp \int a_{3}(t)dt\right)\right)\right]
+\end{align}
+where $u_{0}$ denotes the seed solution of Eq.\eqref{1} and $u$ denotes a new solution of Eq.\eqref{1}. $r, s$ and $w$ are $\lambda$-dependent functions determined by the seed solution $u_{0}$.
+
+Before obtaining the rogue wave solutions, we need get an unstable plane waves which are tightly related to rogue waves\cite{14,15}. Hence, we assume the plane-wave solution in the form directly,
+\begin{equation}\label{58}
+  u_{0}(x,t) = \rho \mathrm{Exp}[\omega x + \kappa t],
+\end{equation}
+Substitution Eq.\eqref{58} into \eqref{2} and \eqref{3} yields expressions about $r(\lambda), s(\lambda)$ and $w(\lambda)$. Then by substituting these expressions into Eq.\eqref{56}, we can obtain the general breather solutions of Eq.\eqref{1} which depends on the choice of the arbitrary complex parameter $\lambda$. With symbolic computation, we obtain the exact fundamental rogue wave solution
+\begin{equation}\label{59}
+u(x,t) = u_{0}(x,t)\left(1-\frac{G}{H}\right),
+\end{equation}
+where
+\begin{align}
+  G &= \sqrt{3}\alpha^{2}(288(\sqrt{3}-\mathrm{i})\alpha m_{1} + 24(12+12(\sqrt{3}-\mathrm{i})\alpha x - (\sqrt{3}-\mathrm{i})(1+396\alpha^{2})\epsilon\alpha t)m_{2} \notag\\
+  & + (144(\sqrt{3}-\mathrm{i})\alpha x^{2} + t\epsilon (-24+864(-14+\sqrt{3}\mathrm{i})\alpha^{2} + (\sqrt{3}-\mathrm{i})\alpha\epsilon t + 792(\sqrt{3}-\mathrm{i})\alpha^{3}\epsilon t \notag\\
+  & + 156816(\sqrt{3}-\mathrm{i})\alpha^{5}\epsilon t) - 24x(-12+(\sqrt{3}-\mathrm{i})(1+396\alpha^{2})\alpha\epsilon t))m_{3})(288(1+\sqrt{3}\mathrm{i})\alpha^{2}m_{1} \notag\\
+  & +24(1+\sqrt{3}\mathrm{i})\alpha(-6\mathrm{i}+12\alpha x-t(\alpha+396\alpha^{3})\epsilon)m_{2}+(-144+144(1+\sqrt{3}\mathrm{i})\alpha^{2}x^{2} \notag\\
+  & -12t\alpha(-\mathrm{i}+\sqrt{3}+36(-5\mathrm{i}+13\sqrt{3})\alpha^{2})\epsilon+(1+\sqrt{3}\mathrm{i})t^{2}\alpha^{2}(1+396\alpha^{2})^{2}\epsilon^{2} \notag\\
+  & +24(\sqrt{3}-\mathrm{i})x\alpha(6-\mathrm{i}(\alpha+396\alpha^{3})\epsilon t))m_{3})\\
+  H &= 2\rho (82944\alpha^{4}m_{1}^{2}+576\alpha^{2}(24+144\alpha^{2}x^{2}-2\sqrt{3}(1+396\alpha^{2})\alpha\epsilon t + t^{2}\alpha^{2}(1+396\alpha^{2})^{2}\epsilon^{2} \notag\\
+  & +24x\alpha(\sqrt{3}-t(\alpha+396\alpha^{3})\epsilon))m_{2}^{2}-48\alpha(72\sqrt{3}-1728x^{3}\alpha^{3}+36(\alpha+468\alpha^{3})\epsilon t \notag\\
+  & -3\sqrt{3}(1+1080\alpha^{2}+270864\alpha^{4})\alpha^{2}\epsilon^{2}t^{2}+(1+396\alpha^{2})^{3}\alpha^{3}\epsilon^{3}t^{3}-432x^{2}\alpha^{2}(\sqrt{3}-t(\alpha+396\alpha^{3})\epsilon) \notag\\
+  & -36x\alpha(12-2\sqrt{3}t\alpha(1+540\alpha^{2})\epsilon+(1+396\alpha^{2})^{2}\alpha^{2}\epsilon^{2}t^{2}))m_{2}m_{3}+
+  (1728+20736x^{4}\alpha^{4} \notag\\
+  & +288\sqrt{3}t\alpha(1+468\alpha^{2})\epsilon+72t^{2}\alpha^{2}(1+936\alpha^{2}+244944\alpha^{4})\epsilon^{2}
+  -4\sqrt{3}t^{3}\alpha^{3}(1+396\alpha^{2})^{2} \notag\\
+  & (1+828\alpha^{2})\epsilon^{3}+t^{4}\alpha^{4}(1+396\alpha^{2})^{4}\epsilon^{4}
+  +6912x^{3}\alpha^{3}(\sqrt{3}-t(\alpha+396\alpha^{3})\epsilon)+864x^{2}\alpha^{2}(12 \notag\\
+  & -2\sqrt{3}t\alpha(1+540\alpha^{2})\epsilon
+  +t^{2}\alpha^{2}(1+396\alpha^{2})^{2}\epsilon^{2})-48x\alpha(72\sqrt{3}+36t(\alpha+468\alpha^{3})\epsilon \notag\\
+  & -3\sqrt{3}t^{2}\alpha^{2}(1+1080\alpha^{2}+270864\alpha^{4})\epsilon^{2}+t^{3}\alpha^{3}(1+396\alpha^{2})^{3}\epsilon^{3}))m_{3}^{2}
+  -576\alpha^{2}m_{1}(24\alpha(-\sqrt{3} \notag\\
+  & -12x\alpha+t(\alpha+396\alpha^{3})\epsilon)m_{2}+(12-144x^{2}\alpha^{2}
+  +2\sqrt{3}t\alpha(1+828\alpha^{2})\epsilon-t^{2}\alpha^{2}(1+396\alpha^{2})^{2}\epsilon^{2} \notag\\
+  & -24x\alpha(\sqrt{3}-t(\alpha+396\alpha^{3})\epsilon))m_{3}))
+\end{align}
+with
+\begin{align}
+  & K = (\alpha+276\alpha^{3})\epsilon+12(-\kappa+k_{2}) = 0 \\
+  & \kappa \pm \frac{1}{2}\omega^{2}a_{3}(t) \mp \rho^{2}a_{3}(t) - \omega^{3}a_{3}(t) + 6\rho^{2}\omega a_{3}(t) - a_{6}(t) = 0
+\end{align}
+
+
+\section{Conclusion and discussion}
+In this Letter, we have investigated the properties of variable-coefficient Sass-Satsuma equation \eqref{1} from the integrable point of view. By extending AKNS system, we have constructed the Lax pair, auto-B\"acklund transformation. Based on the B\"acklund transformation, one-soliton solution has been presented. Then an infinite number of conservation laws have been derived in explicit recursion forms by the symmetrical Riccati equations. Besides based on the obtained Lax pair, we have provided an explicit rogue wave solution. We hope that it is helpful in studying the nonlinear evolution equations like SSE. As the extended form of the SSE, Eq.\eqref{1} may contain some other specific meaningful cases with different coefficients to be investigated.
+
+\small
+\bibliographystyle{unsrt}
+\bibliography{ref}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
