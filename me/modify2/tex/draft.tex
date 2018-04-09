@@ -1,0 +1,112 @@
+\documentclass[12pt]{article}
+\usepackage{mathbbold}
+\textwidth=16.5cm \textheight=24cm \headheight=0cm \headsep=0cm
+\usepackage{CJK}
+\usepackage{cite}
+\usepackage{ulem}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\topmargin=-1cm
+\oddsidemargin=0pt \evensidemargin=0pt
+%\topmargin=-2cm
+
+\usepackage{mathrsfs}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{cases}
+\renewcommand{\baselinestretch}{1.8}
+
+
+% 重定义字体命令
+\newcommand{\song}{\CJKfamily{song}}    % 宋体   (Windows自带simsun.ttf)
+\newcommand{\fs}{\CJKfamily{fs}}        % 仿宋体 (华天字库htfs.ttf)
+\newcommand{\kai}{\CJKfamily{kai}}      % 楷体   (华天字库htkai.ttf)
+\newcommand{\hei}{\CJKfamily{hei}}      % 黑体   (Windows自带simhei.ttf)
+\newcommand{\li}{\CJKfamily{li}}        % 隶书   (Windows自带simli.ttf)
+\newcommand{\you}{\CJKfamily{you}}      % 幼圆体 (Windows自带simyou.ttf)
+%%%  以上六种字体均为标准 GBK 字体, 包括 GBK 繁体字和一些不常用字, 推荐!!!
+
+
+
+\begin{document}
+\begin{CJK}{GBK}{song}
+
+\title{\textbf{变系数的类Sasa-Satsuma方程}}
+\author{张舒涛}
+
+\maketitle
+
+\section{引言}
+
+我们要研究的方程是
+\begin{equation}
+  \mathrm{i}u_{t} + \alpha_{1}(t)u_{xx} + \alpha_2(t)|u|^{2}u + \mathrm{i}\left[\alpha_3(t)u_{xxx} + \alpha_{4}(t)(|u|^{2}u)_{x} + \alpha_{5}(t)(|u|^{2})_{x}u + \alpha_{6}(t)u \right] = 0
+\end{equation}
+其中方程(1)需要满足以下的约束条件
+\begin{align}
+   & 3a_{2}(t)a_{3}(t) + 2a_{1}(t)a_{5}(t) = 0 \\
+   & a_{4}(t) + 2a_{5}(t) = 0
+\end{align}
+
+\section{Lax pair}
+
+构造方程(1)的Lax对
+\begin{align}
+  & \Phi_{x} = U\Phi = \left[a_{0}(t)\lambda U_{0} + a_{1}(t)U_{1}\right]\Phi \\
+  & \Phi_{t} = V\Phi = \left[b_{0}(t)\lambda^{3}V_{0} + b_{1}(t)\lambda^{2}V_{1} + b_{2}(t)\lambda V_{2} + b_{3}(t)V_{3}\right]\Phi
+\end{align}
+其中$U_{0}, U_{1}, V_{0}, V_{1}, V_{2}, V_{3}$ 有以下的形式
+\begin{align}
+  & U_{0} = \begin{pmatrix}
+             -\mathrm{i} & 0 & 0 \\
+              0 & \mathrm{i} & 0 \\
+              0 & 0 & \mathrm{i}
+            \end{pmatrix} \\
+  & U_{1} = \begin{pmatrix}
+              0 & ku^{*} & k^{*}u \\
+              -k^{*}u & 0 & 0 \\
+              -ku^{*} & 0 & 0
+            \end{pmatrix} \\
+  & V_{0} = \frac{2}{3}U_{0} \\
+  & V_{1} = \frac{2}{3}U_{1} \\
+  & V_{2} = \begin{pmatrix}
+              2A_{1} & kA_{2} & -k^{*}A_{2}^{*} \\
+              -k^{*}A_{2}^{*} & A_{1}^{*} & -(k^{*})^{2}A_{3}^{*} \\
+              kA_{2} & k^{2}A_{3} & A_{1}^{*}
+            \end{pmatrix} \\
+  & V_{3} = \begin{pmatrix}
+              0 & kA_{4} & k^{*}A_{4}^{*} \\
+              -k^{*}A_{4}^{*} & A_{5} & 0 \\
+              -kA_{4} & 0 & A_{5}^{*}
+            \end{pmatrix}
+\end{align}
+其中$k=e^{\mathrm{i}(k_{1}x + k_{2}(t))}$，并满足相容条件
+\begin{equation}
+  U_{t} - V_{x} + UV - VU = 0
+\end{equation}
+经计算可以得到以下的结果
+\begin{align}
+  & \beta = \pm \sqrt{\frac{\delta C_{2}}{2a_{0}}} \\
+  & a_{0}(t) = a_{0} \\
+  & b_{0}(t) = 6a_{0}^{3}\alpha_{3}(t) \\
+  & b_{1}(t) = 6a_{0}^{2}a_{1}(t)\alpha_{3}(t) \\
+  & b_{2}(t) = \delta \alpha_{3}(t) \\
+  & k = k_{3}(t)\mathrm{Exp}\left[\mathrm{i}\left(\frac{\beta}{2}x -\int[C_{6}b_{3}(t) + 2\beta^{3}\alpha_{3}(t)]dt \right)-\int a_{6}(t)dt\right] \\
+  & A_{1} = \mathrm{i}C_{2} + \frac{2\mathrm{i}a_{0}a_{1}(t)^{2}k_{3}(t)^{3}uu^{*}}{\delta} \\
+  & A_{2} = \frac{-2a_{0}\beta a_{1}(t)u^{*}+2\mathrm{i}a_{0}a_{1}(t)u^{*}_{x}}{\delta}   \\
+  & A_{3} = -\frac{2\mathrm{i}a_{0}a_{1}(t)^{2}(u^{*})^{2}}{\delta}  \\
+  & A_{4} = -\frac{a_{1}(t)\alpha_{3}(t)(2\beta^{2}
+  u^{*}+4a_{1}(t)^{2}k_{3}(t)^{2}u(u^{*})^{2}+\mathrm{i}2\beta u^{*}_{x} + u^{*}_{xx})}{b_{3}(t)} \\
+  & A_{5} = C_{5} + \mathrm{i}C_{6} + \frac{a_{1}(t)^{2}k_{3}(t)^{3}\alpha_{3}(t)(2\beta\mathrm{i} u^{*}u-u^{*}u_{x}+uu^{*}_{x})}{b_{3}(t)}
+\end{align}
+其中$C_{5}, C_{6}, C_{2}, a_{0}, \delta$为自由变量，并且$a_{3}(t), a_{4}(t)$需要满足以下的约束条件
+\begin{align}
+  & \alpha_{4}(t) = 6a_{1}(t)^{2}k_{3}(t)^{2}\alpha_{3}(t) \\
+  & a_{1}(t) = C\mathrm{Exp}\left[\int \left(-C_{5}b_{3}(t)-\frac{k_{3}^{'}(t)}{k_{3}(t)}\right)dt \right]
+\end{align}
+
+\end{CJK}
+\end{document}
