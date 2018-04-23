@@ -25,9 +25,9 @@ A generalized variable-coefficient Sasa-Satsuma-like equation which can describe
 \section{Introduction}
 Sasa-Satsuma equation (SSE) is one of the nonlinear evolution equations (NLEEs), which has attracted much attentions and studied in recent years. It is used to describe and explain many phenomenons in different fields such as fluid dynamics, plasma physics, and optical fiber communications.\cite{1,2,3,4,5,6,7,8,9} When under different conditions or complex scenes, the variable-coefficient NLEEs are able to describe various situations more realistically than their constant-coefﬁcient counterparts.\cite{8,9} In this Letter we will investigate a generalized and expanded Sasa-Satsuma equation with variable coefficients as follows,
 \begin{align}
-  & \mathrm{i}u_{t} + a_{1}(t)u_{xx} + a_2(t)|u|^{2}u + a_3(t)\mathrm{i}u_{xxx} + a_{4}(t)\mathrm{i}(|u|^{2}u)_{x} + a_{5}(t)\mathrm{i}(|u|^{2})_{x}u + a_{6}(t)u = 0,   \label{1}
+  & \mathrm{i}u_{t} + \alpha_{1}(t)u_{xx} + \alpha_2(t)|u|^{2}u + \mathrm{i}\left[\alpha_3(t)u_{xxx} + \alpha_{4}(t)(|u|^{2}u)_{x} + \alpha_{5}(t)(|u|^{2})_{x}u + \alpha_{6}(t)u \right] = 0,   \label{1}
 \end{align}
-where $u$ denotes the complex envelope of the wave field, and all coefficients $a_{1}(t), \cdots, a_{6}(t)$ are real functions of $t$, describing the effects of group velocity dispersion, self-phase modulation, third order dispersion, self-steepening and self-frequency shifting via stimulated Raman scattering respectively.
+where $u$ denotes the complex envelope of the wave field, and all coefficients $\alpha_{1}(t), \cdots, \alpha_{6}(t)$ are real functions of $t$, describing the effects of group velocity dispersion, self-phase modulation, third order dispersion, self-steepening and self-frequency shifting via stimulated Raman scattering respectively.
 
 This Letter is arranged as follows. In Section 2, based on the extended AKNS system, the Lax pair of Eq.\eqref{1} will be constructed. In Section 3, Riccati-type auto-B\"acklund transformations will be presented and then one-soliton of Eq.\eqref{1} will be provided via the obtained B\"acklund transformation. And an infinite number of recursive conservation laws will be derived in Section 4. In Section 5, A twisted rogue-wave pair will be given under certain constraints. Finally, we will get conclusion and discussion in Section 6.
 
@@ -63,27 +63,27 @@ In the following procedure, we assume the matrices $U_{0}, U_{1}, V_{0}, V_{1}, 
               -kA_{4} & 0 & A_{5}^{*}
             \end{pmatrix}, \label{8}
 \end{align}
-with $k=e^{\mathrm{i}[k_{1}x + k_{2}(t)]}$, and substituting them into the compatibility condition yield
+with $k=k_{3}(t)e^{\mathrm{i}[k_{1}(t)x + k_{2}(t)]}$, and substituting them into the compatibility condition yield
 \begin{align}
-  & \alpha = \frac{1}{2a^{2}} \\
-  & \beta = 2\sqrt{3C_{2}}a \\
+  & \beta = \pm \sqrt{3C_{2}}a \\
   & a(t) = a \\
-  & b(t) = 6a^{3}a_{3}(t) \\
-  & k = \delta \mathrm{Exp}\left[\mathrm{i}\left(-\frac{\beta}{2}x + \left( -6a^{3}C_{1} + \frac{3C_{2}\beta}{2\alpha}\right) \int a_{3}(t)dt + \int a_{6}(t)dt \right)\right] \\
-  & A_{1} = \mathrm{i}C_{2} + \frac{1}{3}\mathrm{i}\delta^{2}uu^{*} \\
-  & A_{2} = \frac{\beta u^{*} + 2\mathrm{i}u^{*}_{x}}{6a} \\
-  & A_{3} = -\frac{\mathrm{i}}{3}(u^{*})^{2} \\
-  & A_{4} = -C_{2}u^{*} + \frac{- 2\delta^{2}u(u^{*})^{2} + \mathrm{i}\alpha\beta u^{*}_{x} - \alpha u^{*}_{xx}}{3}  \\
-  & A_{5} = \mathrm{i}C_{1} + \frac{\delta^{2}}{6a}(uu^{*}_{x} - \mathrm{i}\beta uu^{*} - u^{*}u_{x})
+  & b(t) = 6a^{3}\alpha_{3}(t) \\
+  & k_{3}(t) = C_{1}e^{\int \alpha_{6}(t)dt}   \\
+  & k = k_{3}(t)\mathrm{Exp}\left[\mathrm{i}\left(\beta x - (2\beta^{3} + 6a^{3}C_{3})\int \alpha_{3}(t)dt \right)\right] \\
+  & A_{1} = \mathrm{i}C_{2} + \frac{\mathrm{i}}{3}k_{3}(t)^{2}uu^{*} \\
+  & A_{2} = \frac{-\beta u^{*} + \mathrm{i}u^{*}_{x}}{3a}   \\
+  & A_{3} = -\frac{\mathrm{i}}{3}(u^{*})^{2}  \\
+  & A_{4} = -C_{2}u^{*} - \frac{2}{3}k_{3}(t)^{2}u(u^{*})^{2} - \frac{2\mathrm{i}\beta u^{*}_{x} + u^{*}_{xx}}{6a^{2}} \\
+  & A_{5} = \mathrm{i}C_{3} + \frac{k_{3}(t)^{2}(2\mathrm{i}\beta uu^{*} + uu^{*}_{x} - u^{*}u_{x})}{6a}
 \end{align}
 under the constraint
 \begin{align}
-  & a_{2}(t) = \beta a_{5}(t) \label{18}
+  & \alpha_{4}(t) = 6a^{2}k_{3}(t)^{2}\alpha_{3}(t)
 \end{align}
-where $C_{1}, C_{2}, a, \delta$ are unconstrained parameters, and $*$ denotes the complex conjugate. It can be verified that the compatibility condition $\Phi_{xt} = \Phi_{tx}$ with Eqs.\eqref{2}-\eqref{8} leads to Eq.\eqref{1}.
+where $C_{1}, C_{2}, C_{3}, a$ are unconstrained parameters, and $*$ denotes the complex conjugate. It can be verified that the compatibility condition $\Phi_{xt} = \Phi_{tx}$ with Eqs.\eqref{2}-\eqref{8} leads to Eq.\eqref{1}.
 
 \section{Auto-B\"acklund transformation}
-The B\"acklund transformation is a useful method to construct the solutions of NLEEs. We can get a new analytic solution form a known solution via the B\"acklund transformation\cite{7,10}. First, we construct the B\"acklund transformation of Eq.\eqref{1} in Riccati form.
+The B\"acklund transformation is a useful method to construct the solutions of NLEEs. We can get a new analytic solution form a known solution via the B\"acklund transformation\cite{7,10,11,12}. First, we construct the B\"acklund transformation of Eq.\eqref{1} in Riccati form.
 
 By introducing the function $\Gamma_{1}(x,t), \Gamma_{2}(x,t)$ as
 \begin{equation}
@@ -105,16 +105,16 @@ The Eq.\eqref{24} can be regard as the BT for \eqref{1}, and we can obtain a ser
 \end{align}
 where $f(t)$ and $g(t)$ are two arbitrary integral function of $t$. Follow the same method as described above, $f(t)$ and $g(t)$ are determined by $\Gamma_{1t}$ and $\Gamma_{2t}$, then we can obtain the expressions of $\Gamma_{1}, \Gamma_{2}$ as shown below,
 \begin{align}
-  & \Gamma_{1} = d_{1}\mathrm{Exp}\left[2a\eta x + (6\mathrm{i}a^{3}C_{1} - 8a^{3}\eta^{3} - 18a^{3}\eta C_{2})\int a_{3}(t)dt\right] \label{27}\\
-  & \Gamma_{2} = d_{2}\mathrm{Exp}\left[12\mathrm{i}a^{3}C_{1}\int a_{3}(t)dt\right] \label{28}
+  & \Gamma_{1} = d_{1}\mathrm{Exp}\left[2a\eta x + (6\mathrm{i}a^{3}C_{3} - 8a^{3}\eta^{3} - 18a^{3}\eta C_{2})\int \alpha_{3}(t)dt\right] \label{27}\\
+  & \Gamma_{2} = d_{2}\mathrm{Exp}\left[12\mathrm{i}a^{3}C_{3}\int \alpha_{3}(t)dt\right] \label{28}
 \end{align}
 where $d_{1}, d_{2}$ are two complex integral constants. And after verification we get that $d_{2} = 1$. Substituting Eqs.\eqref{27} and \eqref{28} into \eqref{24}, we can get the solitary-wave solutions for Eq.\eqref{1},
 \begin{align}
-    u(x,t) = \frac{4\eta d_{1}\mathrm{Exp}\Big[(2a\eta-\frac{\mathrm{i}\beta}{2})x + (8a^{3}\eta^{3}+\frac{3\mathrm{i}\beta C_{2}}{2\alpha} + 18a^{3}\eta C_{2})\int a_{3}(t)dt + \mathrm{i}\int a_{6}(t)dt\Big]}{\delta d_{1}^{2}\mathrm{Exp}[4a\eta x] + 2\delta \mathrm{Exp}\Big[(16a^{3}\eta^{3}+36a^{3}\eta C_{2})\int a_{3}(t)dt\Big]}
+    u(x,t) = \frac{4\eta d_{1}\mathrm{Exp}\Big[(2a\eta+\mathrm{i}\beta)x + (8a^{3}\eta^{3} - 2\beta^{3} + 18a^{3}\eta C_{2})\int \alpha_{3}(t)dt - \int \alpha_{6}(t)dt\Big]}{C_{1}d_{1}^{2}\mathrm{Exp}[4a\eta x] + 2C_{1}\mathrm{Exp}\Big[(16a^{3}\eta^{3}+36a^{3}\eta C_{2})\int \alpha_{3}(t)dt\Big]}
 \end{align}
 
 \section{Infinite Number of Conservation Laws}
-The soliton presented in last section reveals that the existence of an infinite number of conservation laws, which provides a compelling evidence to show the integrability of Eq.\eqref{1} in the Liouville sense\cite{1,7,8}. In this section, we will construct an infinite number of conservation laws through the B\"acklund Transformation.
+The soliton presented in last section reveals that the existence of an infinite number of conservation laws, which provides a compelling evidence to show the integrability of Eq.\eqref{1} in the Liouville sense\cite{1,7,8,13,14,15}. In this section, we will construct an infinite number of conservation laws through the B\"acklund Transformation.
 
 Firstly, assume $\Phi$ has the form as follow\cite{1,7},
 \begin{equation}\label{30}
@@ -152,76 +152,17 @@ Substituting the recursion relations of $c_{n}$ and $d_{n}$ into Eq.\eqref{36} a
 \end{equation}
 where $D_{n}$ and $F_{n}$ are called the conserved density and flux. Accordingly, the first three conserved quantities are given as,
 \begin{align}
-  D_{1} =& -\mathrm{i}a\delta^{2} uu^{*} \\
-  F_{1} =&\ b(t)\delta^{2} \left[\frac{1}{3}\mathrm{i}u^{2}(u^{*})^{2} + \frac{2}{3}\mathrm{i}\delta^{2}u^{2}(u^{*})^{2} - \frac{\beta u^{*}u_{x}}{4a^{2}} + \frac{\beta uu^{*}_{x}}{4a^{2}} - \frac{\mathrm{i}u_{x}u^{*}_{x}}{6a^{2}} + \frac{\mathrm{i}u^{*}u_{xx}}{6a^{2}} + \frac{\mathrm{i}uu^{*}_{xx}}{6a^{2}} \right] \\
-  D_{2} =& -\frac{1}{4}\delta^{2} (uu^{*}_{x} + u_{x}u^{*}) \\
-  F_{2} =&\ b(t)\delta^{2} \left[\frac{(1+2\delta^{2})u(u^{*})^{2}u_{x}}{6a} + \frac{(1+2\delta^{2})u^{2}u^{*}u^{*}_{x}}{6a} + \frac{\mathrm{i}\beta u^{*}u_{xx}}{16a^{3}} - \frac{\mathrm{i}\beta uu^{*}_{xx}}{16a^{3}} + \frac{u^{*}u_{xxx}}{24a^{3}} \right. \notag \\
-  & \left. + \frac{uu^{*}_{xxx}}{24a^{3}} \right] \\
-  D_{3} =&\ \delta^{2}\left[\frac{1}{2}\mathrm{i}au^{2}(u^{*})^{2} - \frac{\beta u^{*}u_{x}}{8a} + \frac{\beta uu^{*}_{x}}{8a} + \frac{\mathrm{i}u^{*}u_{xx}}{8a} + \frac{\mathrm{i}uu^{*}_{xx}}{8a} - \frac{\mathrm{i}\beta^{2}uu^{*}}{16a}\right] \\
-  F_{3} =&\ b(t)\delta^{2} \left[\frac{\mathrm{i}\beta^{2}\delta^{2}u^{2}(u^{*})^{2}}{8a^{2}} - \frac{2}{3}\mathrm{i}\delta^{2}u^{3}(u^{*})^{3} - \frac{\beta^{3}u^{*}u_{x}}{64a^{4}} + \frac{\beta u(u^{*})^{2}u_{x}}{8a^{2}} + \frac{\beta\delta^{2}(u^{*})^{2}u_{x}}{4a^{2}}  \right. \notag \\
-  & \left. - \frac{\mathrm{i}(u^{*})^{2}(u_{x})^{2}}{24a^{2}} - \frac{\mathrm{i}\delta^{2}(u^{*})^{2}(u_{x})^{2}}{16a^{2}} + \frac{\beta^{3}uu^{*}_{x}}{64a^{4}} - \frac{\beta u^{2}u^{*}u^{*}_{x}}{8a^{2}} - \frac{\beta\delta^{2}u^{2}u^{*}u^{*}_{x}}{4a^{2}} - \frac{7\mathrm{i}\beta^{2}u_{x}u^{*}_{x}}{96a^{4}} \right. \notag \\
-  & \left. - \frac{\mathrm{i}uu^{*}u_{x}u^{*}_{x}}{6a^{2}} - \frac{\mathrm{i}\delta^{2}uu^{*}u_{x}u^{*}_{x}}{8a^{2}} - \frac{\mathrm{i}u^{2}(u^{*}_{x})^{2}}{24a^{2}} - \frac{\mathrm{i}\delta^{2}u^{2}(u^{*}_{x})^{2}}{16a^{2}} + \frac{\mathrm{i}\beta^{2}u^{*}u_{xx}}{24a^{4}} - \frac{\mathrm{i}u(u^{*})^{2}u_{xx}}{6a^{2}} \right. \notag \\
-  & \left. - \frac{\mathrm{i}\delta^{2}u(u^{*})^{2}u_{xx}}{4a^{2}} - \frac{7\beta u^{*}_{x}u_{xx}}{96a^{4}} + \frac{\mathrm{i}\beta^{2}uu^{*}_{xx}}{24a^{4}} -\frac{\mathrm{i}u^{2}u^{*}u^{*}_{xx}}{6a^{2}} - \frac{\mathrm{i}\delta^{2}u^{2}u^{*}u^{*}_{xx}}{4a^{2}} + \frac{7\beta u_{x}u^{*}_{xx}}{96a^{4}} \right. \notag \\
-  & \left.  - \frac{\mathrm{i}u_{xx}u^{*}_{xx}}{24a^{4}} + \frac{5\beta u^{*}u_{xxx}}{96a^{4}} + \frac{\mathrm{i}u^{*}_{x}u_{xxx}}{48a^{4}} - \frac{5\beta uu^{*}_{xxx}}{96a^{4}} + \frac{\mathrm{i}u_{x}u^{*}_{xxx}}{48a^{4}} - \frac{\mathrm{i}u^{*}u_{xxxx}}{48a^{4}} - \frac{\mathrm{i}uu^{*}_{xxxx}}{48a^{4}} \right]
+ D_{1} =& -\mathrm{i}ak_3(t)^{2} uu^{*} \\
+  F_{1} =&\ b(t)k_3(t)^{2} \left[\mathrm{i}k_3(t)^{2}u^2(u^*)^2 + \frac{\beta u^{*}u_{x}}{2a^{2}} - \frac{\beta uu^{*}_{x}}{2a^{2}} - \frac{\mathrm{i}u_{x}u^{*}_{x}}{6a^{2}} + \frac{\mathrm{i}u^{*}u_{xx}}{6a^{2}} + \frac{\mathrm{i}uu^{*}_{xx}}{6a^{2}} \right] \\
+  D_{2} =& -\frac{k_{3}(t)^{2}}{4}(uu^{*}_{x} + u_{x}u^{*}) \\
+  F_{2} =&\ b(t)k_3(t)^{2} \left[\frac{k_3(t)^{2}uu_x(u^*)^2}{2a} + \frac{k_3(t)^2u^2u^*u^*_x}{2a} -\frac{\mathrm{i}\beta u^*u_{xx}}{8a^3} + \frac{\mathrm{i}\beta uu^*_{xx}}{8a^3} + \frac{u^*u_{xxx}}{24a^3} + \frac{uu^*_{xxx}}{24a^3}  \right] \\
+  D_{3} =&\ \mathrm{i}ak_3(t)^2\left[\frac{1}{2}k_3(t)^2u^2(u^*)^2 - \frac{\beta^2 uu^*}{4a^2} + \frac{\beta u_xu^*}{4a^2} - \frac{\beta uu^*_x}{4a^2} + \frac{u^*u_{xx}}{8a^2} + \frac{uu^*_{xx}}{8a^2}\right] \\
+  F_{3} =&\ b(t)k_3(t)^{2} \left[ \frac{\mathrm{i}\beta^2k_3(t)^2u^2(u^*)^2}{2a^2} - \frac{2}{3}\mathrm{i}k_3(t)^4u^3(u^*)^3 + \frac{\beta^3 u^*u_x}{8a^4} - \frac{3\beta k_3(t)^2uu_x(u^*)^2}{4a^2} \right. \notag \\
+  & \left.- \frac{5\mathrm{i}k_3(t)^2(u^*)^2u_x^2}{48a^2} - \frac{\beta^3uu^*_x}{8a^4} + \frac{3\beta k_3(t)^2u^2u^*u^*_x}{4a^2} - \frac{7\mathrm{i}\beta^2u_xu^*_x}{24a^4} - \frac{7\mathrm{i}k_3(t)^2uu^*u_xu^*_x}{24a^2} \right. \notag\\
+  & \left. -\frac{5\mathrm{i}k_3(t)^2u^2(u^*_x)^2}{48a^2} + \frac{\mathrm{i}\beta^2u^*u_{xx}}{6a^4} - \frac{5\mathrm{i}k_3(t)^2u(u^*)^2u_{xx}}{12a^2} + \frac{7\beta u^*_xu_{xx}}{48a^4} + \frac{\mathrm{i}\beta^2uu^*_{xx}}{6a^4} \right. \notag\\
+  & \left.  - \frac{5\mathrm{i}k_3(t)^2u^2u^*u^*_{xx}}{12a^2} -\frac{7\beta u_xu^*_{xx}}{48a^4} - \frac{\mathrm{i}u_{xx}u^*_{xx}}{24a^4} - \frac{5\beta u^*u_{xxx}}{48a^4} + \frac{\mathrm{i}u^*_xu_{xxx}}{48a^4} + \frac{5\beta uu^*_{xxx}}{48a^4} \right. \notag\\
+  & \left. + \frac{\mathrm{i}u_xu^*_{xxx}}{48a^4} - \frac{\mathrm{i}u^*u_{xxxx}}{48a^4} - \frac{\mathrm{i}uu^*_{xxxx}}{48a^4} \right]
 \end{align}
-
-\section{Twisted rogue-wave pair}
-Rogue waves(RWs), which is used to describe a special phenomenon of nonlinear waves, have various nonlinear structures\cite{1,2,11,12,13}. When Eq.\eqref{1} under the following constraints,
-\begin{align}
-  & a_{1}(t) = \pm\frac{1}{2}a_{3}(t) \\
-  & a_{2}(t) = \pm a_{3}(t) \\
-  & a_{4}(t) = 6a_{3}(t) \\
-  & a_{5}(t) = -3a_{3}(t)
-\end{align}
-we can write the resultant Darboux transformation based on Lax pair as
-\begin{equation}\label{56}
-  u = u_{0} + (\lambda^{*}-\lambda)\frac{\mathrm{i}rs^{*}}{2k^{*}(|r|^{2}+|s|^{2}+|w|^{2})}
-\end{equation}
-with
-\begin{align}
-  & k=\mathrm{Exp}\left[\mathrm{i}\left(\pm \frac{1}{6}x + \frac{1}{108}\left(108\int a_{6}(t)dt \mp \int a_{3}(t)dt\right)\right)\right]
-\end{align}
-where $u_{0}$ denotes the seed solution of Eq.\eqref{1} and $u$ denotes a new solution of Eq.\eqref{1}. $r, s$ and $w$ are $\lambda$-dependent functions determined by the seed solution $u_{0}$.
-
-Before obtaining the rogue wave solutions, we need get an unstable plane waves which are tightly related to rogue waves\cite{14,15}. Hence, we assume the plane-wave solution in the form directly,
-\begin{equation}\label{58}
-  u_{0}(x,t) = \rho \mathrm{Exp}[\omega x + \kappa t],
-\end{equation}
-Substitution Eq.\eqref{58} into \eqref{2} and \eqref{3} yields expressions about $r(\lambda), s(\lambda)$ and $w(\lambda)$. Then by substituting these expressions into Eq.\eqref{56}, we can obtain the general breather solutions of Eq.\eqref{1} which depends on the choice of the arbitrary complex parameter $\lambda$. With symbolic computation, we obtain the exact fundamental rogue wave solution
-\begin{equation}\label{59}
-u(x,t) = u_{0}(x,t)\left(1-\frac{G}{H}\right),
-\end{equation}
-where
-\begin{align}
-  G &= \sqrt{3}\alpha^{2}(288(\sqrt{3}-\mathrm{i})\alpha m_{1} + 24(12+12(\sqrt{3}-\mathrm{i})\alpha x - (\sqrt{3}-\mathrm{i})(1+396\alpha^{2})\epsilon\alpha t)m_{2} \notag\\
-  & + (144(\sqrt{3}-\mathrm{i})\alpha x^{2} + t\epsilon (-24+864(-14+\sqrt{3}\mathrm{i})\alpha^{2} + (\sqrt{3}-\mathrm{i})\alpha\epsilon t + 792(\sqrt{3}-\mathrm{i})\alpha^{3}\epsilon t \notag\\
-  & + 156816(\sqrt{3}-\mathrm{i})\alpha^{5}\epsilon t) - 24x(-12+(\sqrt{3}-\mathrm{i})(1+396\alpha^{2})\alpha\epsilon t))m_{3})(288(1+\sqrt{3}\mathrm{i})\alpha^{2}m_{1} \notag\\
-  & +24(1+\sqrt{3}\mathrm{i})\alpha(-6\mathrm{i}+12\alpha x-t(\alpha+396\alpha^{3})\epsilon)m_{2}+(-144+144(1+\sqrt{3}\mathrm{i})\alpha^{2}x^{2} \notag\\
-  & -12t\alpha(-\mathrm{i}+\sqrt{3}+36(-5\mathrm{i}+13\sqrt{3})\alpha^{2})\epsilon+(1+\sqrt{3}\mathrm{i})t^{2}\alpha^{2}(1+396\alpha^{2})^{2}\epsilon^{2} \notag\\
-  & +24(\sqrt{3}-\mathrm{i})x\alpha(6-\mathrm{i}(\alpha+396\alpha^{3})\epsilon t))m_{3})\\
-  H &= 2\rho (82944\alpha^{4}m_{1}^{2}+576\alpha^{2}(24+144\alpha^{2}x^{2}-2\sqrt{3}(1+396\alpha^{2})\alpha\epsilon t + t^{2}\alpha^{2}(1+396\alpha^{2})^{2}\epsilon^{2} \notag\\
-  & +24x\alpha(\sqrt{3}-t(\alpha+396\alpha^{3})\epsilon))m_{2}^{2}-48\alpha(72\sqrt{3}-1728x^{3}\alpha^{3}+36(\alpha+468\alpha^{3})\epsilon t \notag\\
-  & -3\sqrt{3}(1+1080\alpha^{2}+270864\alpha^{4})\alpha^{2}\epsilon^{2}t^{2}+(1+396\alpha^{2})^{3}\alpha^{3}\epsilon^{3}t^{3}-432x^{2}\alpha^{2}(\sqrt{3}-t(\alpha+396\alpha^{3})\epsilon) \notag\\
-  & -36x\alpha(12-2\sqrt{3}t\alpha(1+540\alpha^{2})\epsilon+(1+396\alpha^{2})^{2}\alpha^{2}\epsilon^{2}t^{2}))m_{2}m_{3}+
-  (1728+20736x^{4}\alpha^{4} \notag\\
-  & +288\sqrt{3}t\alpha(1+468\alpha^{2})\epsilon+72t^{2}\alpha^{2}(1+936\alpha^{2}+244944\alpha^{4})\epsilon^{2}
-  -4\sqrt{3}t^{3}\alpha^{3}(1+396\alpha^{2})^{2} \notag\\
-  & (1+828\alpha^{2})\epsilon^{3}+t^{4}\alpha^{4}(1+396\alpha^{2})^{4}\epsilon^{4}
-  +6912x^{3}\alpha^{3}(\sqrt{3}-t(\alpha+396\alpha^{3})\epsilon)+864x^{2}\alpha^{2}(12 \notag\\
-  & -2\sqrt{3}t\alpha(1+540\alpha^{2})\epsilon
-  +t^{2}\alpha^{2}(1+396\alpha^{2})^{2}\epsilon^{2})-48x\alpha(72\sqrt{3}+36t(\alpha+468\alpha^{3})\epsilon \notag\\
-  & -3\sqrt{3}t^{2}\alpha^{2}(1+1080\alpha^{2}+270864\alpha^{4})\epsilon^{2}+t^{3}\alpha^{3}(1+396\alpha^{2})^{3}\epsilon^{3}))m_{3}^{2}
-  -576\alpha^{2}m_{1}(24\alpha(-\sqrt{3} \notag\\
-  & -12x\alpha+t(\alpha+396\alpha^{3})\epsilon)m_{2}+(12-144x^{2}\alpha^{2}
-  +2\sqrt{3}t\alpha(1+828\alpha^{2})\epsilon-t^{2}\alpha^{2}(1+396\alpha^{2})^{2}\epsilon^{2} \notag\\
-  & -24x\alpha(\sqrt{3}-t(\alpha+396\alpha^{3})\epsilon))m_{3}))
-\end{align}
-with
-\begin{align}
-  & K = (\alpha+276\alpha^{3})\epsilon+12(-\kappa+k_{2}) = 0 \\
-  & \kappa \pm \frac{1}{2}\omega^{2}a_{3}(t) \mp \rho^{2}a_{3}(t) - \omega^{3}a_{3}(t) + 6\rho^{2}\omega a_{3}(t) - a_{6}(t) = 0
-\end{align}
-
 
 \section{Conclusion and discussion}
 In this Letter, we have investigated the properties of variable-coefficient Sass-Satsuma equation \eqref{1} from the integrable point of view. By extending AKNS system, we have constructed the Lax pair, auto-B\"acklund transformation. Based on the B\"acklund transformation, one-soliton solution has been presented. Then an infinite number of conservation laws have been derived in explicit recursion forms by the symmetrical Riccati equations. Besides based on the obtained Lax pair, we have provided an explicit rogue wave solution. We hope that it is helpful in studying the nonlinear evolution equations like SSE. As the extended form of the SSE, Eq.\eqref{1} may contain some other specific meaningful cases with different coefficients to be investigated.
