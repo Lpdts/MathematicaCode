@@ -73,32 +73,18 @@
   & V_{0} = \frac{2}{3}U_{0} \\
   & V_{1} = \frac{2}{3}U_{1} \\
   & V_{2} = \begin{pmatrix}
-              2A_{1} & kA_{2} & -k^{*}A_{2}^{*} \\
-              -k^{*}A_{2}^{*} & A_{1}^{*} & -(k^{*})^{2}A_{3}^{*} \\
+              2A_{1} & kA_{2} & k^{*}A_{2}^{*} \\
+              k^{*}A_{2}^{*} & A_{1}^{*} & -(k^{*})^{2}A_{3}^{*} \\
               kA_{2} & k^{2}A_{3} & A_{1}^{*}
             \end{pmatrix} \\
   & V_{3} = \begin{pmatrix}
               0 & kA_{4} & k^{*}A_{4}^{*} \\
               -k^{*}A_{4}^{*} & A_{5} & 0 \\
-              -kA_{4} & 0 & A_{5}^{*}
+              -kA_{4} & 0 & -A_{5}^{*}
             \end{pmatrix} \\
-    & U = \begin{pmatrix}
-             -\mathrm{ia\lambda} &  au^*[-x,t] &  au[x,t] \\
-              -au[x,t] & \mathrm{ia\lambda} & 0 \\
-              -au^*[-x,t] & 0 & \mathrm{ia\lambda}
-              \end{pmatrix} \\
 \end{align}
 
-\begin{equation*}
-  V = b(t)\begin{pmatrix}
-             -\frac{2i\lambda^3}{3}+2\lambda A_1 & \lambda A_2+A_4+\frac{2}{3}\lambda^2u^*[-x,t] &  \frac{2}{3}\lambda^2u -\lambda A^*_2[-x,t]+A_4^*[-x,t] \\
-             -\frac{2}{3}\lambda^2u -\lambda A_2^*[-x,t]-A_4^*[-x,t]  & \frac{2i\lambda^3}{3}+A_5 +\lambda A_1^*[-x,t] & -\lambda A_3^*[-x,t] \\
-             \lambda A_2 - A_4 - \frac{2}{3}\lambda^2u^*[-x,t] & \lambda A_3 & \frac{2i\lambda^3}{3}+\lambda A_1^*[-x,t]-A_5^*[-x,t]
-              \end{pmatrix} \\
-\end{equation*}
-
-
-其中$k=k_{3}(t)e^{\mathrm{i}[k_{1}(t)x + k_{2}(t)]}$，并满足相容条件
+其中$k=k_{3}(t)e^{k_{1}(t)x + \mathrm{i}k_{2}(t)}$，并满足相容条件
 \begin{equation}
   U_{t} - V_{x} + UV - VU = 0
 \end{equation}
@@ -138,9 +124,9 @@
 \end{equation}
 即为
 \begin{align}
-  & \phi_{1t} = \left[\left(-\frac{2\mathrm{i}\lambda^{3}}{3}+2\lambda A_{1}\right)\phi_{1} + \left(\lambda A_{2}k+A_{4}k+\frac{2}{3}\lambda^{2}ku^{*}\right)\phi_{2} + \left(\frac{2}{3}\lambda^{2}uk^{*}-\lambda A_{2}^{*}k^{*}+A_{4}^{*}k^{*}\right)\phi_{3}\right]b(t) \\
-  & \phi_{2t} = \left[\left(-\frac{2}{3}\lambda^{2}uk^{*}-\lambda A_{2}^{*}k^{*}-A_{4}^{*}k^{*}\right)\phi_{1} + \left(\frac{2\mathrm{i}\lambda^{3}}{3}+A_{5}+\lambda A_{1}^{*}\right)\phi_{2} - \lambda A_{3}^{*}(k^{*})^{2}\phi_{3}\right]b(t) \\
-  & \phi_{3t} = \left[\left(\lambda A_{2}k-A_{4}k-\frac{2}{3}\lambda^{2}ku^{*}\right)\phi_{1} + \lambda A_{3}k^{2}\phi_{2} + \left(\frac{2\mathrm{i}\lambda^{3}}{3}+\lambda A_{1}^{*} + A_{5}^{*}\right)\phi_{3}\right]b(t)
+  & \phi_{1t} = \left[\left(-\frac{2\mathrm{i}\lambda^{3}}{3}+2\lambda A_{1}\right)\phi_{1} + \left(\lambda A_{2}k+A_{4}k+\frac{2}{3}\lambda^{2}ku^{*}\right)\phi_{2} + \left(\frac{2}{3}\lambda^{2}uk^{*}+\lambda A_{2}^{*}k^{*}+A_{4}^{*}k^{*}\right)\phi_{3}\right]b(t) \\
+  & \phi_{2t} = \left[\left(-\frac{2}{3}\lambda^{2}uk^{*}+\lambda A_{2}^{*}k^{*}-A_{4}^{*}k^{*}\right)\phi_{1} + \left(\frac{2\mathrm{i}\lambda^{3}}{3}+A_{5}+\lambda A_{1}^{*}\right)\phi_{2} - \lambda A_{3}^{*}(k^{*})^{2}\phi_{3}\right]b(t) \\
+  & \phi_{3t} = \left[\left(\lambda A_{2}k-A_{4}k-\frac{2}{3}\lambda^{2}ku^{*}\right)\phi_{1} + \lambda A_{3}k^{2}\phi_{2} + \left(\frac{2\mathrm{i}\lambda^{3}}{3}+\lambda A_{1}^{*} - A_{5}^{*}\right)\phi_{3}\right]b(t)
 \end{align}
 引入函数
 \begin{equation}
@@ -150,9 +136,9 @@
 \begin{align}
   \Gamma_{1x} &= a(k^{*}u - 2\mathrm{i}\lambda \Gamma_{1} + ku^{*}\Gamma_{2} + ku^{*}\Gamma_{1}^{2}) \\
   \Gamma_{2x} &= a(-uk^{*}\Gamma_{1} + ku^{*}\Gamma_{1}\Gamma_{2}) \\
-  \Gamma_{1t} &= \left[\frac{2}{3}\lambda^{2}k^{*}u - \lambda k^{*}A_{2}^{*} + k^{*}A_{4}^{*} - \lambda k^{2}A_{3}\Gamma_{1}\Gamma_{2} + (-\frac{4}{3}\mathrm{i}\lambda^{3} + 2\lambda A_{1} - \lambda A_{1}^{*} - A_{5}^{*})\Gamma_{1} + (\lambda kA_{2} \right. \notag\\
+  \Gamma_{1t} &= \left[\frac{2}{3}\lambda^{2}k^{*}u + \lambda k^{*}A_{2}^{*} + k^{*}A_{4}^{*} - \lambda k^{2}A_{3}\Gamma_{1}\Gamma_{2} + (-\frac{4}{3}\mathrm{i}\lambda^{3} + 2\lambda A_{1} - \lambda A_{1}^{*} + A_{5}^{*})\Gamma_{1} + (\lambda kA_{2} \right. \notag\\
   & \left. + kA_{4} + \frac{2}{3}\lambda^{2}ku^{*})\Gamma_{2} + (-\lambda kA_{2} + kA_{4} + \frac{2}{3}\lambda^{2}ku^{*})\Gamma_{1}^{2}\right] b(t) \\
-  \Gamma_{2t} &= \left[ -\lambda(k^{*})^{2}A_{3}^{*} + (-\frac{2}{3}\lambda^{2}uk^{*} - \lambda k^{*}A_{2}^{*} - k^{*}A_{4}^{*})\Gamma_{1} + (A_{5}-A_{5}^{*})\Gamma_{2} + (-\lambda kA_{2} +kA_{4} \right. \notag\\
+  \Gamma_{2t} &= \left[ -\lambda(k^{*})^{2}A_{3}^{*} + (-\frac{2}{3}\lambda^{2}uk^{*} + \lambda k^{*}A_{2}^{*} - k^{*}A_{4}^{*})\Gamma_{1} + (A_{5}+A_{5}^{*})\Gamma_{2} + (-\lambda kA_{2} +kA_{4} \right. \notag\\
   & \left. + \frac{2}{3}\lambda^{2}ku^{*})\Gamma_{1}\Gamma_{2} - \lambda k^{2}A_{3}\Gamma_{2}^{2} \right] b(t)
 \end{align}
 取另一组值 $\lambda = \lambda^{*}, u = u^{'}$，使 $(33)$ 和 $(34)$ 式的形式不变，则有
