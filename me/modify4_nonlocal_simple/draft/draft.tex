@@ -1,0 +1,287 @@
+\documentclass[12pt]{article}
+\usepackage{mathbbold}
+\textwidth=16.5cm \textheight=24cm \headheight=0cm \headsep=0cm
+\usepackage{CJK}
+\usepackage{cite}
+\usepackage{ulem}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\topmargin=-1cm
+\oddsidemargin=0pt \evensidemargin=0pt
+%\topmargin=-2cm
+
+\usepackage{mathrsfs}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{cases}
+\renewcommand{\baselinestretch}{1.8}
+
+
+% 重定义字体命令
+\newcommand{\song}{\CJKfamily{song}}    % 宋体   (Windows自带simsun.ttf)
+\newcommand{\fs}{\CJKfamily{fs}}        % 仿宋体 (华天字库htfs.ttf)
+\newcommand{\kai}{\CJKfamily{kai}}      % 楷体   (华天字库htkai.ttf)
+\newcommand{\hei}{\CJKfamily{hei}}      % 黑体   (Windows自带simhei.ttf)
+\newcommand{\li}{\CJKfamily{li}}        % 隶书   (Windows自带simli.ttf)
+\newcommand{\you}{\CJKfamily{you}}      % 幼圆体 (Windows自带simyou.ttf)
+%%%  以上六种字体均为标准 GBK 字体, 包括 GBK 繁体字和一些不常用字, 推荐!!!
+
+
+
+\begin{document}
+\begin{CJK}{GBK}{song}
+
+\title{\textbf{变系数的类Sasa-Satsuma方程}}
+\author{张舒涛}
+
+\maketitle
+
+\section{引言}
+
+我们要研究的方程是
+\begin{equation}
+u_{t} + \alpha_3(t)u_{xxx} + \alpha_{4}(t)[u^{2}u^*(-x,t)]_{x} + \alpha_{5}(t)[uu^*(-x,t)]_{x}u + \alpha_{6}(t)u + \alpha_{7}(t)u_x = 0
+\end{equation}
+其中方程(1)需要满足以下的约束条件
+\begin{align}
+   \alpha_{4}(t) + 2\alpha_{5}(t) = 0
+\end{align}
+
+\section{Lax pair}
+
+构造方程(1)的Lax对
+\begin{align}
+  & \Phi_{x} = U\Phi = a(t)(\lambda U_{0} + U_{1})\Phi \\
+  & \Phi_{t} = V\Phi = b(t)(\lambda^{3}V_{0} + \lambda^{2}V_{1} + \lambda V_{2} + V_{3})\Phi
+\end{align}
+其中$U_{0}, U_{1}, V_{0}, V_{1}, V_{2}, V_{3}$ 有以下的形式
+\begin{align}
+  & U_{0} = \begin{pmatrix}
+             -\mathrm{i} & 0 & 0 \\
+              0 & \mathrm{i} & 0 \\
+              0 & 0 & \mathrm{i}
+            \end{pmatrix} \\
+  & U_{1} = \begin{pmatrix}
+              0 & ku^{*}(-x,t) & k^{*}(-x,t)u \\
+              -k^{*}(-x,t)u & 0 & 0 \\
+              -ku^{*}(-x,t) & 0 & 0
+            \end{pmatrix} \\
+  & V_{0} = \frac{2}{3}U_{0} \\
+  & V_{1} = \frac{2}{3}U_{1} \\
+  & V_{2} = \begin{pmatrix}
+              2A_{1} & kA_{2} & -k^{*}(-x,t)A_{2}^{*}(-x,t) \\
+              -k^{*}(-x,t)A_{2}^{*}(-x,t) & A_{1}^{*}(-x,t) & -(k^{*}(-x,t))^{2}A_{3}^{*}(-x,t) \\
+              kA_{2} & k^{2}A_{3} & A_{1}^{*}(-x,t)
+            \end{pmatrix} \\
+  & V_{3} = \begin{pmatrix}
+              0 & kA_{4} & k^{*}(-x,t)A_{4}^{*}(-x,t) \\
+              -k^{*}(-x,t)A_{4}^{*}(-x,t) & A_{5} & 0 \\
+              -kA_{4} & 0 & A_{5}^{*}(-x,t)
+            \end{pmatrix}
+\end{align}
+
+其中$k(x,t)=k_{3}(t)e^{k_{1}(t)x + k_{2}(t)}$，并满足相容条件
+\begin{equation}
+  U_{t} - V_{x} + UV - VU = 0
+\end{equation}
+经计算可以得到以下的结果
+\begin{align}
+  & a(t) = a \\
+  & b(t) = 6a^{3}\alpha_{3}(t) \\
+  & k_{3}(t) = Ce^{\int \alpha_{6}(t)dt}   \\
+  & k = k_{3}(t)\mathrm{Exp}\left[-6\mathrm{i}a^3C_6\int \alpha_{3}(t)dt\right] \\
+  & A_{1} =  \mathrm{i}C_2 + \frac{1}{3}\mathrm{i}k_3(t)^2u(x,t)u^*(-x,t) \\
+  & A_{2} = -\frac{\mathrm{i}u^*_x(-x,t)}{3a}  \\
+  & A_{3} = -\frac{\mathrm{i}}{3}u^{*}(-x,t)^{2}  \\
+  & A_{4} = -\frac{3}{2}C_2u^*(-x,t)-\frac{2}{3}k_3(t)^2u(x,t)u^*(-x,t)^2 - \frac{u^*_{xx}(-x,t)}{6a^2} \\
+  & A_{5} = \mathrm{i}C_6 - \frac{k_3(t)^2[u^*(-x,t)u_x(x,t)+u(x,t)u^*_x(-x,t)]}{6a}
+\end{align}
+其中$C, C_{2}, C_{6}, a$为自由变量，并且$\alpha_{3}(t), \alpha_{4}(t), \alpha_{7}(t)$需要满足以下的约束条件
+\begin{align}
+  & \alpha_{4}(t) = 6a^{2}k_{3}(t)^{2}\alpha_{3}(t) \\
+  & \alpha_{7}(t) = 9a^2C_2\alpha_3(t)
+\end{align}
+
+
+\section{B\"acklund变换和单孤子解}
+将 $U_{0}$ 和 $U_{1}$ 代入(4)式
+\begin{equation}
+  (\phi_{1}\quad \phi_{2}\quad \phi_{3})_{x}^{T} = a(\lambda U_{0} + U_{1})(\phi_{1}\quad \phi_{2}\quad \phi_{3})^{T}
+\end{equation}
+即为
+\begin{align}
+  & \phi_{1x} = a(-\mathrm{i}\lambda\phi_{1} + ku^{*}\phi_{2} +k^{*}u\phi_{3}) \\
+  & \phi_{2x} = a(-k^{*}u\phi_{1} + \mathrm{i}\lambda\phi_{2}) \\
+  & \phi_{3x} = a(-ku^{*}\phi_{1} + \mathrm{i}\lambda\phi_{3})
+\end{align}
+将 $V_{0}, V_{1}, V_{2}, V_{3}$ 代入(5)式
+\begin{equation}
+  (\phi_{1}\quad \phi_{2} \quad \phi_{3})^{T}_{t} = b(t)(\lambda^{3}V_{0} + \lambda^{2}V_{1} + \lambda V_{1} + V_{3})(\phi_{1}\quad \phi_{2} \quad \phi_{3})^{T}
+\end{equation}
+即为
+\begin{align}
+  & \phi_{1t} = \left[\left(-\frac{2\mathrm{i}\lambda^{3}}{3}+2\lambda A_{1}\right)\phi_{1} + \left(\lambda A_{2}k+A_{4}k+\frac{2}{3}\lambda^{2}ku^{*}\right)\phi_{2} + \left(\frac{2}{3}\lambda^{2}uk^{*}-\lambda A_{2}^{*}k^{*}+A_{4}^{*}k^{*}\right)\phi_{3}\right]b(t) \\
+  & \phi_{2t} = \left[\left(-\frac{2}{3}\lambda^{2}uk^{*}-\lambda A_{2}^{*}k^{*}-A_{4}^{*}k^{*}\right)\phi_{1} + \left(\frac{2\mathrm{i}\lambda^{3}}{3}+A_{5}+\lambda A_{1}^{*}\right)\phi_{2} - \lambda A_{3}^{*}(k^{*})^{2}\phi_{3}\right]b(t) \\
+  & \phi_{3t} = \left[\left(\lambda A_{2}k-A_{4}k-\frac{2}{3}\lambda^{2}ku^{*}\right)\phi_{1} + \lambda A_{3}k^{2}\phi_{2} + \left(\frac{2\mathrm{i}\lambda^{3}}{3}+\lambda A_{1}^{*} + A_{5}^{*}\right)\phi_{3}\right]b(t)
+\end{align}
+引入函数
+\begin{equation}
+  \Gamma_{1} = \frac{\phi_{1}}{\phi_{3}}, \quad \Gamma_{2} = \frac{\phi_{2}}{\phi_{3}}
+\end{equation}
+则有
+\begin{align}
+  \Gamma_{1x} &= a(k^{*}u - 2\mathrm{i}\lambda \Gamma_{1} + ku^{*}\Gamma_{2} + ku^{*}\Gamma_{1}^{2}) \\
+  \Gamma_{2x} &= a(-uk^{*}\Gamma_{1} + ku^{*}\Gamma_{1}\Gamma_{2}) \\
+  \Gamma_{1t} &= \left[\frac{2}{3}\lambda^{2}k^{*}u - \lambda k^{*}A_{2}^{*} + k^{*}A_{4}^{*} - \lambda k^{2}A_{3}\Gamma_{1}\Gamma_{2} + (-\frac{4}{3}\mathrm{i}\lambda^{3} + 2\lambda A_{1} - \lambda A_{1}^{*} - A_{5}^{*})\Gamma_{1} + (\lambda kA_{2} \right. \notag\\
+  & \left. + kA_{4} + \frac{2}{3}\lambda^{2}ku^{*})\Gamma_{2} + (-\lambda kA_{2} + kA_{4} + \frac{2}{3}\lambda^{2}ku^{*})\Gamma_{1}^{2}\right] b(t) \\
+  \Gamma_{2t} &= \left[ -\lambda(k^{*})^{2}A_{3}^{*} + (-\frac{2}{3}\lambda^{2}uk^{*} - \lambda k^{*}A_{2}^{*} - k^{*}A_{4}^{*})\Gamma_{1} + (A_{5}-A_{5}^{*})\Gamma_{2} + (-\lambda kA_{2} +kA_{4} \right. \notag\\
+  & \left. + \frac{2}{3}\lambda^{2}ku^{*})\Gamma_{1}\Gamma_{2} - \lambda k^{2}A_{3}\Gamma_{2}^{2} \right] b(t)
+\end{align}
+取另一组值 $\lambda = \lambda^{*}, u = u^{'}$，使 $(33)$ 和 $(34)$ 式的形式不变，则有
+\begin{align}
+  & \Gamma_{1x} = a\left[k^{*}u^{'} - 2\mathrm{i}\lambda^{*}\Gamma_{1} + k(u^{'})^{*}\Gamma_{2} + k(u^{'})^{*}\Gamma_{1}^{2}\right] \\
+  & \Gamma_{2x} = a\left[-k^{*}u^{'}\Gamma_{1} + k(u^{'})^{*}\Gamma_{1}\Gamma_{2}\right]
+\end{align}
+由 $(33)$ 和 $(37)$ 式可得
+\begin{equation}
+  k^{*}(u^{'}-u) - 2\mathrm{i}\Gamma_{1}(\lambda^{*}-\lambda) + k\Gamma_{2}((u^{'})^{*}-u^{*}) + k\Gamma_{1}^{2}((u^{'})^{*}-u^{*}) = 0
+\end{equation}
+由 $(34)$ 和 $(38)$ 式可得
+\begin{align}
+  & k^{*}\Gamma_{1}(u^{'}-u) - k\Gamma_{1}\Gamma_{2}((u^{'})^{*}-u^{*}) = 0 \\
+  & (u^{'})^{*} - u^{*} = \frac{k^{*}(u^{'}-u)}{k\Gamma_{2}}
+\end{align}
+将 $(41)$ 代入 $(39)$ 式可得
+\begin{equation}
+  u^{'} - u = \frac{2\mathrm{i}\Gamma_{1}\Gamma_{2}(\lambda^{*}-\lambda)}{2k^{*}\Gamma_{2} + k^{*}\Gamma_{1}^{2}}
+\end{equation}
+$(42)$ 式即为方程的 B\"acklund 变换。以 $u_{0} = 0, \lambda = i\eta$ ($\eta$ 是常数) 代入 $(33)$ 和 $(34)$ 式可得
+\begin{align}
+  & \Gamma_{1x} = 2a\eta\Gamma_{1} \\
+  & \Gamma_{2x} = 0
+\end{align}
+解得
+\begin{align}
+  & \Gamma_{1} = f(t)e^{2a\eta x} \\
+  & \Gamma_{2} = g(t)
+\end{align}
+将 $(45), (46)$ 式代入 $(35), (36)$ 式可确定
+\begin{align}
+  & f(t) = d_{1}\mathrm{Exp}\left[(-6\mathrm{i}a^{3}C_{6} - 8\mathrm{i}a^{3}\eta^{3} - 18\mathrm{i}a^{3}\eta C_{2}^2)\int \alpha_{3}(t)dt\right] \\
+  & g(t) = d_{2}
+\end{align}
+从而可以得到
+\begin{align}
+  & \Gamma_{1} = d_{1}\mathrm{Exp}\left[2a\eta x - (6\mathrm{i}a^{3}C_{6} + 8\mathrm{i}a^{3}\eta^{3} + 18\mathrm{i}a^{3}\eta C_{2}^2)\int \alpha_{3}(t)dt\right] \\
+  & \Gamma_{2} = d_{2}
+\end{align}
+其中$d_{1}, d_{2}$是复常数，带入原式可得出$d_{2} = 1$, 将 $(49), (50)$ 代入到 $(42)$ 式可得到单孤子解
+\begin{align}
+  u(x,t) = \frac{4\eta d_{1}\mathrm{Exp}\Big[(2a\eta+\beta)x + \mathrm{i}(8a^{3}\eta^{3} + 2\mathrm{i}\beta^{3} + 18a^{3}\eta C_{2}+12a^3C_6)\int \alpha_{3}(t)dt - \int \alpha_{6}(t)dt\Big]}{C d_{1}^{2}\mathrm{Exp}[4a\eta x] + 2C \mathrm{Exp}\Big[(16\mathrm{i}a^{3}\eta^{3}+36\mathrm{i}a^{3}\eta C_{2}^2+12\mathrm{i}a^3C_6)\int \alpha_{3}(t)dt\Big]}
+\end{align}
+
+\section{无穷守恒律}
+对一个偏微分方程
+\begin{equation}
+  u_{t} = H(u) = H(u, u_{x}, u_{xx},\cdots)
+\end{equation}
+的解 $u(x,t)$，若存在 $u$ 及其对空间变量的各阶导数 $\dfrac{\partial^{p}u}{\partial x^{p}}$ 的函数 $T(u), X(u)$，使
+\begin{equation}
+  \frac{\partial T(u)}{\partial t} + \frac{\partial X(u)}{\partial x} = 0
+\end{equation}
+则称 $(55)$ 式是方程 $(54)$ 的一个守恒律
+引入函数
+\begin{equation}
+  T_{1} = \frac{\phi_{2}}{\phi_{1}}, \quad T_{2} = \frac{\phi_{3}}{\phi_{1}}
+\end{equation}
+则有
+\begin{align}
+  T_{1x} &= a(-k^{*}u + 2\mathrm{i}\lambda T_{1} - ku^{*}T_{1}^{2} - k^{*}uT_{1}T_{2}) \\
+  T_{2x} &= a(-ku^{*} + 2\mathrm{i}\lambda T_{2} - k^{*}uT_{2}^{2} - ku^{*}T_{1}T_{2}) \\
+  T_{1t} &= \left[-\frac{2}{3}\lambda^{2}k^{*}u - \lambda k^{*}A_{2}^{*} - k^{*}A_{4}^{*} + (\frac{4}{3}\mathrm{i}\lambda^{3}-2\lambda A_{1}+A_{5}+\lambda A_{1}^{*})T_{1} - \lambda (k^{*})^{2}A_{3}^{*}T_{2} + (-\lambda kA_{2} \right.\notag\\
+  & \left. - kA_{4} - \frac{2}{3}\lambda^2 ku^{*})T_{1}^{2} + (-\frac{2}{3}\lambda^{2}k^{*}u-\lambda k^{*}A_{2}^{*}-k^{*}A_{4}^{*})T_{1}T_{2} \right]b(t) \\
+  T_{2t} &= \left[-\frac{2}{3}\lambda^{2}ku^{*} + \lambda kA_{2} - kA_{4} + \lambda k^{2}A_{3}T_{1} + (\frac{4}{3}\mathrm{i}\lambda^{3}-2\lambda A_{1}+\lambda A_{1}^{*}-A_{5}^{*})T_{2} + (-\frac{2}{3}\lambda^{2}uk^{*} \right. \notag\\
+  & \left. -\lambda k^{*}A_{2}^{*}-k^{*}A_{4}^{*})T_{2}^{2} + (-\lambda kA_{2}-kA_{4}-\frac{2}{3}\lambda^{2}ku^{*})T_{1}T_{2} \right]b(t)
+\end{align}
+假设有 $T_{1}, T_{2}$ 有以下形式
+\begin{align}
+  & T_{1} = \sum_{n=0}^{\infty}c_{n}\lambda^{-n} \\
+  & T_{2} = \sum_{n=0}^{\infty}d_{n}\lambda^{-n}
+\end{align}
+将 $(61), (62)$ 式代入 $(80)$ 式
+\begin{align}
+  \sum_{n=0}^{\infty}c_{n,x}\lambda^{-n} &= a\left(-k^{*}u + 2\mathrm{i}\lambda\sum_{n=0}^{\infty}c_{n}\lambda^{-n} - ku^{*}(\sum_{n=0}^{\infty}c_{n}\lambda^{-n})^{2} - k^{*}u\sum_{n=0}^{\infty}c_{n}\lambda^{-n}\sum_{n=0}^{\infty}d_{n}\lambda^{-n}\right) \notag\\
+  &= a\left(-k^{*}u + 2\mathrm{i}\sum_{n=0}^{\infty}c_{n}\lambda^{-n+1} - ku^{*}\sum_{n=0}^{\infty}\sum_{m=0}^{n}c_{m}c_{n-m}\lambda^{-n} - k^{*}u\sum_{n=0}^{\infty}\sum_{m=0}^{n}c_{m}d_{n-m}\lambda^{-n}\right)
+\end{align}
+取 $\lambda^{1}$ 的系数可得 $c_{0} = 0$，取 $\lambda^{0}$ 的系数可得
+\begin{align}
+  & a(-k^{*}u + 2\mathrm{i}c_{1}) = 0 \\
+  & c_{1} = \frac{k^{*}u}{2\mathrm{i}}
+\end{align}
+取 $\lambda^{-n-1}$ 的系数
+\begin{equation}
+  c_{n+1,x} = a\left(2\mathrm{i}c_{n+2} - ku^{*}\sum_{m=0}^{n+1}c_{m}c_{n+1-m} - k^{*}u\sum_{m=0}^{n+1}c_{m}d_{n+1-m}\right)
+\end{equation}
+从而得到递推关系式
+\begin{align}
+  & 2a\mathrm{i}c_{n+2} = c_{n+1,x} + a\sum_{m=0}^{n+1}(c_{m}c_{n+1-m}ku^{*} + c_{m}d_{n+1-m}k^{*}u) \\
+  & c_{2} = -\frac{(k^{*}u)_{x}}{4a} \\
+  & c_{3} = \frac{\mathrm{i}(k^{*}u)_{2x}}{8a^{2}} + \frac{\mathrm{i}k^{*}u^{2}u^{*}}{4}
+\end{align}
+同理可得
+\begin{equation}
+  d_{n+1,x} = a\left(2\mathrm{i}d_{n+2} - k^{*}u\sum_{m=0}^{n+1}d_{m}d_{n+1-m} - ku^{*}\sum_{m=0}^{n+1}c_{m}d_{n+1-m}\right)
+\end{equation}
+即为
+\begin{align}
+  & 2a\mathrm{i}d_{n+2} = d_{n+1,x} + a\sum_{m=0}^{n+1}(d_{m}d_{n+1-m}k^{*}u + d_{m}c_{n+1-m}ku^{*}) \\
+  & d_{0} = 0 \\
+  & d_{1} = \frac{ku^{*}}{2\mathrm{i}} \\
+  & d_{2} = -\frac{(ku^{*})_{x}}{4a} \\
+  & d_{3} = \frac{\mathrm{i}(ku^{*})_{2x}}{8a^{2}} + \frac{\mathrm{i}ku(u^{*})^{2}}{4}
+\end{align}
+通过 $c_{n}, d_{n}$ 可确定 $T_{1}, T_{2}$，然后将 $T_{1}, T{2}$ 代入等式 $(\mathrm{ln} \phi_{1})_{xt} = (\mathrm{ln} \phi_{1})_{tx}$
+\begin{align}
+  & \left(\frac{\phi_{1x}}{\phi_{1}}\right)_{t} = \left(\frac{\phi_{1t}}{\phi_{1}}\right)_{x} \\
+  & [a(-\mathrm{i}\lambda\phi_{1} + ku^{*}\phi_{2} +k^{*}u\phi_{3})\phi_{1}^{-1}]_{t} = \left\{\left[\left(-\frac{2\mathrm{i}\lambda^{3}}{3}+2\lambda A_{1}\right)\phi_{1} + \left(\lambda A_{2}k+A_{4}k+\frac{2}{3}\lambda^{2}ku^{*}\right)\phi_{2} \right.\right. \notag\\
+  & \left.\left. + \left(\frac{2}{3}\lambda^{2}uk^{*}+\lambda A_{2}^{*}k^{*}+A_{4}^{*}k^{*}\right)\phi_{3}\right]b(t)\phi_{1}^{-1}\right\}_{x} \\
+  & a(ku^{*}T_{1} + k^{*}uT_{2})_{t} = \left[2\lambda A_{1} + \left(\lambda A_{2}k+A_{4}k+\frac{2}{3}\lambda^{2}ku^{*}\right)T_{1} + \left(\frac{2}{3}\lambda^{2}uk^{*}+\lambda A_{2}^{*}k^{*}+A_{4}^{*}k^{*}\right)T_{2}\right]_{x}b(t) \\
+  & a\left(ku^{*}\sum_{n=0}^{\infty}c_{n}\lambda^{-n} + k^{*}u\sum_{n=0}^{\infty}d_{n}\lambda^{-n}\right)_{t} = \left[2\lambda A_{1} + \left(\lambda A_{2}k+A_{4}k+\frac{2}{3}\lambda^{2}ku^{*}\right)\sum_{n=0}^{\infty}c_{n}\lambda^{-n} \right. \notag\\
+  & \left. + \left(\frac{2}{3}\lambda^{2}uk^{*}+\lambda A_{2}^{*}k^{*}+A_{4}^{*}k^{*}\right)\sum_{n=0}^{\infty}d_{n}\lambda^{-n}\right]_{x}b(t)
+\end{align}
+等式左右两边取 $\lambda^{-n}$ 的系数
+\begin{equation}
+  a(ku^{*}c_{n} + k^{*}ud_{n})_{t} = \left[A_{2}kc_{n+1} + A_{4}kc_{n} + \frac{2}{3}ku^{*}c_{n+2} + \frac{2}{3}uk^{*}d_{n+2} + A_{2}^{*}k^{*}d_{n+1} + A_{4}^{*}k^{*}d_{n}\right]_{x}b(t)
+\end{equation}
+令
+\begin{align}
+  & D_{n} = a(ku^{*}c_{n} + k^{*}ud_{n}) \\
+  & F_{n} = \left[A_{2}kc_{n+1} + A_{4}kc_{n} + \frac{2}{3}ku^{*}c_{n+2} + \frac{2}{3}uk^{*}d_{n+2} + A_{2}^{*}k^{*}d_{n+1} + A_{4}^{*}k^{*}d_{n}\right]b(t)
+\end{align}
+则有
+\begin{equation}
+  \frac{\partial D_{n}}{\partial t} = \frac{\partial F_{n}}{\partial x} (n = 1, 2, \cdots)
+\end{equation}
+以下是前三组守恒律
+\begin{align}
+  D_{1} =& -\mathrm{i}ak_3(t)^{2} uu^{*} \\
+  F_{1} =&\ b(t)k_3(t)^{2} \left[\mathrm{i}k_3(t)^{2}u^2(u^*)^2 + \frac{\beta u^{*}u_{x}}{2a^{2}} - \frac{\beta uu^{*}_{x}}{2a^{2}} - \frac{\mathrm{i}u_{x}u^{*}_{x}}{6a^{2}} + \frac{\mathrm{i}u^{*}u_{xx}}{6a^{2}} + \frac{\mathrm{i}uu^{*}_{xx}}{6a^{2}} \right] \\
+  D_{2} =& \frac{k_{3}(t)^{2}}{4}(uu^{*}_{x} - u_{x}u^{*}) \\
+  F_{2} =&\ b(t)k_3(t)^{2} \left[\frac{k_3(t)^{2}uu_x(u^*)^2}{2a} + \frac{k_3(t)^2u^2u^*u^*_x}{2a} -\frac{\mathrm{i}\beta u^*u_{xx}}{8a^3} + \frac{\mathrm{i}\beta uu^*_{xx}}{8a^3} + \frac{u^*u_{xxx}}{24a^3} + \frac{uu^*_{xxx}}{24a^3}  \right] \\
+  D_{3} =&\ \mathrm{i}ak_3(t)^2\left[\frac{1}{2}k_3(t)^2u^2(u^*)^2 + \frac{\beta^2 uu^*}{4a^2} - \frac{\beta u_xu^*}{4a^2} - \frac{\beta uu^*_x}{4a^2} + \frac{u^*u_{xx}}{8a^2} + \frac{uu^*_{xx}}{8a^2}\right] \\
+  F_{3} =&\ b(t)k_3(t)^{2} \left[ \frac{\mathrm{i}\beta^2k_3(t)^2u^2(u^*)^2}{2a^2} - \frac{2}{3}\mathrm{i}k_3(t)^4u^3(u^*)^3 + \frac{\beta^3 u^*u_x}{8a^4} - \frac{3\beta k_3(t)^2uu_x(u^*)^2}{4a^2} \right. \notag \\
+  & \left.- \frac{5\mathrm{i}k_3(t)^2(u^*)^2u_x^2}{48a^2} - \frac{\beta^3uu^*_x}{8a^4} + \frac{3\beta k_3(t)^2u^2u^*u^*_x}{4a^2} - \frac{7\mathrm{i}\beta^2u_xu^*_x}{24a^4} - \frac{7\mathrm{i}k_3(t)^2uu^*u_xu^*_x}{24a^2} \right. \notag\\
+  & \left. -\frac{5\mathrm{i}k_3(t)^2u^2(u^*_x)^2}{48a^2} + \frac{\mathrm{i}\beta^2u^*u_{xx}}{6a^4} - \frac{5\mathrm{i}k_3(t)^2u(u^*)^2u_{xx}}{12a^2} + \frac{7\beta u^*_xu_{xx}}{48a^4} + \frac{\mathrm{i}\beta^2uu^*_{xx}}{6a^4} \right. \notag\\
+  & \left.  - \frac{5\mathrm{i}k_3(t)^2u^2u^*u^*_{xx}}{12a^2} -\frac{7\beta u_xu^*_{xx}}{48a^4} - \frac{\mathrm{i}u_{xx}u^*_{xx}}{24a^4} - \frac{5\beta u^*u_{xxx}}{48a^4} + \frac{\mathrm{i}u^*_xu_{xxx}}{48a^4} + \frac{5\beta uu^*_{xxx}}{48a^4} + \frac{\mathrm{i}u_xu^*_{xxx}}{48a^4}  \right. \notag\\
+  & \left. - \frac{\mathrm{i}u^*u_{xxxx}}{48a^4} - \frac{\mathrm{i}uu^*_{xxxx}}{48a^4} \right]
+\end{align}
+
+\end{CJK}
+\end{document}
+
+
+
+
