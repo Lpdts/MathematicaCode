@@ -1,0 +1,50 @@
+% !Mode:: "TeX:UTF-8"
+
+% 中文摘要关键字
+%\ckeyword{位姿估计，P扩散和问题，拉格朗日对偶，分支定界，二次规划}
+\ckeyword{符号计算，非线性发展方程，B\"{a}cklund变换，贝尔多项式，守恒律
+%, 海洋内波, 符号计算.
+}
+
+% 英文摘要关键字
+%\ekeyword{Pose estimation,p-dispersion-sum problem,Lagrangian dual,branch-and-bound,quadratically constrained quadratic programming}
+%\ekeyword{pose estimation,p-dispersion-sum problem,Lagrangian dual,branch-and-bound,quadratic programming}
+\ekeyword{Symbolic computation, Nonlinear evolution equations,  B\"{a}cklund transformation, Bell polynomial, Conservation law
+%, Internal solitary wave, Lie group analysis
+}
+
+% 中文摘要===非线性发展方程的解析解研究与应用
+\begin{cabstract}
+现实生活中有许多非线性现象可以用非线性发展方程模拟，由于非线性因素的普遍存在，非线性方程在描述自然现象和社会现象方面比线性方程更加准确，并且能够描述更复杂的非线性现象，因此，研究非线性发展方程的性质和求解方法具有十分重要的现实意义。非线性发展方程的怪波是一种破坏力极强的海洋内波，具有突发性，已经造成了多起航海灾难，是近年来非线性研究领域的热点之一。随着科技的发展，对非线性发展方程的怪波有了较深入的研究，研究对象从常系数变成变系数、从低阶变成高阶、从低维变成高维，可描述的现象逐渐增加。目前研究非线性偏微分发展方程的怪波解的常用方法主要有 Darboux 变换、待定系数法和 Hirota 双线性方法等。
+
+本文借助符号演算工具 Mathematica 对变系数 Sasa-Satsuma 方程和 6 阶 KdV 方程进行了解析研究和求解，研究的内容主要包括 Painlev\'{e}分析、B\"{a}cklund变换、Lax 对、$N$ 孤子解、守恒率、怪波解以及怪波传播过程的模拟，然后开发 Mathematica 程序包实现方程的一阶怪波的自动求解，大大提高了计算速度，加快了研究进度。本文研究内容主要包括以下几个方面：
+
+1. 变系数 Sasa-Satsuma 方程的解析研究及怪波模拟。
+该部分对同时含有 $x$ 和 $t$ 的变系数 Sasa-Satsuma 方程进行研究。在可积性方面，求出了方程的 Painlev\'{e} 可积条件，通过 AKNS 方法得到方程的 Lax 对，基于所求得的 Lax 对，构造方程的 B\"{a}cklund 变换，并且推导出无穷守恒律，通过达布变换方法求得方程的一阶怪波解，最后根据所求得的怪波解，对怪波的传播过程进行了模拟，并分析方程各变系数对怪波产生的影响。
+
+2. 6 阶 KdV 方程的解析研究。
+该部分研究同时含有 $x$ 和 $t$ 的 6 阶 KdV 方程。首先通过贝尔多项式方法得到方程的双线性形式，结合双线性形式，求得方程的 B\"{a}cklund 变换、Lax 对以及单孤子解，最后基于已得到的 Lax 对进一步推导出方程的无穷守恒律。
+
+3. 求解怪波的程序包开发。
+该部分在总结怪波的求解过程的基础上，借助符号计算工具 Mathematica，开发求解方程怪波的程序包。程序包通过输入方程的双线性形式自动求解出方程的怪波解，降低了人工计算的复杂度，同时保证了计算的正确性，提高了研究效率。
+\end{cabstract}
+
+
+% 英文摘要
+\begin{eabstract}
+In real life, many nonlinear phenomena can be simulated by nonlinear evolution equations. Because of the prevalence of nonlinear factors, nonlinear equations are more accurate than linear equations in describing natural phenomena and social phenomena and can describe more complex nonlinear phenomena Therefore, it is very important to study the nature of nonlinear evolution equation and its solution method. The rogue wave of nonlinear evolution equation is a very destructive ocean wave, which has suddenness and has caused many sailing accidents. It is one of the hot topics in the field of nonlinear research in recent years.
+With the development of science and technology, the rogue wave of nonlinear evolution equation has been studied deeply. The research object changes from constant coefficient to variable coefficient, from low order to high order, from low dimension to high dimension, The phenomenon is gradually increasing. At present, the common methods to study the rogue wave solutions of PDEs are Darboux transform, undetermined coefficient method and Hirota bilinear method.
+
+This paper analyzes and solves the variable coefficient Sasa-Satsuma equation and the sixth-order KdV equation by using symbolic calculation tool Mathematica. The main contents of this study include Painlev\'{e} analysis, B\"{a}cklund transformation, $N$ soliton solution, conservation rate, rogue wave solution and rogue wave propagation process simulation, and then develop the Mathematica package to achieve the first order of the equation of the rogue wave of the automatic solution, greatly improving the speed of calculation and speed up the research progress.This paper Mainly include the following aspects,
+
+1. Variable coefficient Sasa-Satsuma equation analytical research and rogue wave simulation.
+This section investigates the variable coefficient Sasa-Satsuma equation, which contains both $x$ and $t$. In terms of integrability, Painlev\'{e} integrable condition of the equation is obtained, Lax pair of the equation is obtained by AKNS method, B\"{a}cklund transform of the constructed equation is constructed based on the obtained Lax pair, And deduces the infinite conservation law, obtains the first-order rogue wave solution of the equation by the method of Dabu transformation, finally simulates the propagation process of the rogue wave according to the obtained rogue wave solution, and analyzes the effect of the variable coefficients of the equation on the rogue The impact of waves.
+
+2. Analytical study of 6th order KdV equation.
+This section investigates a sixth-order KdV equation that contains both $x$ and $t$. Firstly, the bilinear form of the equation is obtained by using the Bell polynomial method, and the B\"{a}cklund transformation, the Lax and the soliton solution of the equation are obtained by combining with the bilinear form. Finally, the equation The infinite conservation law.
+
+3. solution to the rogue wave of package development.
+In this part, we summarize the solving process of the rogue wave and develop the package of solving the rogue wave by using the symbolic calculation tool Mathematica. The package automatically solves the rogue wave solution of the equation through the bilinear form of the input equation, reduces the complexity of the artificial calculation, ensures the correctness of the calculation and improves the research efficiency.
+
+\end{eabstract}
+

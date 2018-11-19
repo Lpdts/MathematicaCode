@@ -1,0 +1,237 @@
+\chapter{六阶 KdV 方程的解析研究}
+KdV 方程可以用来描述浅水波、层状内波、离子声波等。由于复杂的非线性色散项，高阶 KdV 方程的 Bäcklund 变换的构造仍然是一个尚待研究的问题，其中贝尔多项式方法可以简化高阶 KdV 方程的解析研究过程，通过符号计算，贝尔多项式方法已经被应用于一些可积的非线性发展方程的研究\upcite{kdv-2}。本章将贝尔多项式方法推广到可积的6阶KdV方程。通过构造贝尔多项式的几种组合，推导出带有辅助自变量的双线性形式，进而求得该方程的N孤子解。基于贝尔多项式形式的双线性形式，通过符号计算，得到方程的Bäcklund变换，Lax对和无穷守恒律。
+
+本章要研究的 6 阶 KdV 方程如下：
+\begin{equation}
+u_{3xt}+ u_{6x}+ 20u_{4x}u_x+40u_{3x}u_{2x}+120u_{2x}u_{x}^2+4u_{2x}u_t+8u_xu_{xt}=0.\label{kdv-1}
+\end{equation}
+其中 $u$ 是关于时间变量 $t$ 和空间变量 $x$ 的实函数；$u_{ix} (i=1,2,…,6)$ 表示函数 $u$ 关于变量 $x$ 的 $i$ 阶偏导数。文献 \cite{kdv-3} 直接运用了Hirota双线性方法研究方程 (\ref{kdv-1}) 的部分多孤子解，文献 \cite{kdv-4} 求出了方程 (\ref{kdv-1}) 的 Lax 对、自 B\"{a}cklund 变换和行波解。不同于文献\cite{kdv-3} 求得的方程 (\ref{kdv-1}) 的双线性形式，本文用贝尔多项式方法，引入一个辅助自变量得到方程 (\ref{kdv-1}) 的一个双线性形式组合，基于该双线性形式组合，可以进一步求出方程 (\ref{kdv-1}) 的 N 孤子解、B\"{a}cklund 变换\upcite{kdv-5}、Lax 对\upcite{ss-12,kdv-7}和无穷守恒律\upcite{kdv-7,kdv-9}.
+\section{双线性形式和 $N$ 孤子解}
+下面通过贝尔多项式求方程 (\ref{kdv-1}) 的双线性形式\upcite{kdv-8}。通过变换 $u=\frac{1}{2}q_x$, 可以将方程 (\ref{kdv-1}) 化为:
+\begin{align}
+\frac{1}{2}q_{4xt}+\frac{1}{2}q_{7x}+5q_{5x}q_{2x}+10q_{4x}q_{3x}+15q_{3x}q_{2x}^2+q_{3x}q_{2x}+2q_{2x}q_{2xt}=0.\label{kdv-2}
+\end{align}
+将 (\ref{kdv-2}) 式对 $x$ 积分, 令积分常数为 $0$, 得到
+\begin{align}
+\frac{1}{2}q_{3xt}+\frac{1}{2}q_{6x}+5q_{4x}q_{2x}+\frac{5}{2}q_{3x}^2+5q_{2x}^3+q_{2x}q_{xt}+\partial_x^{-1}\partial_t\frac{1}{2}q_{2x}^2=0.\label{kdv-3}
+\end{align}
+将 (\ref{kdv-3}) 式化成 P-多项式:
+\begin{align}
+\frac{1}{6}\partial_x^{-1}\partial_tP_{4x}(q)+\frac{1}{3}P_{3x,t}(q)+\frac{1}{12}P_{6x}(q)+\frac{5}{12}\partial_x^2P_{4x}(q)+\frac{5}{4}q_{2x}P_{4x}(q)=0.
+\end{align}
+整理得:
+\begin{align}
+\frac{1}{6}\partial_x^{-1}\partial_tP_{4x}(q)+\frac{1}{3}P_{3x,t}(q)+\frac{1}{12}P_{6x}(q)+\frac{5}{12}(\partial_x^2+3q_{2x})P_{4x}(q)=0.\label{kdv-4}
+\end{align}
+因为方程 (\ref{kdv-4}) 不是 P-多项式的线性表达式，不能直接得到方程的双线性形式，因此引入独立变量 $s$，将方程 (kdv-4) 拆分成多个 P-多项式的双线性形式。在约束条件
+\begin{align}
+P_{4x}(q)=P_{x,s}(q),\label{kdv-5}
+\end{align}
+下，方程 (\ref{kdv-4}) 等价于:
+\begin{align}
+\frac{1}{6}P_{s,t}(q)+\frac{1}{3}P_{3x,t}(q)+\frac{1}{12}P_{6x}(q)+\frac{5}{12}P_{3x,s}(q)=0.\label{kdv-6}
+\end{align}
+显然方程 (\ref{kdv-6}) 是 P-多项式的线性组合。也就是说，方程 (\ref{kdv-4}) 可以转化为两个P-多项式的线性表达式的组合，即方程 (\ref{5}) 和方程 (\ref{6})。进一步，通过 $q=2\ln f$, (\ref{kdv-5}) 式和 (\ref{kdv-6}) 式化为以下双线性形式:
+\begin{align}
+&(D_x^4-D_xD_s)f\cdot f=0,\label{kdv-7}\\
+&(\frac{1}{6}D_sD_t+\frac{1}{3}D_x^3D_t+\frac{1}{12}D_x^6+\frac{5}{12}D_x^3D_s)f\cdot f=0.\label{kdv-8}
+\end{align}
+为求 $N$ 孤子解，将 $f$ 展开成小参数 $\epsilon$ 的表达式
+\begin{align}
+f=1+\epsilon f_1+\epsilon ^2f_2+\epsilon^3f_3+\cdots \label{kdv-01}
+\end{align}
+其中 $f_i$ 是关于 $x,s$ 和 $t$ 的函数。将方程 (\ref{kdv-01}) 代入双线性形式 (\ref{kdv-7}) 式和 (\ref{kdv-8}) 式，令 $\epsilon$ 的各幂次系数为零，可以得到关于 $f_n$ 的递推公式:
+\begin{align}
+&~~~2D_x(D_x^3-D_s)(f_n\cdot f_0)=-D_x(D_x^3-D_s)(\sum_{m+l=n,m,l\geqslant1}f_m\cdot f_l),\nonumber\\
+&~~~2(\frac{1}{6}D_sD_t+\frac{1}{3}D_x^3D_t+\frac{1}{12}D_x^6+\frac{5}{12}D_x^3D_s)(f_n\cdot f_0)\nonumber\\
+&=-(\frac{1}{6}D_sD_t+\frac{1}{3}D_x^3D_t+\frac{1}{12}D_x^6+\frac{5}{12}D_x^3D_s)(\sum_{m+l=n,m,l\geqslant1}f_m\cdot f_l).\nonumber
+\end{align}
+$n=0$ 时, 有
+\begin{align}
+&D_x(D_x^3-D_s)(f_0\cdot f_0)=0,\nonumber\\
+&(\frac{1}{6}D_sD_t+\frac{1}{3}D_x^3D_t+\frac{1}{12}D_x^6+\frac{5}{12}D_x^3D_s)(f_0\cdot f_0)=0;\nonumber
+\end{align}
+$n=1$ 时, 有
+\begin{align}
+&D_x(D_x^3-D_s)(f_1\cdot f_0)=0,\label{kdv-9}\\
+&(\frac{1}{6}D_sD_t+\frac{1}{3}D_x^3D_t+\frac{1}{12}D_x^6+\frac{5}{12}D_x^3D_s)(f_1\cdot f_0)=0;\label{kdv-10}
+\end{align}
+$n=2$ 时, 有
+\begin{align}
+&~~~2D_x(D_x^3-D_s)(f_2\cdot f_0)=-D_x(D_x^3-D_s)(f_1\cdot f_1),\label{kdv-02}\\
+&~~~2(\frac{1}{6}D_sD_t+\frac{1}{3}D_x^3D_t+\frac{1}{12}D_x^6+\frac{5}{12}D_x^3D_s)(f_2\cdot f_0)\nonumber\\
+&=-(\frac{1}{6}D_sD_t+\frac{1}{3}D_x^3D_t+\frac{1}{12}D_x^6+\frac{5}{12}D_x^3D_s)(f_1\cdot f_1);\nonumber
+\end{align}
+取 $f_0=1$, 令 $f_1=e^{k_1x+l_1s+w_1t+\theta_1}$, 代入 (\ref{kdv-9}) 式和 (\ref{kdv-10}) 式有:
+\begin{align}
+&k_1(k_1^3-l_1)=0,\nonumber\\
+&\frac{1}{3}k_1^3w_1+\frac{1}{12}k_1^6+\frac{5}{12}k_1^3l_1+\frac{1}{6}l_1w_1=0.\nonumber
+\end{align}
+得 $l_1=k_1^3, w_1=-k_1^3.$
+
+按照线性叠加原理, 有
+\begin{align}
+f_1=\sum_{j=1}^{N}e^{\eta_j}, \eta_j=k_jx+l_js+w_jt+\theta_j, l_j=k_j^3, w_j=-k_j^3.\label{kdv-11}
+\end{align}
+将 (\ref{kdv-11}) 式代入 (\ref{kdv-02}) 式得到:
+\begin{align}
+2D_x(D_x^3-D_s)(f_2\cdot f_0)&=-\sum_{i=1}^N\sum_{j=1}^N(k_i-k_j)[(k_i-k_j)^3-(l_i-l_j)]e^{\eta_i+\eta_j}\nonumber\\
+&=-2\sum_{1\leqslant i<j\leqslant N}(k_i-k_j)[(k_i-k_j)^3-(l_i-l_j)]e^{\eta_i+\eta_j}.\label{kdv-12}
+\end{align}
+由 (\ref{kdv-12}) 式求得:
+\begin{align}
+f_2\cdot f_0&=-\sum_{1\leqslant i<j\leqslant N}\frac{(k_i-k_j)[(k_i-k_j)^3-(l_i-l_j)]}{(k_i+k_j)[(k_i+k_j)^3-(l_i+l_j)]}e^{\eta_i+\eta_j}\nonumber\\
+&=\sum_{1\leqslant i<j\leqslant N}A_{ij}e^{\eta_i+\eta_j}.\nonumber
+\end{align}
+其中,
+\begin{align}
+A_{ij}=-\frac{(k_i-k_j)[(k_i-k_j)^3-(l_i-l_j)]}{(k_i+k_j)[(k_i+k_j)^3-(l_i+l_j)]}=-\frac{(k_j-k_i)^2}{(k_j+k_i)^2}.\nonumber
+\end{align}
+即
+\begin{align}
+f_2=A_{ij}e^{\eta_i+\eta_j}.\nonumber
+\end{align}
+当 $N=1$ 时, 取 $f_n=0(n>1), \epsilon=1$,
+\begin{align}
+f=1+e^{\theta_1},
+\end{align}
+当 $N=2$ 时, 取 $f_n=0(n>2), \epsilon=1$,
+\begin{align}
+f=1+e^{\eta_1}+e^{\eta_2}+A_{12}e^{\eta_1+\eta_2},\nonumber
+\end{align}
+当 $N=3$ 时, 取 $f_n=0(n>3), \epsilon=1$,
+\begin{align}
+f=1+e^{\eta_1}+e^{\eta_2}+e^{\eta_3}+A_{12}e^{\eta_1+\eta_2}+A_{13}e^{\eta_1+\eta_3}+A_{23}e^{\eta_2+\eta_3}+A_{12}A_{13}A_{23}e^{\eta_1+\eta_2+\eta_3},\nonumber
+\end{align}
+其中 
+\begin{align}
+\eta_j=k_ix+l_is+w_it+\theta_i,\nonumber
+l_i=k_i^3,\nonumber
+w_i=-k_i^3.\nonumber
+\end{align}
+以此类推，最后通过 $u=(\ln f)_x$ 可以得到方程 (\ref{kdv-1}) 的 $N$ 孤子解。
+\section{B\"{a}cklund 变换}
+基于方程 (\ref{kdv-1}) 的 P-多项式 (\ref{kdv-4})，可以很方便得到方程 (\ref{kdv-1}) 的 B\"{a}cklund 变换。
+
+假设 $q'$ 是 (\ref{kdv-4}) 式的另一个解, 为了构造方程 (\ref{kdv-1}) 的双线性 B\"{a}cklund 变换, 引入两个新的变量:
+\begin{align}
+w=\frac{q'+q}{2}, v=\frac{q'-q}{2},\nonumber
+\end{align}
+即
+\begin{align}
+q'=w+v, q=w-v.\nonumber
+\end{align}
+将 $q'$ 和 $q$ 代入 (\ref{kdv-4}) 式相减整理得:
+\begin{align}
+&~~~v_{3xt}+v_{6x}+10w_{2x}v_{4x}+10w_{4x}v_{2x}+10w_{3x}v_{3x}+30w_{2x}^2v_{2x}+10v_{2x}^3+2w_{2x}v_{xt}\nonumber\\
+&~~~+2v_{2x}w_{xt}+\partial_x^{-1}\partial_t2w_{2x}v_{2x}\nonumber\\
+&=\partial_x[Y_{5x}(v,w)+Y_{2xt}(v,w)]+R(v,w),\label{kdv-13}
+\end{align}
+其中,
+\begin{align}
+&R(v,w)=5w_{4x}v_{2x}+15w_{2x}^2v_{2x}+10v_{2x}^3+w_{2x}v_{xt}-5v_{x}w_{5x}-10v_x^2v_{4x}-20v_xv_{2x}v_{3x}\nonumber\\
+&~~~~~~~~~~~~~-30v_xw_{2x}w_{3x}-30v_x^2v_{2x}w_{2x}-10v_x^3w_{3x}-5v_x^4v_{2x}-v_tw_{3x}-2v_xw_{2xt}\nonumber\\
+&~~~~~~~~~~~~~-2v_xv_{2x}v_t-v_x^2v_{xt}+2\partial_x^{-1}\partial_tw_{2x}v_{2x}\nonumber
+\end{align}
+基于方程 (\ref{kdv-13})，在下列约束条件下
+\begin{align}
+w_{2x}+v_x^2=\lambda,\nonumber
+\end{align}
+其中 $\lambda$ 是抽象常数，即
+\begin{align}
+Y_{2x}(v,w)=\lambda.\label{kdv-14}
+\end{align}
+则 $R(v,w)$ 可以化为 Y-多项式的 $x$ 的导数形式
+\begin{align}
+R(v,w)=15\lambda^2v_{2x}+3\lambda v_{xt}=\partial_x[15\lambda^2Y_x(v,w)+3\lambda Y_t(v,w)],\nonumber
+\end{align}
+则 (\ref{kdv-13}) 式化为
+\begin{align}
+\partial_x[Y_{5x}(v,w)+Y_{2xt}(v,w)+15\lambda^2Y_x(v,w)+3\lambda Y_t(v,w)]=0.\label{kdv-15}
+\end{align}
+(\ref{kdv-14}) 式和 (\ref{kdv-15}) 式共同构成方程 (\ref{kdv-1}) 的贝尔多项式形式的 B\"{a}cklund 变换，通过方程 (\ref{method-bell-17}) 可以得到方程 (\ref{kdv-1}) 的双线性 B\"{a}cklund 变换:
+\begin{align}
+&(D_x^2-\lambda)f\cdot f=0,\label{kdv-21}\\
+&(D_x^5+D_x^2D_t+15\lambda^2D_x+3\lambda D_t+k)f\cdot f=0.\label{kdv-22}
+\end{align}
+其中 $k$ 是积分常数.
+\section{Lax 对和无穷守恒律}
+基于上一部分的贝尔多项式形式的 B\"{a}cklund 变换，可以直接求出方程 (\ref{kdv-1}) 的 Lax 对和无穷守恒律。
+
+令 $v=\ln \psi, w=\ln \psi+q$, 则
+\begin{align}
+&Y_{3x}(v,w)=\frac{(15q_{2x}^2+5q_{4x})\psi_x+10q_{2x}\psi_{3x}+\psi_{5x}}{\psi},\nonumber\\
+&Y_{2x}(v,w)=\frac{q_{2x}\psi+\psi_{2x}}{\psi},\nonumber\\
+&Y_{2xt}(v,w)=\frac{\psi_{2xt}+\psi_tq_{2x}+2\psi_xq_{xt}}{\psi},\nonumber\\
+&Y_x(v,w)=\frac{\psi_x}{\psi}, Y_t(v,w)=\frac{\psi_t}{\psi}.\nonumber
+\end{align}
+代入 (\ref{kdv-14}) 式和 (\ref{kdv-15}) 式得:
+\begin{align}
+&q_{2x}\psi+\psi_{2x}-\lambda\psi=0,\nonumber\\
+&(15q_{2x}^2+5q_{4x}+2q_{xt}+15\lambda^2)\psi_x+(q_{2x}+3\lambda)\psi_t+\psi_{2xt}+10q_{2x}\psi_{3x}+\psi_{5x}+k\psi=0.\nonumber
+\end{align}
+其中 $k$ 是未知常数。将 $u=\frac{1}{2}q_x$ 代入可以求得方程 (\ref{kdv-1}) 的 Lax 对:
+\begin{align}
+&(2u_x-\lambda)\psi+\psi_{2x}=0,\nonumber\\
+&(60u_x^2+10u_{3x}+4u_t+15\lambda^2)\psi_x+4\lambda\psi_t+20u_x\psi_{3x}+\psi_{5x}+(k-2u_{xt})\psi=0.\nonumber
+\end{align}
+经验证，可积条件 $\psi_{xxt}=\psi_{txx}$ 可以推出方程 (\ref{kdv-1})。
+
+然后通过贝尔多项式形式的 B\"{a}cklund 变换可以求得方程 (\ref{kdv-1}) 的无穷守恒律。
+令 $\eta=\frac{q_x'-q_x}{2}$, 则有以下关系
+\begin{align}
+v_x=\eta, w_x=\eta+q_x.\label{kdv-16}
+\end{align}
+将 (\ref{kdv-16}) 式代入 (\ref{kdv-14}) 式得:
+\begin{align}
+\eta_x+q_{xx}+\eta^2=\lambda,\label{kdv-17}
+\end{align}
+将 (\ref{kdv-16}) 式和 (\ref{kdv-17}) 式代入 (\ref{kdv-15}) 式得:
+\begin{align}
+4\lambda\eta_t+\partial_x[\eta_{4x}+5\eta\eta_{3x}+5\eta q_{4x}+10\lambda\eta_{2x}+5\eta(\eta_x+q_{2x})^2\nonumber\\
++10\lambda\eta(\eta_x+q_{2x})+\eta^5+\eta_{xt}+2\eta(\eta_t+q_{xt})+15\lambda^2\eta]=0.\label{kdv-19}
+\end{align}
+令
+\begin{align}
+\eta=\varepsilon+\sum_{n=1}^\infty I_n\varepsilon^{-n}, \lambda=\varepsilon^2,\label{kdv-18}
+\end{align}
+将 (\ref{kdv-18}) 式代入 (\ref{kdv-17}) 式得:
+\begin{align}
+I_{n,x}+2I_{n+1}+\sum_{i=1}^nI_iI_{n-i}=0,\nonumber
+\end{align}
+令 $\varepsilon$ 的各幂次系数为零，整理可得:
+\begin{align}
+I_{n+1}=-\frac{1}{2}(I_{n,x}+\sum_{i=1}^nI_iI_{n-i}), I_1=-\frac{1}{2}q_{2x}.\nonumber
+\end{align}
+将 (\ref{kdv-18}) 式代入 (\ref{kdv-19}) 式得:
+\begin{align}
+&\sum_{n=1}^\infty4I_{n+2,t}\varepsilon^{-n}+\partial_x[\sum_{n=1}^\infty I_{n,4x}\varepsilon^{-n}+5\sum_{n=1}^\infty I_{n+1,3x}\varepsilon^{-n}+5\sum_{n=1}^\infty\sum_{i=1}^nI_iI_{n-i,3x}\varepsilon^{-n}\nonumber\\
+&+5q_{4x}\sum_{n=1}^\infty I_n\varepsilon^{-n}+10\sum_{n=1}^\infty I_{n+2,2x}\varepsilon^{-n}+5\sum_{n=1}^\infty\sum_{i=1}^{n+1}I_{i,x}I_{n+1-i,x}\varepsilon^{-n}+10q_{2x}\sum_{n=1}^\infty I_{n+1,x}\varepsilon^{-n}\nonumber\\
+&+5\sum_{n=1}^\infty\sum_{j=1}^n\sum_{i=1}^jI_iI_{j-i,x}I_{n-j,x}\varepsilon^{-n}+5q_{2x}^2\sum_{n=1}^\infty I_n\varepsilon^{-n}+10q_{2x}\sum_{n=1}^\infty\sum_{i=1}^nI_iI_{n-i,x}\varepsilon^{-n}\nonumber\\
+&+10\sum_{n=1}^\infty I_{n+3,x}\varepsilon^{-n}+10\sum_{n=1}^\infty\sum_{i=1}^{n+2}I_iI_{n+2-i,x}\varepsilon^{-n}+10q_{2x}\sum_{n=1}^\infty I_{n+2}\varepsilon^{-n}+\sum_{n=1}^\infty I_{n,xt}\varepsilon^{-n}\nonumber\\
+&+2\sum_{n=1}^\infty I_{n+1,t}\varepsilon^{-n}+2\sum_{n=1}^\infty\sum_{i=1}^nI_iI_{n-i,t}\varepsilon^{-n}+2q_{xt}\sum_{n=1}^\infty I_n\varepsilon^{-n}+20\sum_{n=1}^\infty I_{n+4}\varepsilon^{-n}\nonumber\\
+&+10\sum_{n=1}^\infty\sum_{i=1}^{n+3}I_iI_{n+3-i}\varepsilon^{-n}+10\sum_{n=1}^\infty\sum_{j=1}^{n+2}\sum_{i=1}^jI_iI_{j-i}I_{n+2-j}\varepsilon^{-n}\nonumber\\
+&+5\sum_{n=1}^\infty\sum_{k=1}^{n+1}\sum_{j=1}^k\sum_{i=1}^jI_iI_{j-i}I_{k-j}I_{n+1-k}\varepsilon^{-n}+\sum_{n=1}^\infty\sum_{m=1}^n\sum_{k=1}^{m}\sum_{j=1}^k\sum_{i=1}^jI_iI_{j-i}I_{k-j}I_{m-k}I_{n-m}\varepsilon^{-n}]=0.\label{kdv-20}
+\end{align}
+设方程 (\ref{kdv-1}) 的无穷守恒律有如下形式:
+\begin{align}
+F_{n,t}+G_{n,x}=0, n=1,2,3,\cdots\nonumber
+\end{align}
+比较 (\ref{kdv-20}) 式可知:
+\begin{align}
+&F_n=4I_{n+2}=\frac{1}{4}I_{n,2x}+\frac{1}{4}\sum_{i=1}^n(I_iI_{n-i})_x-\frac{1}{2}\sum_{i=1}^{n+1}I_iI_{n+1-i},\label{kdv-23}\\
+&F_1=4I_3=-\frac{1}{2}(q_{4x}+q_{2x}^2),\nonumber\\
+&G_n=I_{n,4x}+5I_{n+1,3x}+5\sum_{i=1}^nI_iI_{n-i,3x}+5q_{4x}I_n+10I_{n+2,2x}+5\sum_{i=1}^{n+1}I_{i,x}I_{n+1-i,x}\nonumber\\
+&~~~~~~~+10q_{2x}I_{n+1,x}+5\sum_{j=1}^n\sum_{i=1}^jI_iI_{j-i,x}I_{n-j,x}
++5q_{2x}^2I_n+10q_{2x}\sum_{i=1}^nI_iI_{n-i,x}+10I_{n+3,x}\nonumber\\
+&~~~~~~~+10\sum_{i=1}^{n+2}I_iI_{n+2-i,x}+10q_{2x}I_{n+2}+I_{n,xt}+2I_{n+1,t}+2\sum_{i=1}^nI_iI_{n-i,t}+2q_{xt}I_n+20I_{n+4}\nonumber\\
+&~~~~~~~+10\sum_{i=1}^{n+3}I_iI_{n+3-i}+10\sum_{i+j+k=n+2}I_iI_jI_k+5\sum_{i+j+k+m=n+1}I_iI_jI_kI_m+\sum_{i+j+k+m+l}I_iI_jI_kI_mI_l,\label{kdv-24}\\
+&G_1=-\frac{1}{2}q_{6x}-5q_{2x}q_{4x}-5q_{2x}^3-\frac{5}{2}q_{3x}^2-q_{xt}q_{2x},\nonumber\\
+&G_2=\frac{1}{4}q_{7x}+\frac{5}{2}q_{2x}q_{5x}+5q_{4x}q_{3x}+\frac{15}{2}q_{2x}^2q_{3x}+\frac{1}{2}q_{xt}q_{3x}.\nonumber
+\end{align}
+通过上面的表达式可以构造方程 (\ref{kdv-1}) 的无穷守恒律，当 $n=1$ 时，通过化简可以得到方程 (\ref{kdv-1})。
+\section{本章小结}
+方程 (\ref{kdv-1}) 作为高阶 KdV 方程，本章利用贝尔多项式方法对它的可积性质进行了研究。首先利用贝尔多项式方法推导出由 Hirota 算子表示的双线性形式，基于双线性形式求得方程 (\ref{kdv-1}) 的 N 孤子解和双线性 B\"{a}cklund 变换 (\ref{kdv-21})-(\ref{kdv-22})，通过 B\"{a}cklund 变换求出方程 (\ref{kdv-1}) 的 Lax 对，最后推导出无穷守恒律 (\ref{kdv-23})-(\ref{kdv-24})。通过本章的研究可以注意到，贝尔多项式方法可以简化非线性发展方程的解析性质的研究过程，尤其是对高阶非线性发展方程而言，这为研究其它类型的方程的解析性质提供了一条新的思路。
+
+
+

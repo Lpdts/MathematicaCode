@@ -1,0 +1,15 @@
+% !Mode:: "TeX:UTF-8"
+\chapter{奇异值分解}
+所有矩阵$A\in \Re^{m \times n}$可被分解成具有特殊性质的三个矩阵的成绩，即
+\begin{eqnarray}
+  A = USV^{T}. \label{SVD}
+\end{eqnarray}
+其中$U$和$V$分别是$m\times m$和$n\times n$的正交矩阵，即它们满足关系$U^{T}U = UU^{T} = I$和$V^{T}V = VV^{T} = I$。
+$S$是$m \times n$对角矩阵，对角元素为$\sigma_{i},i = 1,2,\cdots,\min\{m,n\}$，其满足
+\[
+\sigma_{1} \geq \sigma_{2} \geq \cdots \sigma_{\min\{m,n\}} \geq 0 .
+\]
+
+称这些对角元素为$A$的奇异值(singular value)，称(\ref{SVD})为矩阵$A$的奇异值分解(Singular value decomposition, SVD)。
+
+若$A$是对称正定矩阵，它的奇异值和特征值是一致的。

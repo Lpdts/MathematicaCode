@@ -1,0 +1,258 @@
+﻿\chapter{变系数5阶KdV方程解析研究}
+当在KdV方程中考虑五阶色散项时，其在诸多物理场景中有着特定的应用，诸如浮冰河道与水波的相交、大气重力波以及流体力学的许多领域。许多学者对对5阶KdV方程进行了深入的研究，得到了Lax对，解析解，B\"{a}cklund变换和无穷守恒律等一系列结果 \upcite{5kdv-1,5kdv-2,5kdv-3}。本节将研究以下的5阶变系数KdV方程
+\begin{equation}
+u_t +a(t)u u_{xxx} + b(t)u_x u_{xx}+c(t) u^2 u_x +d(t) u u_x +e(t)u_{xxx} +l(t)u_{xxxxx} +m(t) u +
+n(t) u_x=0 \label{gvc5kdv},
+\end{equation}
+在本文之前，已经有学者对上述方程进行过研究。
+当 $d(t) = 6$, $e(t) = 1$， $l(t) = 2$ ，$a(t) = b(t) =
+c(t) = m(t) = n(t) = 0$， 方程 (\ref{gvc5kdv}) 有如下形式，
+\begin{equation}
+u_t + 6uu_{xx} + u_{xxx} + \varepsilon^2 u_{xxxxx} = 0.\label{equ0}
+\end{equation}
+该方程被提出用于描述重力波和浮冰之间的相互作用 \upcite{5kdv-1,5kdv-2}。
+ $a(t) = b(t) = 15$， $c(t) = 45$， $l(t) = 1$ ， $d(t) =
+e(t) = m(t) = n(t) = 0$ 的时候，方程(\ref{gvc5kdv})  简化为下面的方程，
+\begin{equation}
+u_t+ 15 u u_{xxx} + 15u_x u_{xx} + 45 u^2 u_x=0,\label{equ1}
+\end{equation}
+文献 \cite{5kdv-3,5kdv-4} 通过tanh方法获得方程的许多孤子解。
+令方程中的 $d(t) = e(t)=0 $，方程变为下述形式，
+\begin{equation}
+u_t +a(t)u u_{xxx} + b(t)u_x u_{xx}+c(t) u^2 u_x  +l(t)u_{xxxxx} +m(t) u +
+n(t) u_x=0 \label{equ3},
+\end{equation}
+文献 \cite{5kdv-5,5kdv-6} 研究了该方程的Lax对， $N$ 孤子解和无穷守恒律。
+
+除此之外，文献 \cite{5kdv-9} 给出了方程 (\ref{gvc5kdv}) 的三组Painlev\'{e}
+可积条件，双线性形式和 $N$ 孤子解。文献 \cite{5kdv-7,5kdv-8}针对此方程的简化形式，给出了它的Lax对，B\"{a}cklund 变换和无穷守恒律，但就方程 (\ref{gvc5kdv}) 完整的形式并没有得到相应结果。本节将以上文献的结果加以扩展，得到方程完整形式的Lax对，解析解，B\"{a}cklund变换和无穷守恒律。
+
+
+\section{AKNS系统和Lax对}
+在本小节中，将采用扩展的AKNS方法构造方程(\ref{gvc5kdv})的Lax对，根据5阶变系数KdV方程的特点假设方程Lax 对具有如下形式：
+\begin{align}
+&\Phi_x=U \Phi=
+\begin{pmatrix}
+\lambda & B_1(t)u+B_2(t)\\
+A(t) & -\lambda
+\end{pmatrix}\Phi,\label{5kdv-lp1}\\
+&\Phi_t=V \Phi=
+\begin{pmatrix}
+H(x,t,\lambda) & G(x,t,\lambda)\\
+F(x,t,\lambda) & -H(x,t,\lambda)
+\end{pmatrix}\Phi,\label{5kdv-lp2}
+\end{align}
+由于所求方程为5阶方程，因此假设 $H(x,t,\lambda)$,
+$G(x,t,\lambda)$ 和 $F(x,t,\lambda)$ 的表达式如下：
+\begin{align}
+&H(x,t,\lambda )=h_0(x,t)+h_1(x,t)\lambda  + h_2(x,t)\lambda^2
++ h_3(x,t)\lambda^3+ h_4(x,t)\lambda^4+ h_5(x,t)\lambda^5 ,\\
+&G(x,t,\lambda )=g_0(x,t)+g_1(x,t)\lambda  + g_2(x,t)\lambda^2 + g_3(x,t)\lambda^3 + g_4(x,t)\lambda^4 ,\\
+&F(x,t,\lambda )=f_0(x,t)+f_1(x,t)\lambda  + f_2(x,t)\lambda^2+ f_3(x,t)\lambda^3+ f_4(x,t)\lambda^4.
+\end{align}
+将此代入到相容条件 $U_t - V_x + U V - V U = 0$ 中，令 $\lambda$ 的各项次数都为0，可以得到18个约束条件，对约束条件进行初步整理求解，最后化简为以下2个条件，
+\begin{align}
+\nonumber
+&2 B_2(t) (A(t) B_1(t) (6 A(t) B_1(t) u(x,t) (3 h_4(x,t) u(x,t)+5 h_5(x,t) u_x(x,t))-8 h_4(x,t)(t) u_{xx}(x,t)\\ \nonumber
+&-5 h_5(x,t) u_{xxx}(x,t))+16 \mu(t))+6 A(t)^2 B_1(t) B_2(t)^2 (6 h_4(x,t) u(x,t)+5 h_5(x,t) u_x(x,t))
+\\ \nonumber
+& +6 A(t)^2 B_1(t)^3 u(x,t)^2 (2 h_4(x,t) u(x,t)+5 h_5(x,t) u_x(x,t))-2 A(t) B_1(t)^2 (h_4(x,t) (6 u_x(x,t)^2
+\\ \nonumber
+&+8 u(x,t) u_{xx}(x,t))+5 h_5(x,t) (2 u_x(x,t) u_{xx}(x,t)+u(x,t) u_{xxx}(x,t)))-16 (B_2'(t) u(x,t)+B_1'(t))
+\\ \nonumber
+&+B_1(t) (32 \mu(t) u(x,t)+16 \nu(t) u_x(x,t)+2 h_4(x,t)(t) u_{4x}(x,t)+h_5(x,t) u_{5x}(x,t)-16 u_t(x,t))
+\\
+&+12 A(t)^2 B_2(t)^3 h_4(x,t)(t)=0,\label{5kdv-lax1}\\
+&A(t)^2 B_1(t) h_4(x,t) u_{xx}(x,t)-3 A(t)^3 h_4(x,t) (B_1(t) u(x,t)+B_2(t))^2-4 A'(t)-8 A(t) \mu(t)=0.\label{5kdv-lax2}
+\end{align}
+其中 $\mu(t)$ 和 $\nu(t)$ 为任意函数。为得到方程Lax对，需要使 (\ref{5kdv-lax1}) 变换为方程 (\ref{gvc5kdv})
+同时使 (\ref{5kdv-lax2}) 为恒等式，经过计算，求得以下约束条件，
+
+\begin{align}
+%\nonumber
+& B_1(t)=-\frac{a(t) }{10 A(t) l(t)},\label{5kdv-ll1} \\
+& B_2(t)=-\frac{e(t) }{10 A(t) l(t)}, \\
+%\nonumber
+\nonumber
+&\nonumber H(x,t,\lambda )=-16 l(t) \lambda^5 -
+\frac{4}{5}(a(t) u +e(t)) \lambda^3
+-\frac{2}{5}  a(t) u_x \lambda^2 +
+\big[-\frac{3 a(t) e(t) u}{25 l(t)}-\frac{3 a(t)^2 u^2}{50 l(t)}-\frac{1}{5} a(t) u_{xx}
+\\
+&\quad \quad\quad  \quad\quad
++\frac{6 e(t)^2}{25 l(t)}-n(t)\big] \lambda
+ -\frac{3 a(t) e(t) u_x}{50 l(t)}-\frac{3 a(t)^2 u u_x }{50 l(t)}-\frac{1}{10} a(t) u_{xxx}-\frac{A'(t)}{2 A(t)},\\
+&\nonumber
+G(x,t,\lambda )=\frac{1}{5A(t)}\big\{8 (a(t)u+e(t))\lambda^4 + 4 a(t) u_x \lambda^3
++ \frac{a(t) (3 a(t) u u_x +3 e(t) u_x+5 l(t) u_{xxx})}{5 l(t)} \lambda
+\\ \nonumber
+&\quad \quad\quad  \quad\quad
++ \frac{4 a(t) e(t) u+2a(t) (a(t) u^2+5 l(t) u_{xx})+2e(t)^2}{5 l(t)}\lambda^2 + \big[  e(t) (10 l(t) (4 a(t) u_{xx}\\ \nonumber
+&\quad \quad\quad  \quad\quad
++5 n(t))+9 a(t)^2 u^2)-6 a(t) e(t)^2 u+a(t) (10 l(t) (3 a(t) u_x^2+4 a(t) u u_{xx}+5 n(t) u)
+\\
+&\quad \quad\quad  \quad\quad
++3 a(t)^2 u^3+50 l(t)^2 u_{xxxx})-12 e(t)^3\big]/\big[100 l(t)^2] \big\},
+ \\ \nonumber
+&F(x,t,\lambda )=-16 A(t) l(t) \lambda^4- \frac{4}{5}  A(t) (a(t) u+e(t))\lambda^2
+-\frac{1}{50 l(t)}\big[A(t) (-6 a(t) e(t) u-10 l(t) (a(t) u_{xx}
+\\
+&\quad \quad\quad  \quad\quad
++5 n(t))-3 a(t)^2 u^2+12 e(t)^2) \big] \label{5kdv-ll2},
+\end{align}
+其中方程参数满足如下条件：
+\begin{align}
+&c(t)=\frac{3 a(t)^2}{10 l(t)} ,\\
+&d(t)=\frac{3 a(t) e(t)}{5 l(t)},\\
+&b(t)=2 a(t),\\
+&m(t)=\frac{l(t) a'(t)-a(t) l'(t)}{a(t) l(t)}.
+\end{align}
+以上约束条件与之前学者所求得的Painlev\'{e}一致。
+
+\section{B\"{a}cklund变换}
+根据上一节得到的lax对，这一节将得到两种类型的 B\"{a}cklund变换，Riccati型的B\"{a}cklund变换和
+Wahlquist-Estabrook型的B\"{a}cklund变换。
+
+先来构造Riccati型的B\"{a}cklund变换， 通过引入函数 $\Gamma(x,t)=\dfrac{\phi_1}{\phi_2}$  并将其代入 Lax对  (\ref{5kdv-lp1}) 和 (\ref{5kdv-lp2})中，可以得到如下的等价的$\Gamma$-Riccati系统：
+\begin{align}
+&\Gamma_x=B_1(t)u+B_2(t) + 2  \lambda \Gamma - A(t)\Gamma^2,\label{5kdv-r1}\\
+&\Gamma_t=G(x,t,\lambda) + 2 H(x,t,\lambda) \Gamma - F(x,t,\lambda) \Gamma^2.\label{5kdv-r2}
+\end{align}
+结合上述等式和Riccati型的B\"{a}cklund变换的定义，可以得到
+\begin{align}
+\Gamma' =& (2 \lambda - A(t) \Gamma)/A(t), \label{5kdv-w1}\\
+u'= & u+ \frac{20 A(t) l(t) \Gamma_x }{a(t)}. \label{5kdv-w2}
+\end{align}
+方程组 (\ref{5kdv-w1}) 和 (\ref{5kdv-w2}) 可以将方程
+$N-1$ 孤子解转换为 $N$ 孤子解。  对Riccati型的B\"{a}cklund变换迭代 $n$ 次，可以通过一个已知的种子解 $u$ 得到新的解 $u_n$，
+\begin{equation}
+u_n=u+ \frac{20 A(t) l(t) \Gamma_n(\lambda_j)_x }{a(t)} \, , \label{5kdv-w5}
+\end{equation}
+
+接下来将构造方程的Wahlquist-Estabrook型的B\"{a}cklund变换。
+通过 (\ref{5kdv-w2})， 求解 $\Gamma$ 得
+\begin{equation}
+\Gamma= -\frac{a(t) (\alpha(t)-\int (u'-u) \, dx)}{20 A(t) l(t)} .\label{5kdv-lp8}
+\end{equation}
+令 $u=-\omega_x$ ， $u'=-\omega'_x$ 将(\ref{5kdv-lp8}) 代入 (\ref{5kdv-r1}) 和 (\ref{5kdv-r2})，方程的Wahlquist-Estabrook 型的B\"{a}cklund变换如下：
+\begin{align}
+&\omega_x + \omega'_x =a(t)^2 (\omega'-\omega)^2+ (2 a(t)^2 \alpha(t)+2\lambda) (\omega'-\omega)
+ +a(t)^2 \alpha(t)^2+2 \lambda  \alpha(t)+40 e(t) l(t), \label{5kdv-w7} \\ \nonumber
+\nonumber
+&\omega_t + \omega'_t =32l(t)( \omega - \omega'-\alpha(t))\lambda ^5+\big[-\frac{4}{5} a(t)( \omega-  \omega')^2 +\frac{8}{5} a(t) \alpha(t)(\omega  - \omega') +32 l(t) \omega_x
+ \\ \nonumber
+& \quad\quad\quad\quad
+-\frac{32 e(t) l(t) }{a(t)}-\frac{4}{5} a(t) \alpha(t)^2 \big]\lambda ^4
+ +\big[\frac{8}{5} e(t) (\omega- \omega') +\frac{8}{5} a(t) \omega_x  (\alpha(t)- \omega   + \omega' )
+ \\ \nonumber
+& \quad\quad\quad\quad
++16 l(t) \omega_{xx}-\frac{8}{5} \alpha(t) e(t)\big]\lambda ^3 +\big[8 l(t) \omega_{xxx} +\frac{4}{5} a(t) \omega_{xx}(\omega'- \omega+ \alpha(t))-\frac{8}{5} a(t)
+ \omega_{x}^2 \\
+\nonumber
+& \quad\quad\quad\quad
++\omega_{x}\big(\frac{a^2(t)}{25l(t)}[(\omega- \omega')^2 + 2 \alpha(t)(\omega- \omega')] +\frac{a(t)^2 \alpha(t)^2}{25 l(t)}+\frac{16 e(t)}{5}\big) -\frac{a(t) e(t) \omega }{25 l(t)}(\omega
+ \\ \nonumber
+& \quad\quad\quad\quad
++2 \alpha(t) + 2  \omega')-\frac{a(t) e(t) \omega'}{25 l(t)}( 2 \alpha(t)+ \omega') -\frac{8 e(t)^2}{5 a(t)}-\frac{a(t) \alpha(t)^2 e(t)}{25 l(t)}\big] \lambda ^2 \\
+\nonumber
+& \quad\quad\quad\quad
++\big[4l(t) \omega_{xxxx}+ \frac{2 a(t)}{5}\omega_{xxx}( \omega'- \omega+ \alpha(t)) +\frac{12}{5}\omega_{xx}
+(e(t) - a(t) \omega')
+\end{align}
+\begin{align}
+\nonumber
+& \quad\quad\quad\quad
++ \frac{3 a(t)^2}{25 l(t)}\omega_x^2( \omega'- \omega+ \alpha(t)) + \frac{6 a(t) e(t)}{25 l(t)}\omega_x( \omega'- \omega+ \alpha(t)) + (2 n(t)-\frac{12 e(t)^2}{25 l(t)})
+\\ \nonumber
+& \quad\quad\quad\quad
+\times (\omega- \omega'-\alpha(t)) \big] \lambda+ \frac{a(t)}{5}\omega_{xxxx}( \omega'- \omega+ \alpha(t)) + \omega_{xxx}\big[ \frac{a(t)^2}{100 l(t)}
+(\omega- \omega')^2
+\\ \nonumber
+& \quad\quad\quad\quad
++ \frac{a(t)^2 \alpha(t) }{50 l(t)} ( \omega'- \omega) + \frac{a(t)^2 \alpha(t)^2}{100 l(t)}+\frac{2 a(t)}{5}\omega_x -\frac{2 e(t)}{5} \big] -\frac{a(t)}{5} \omega_{xx}^2+ \omega_{xx} \frac{3 a(t) e(t)}{25 l(t)}
+\\ \nonumber
+& \quad\quad\quad\quad
+\times( \omega'- \omega+ \alpha(t)) (a(t) \omega_x -e(t))-\frac{2 a(t)^2}{25 l(t)}\omega_{x}^3-\frac{3 a(t)}{1000 l(t)^2}\omega_{x}^2 \big[ 2a(t)^2 ( \omega'- \omega)^2
+\\ \nonumber
+& \quad\quad\quad\quad
++ a(t)^2 \alpha(t) ( 2\omega'- 2\omega+ \alpha(t)) -80 e(t) l(t) \big]+ \frac{1}{500 l(t)^2} \omega_{x} \big[3 a(t)^2 e(t) ( \omega'- \omega)^2
+\\ \nonumber
+& \quad\quad\quad\quad
++3 a(t)^2 \alpha(t) e(t) (2 \omega'-2 \omega+\alpha(t))  -120 e(t)^2 l(t) \big]+ \omega^2\big[ \frac{3 a(t) e(t)^2}{250 l(t)^2}-\frac{a(t) n(t)}{20 l(t)}\big]
+\\ \nonumber
+& \quad\quad\quad\quad-\frac{a(t) }{250 l(t)^2}(6 e(t)^2-25 l(t) n(t)) (\alpha(t) \omega -\alpha(t) \omega'+\omega \omega' )+  \frac{a(t) e'(t)-e(t) a'(t)}{a(t) e(t)}
+\\
+&\quad\quad\quad\quad
+\times(\omega +\omega' )+\frac{1}{500 a(t) l(t)^2}(6 e(t)^2-25 l(t) n(t)) (a(t)^2 \alpha(t)^2+40 e(t) l(t)).\label{5kdv-w8}
+\end{align}
+至此本节得到了方程的Wahlquist-Estabrook型的B\"{a}cklund变换，其形式十分复杂。下面将通过Riccati型的B\"{a}cklund变换求解方程的孤子解。
+令 $u=-\dfrac{e(t)}{a(t)}$ 作为种子解， 通过方程 (\ref{5kdv-r1})，可以求得
+$\Gamma_1$ 如下
+\begin{equation}
+\Gamma _1(x,t)=\frac{2 \lambda  e^{2 \lambda  \left(x-cl(t)\right)}}{A(t) e^{2 \lambda  \left(x-cl(t)\right)}+1}.\label{5kdv-lp10}
+\end{equation}
+将 $\Gamma _1$ 代入 (\ref{5kdv-r2}) 求得 $cl(t)$，可以得到方程 (\ref{gvc5kdv}) 的单孤子解如下，
+\begin{align}
+&u_1=-\frac{e(t)}{a(t)}+ \frac{80 \lambda ^2 A(t) l(t) e^{2 \lambda  (x-\text{cl}(t))}}{a(t) \left(A(t) e^{2 \lambda  (x-\text{cl}(t))}+1\right)^2}
+,\label{5kdv-lp10-1}\\
+&cl(t)=\int \frac{5 l(t) A'(t)-3 \lambda  A(t) e(t)^2+10 \lambda  A(t) l(t) n(t)+160 \lambda ^5 A(t) l(t)^2}{10 \lambda  A(t) l(t)} dt.
+\end{align}
+
+
+\section{非线性叠加公式和守恒律}
+非线性叠加公式可以通过已知的孤子解得到新的多孤子解，其优点是可以避免复杂的计算。这一小节将
+求得方程的非线性叠加公式。通过之前求得的Wahlquist-Estabrook 型的B\"{a}cklund变换 (\ref{5kdv-w7})和 (\ref{5kdv-w8})，方程的非线性叠加公式如下：
+\begin{equation}
+\omega_3=\omega_0+\frac{\big[\lambda_1+\lambda_2+2 a^2(t) \alpha(t)\big](\omega_1-\omega_2)}
+{\lambda_1-\lambda_2+a^2(t)(\omega_1-\omega_2)},\label{5kdv-lp11}
+\end{equation}
+其中 $\omega_1, \omega_2 $ 是通过任意的已知的解 $\omega_0$ 得到的。
+
+守恒律在孤子理论中具有重要作用，其有助于研究系统的汉密尔顿结构和Lax对。这一小节将构造方程
+的无穷守恒律。将以下变换
+\begin{align}
+&\Gamma=(\ln{\psi(x,t)})_x/A(t),\\
+&\psi_x=\eta(x,t)\psi ,
+\end{align}
+代入系统 (\ref{5kdv-r1}-\ref{5kdv-r2})，可以得到
+\begin{align}
+\eta_x= & \frac{-a(t) u-e(t)}{10 l(t)}+2 \lambda \eta - \eta ^2,\label{c1} \\ \nonumber
+\eta_t= & \big[\frac{\eta (3 e(t)^2-10 l(t) n(t))}{10 l(t)}-10 l(t) \eta_{xx} \eta  (2 \lambda -\eta)-10 l(t) \eta_x ^2 (\lambda -\eta)-l(t) \eta_{xxxx}\\
+ & -40 \lambda ^2 l(t) \eta^3  +30 \lambda  l(t) \eta ^4-6 l(t) \eta^5\big]_x.\label{5kdv-c2}
+\end{align}
+将 $\eta$ 展开为 $\varepsilon$ 的表达式，
+\begin{equation}
+\eta=\varepsilon + \sum^\infty_{n=1} F_n(u,u_x,\cdots)\varepsilon^{-n},\label{5kdv-c3}
+\end{equation}
+并将其代入 (\ref{5kdv-c2}) 和 (\ref{5kdv-c3})，通过使 $\varepsilon$ 的各项次数的系数都为 $0$，求得
+\begin{align}
+& F_1=\frac{-a(t) u-e(t)}{10 l(t)}, \\
+& F_2=-F_{1x},\\ \nonumber
+& \quad \cdots\cdots \\
+&  F_{n+1}=-F_{nx}- \sum^{n-1}_{k=1} F_k F_{n-k} . \quad\quad n=2,3,4,...
+\end{align}
+最后，将展开式(\ref{5kdv-c3}) 代入 (\ref{5kdv-c2}) 推出如下的无穷守恒律：
+\begin{equation}
+F_{n,t}+G_{n,x}=0,
+\end{equation}
+其中 $G_n$ 的表达式如下：
+\begin{align}
+G_1=& \frac{a(t)}{10 l(t)}\big[ e(t) u_{xx}+\frac{3 a(t) e(t) u^2}{10 l(t)}+ n(t) u +a(t) u_{xx} u+\frac{a(t) u_x^2}{2}+\frac{a(t)^2 u^3}{10 l(t)}+ l(t) u_{xxxx} \big],
+\end{align}
+\begin{align}
+\nonumber
+G_2=& -\frac{a(t)}{100 l(t)^2}\big[ 10 l(t) (2 a(t) u_{xx} u_x+a(t) u u_{xxx}+e(t) u_{xxx}+n(t) u_x
+\\ &+3 a(t) u u_x (a(t) u+2 e(t)) +10 l(t)^2 u_{xxxxx} \big],
+\\ \nonumber
+& \quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad \cdots\cdots
+\\ \nonumber
+G_n= & \big[\frac{ (3 e(t)^2-10 l(t) n(t))}{10 l(t)}F_n -20 l(t) \lambda \sum_{i+j=n} F_{i,xx} F_j
++ 10 l(t) \sum_{i+j+k=n} F_{i,xx} F_j F_k
+\\ \nonumber
+& -10 \lambda l(t)  \sum_{i+j=n} F_{i,xx} F_{j,xx}+ 10 l(t) \sum_{i+j+k=n} F_{i,xx} F_{j,xx} F_k - l(t) F_{n,xxx}
+\\
+& - 40  \lambda^2 l(t) \sum_{i+j+k=n} F_{i} F_j F_k +30 \lambda l(t) \sum_{i+j+k+m=n} F_{i} F_{j} F_k F_m-6 l(t) \sum_{i+j+k+m+p=n} F_{i} F_{j} F_k F_m F_p.
+\end{align}
+
+\section{本章小结}
+本章研究了5阶KdV方程(\ref{gvc5kdv})的可积性和解析解进行了深入的研究。首先，对所研究方程的研究现状进行了分析。进而通过扩展的AKNS系统，构造了方程的Lax对，$\Gamma$-Riccati型的B\"{a}cklund 变换和Wahlquist-Estabrook类型的B\"{a}cklund变换。最后，基于$\Gamma$-Riccati型的B\"{a}cklund 变换，得到了方程的非线性叠加公式和无穷守恒律。

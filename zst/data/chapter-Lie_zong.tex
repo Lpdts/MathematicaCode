@@ -1,0 +1,1320 @@
+﻿% !Mode:: "TeX:UTF-8"
+\chapter{Lie 群分析}
+\section{经典 Lie 群分析}
+Lie 群又称 Lie 对称群或 Lie 不变群, Lie 群方法的思想和原理在数学物理领域的研究中起着非常重要的作用\upcite{KSG2013,JK2011,CA2009,AC2011,ALi2014}. 通过变换, Lie 群将微分方程的两个解联系起来, 从而可利用不变变换获得微分方程的相似解. 此外, 应用 Lie 群研究问题时, 我们无需考虑方程是否具有可积性, 而且通过 Lie 对称方法求得的群不变解还可以对物理模型本身进行深刻的解释\upcite{Bluman2002,Olver1993}. 本章将应用经典 Lie 群法分别对变系数 eKdV 方程, 变系数含交叉项的 NLS 方程及变系数高阶 Hirota 方程进行分析.
+%% 经典 Lie 群法简介
+%\subsection{经典 Lie 群法简介}
+%Lie 群法的主要观点是通过相似变量和约化方程来研究给定的微分方程在连续群变换下的不变性质 \upcite{Olver1993}. 下面给出与 Lie 变换群相关的一些概念.
+%\begin{itemize}
+%\item 单参数变换群
+%
+%%\textbf{群} 称一个非空集合 $G$ 关于运算 $\phi$ 作成一个群, 若\\
+%%(1) $G$ 对于运算 $\phi$ 是封闭的;\\
+%%(2) 结合律成立, 即对 $\forall a,b,c\in G, a(bc)=(ab)c$;\\
+%%(3) $G$ 中任意元都有单位元和逆元.
+%
+%
+%\textbf{变换群} 设 $x=(x_1,x_2,\cdots,x_n)\in D, \epsilon\in S$, 则称满足下列条件的变换
+%\begin{equation}\label{bhq}
+%x^*=X(x;\epsilon)
+%\end{equation}
+%的全体 $G$ 为 $D$ 上的变换群:\\
+%(1) 对 $\forall \epsilon\in S, $ 式 (\ref{bhq}) 是 $D$ 上的一一变换;\\
+%(2) 具有二元运算关系 $\phi$ 的 $S$ 构成群; 设 $x^*=X(x;\epsilon)$, 且 $x^{**}=X(x^*;\epsilon)$, 则 $x^{**}=X(x;\phi(\epsilon,\delta))$;\\
+%(3) 当 $\epsilon=e$ 时, 有 $x^*=X,$ 即 $X(x;e)=X$.
+%
+%
+%\textbf{单参数~Lie 变换群} 若 $D$ 上的一个变换群 $G$ 还满足:\\
+%(1) $\epsilon$ 是连续参数, 即 $S$ 是 $\mathbb{R}$ 上的一个区间;\\
+%(2) $X$ 关于 $x\in D$ 是无穷次可微的, 关于 $\epsilon\in S$ 是解析的;\\
+%(3) $\phi(\epsilon_1,\epsilon_2)$ 是 $\epsilon_1,\epsilon_2$ 的解析函数, $\epsilon_1,\epsilon_2\in S$.\\
+%则称 $G$ 为 $D$ 上的单参数变换群, 又称为 Lie 点变换群.
+%
+%\textbf{例} 常见的单参数变换群有
+%\begin{align*}
+%&\text{(1) 平移群:}  \;\;\;\; x'=x,\quad y'=y+\epsilon;\\
+%&\text{(2) 尺度变换群:}  \;\;\; x'=e^\epsilon x,\quad y'=e^\epsilon y;\\
+%&\text{(3) 旋转群:}  \;\;\;\; \; x'=x\cos\epsilon-y\sin\epsilon,\quad y'=x\sin\epsilon+y\cos\epsilon.
+%\end{align*}
+%
+%\item 不变变换
+%
+%对于非线性发展方程:
+%\begin{equation}\label{PDE}
+%\frac{\partial u}{\partial t}=H(u),
+%\end{equation}
+%作变换:
+%\begin{equation}\label{bh}
+%u'=u'(x,t,u), x'=x'(x,t,u), t'=t'(x,t,u).
+%\end{equation}
+%设\ $u(x,t)$ 为方程 \eqref{PDE} 的解, 如果将\ $u',x',t'$ 代入\ \eqref{PDE} 仍有
+%$\frac{\partial u'}{\partial t'}=H(u')$\ 成立, 则称方程 \eqref{PDE} 在变换 \eqref{bh} 下是不变的, \eqref{bh} 称为 \eqref{PDE} 的\textbf{不变变换}.
+%
+%考虑无穷小变换, 也称为单参数~Lie 变换群 (one-parameter group)
+%%\begin{equation}
+%%\begin{cases}
+%%x_i^*=X_i(x,u;\epsilon)=x_i+\epsilon\xi_i(x,u)+O(\epsilon^2),\\
+%%u^*=U(x,u;\epsilon)=u+\epsilon\eta(x,u)+O(\epsilon^2).
+%%\end{cases}
+%%\end{equation}
+%
+%\begin{equation}\label{1.2-1}%%%%%%================== 将两个公式组并列放置
+%\begin{cases}
+%u'=u+\epsilon\eta+O(\epsilon^2)\\
+%x'=x+\epsilon\xi+O(\epsilon^2)\\
+%t'=t+\epsilon\tau+O(\epsilon^2)\\
+%\end{cases}
+%\quad\text{或}\quad
+%\begin{cases}
+%u'=u+\epsilon U+O(\epsilon^2)\\
+%x'=x+\epsilon X+O(\epsilon^2)\\
+%t'=t+\epsilon T+O(\epsilon^2)\\
+%\end{cases},
+%\end{equation}
+%这里 $O(\epsilon^2)$ 为 $\epsilon^2$ 的同阶无穷小, $\eta, \xi, \tau (U, X, T)$ 是 $x,t,u$ 的函数.
+%
+%\item 无穷小生成子 (或向量场)
+%
+%称算子
+%\begin{equation}\label{1.2-2}
+%X=\xi_i(x,u)\frac{\partial}{\partial x_i}+\eta(x,u)\frac{\partial}{\partial u}.
+%\end{equation}
+%为单参数 Lie 变换群 (\ref{1.2-1}) 的无穷小生成子 (或向量场).
+%
+%\item 相似变量
+%
+%由于 $u'|_{\epsilon=0}=u$, 即 $u'(x',t')|_{x'=x,t'=t}=u$, 故由多元函数的泰勒展开式得:
+%\begin{align}\label{u'}
+%u'& =u+u_x(x'-x)+u_t(t'-t)+\cdots\notag \\
+%  & =u+u_x(\epsilon\xi)+u_t(\epsilon\tau)+O(\epsilon^2)\notag \\
+%  & =u+\epsilon(u_x\xi+u_t\tau)+O(\epsilon^2)
+%\end{align}
+%比较 \eqref{u'} 式与 \eqref{1.2-1} 中第一式, 知
+%
+%$u'=u+\epsilon\eta+O(\epsilon^2)=u+\epsilon(u_x\xi+u_t\tau)+O(\epsilon^2)$
+%$\Rightarrow u_x\xi+u_t\tau=\eta$, 即
+%\begin{equation}\label{bubiantj}
+%\xi\frac{\partial u}{\partial x}+\tau\frac{\partial u}{\partial t}=\eta.
+%\end{equation}
+%{\eqref{bubiantj} 式称为方程 \eqref{PDE} 的\textbf{不变变换条件} (或不变曲面条件)}, 它是关于 $u$ 的一阶(拟线性)偏微分方程, 其特征方程为:
+%\begin{equation}
+%\frac{dx}{\xi}=\frac{dt}{\tau}=\frac{du}{\eta}
+%\end{equation}
+%(或 $\frac{dx}{X}=\frac{dt}{T}=\frac{du}{U}$)
+%
+%由 $\frac{dx}{\xi}=\frac{dt}{\tau}$ 解出 $C_1(x,t)=\text{常数}$, 由 $\frac{dt}{\tau}=\frac{du}{\eta}$ 解出 $C_2(x,t,u)=\text{常数}$.
+%
+%令 $C_1(x,t)=z$ (自变量), $C_2(x,t,u)=F$ (因变量), 即
+%\begin{equation}\label{xsbh}
+%\begin{cases}
+%z=C_1(x,t)\\
+%F=C_2(x,t,u)
+%\end{cases}
+%\end{equation}
+%其中 $z,F$ 称为\textbf{相似变量}, \eqref{xsbh} 式称为\textbf{相似变换}.
+%
+%若已知 $F$, 则可从 $F=C_2(x,t,u)$ 中解出 $u(x,t)$, 称为\textbf{相似解}.
+%将 \eqref{xsbh} 带入方程 \eqref{PDE}, 可以得到一个关于 $F$ 对 $z$ 的常微分方程. 解此方程可得 $F$, 然后可得到方程 \eqref{PDE} 的相似解.
+%
+%\item Lie 延拓
+%%===== 延拓
+%
+%\textbf{定理} 若 $X$ 是单参数 Lie 变换群 (\ref{bhq}) 的无穷小生成子, 那么 $F(x)$ 是 (\ref{bhq}) 的不变曲面, 当且仅当
+%\begin{equation}
+%XF(x)|_{F(x)=0}=0
+%\end{equation}
+%成立.
+%
+%在研究~$k$ 阶~PDE 的不变性时, 我们考虑将~$(x,u)$ 空间延拓到~$(x,u,\partial u, \cdots, \partial^k u)$ 空间. 其中, $x=(x_1,x_2,\cdots, x_n), u=u(x)$.
+%
+%\textbf{定理} 偏微分方程 $F(x,u)=0$ 关于 Lie 变换群
+%\begin{equation}
+%x^*=X(x,\epsilon),\quad u^*=U(x,u,\epsilon)
+%\end{equation}
+%不变的充要条件是
+%\begin{equation}
+%X^{(k)}F(x,u)|_{F(x)=0}=0,
+%\end{equation}
+%其中, $X^{(k)}$ 称为算子 $X$ 的 $k$ 阶延拓.
+%
+%
+%变换~(\ref{1.2-1})~ 的~$k$ 阶延拓为
+%\begin{equation}\label{1.2-3}
+%\begin{cases}
+%x_i^*=X_i(x,u;\epsilon)=x_i+\epsilon\xi_i(x,u)+O(\epsilon^2),\\
+%u^*=U(x,u;\epsilon)=u+\epsilon\eta(x,u)+O(\epsilon^2),\\
+%u_i^*=U_i(x,u,\partial u;\epsilon)=u_i+\epsilon\eta^{(1)}_i(x,u,\partial u)+O(\epsilon^2),\\
+%\;\;\;\vdots\\
+%u^*_{i_1i_2\cdots i_k}=U_{i_1i_2\cdots i_k}(x,u,\partial u,\cdots,\partial^k u,\cdots,\partial^k u;\epsilon)\\
+%\;\;\;\;\;\;=u_{i_1i_2\cdots i_k}+\epsilon\eta^{(k)}_{i_1i_2\cdots i_k}(x,u,\partial u,\cdots,\partial^k u,\cdots,\partial^k u)+O(\epsilon^2).
+%\end{cases}
+%\end{equation}
+%$k$~阶无穷小为
+%\begin{equation}\label{1.2-4}
+%\xi(x,u),\eta(x,u),\eta^{(1)}(x,u,\partial u),\cdots,\eta^{(k)}(x,u,\partial u).
+%\end{equation}
+%$k$~阶无穷小生成子为
+%\begin{equation}\label{1.2-5}
+%X^{(k)}=\xi_i\frac{\partial}{\partial x_i}+\eta\frac{\partial}{\partial u}+\eta^{(1)}_i\frac{\partial}{\partial u_i}+\cdots+\eta^{(k)}_{i_1i_2\cdots i_k}\frac{\partial}{\partial u_{i_1i_2\cdots i_k}}.
+%\end{equation}
+%其中
+%\begin{align}\label{1.2-6}
+%&\eta^{(1)}_i=D_i\eta-(D_i\xi_j)u_j,\notag\\
+%&\eta^{(k)}_{i_1i_2\cdots i_k}=D_{i_k}\eta^{(k-1)}_{i_1i_2\cdots i_{k-1}}-(D_{i_k}\xi_j)u_{i_1i_2\cdots i_{k-1}j}.
+%\end{align}
+%全导算子
+%\begin{equation}\label{qd-Operator}
+%D_i=\frac{\partial}{\partial x_i}+u_i\frac{\partial}{\partial u}+u_{ij}\frac{\partial}{\partial u_i}+\cdots+u_{ji_1\cdots i_n}\frac{\partial}{\partial u_{i_1\cdots i_n}}
+%\end{equation}
+%\end{itemize}
+
+% 变系数 eKdV 方程
+\subsection{变系数 eKdV 方程}
+考虑变系数 eKdV 方程
+\begin{equation}\label{Eq:VariableEKdV}
+u_t+\alpha uu_x+\beta u^2u_x+\gamma u_{xxx}+\delta u_x+\mu u=0,
+\end{equation}
+其单参数 Lie 变换群为
+\begin{equation}\label{Lie-xtu}
+\begin{aligned}
+&x\rightarrow x+\epsilon \xi(x,t,u)+O(\epsilon^2),\\
+&t\rightarrow t+\epsilon \tau(x,t,u)+O(\epsilon^2),\\
+&u\rightarrow u+\epsilon \eta(x,t,u)+O(\epsilon^2).
+\end{aligned}
+\end{equation}
+对应的向量场是
+\begin{equation}\label{Lie-vector}
+V=\xi(x,t,u)\frac{\partial}{\partial x}+\tau(x,t,u)\frac{\partial}{\partial t}+\eta(x,t,u)\frac{\partial}{\partial u}.
+\end{equation}
+方程~(\ref{Eq:VariableEKdV})  在变换 \eqref{Lie-xtu} 下保持不变, 等价于
+\begin{equation}\label{Eq:O-VariableEKdV}
+X^{(3)}(u_t+\alpha uu_x+\beta u^2u_x+\gamma u_{xxx}+\delta u_x+\mu u)|_{\eqref{Eq:VariableEKdV}}=0,
+\end{equation}
+其中算子 $X^{(3)}$ 为算子~$X$ 的三阶延拓,
+\begin{equation}
+X^{(3)}=X+\eta_t^{(1)}\frac{\partial}{\partial u_t}+\eta_x^{(1)}\frac{\partial}{\partial u_x}+\eta_{xxx}^{(3)}\frac{\partial}{\partial u_{xxx}},
+\end{equation}
+延拓无穷小~ $\eta_t^{(1)}, \eta_t^{(1)}, \eta_{xxx}^{(3)}$ 满足
+\begin{align*}
+&\eta_t^{(1)}=D_t(\eta)-u_tD_t(\tau)-u_xD_t(\xi),\quad \eta_x^{(1)}=D_x(\eta)-u_tD_x(\tau)-u_xD_x(\xi),\\
+&\eta_{xx}^{(2)}=D_x(\eta_x^{(1)})-u_{xt}D_x(\tau)-u_{xx}D_x(\xi),\quad \eta_{xxx}^{(3)}=D_x(\eta_{xx}^{(2)})-u_{xxt}D_x(\tau)-u_{xxx}D_x(\xi).
+\end{align*}
+于是方程 \eqref{Eq:O-VariableEKdV} 可化为
+\begin{equation}
+\begin{aligned}\label{Lie-eKdV}
+&\eta_t^{(1)}+\alpha'\tau uu_x+\alpha\eta u_x+\alpha u\eta_x^{(1)}+\beta'\tau u^2u_x+2\beta\eta uu_x+\beta u^2\eta_x^{(1)}\\
+&+\gamma'\tau u_{xxx}+\gamma \eta_{xxx}^{(3)}+\delta'\tau u_x+\delta \eta_x^{(1)}+\mu'\tau u+\mu\eta=0.
+\end{aligned}
+\end{equation}
+求解~(\ref{Eq:O-VariableEKdV}) 可得到一组线性偏微分方程组, 借助符号计算工具可以得到
+$$\tau=\tau(t),\quad \xi_u=0,\quad \xi_{xx}=0,\quad \eta_{uu}=0,\quad \eta_x=0.$$
+因此设
+\begin{equation}
+\xi=f_1(t) x+f_2(t),\quad \tau=\tau(t),\quad \eta=g_1(t)u+g_2(t).
+\end{equation}
+于是 Lie 群决定方程组化为
+%======6 constraints:
+\begin{equation}
+\begin{aligned}
+  &[\tau(t)\mu'(t)+\mu(t)g_1(t)+g_1'(t)]\,u
+  +[\alpha(t)g_2(t)+\tau(t)\delta'(t)
+  -\tau'(t)-(f_1'(t)x+f_2'(t))-\delta(t)f_1(t)\\
+  &+g_1(t)+\delta(t)g_1(t)]\,u_x
+  +[\alpha(t)g_1(t)+\alpha(t)(-f_1(t)+g_1(t))+2\beta(t)g_2(t)+\tau(t)\alpha'(t)]\,uu_x\\
+  &+[2\beta(t)g_1(t)+\beta(t)(-f_1(t)+g_1(t))+\tau(t)\beta'(t)]\,u^2u_x
+  +[\tau(t)\gamma'(t)-3\gamma(t)f_1(t)+\gamma(t)g_1(t)]\,u_{xxx}\\
+  &+\mu(t)g_2(t)+g_2'(t)=0.
+\end{aligned}
+\end{equation}
+令 $u$ 及 $u$ 的各阶导数项系数为零, 可得
+\begin{align}\label{Lie-tj00}
+  &\tau(t)\mu'(t)+\mu(t)g_1(t)+g_1'(t)=0,\notag\\%\label{Lie-tj1}
+  &\alpha(t)g_2(t)+\tau(t)\delta'(t)-\tau'(t)-(f_1'(t)x+f_2'(t))-\delta(t)f_1(t)+g_1(t)+\delta(t)g_1(t)=0,\notag\\%\label{Lie-tj2}
+  &\alpha(t)g_1(t)+\alpha(t)(-f_1(t)+g_1(t))+2\beta(t)g_2(t)+\tau(t)\alpha'(t)=0,\notag\\%\label{Lie-tj3}
+  &2\beta(t)g_1(t)+\beta(t)(-f_1(t)+g_1(t))+\tau(t)\beta'(t)=0,\notag\\%\label{Lie-tj4}
+  &\tau(t)\gamma'(t)-3\gamma(t)f_1(t)+\gamma(t)g_1(t)=0,\notag\\%\label{Lie-tj5}
+  &\mu(t)g_2(t)+g_2'(t)=0.%\label{Lie-tj6}
+\end{align}
+
+下面用两种思路处理超定方程组 \eqref{Lie-tj00}.
+
+\subsubsection{直接将原方程中各项变系数反解}
+
+%分别令 $u$ 及其各阶导数项系数为零, 可得
+%\begin{align}
+%&\xi=C x+f(t),\quad \tau=-\frac{C+g_1(t)}{\mu},\notag\\
+%&\eta=g_1(t)u+g_2(t),
+%\end{align}
+%其中 $C$ 为任意常数, $f(t), g_1(t), g_2(t)$ 是 $t$ 的任意函数. 系数函数 $\alpha(t), \beta(t)$, $\gamma(t)$ 和 $\delta(t)$ 满足如下决定方程组
+%
+通过求解特征方程
+\begin{equation}
+\frac{d x}{\xi}=\frac{d t}{\tau}=\frac{d u}{\eta},
+\end{equation}
+得到相似变量
+\begin{align}\label{Lie-zV}
+%u=e^{\int \frac{-\text{g1}(t) \mu (t)}{C+\text{g1}(t)} \, dt}V[z[x,t]]-\frac{\text{C1}}{2\text{C2}}e^{\int - \mu (t) \, dt},\\
+&z=x e^{\int\frac{C\mu}{C+g_1}\dt}+\int e^{\frac{C\mu}{C+g_1}\dt}\frac{f_2\mu}{C+g_1}\dt,\notag\\
+&F=u e^{\int\frac{g_1\mu}{C+g_1}\dt}-\frac{C_1}{2C_2}\int\frac{C\mu}{C+g_1}e^{\frac{-C\mu}{C+g_1}\dt}\dt.
+\end{align}
+对应的 Lie 代数生成子为
+\begin{align}\label{Lie-algebra}
+&V_1=x\frac{\partial}{\partial x}-\frac{1}{\mu(t)}\frac{\partial}{\partial t},\notag\\
+&X(f)=f(t)\frac{\partial}{\partial x},\notag\\
+&Y(g_1)=-\frac{g_1(t)}{\mu(t)}\frac{\partial}{\partial t}+g_1(t)u\frac{\partial}{\partial u}+g_2(t)\frac{\partial}{\partial u}.
+\end{align}
+将~ (\ref{Lie-zV}) 代入则原方程 \eqref{Eq:VariableEKdV}, 可得约化后的常微分方程
+\begin{equation}
+d_2 F'''+C F+C_2 d_2 F^2F'+d_3 F'-C d_4 zF'=0.
+\end{equation}
+下面只需求解此常微分方程. 根据系数的不同取值情况, 可作如下分类:
+
+(i) $d_4=-1, d_3=0$.\\
+方程化为
+\begin{equation}
+d_2 F'''+C (Fz)'+C_2d_2 F^2F'=0.
+\end{equation}
+关于~$x$ 求积分可得
+\begin{equation}
+d_2 F''+C F'+\frac{C_2d_2}{3}F^3=d_5,
+\end{equation}
+为~Painlev\'{e}\ ~\uppercase\expandafter{\romannumeral2} 型方程.
+
+(ii) $C=0$.
+\begin{equation*}
+d_2 F'''+C_2d_2 F^2F'+d_3 F'=0,
+\end{equation*}
+积分可得
+\begin{equation}
+\frac{d_2}{2}F'^2+\frac{C_2d_2}{12}F^4+\frac{d_3}{2}F^2=d_6 F+d_7.
+\end{equation}
+令~ $d_6=0$, 可得~第一类椭圆方程.
+得到椭圆方程
+\begin{equation}
+F'^2=\frac{2d_7}{d_2}-\frac{d_3}{d_2}F^2-\frac{c_2}{6}F^4,
+\end{equation}
+因而解为
+\begin{equation}
+F=W \text{sn}(k(z-z_0),m),
+\end{equation}
+其中
+\begin{equation}
+\begin{aligned}
+&W=-\sqrt{\frac{-3 d_3}{C_2d_2}-\frac{\sqrt{3 d_7 \left(4 C_2 d_2^3+3 d_3^2 d_7\right)}}{C_2d_2d_7}},\notag\\
+&k=-\sqrt{\frac{ d_3}{2d_2}-\frac{\sqrt{3d_7 \left(4 C_2 d_2^3+3 d_3^2 d_7\right)}}{6 d_2 d_7}},\notag\\
+&m=-\frac{\sqrt {-2 C_2 d_2^3-3 d_3^2 d_7- d_3 \sqrt{3d_7 \left(4 C_2 d_2^3+3 d_3^2 d_7\right)}}}{\sqrt{2 C_2} d_2^{3/2}}.
+\end{aligned}
+\end{equation}
+
+\subsubsection{对各项系数逐步分析}
+
+求解超定方程组~\eqref{Lie-tj00} 可得
+$f_1(t)=C$, 不失一般性, 令 $f_2(t)\rightarrow f(t)$,
+其中~$C$ 为任意常数, 函数~$f(t), g_1(t), g_2(t)$ 是关于~$t$ 的任意函数.
+
+于是有
+\begin{equation}
+\xi=C x+f(t),\quad \tau=\tau(t),\quad \eta=g_1(t)u+g_2(t),
+\end{equation}
+其中 $\xi, \tau, \eta$ 以及变系数满足如下方程组
+\begin{equation}
+\begin{aligned}\label{Lie-tj}% 修改后...
+  &\tau(t)\mu'(t)+\mu(t)g_1(t)+g_1'(t)=0,\quad \mu(t)g_2(t)+g_2'(t)=0,\\
+  &\tau(t)\gamma'(t)-3\gamma(t)C+\gamma(t)g_1(t)=0,\\
+  &\alpha(t)g_2(t)+\tau(t)\delta'(t)-\tau'(t)-f'(t)-\delta(t)C+g_1(t)+\delta(t)g_1(t)=0,\notag\\ &3\beta(t)g_1(t)-C\beta(t)+\tau(t)\beta'(t)=0,\\
+  &2\alpha(t)g_1(t)-C \alpha(t)+2\beta(t)g_2(t)+\tau(t)\alpha'(t)=0. %\label{Lie-tj3}
+%\label{Lie-tj5}%\label{Lie-tj6}
+\end{aligned}
+\end{equation}
+下面根据 $\mu(t)$ 的取值分三种情形进行讨论.
+
+\noindent {\textbf{ 情形 1.}\ \ $\mu(t)=0$}
+
+求解确定方程组~(\ref{Lie-tj}) 可得
+$$\xi=c_1x+f(t), \tau=\tau(t), \eta=c_5u+c_6.$$
+通过分析方程 (\ref{Lie-tj}) 可根据函数~ $\gamma(t)$ 将向量场作如下分类:
+
+\noindent {\textbf{1-1}\ \ $\gamma(t)$ 任意}
+$$X=\dfrac{\partial}{\partial x}.$$
+
+\noindent {\textbf{1-2}\ \ $\gamma(t)=\gamma_0, \alpha(t)=\alpha_0, \beta(t)=\beta_0,\delta=\delta_0$ }
+$$X_1=[x+(2\delta_0-\frac{\alpha_0^2}{2\beta_0})t]\frac{\partial}{\partial x}+3t\frac{\partial}{\partial t}-(u+\frac{\alpha_0}{2\beta_0})\frac{\partial}{\partial u},\quad X_2=\frac{\partial}{\partial x},\quad X_3=\frac{\partial}{\partial t}.$$
+
+\noindent {\textbf{1-3}\ \ $\gamma(t)=\gamma_0, \alpha(t)=\alpha_0 t^k(t-t_0)^m, \beta(t)=\beta_0(t-t_0)^m,\delta=\delta_0\quad (m\neq0, k\neq 0,2)$ } 
+$$X=\dfrac{\partial}{\partial x}.$$
+
+\noindent {\textbf{1-4}\ \ $\gamma(t)=\gamma_0, \alpha(t)=\alpha_0 t^2(t-t_0)^m, \beta(t)=\beta_0(t-t_0)^m,\delta=\delta_0\quad (m\neq0)$ }
+$$X_1=(x+2\delta_0 t)\frac{\partial}{\partial x}+3t\frac{\partial}{\partial t}-8u\frac{\partial}{\partial u},\quad X_2=\frac{\partial}{\partial x}.$$
+
+\noindent {\textbf{1-5}\ \ $\gamma(t)=\gamma_0e^{mt}, \alpha(t)=\alpha_0 e^{mt}, \beta(t)=\beta_0e^{mt},\delta=0, \quad m\neq0$}
+$$X_1=(x-\frac{\alpha_0^2}{2\beta_0m}e^{mt})\frac{\partial}{\partial x}+\frac{3}{m}\frac{\partial}{\partial t}-(u+\frac{\alpha_0}{2\beta_0})\frac{\partial}{\partial u},\quad X_2=-\frac{\alpha_0^2}{2\beta_0m}e^{mt}\frac{\partial}{\partial x}+e^{-mt}\frac{\partial}{\partial t}.$$
+
+
+\noindent {\textbf{ 情形 2.}\ \ $\mu(t)=\mu_0$}
+
+\noindent {\textbf{2-1}\ \ $\gamma(t)$ 任意}
+$$X=\dfrac{\partial}{\partial x}.$$
+
+
+\noindent {\textbf{2-2}\ \ $\gamma(t)=\gamma_0, \beta(t)$ 任意} $$X_1=x\dfrac{\partial}{\partial x},\quad X_2=\dfrac{\partial}{\partial x}.$$
+
+\noindent {\textbf{2-3}\ \ $\gamma(t)=\gamma_0, \beta(t)=\beta_0, \alpha(t)=\alpha_0, \delta(t)=\delta_0$ }
+$$X_1=\dfrac{\partial}{\partial x},\quad X_2=\dfrac{\partial}{\partial t}.$$
+
+\noindent {\textbf{ 情形 3.}\ \ $\mu(t)=\dfrac{1}{t}$}
+
+\noindent {\textbf{3-1}\ \ $\gamma(t)$ 任意}
+$$X=\dfrac{\partial}{\partial x}.$$
+
+\noindent {\textbf{3-2}\ \ $\gamma(t)=\gamma_0, \beta(t)=\beta_0, \alpha(t)=\dfrac{\alpha_0}{t}, \delta(t)=\delta_0$ }
+$$X_1=\frac{\partial}{\partial x},\quad X_2=(x-\frac{\alpha_0^2}{\beta_0 t}+2\delta_0 t)\frac{\partial}{\partial x}+3t\frac{\partial}{\partial t}+\frac{\alpha_0}{\beta_0}\frac{\partial}{\partial u}.$$
+
+\noindent {\textbf{3-3}\ \ $\gamma(t)=\dfrac{\gamma_0}{t}, \beta(t)=t(\ln t-t_0)^{\frac{2}{3}}, \alpha(t)=\alpha_0$ }
+$$X_1=\frac{\partial}{\partial x},\quad
+X_2=(x-\frac{t_0}{3}t\delta+3\delta\ln t-\int \delta\dt)\frac{\partial}{\partial x}+(-3t_0+3t\ln t)\frac{\partial}{\partial t}+(-2+3t_0-3t)\frac{\partial}{\partial u}.$$
+
+
+% 带有交叉项的~NLS 方程
+\subsection{变系数含交叉项的~NLS 方程}
+
+%带交叉项的~NLS 没有很好的李群对称性质.
+考虑含交叉项的变系数 NLS 方程
+\begin{equation}\label{vcNLS}
+i U_t+a(t)U_{xx}-b U_{xt}+i d|U|^2U_x+k |U|^2U=h(x,t)U,
+\end{equation}
+其单参数 Lie 变换群
+\begin{align}\label{Lie-T}
+x^*=x+\epsilon \xi(x,t,U)+O(\epsilon^2),\quad t^*= t+\epsilon \tau(x,t,U)+O(\epsilon^2),\quad U^*= U+\epsilon \eta(x,t,U)+O(\epsilon^2).
+\end{align}
+相应的生成子为
+\begin{equation}
+X=\xi(x,t,U)\frac{\partial}{\partial x}+\tau(x,t,U)\frac{\partial}{\partial t}+\eta(x,t,U)\frac{\partial}{\partial U},
+\end{equation}
+通过变换 $U=u+i\,v$, 将 NLS 方程 (\ref{vcNLS}) 转化为实数域上的方程
+\begin{align}\label{real-NLS}
+&u_t=-a(t)v_{xx}+bv_{xt}-d(u^2+v^2)u_x-k(u^2+v^2)v+hv,\notag\\
+&v_t=a(t)u_{xx}-bu_{xt}-d(u^2+v^2)v_x+k(u^2+v^2)u-hu,
+\end{align}
+这里 $u$ 和 $v$ 为实函数.
+
+方程 (\ref{real-NLS}) 的对称决定方程组为
+\begin{align}
+\eta^{(1)u}_t=&-a(t)'v_{xx}\tau-a(t)\eta^{(2)v}_{xx}+b\eta^{(2)v}_{xt}
+-d[2uu_x\eta^u+2vu_x\eta^v+(u^2+v^2)\eta^{(1)u}_x]\notag\\
+&-k[2uv\eta^u+(3v^2+u^2)\eta^v]+h_tv\tau+h\eta^v,\\
+\eta^{(1)v}_t=&a(t)'u_{xx}\tau+a(t)\eta^{(2)u}_{xx}-b\eta^{(2)u}_{xt}
+-d[2uv_x\eta^u+2vv_x\eta^v+(u^2+v^2)\eta^{(1)v}_x]\notag\\
+&-k[2uv\eta^v+(3u^2+v^2)\eta^u]-h_tu\tau-h\eta^u,
+\end{align}
+其中 $\eta^{(1)u}_t, \eta^{(1)v}_t, \eta^{(1)u}_x, \eta^{(1)v}_x, \eta^{(2)u}_{xx}, \eta^{(2)v}_{xx}, \eta^{(2)u}_{xt}, \eta^{(2)v}_{xt}$ 为延拓无穷小, 表达式分别为
+\begin{align*}
+&\eta_t^{(1)u}=D_t(\eta^u)-u_tD_t(\tau)-u_xD_t(\xi),\quad \eta_x^{(1)u}=D_x(\eta^u)-u_tD_x(\tau)-u_xD_x(\xi),\\
+&\eta_t^{(1)v}=D_t(\eta^v)-v_tD_t(\tau)-v_xD_t(\xi),\quad \eta_x^{(1)v}=D_x(\eta^v)-v_tD_x(\tau)-v_xD_x(\xi),\\
+&\eta_{xx}^{(2)u}=D_x(\eta_x^{(1)u})-u_{xt}D_x(\tau)-u_{xx}D_x(\xi),\quad \eta_{xx}^{(2)v}=D_x(\eta_x^{(1)v})-v_{xt}D_x(\tau)-v_{xx}D_x(\xi),\\ &\eta_{xt}^{(2)u}=D_t(\eta_x^{(1)u})-u_{xt}D_t(\tau)-u_{xx}D_t(\xi),\quad \eta_{xt}^{(2)v}=D_x(\eta_x^{(1)v})-v_{xt}D_t(\tau)-v_{xx}D_t(\xi),
+\end{align*}
+%=====延拓算子复杂版...
+%\begin{align}
+%\eta^{(1)u}_x=\frac{\partial f}{\partial x}u+\frac{\partial g}{\partial x}v+[f-\frac{\partial \xi}{\partial x}]u_x-\frac{\partial \tau}{\partial x}u_t+gv_x,\\
+%\eta^{(1)v}_x=\frac{\partial l}{\partial x}u+\frac{\partial k}{\partial x}v+lu_x+ [k-\frac{\partial \xi}{\partial x}]v_x-\frac{\partial \tau}{\partial x}v_t,\\
+%\eta^{(1)u}_t=\frac{\partial f}{\partial t}u+\frac{\partial g}{\partial t}v-\frac{\partial \xi}{\partial t}u_x+[f-\frac{\partial \tau}{\partial t}]u_t+gv_t,\\
+%\eta^{(1)v}_t=\frac{\partial l}{\partial t}u+\frac{\partial k}{\partial t}v+lu_t-\frac{\partial \xi}{\partial t}v_x+[k-\frac{\partial \tau}{\partial t}]v_t,\\
+%\eta^{(2)u}_{xx}=\frac{\partial^2 f}{\partial x^2}u+\frac{\partial^2 g}{\partial x^2}v+(),\\
+%\eta^{(2)v}_{xx}=,\\
+%\eta^{(2)u}_{xt}=,\\
+%\eta^{(2)v}_{xt}=,\\
+%\end{align}
+$D_i$ 为全导算子, 参见式 \eqref{qd-Operator}.
+
+假定方程 \eqref{vcNLS} 在变换 (\ref{Lie-T}) 下形式不变, 则其实系统对应的生成子为
+\begin{equation}
+X=\xi(x,t,u,v)\frac{\partial}{\partial x}+\tau(x,t,u,v)\frac{\partial}{\partial t}+\eta^u(x,t,u,v)\frac{\partial}{\partial u}+\eta^v(x,t,u,v)\frac{\partial}{\partial v},
+\end{equation}
+不变条件是
+\begin{equation*}
+\xi \frac{\partial U}{\partial x}+\tau \frac{\partial U}{\partial t}=\eta,
+\end{equation*}
+且特征方程为
+\begin{equation*}
+\frac{d x}{\xi}=\frac{d t}{\tau}=\frac{d U}{\eta}.
+\end{equation*}
+
+
+%\subsubsection{Classical Lie Method}
+
+利用文献 \cite{Bluman2002} 中的处理方法, 假设 $\eta^u=fu+gv,\eta^v=pv+lu$, 则可得$\xi, \tau, \eta^u, \eta^v$ 的 Lie 群决定方程组
+\begin{align*}
+\xi_x=\xi_t=\tau_x=\tau_t=0,\quad f=g=p=l=0,\quad h_t=0,\quad a_t=0,
+\end{align*}
+求解可得无穷小生成子 $X$
+$$\xi=\xi_0,\quad \tau=\tau_0,\quad \eta^u=\eta^v=0,$$
+其中 $h(t)=h_0,a(t)=a_0$.
+
+特征方程为
+\begin{equation*}
+\frac{dx}{\xi_0}=\frac{dt}{\tau_0}=\frac{du}{\eta^u}=\frac{dv}{\eta^u},
+\end{equation*}
+于是得到相似变量
+\begin{equation}\label{Classic-invariant}
+z(x,t)=x-mt,\quad F(z)=u,\quad G(z)=v \quad(m=\frac{\xi_0}{\tau_0}).
+\end{equation}
+接下来将 (\ref{Classic-invariant}) 代入方程组 (\ref{real-NLS}) 中, 有
+\begin{align}
+(a_0+bm)\,G''-m F'+d(F^2+G^2)F'+k(F^2+G^2)G-h_0G=0,\notag\\
+(a_0+bm)\,F''+m G'-d(F^2+G^2)G'+k(F^2+G^2)F-h_0F=0.
+\end{align}
+
+%\subsubsection{NonClassical Lie Method}
+
+若假设 $\tau=1$, 则有如下 $\xi, \tau, \eta^u, \eta^v$ 的决定方程组
+\begin{equation}
+\begin{aligned}
+&d=bk,\quad l=-g,\quad f=p=0,\\
+&\xi_x=-b\,g_x,\quad \xi_t=-2\,a(t)g_x+bg_t,\\
+&a(t)\xi_{xx}=b\xi_{xt},\quad a(t)g_{xx}=bg_{xt},\\
+&h_t=g_t+bh\,g_x,\\
+&ba(t)g_x=a'(t)-2a(t)\xi_x+b\xi_t.
+\end{aligned}
+\end{equation}
+求解上式可得生成子 $X$ 的表达式为
+\begin{equation}
+\begin{aligned}
+&\xi=c_1 b x-\frac{a(t)}{b}+c_1\,\int a(t)\dt,\\
+&\eta^u=[-c_1x-\frac{a(t)}{b^2}-\frac{c_1}{b}\int a(t)\dt]\,v,\\
+&\eta^v=[c_1x+\frac{a(t)}{b^2}+\frac{c_1}{b}\int a(t)\dt]u,
+\end{aligned}
+\end{equation}
+其中
+\begin{equation*}
+h(t)=-\frac{a(t)+c_1\,b\,\int a(t)\dt}{b^2(1+c_1\,b\,t)}.
+\end{equation*}
+
+% 高阶变系数~NLS 方程
+\subsection{变系数高阶~Hirota 方程}
+类似上一小节, 本小节将首先将方程 \eqref{hvcNLS} 分为实部和虚部, 然后根据 $\delta(t)$ 的取值情况 ($\delta(t)=0, \delta(t)=\delta_0$ 及 $\delta(t)\neq 0$), 我们将给出系统 (\ref{real-hNLS}) 的三种 Lie 点群和相似约化.
+
+
+%\subsubsection{Lie 对称分析}
+
+为了研究目标方程的 Lie 点对称, 首先通过变换
+$U=u+\text{i}\,v$, 其中 $u$ 和 $v$ 为实函数.
+将 \eqref{hvcNLS} 分为实部和虚部
+\begin{equation}\label{real-hNLS}
+\begin{aligned}
+&E_1=u_t+\alpha(t) (v_{xx}+2(u^2+v^2)v)+\beta(t)(u_{xxx}+6(u^2+v^2)u_x) +\gamma(t)\,v_x+\delta(t)\,u=0,\\
+&E_2=-v_t+\alpha(t)(u_{xx}+2(u^2+v^2)u)-\beta(t)(v_{xxx}+6(u^2+v^2)v_x) +\gamma(t)\,u_x-\delta(t)\,v=0,
+\end{aligned}
+\end{equation}
+
+假设实系统 (\ref{real-hNLS}) 在如下单参数 Lie 无穷小变换
+\begin{equation}\label{Lie-T}
+\begin{aligned}
+&x^*=x+\epsilon \xi(x,t,u,v)+O(\epsilon^2),\quad t^*= t+\epsilon \tau(x,t,u,v)+O(\epsilon^2),\\
+&u^*= u+\epsilon \eta^u(x,t,u,v)+O(\epsilon^2),\quad v^*= v+\epsilon \eta^v(x,t,u,v)+O(\epsilon^2),
+\end{aligned}
+\end{equation}
+下不变, 其中 $\epsilon$ 为群参数, 对应于对称群的 Lie 代数生成子为
+\begin{equation}\label{Vector-rNLS}
+V=\xi(x,t,u,v)\frac{\partial}{\partial x}+\tau(x,t,u,v)\frac{\partial}{\partial t}+\eta^u(x,t,u,v)\frac{\partial}{\partial u}+\eta^v(x,t,u,v)\frac{\partial}{\partial v}.
+\end{equation}
+将 $V$ 的三阶延拓 $Pr^{(3)}V$ 
+\begin{align*}
+Pr^{(3)}V=&\xi\frac{\pa }{\pa x}+\tau\frac{\pa }{\pa t}+\eta^u\frac{\pa }{\pa u}+\eta^v\frac{\pa }{\pa v}+\eta_t^{(1)u}\frac{\pa}{\pa u_t}+\eta_t^{(1)v}\frac{\pa}{\pa v_t}+\eta_x^{(1)u}\frac{\pa}{\pa u_x}+\eta_x^{(1)v}\frac{\pa}{\pa v_x}\\
+&+\eta_{xx}^{(2)u}\frac{\pa}{\pa u_{xx}}+\eta_{xx}^{(2)v}\frac{\pa}{\pa v_{xx}}+\eta_{xxx}^{(3)u}\frac{\pa}{\pa u_{xxx}}+\eta_{xxx}^{(3)v}\frac{\pa}{\pa v_{xxx}}.
+\end{align*}
+作用于系统~(\ref{real-hNLS}), 将会得到对称群, 且无穷小量 $\xi, \tau, \eta^u$ 和 $\eta^v$ 必须满足如下的决定方程组
+\begin{equation}\label{Determin-equs}
+\begin{aligned}
+\eta^{(1)u}_t +\alpha(t)'\tau[v_{xx}+2(u^2+v^2)v]+\alpha(t)[\eta^{(2)v}_{xx}+4uv\eta^{u}+(2u^2+6v^2)\eta^v] +\beta(t)'\tau[u_{xxx}+6(u^2+v^2)u_x]\\
++\beta(t)[\eta^{(3)u}_{xxx}+12uu_x\eta^u+12vu_x\eta^v+6(u^2+v^2)\eta^{(1)u}_x] +\gamma(t)'\tau\,v_x+\gamma(t)\eta^{(1)v}_{x}+\delta(t)'\tau\,u+\delta(t)\eta^u=0,\\
+\eta^{(1)v}_t
+-\alpha(t)'\tau[u_{xx}+2(u^2+v^2)u]-\alpha(t)[\eta^{(2)u}_{xx}+4uv\eta^{v}+(6u^2+2v^2)\eta^u] +\beta(t)'\tau[v_{xxx}+6(u^2+v^2)v_x]\\
++\beta(t)[\eta^{(3)v}_{xxx}+12uv_x\eta^u+12vv_x\eta^v+6(u^2+v^2)\eta^{(1)v}_x] -\gamma(t)'\tau\,u_x-\gamma(t)\eta^{(1)u}_{x}+\delta(t)'\tau\,v+\delta(t)\eta^v=0,
+\end{aligned}
+\end{equation}
+其中延拓无穷小 $\eta^{(1)u}_t, \eta^{(1)v}_t, \eta^{(1)u}_x, \eta^{(1)v}_x, \eta^{(2)u}_{xx}, \eta^{(2)v}_{xx}, \eta^{(3)u}_{xxx}, \eta^{(3)v}_{xxx}$ 由以下表达式给出
+\begin{equation}\label{extended-eta}
+\begin{aligned}
+&\eta_t^{(1)u}=D_t(\eta^u)-u_tD_t(\tau)-u_xD_t(\xi),\quad \eta_x^{(1)u}=D_x(\eta^u)-u_tD_x(\tau)-u_xD_x(\xi),\\
+&\eta_t^{(1)v}=D_t(\eta^v)-v_tD_t(\tau)-v_xD_t(\xi),\quad \eta_x^{(1)v}=D_x(\eta^v)-v_tD_x(\tau)-v_xD_x(\xi),\\
+&\eta_{xx}^{(2)u}=D_x(\eta_x^{(1)u})-u_{xt}D_x(\tau)-u_{xx}D_x(\xi),\quad \eta_{xx}^{(2)v}=D_x(\eta_x^{(1)v})-v_{xt}D_x(\tau)-v_{xx}D_x(\xi),\\ &\eta_{xxx}^{(3)u}=D_t(\eta_x^{(2)u})-u_{xxt}D_x(\tau)-u_{xxx}D_x(\xi),\quad \eta_{xxx}^{(3)v}=D_x(\eta_x^{(2)v})-v_{xxt}D_x(\tau)-v_{xxx}D_x(\xi),
+\end{aligned}
+\end{equation}
+%$D_i$ 为全导算子, 具体定义为 \upcite{Olver1993}
+%$$D_t=\frac{\pa}{\pa t}+u_t\frac{\pa}{\pa u}+v_t\frac{\pa}{\pa v}+\cdots,\quad D_x=\frac{\pa}{\pa x}+u_x\frac{\pa}{\pa u}+v_x\frac{\pa}{\pa v}+\cdots.$$
+将 (\ref{extended-eta}) 代入 (\ref{Determin-equs}), 并且通过方程组 (\ref{real-hNLS}) 将 $u_t$ 和 $v_t$ 消掉, 可以得到无穷小量 $\xi, \tau, \eta^u, \eta^v$ 以及变系数  $\alpha(t), \beta(t), \gamma(t)$ 和 $\delta(t)$ 需满足如下条件
+\begin{equation}\label{Determin-equs-1}
+\begin{aligned}
+&l=-g,\; p=f,\; f_x=0,\; \xi_x=-f,\\
+&\alpha\tau'+\alpha'\tau+2f\alpha+3\beta g_x=0,\\
+&\beta\tau'+\beta'\tau+2f\beta-\beta\xi_x=0,\\
+&\gamma\tau'+\gamma'\tau-\gamma\xi_x+3\beta g_{xx}=0,\\
+&\delta\tau'+\delta'\tau+f_t-\gamma g_x-\alpha g_{xx}=0,\\
+&g_t+\beta g_{xxx}=0,\quad \xi_t+2\alpha g_x=0,
+\end{aligned}
+\end{equation}
+这里, $\eta^u=f(x,t)u+g(x,t)v, \eta^v=p(x,t)v+l(x,t)u$\upcite{Bluman2002}.
+%\subsubsection{Classical Lie Method}
+求解超定方程组 (\ref{Determin-equs-1}) 并忽略运算细节, 可以得到无穷小
+$\xi, \tau, \eta^u, \eta^v$ 以及 \eqref{hvcNLS} 的变系数. (此处为简洁起见, 只考虑 $\gamma=0$ 的情形.)
+
+\noindent \textbf{情形 1. $\delta(t)=0$}
+\begin{align*}
+&\xi=-C_3 x-2C_1\int\alpha(t)\dt+C_4,\quad \tau=\frac{C_5-3C_3\int\beta(t)\dt}{\beta(t)},\\
+&\eta^u=C_3 u+(C_1x+C_2)v,\quad \eta^v=C_3 v-(C_1x+C_2)u,
+\end{align*}
+且有
+\begin{equation*}
+\alpha(t)=\frac{\beta(t)}{C_5-3C_3\int\beta(t)\dt} e^{\int\frac{-2C_3\beta(t)}{C_5-3C_3\int\beta(t)\dt}\dt} (\alpha_0-3C_1\int\beta(t)e^{\frac{2C_3\beta(t)}{C_5-3C_3\int\beta(t)\dt}\dt}\dt).
+\end{equation*}
+无穷小生成子以及对应的 Lie 代数为
+\begin{align*}
+&V_1=\frac{\partial}{\partial x},\quad V_2=\frac{1}{\beta(t)}\frac{\partial}{\partial t},\\
+&V_3=x\frac{\pa}{\pa x}+\frac{3\int\beta(t)\dt}{\beta(t)}\frac{\partial}{\partial t}-u\frac{\pa}{\pa u}-v\frac{\pa}{\pa v},\\
+&V_4=v\frac{\pa}{\pa u}-u\frac{\pa}{\pa v},\\
+&V_5=2\int \alpha(t)\dt\frac{\pa}{\pa x}-xv\frac{\pa}{\pa u}+xu\frac{\pa}{\pa v}.
+\end{align*}
+
+
+\noindent \textbf{情形 2. $\delta(t)=\delta_0\neq0$}
+\begin{align*}
+&\xi=-C_3 x-2C_1\int\alpha(t)\dt+C_4,\quad \tau=C_5,\\
+&\eta^u=C_3 u+(C_1x+C_2)v,\quad \eta^v=C_3 v-(C_1x+C_2)u.
+\end{align*}
+变系数 $\alpha(t), \beta(t)$ 需满足约束条件
+\begin{align*}
+\alpha(t)=e^{\frac{-2C_3}{C_5}t}(\alpha_0+\frac{3C_1}{C_3}\beta_0e^{\frac{-C_3}{C_5}t}),\quad \beta(t)=\beta_0e^{\frac{-3C_3}{C_5}t}.
+\end{align*}
+相应的无穷小生成子为
+\begin{align*}
+&V_1=\frac{\partial}{\partial x},\quad V_2=\frac{\partial}{\partial t},\quad
+V_3=x\frac{\pa}{\pa x}-u\frac{\pa}{\pa u}-v\frac{\pa}{\pa v},\\
+&V_4=v\frac{\pa}{\pa u}-u\frac{\pa}{\pa v},\quad
+V_5=2\int \alpha(t)\dt\frac{\pa}{\pa x}-xv\frac{\pa}{\pa u}+xu\frac{\pa}{\pa v}.
+\end{align*}
+
+
+\noindent \textbf{情形 3.} $\delta'(t)\neq 0$
+\begin{align*}
+&\xi=-C_3 x-2C_1\int\alpha(t)\dt+C_4,\quad \tau=\frac{C_5}{\delta(t)},\\
+&\eta^u=C_3 u+(C_1x+C_2)v,\quad \eta^v=C_3 v-(C_1x+C_2)u.
+\end{align*}
+变系数 $\alpha(t), \beta(t)$ 满足
+\begin{align*}
+&\alpha(t)=\delta(t)e^{\int\frac{-2C_3}{C_5}\delta(t)\dt} (\alpha_0-\frac{3C_1\beta_0}{C_5}\int\delta(t)e^{\int\frac{-C_3}{C_5}\delta(t)\dt}\dt),\notag\\ &\beta(t)=\beta_0\delta(t)e^{\int\frac{-3C_3}{C_5}\delta(t)\dt},
+\end{align*}
+且对应的无穷小生成子为
+\begin{align*}
+&V_1=\frac{\partial}{\partial x},\quad V_2=\frac{1}{\delta(t)}\frac{\partial}{\partial t},\quad
+V_3=x\frac{\pa}{\pa x}-u\frac{\pa}{\pa u}-v\frac{\pa}{\pa v},\\
+&V_4=v\frac{\pa}{\pa u}-u\frac{\pa}{\pa v},\quad
+V_5=2\int \alpha(t)\dt\frac{\pa}{\pa x}-xv\frac{\pa}{\pa u}+xu\frac{\pa}{\pa v}.
+\end{align*}
+\subsubsection{相似约化}
+接下来考虑系统 \eqref{real-hNLS} 在 $\delta(t)=0$, $\delta(t)=\delta_0$ 及 $\delta'(t)\neq 0$ 三种情形下的相似约化.
+
+
+\noindent \textbf{情形 1. $\delta(t)=0$}
+
+\textbf{1-1}. 考虑向量场 $a_1 V_1+a_2 V_2+a_3 V_3+a_4 V_4+a_5 V_5$ ($a_3\neq 0$)
+
+不失一般性, 假设 $a_3=1$, 那么系数将满足
+\begin{equation}
+\alpha(t)=\frac{\beta(t)}{a_2+3\int\beta(t)\dt} e^{\int\frac{2\beta(t)}{a_2+3\int\beta(t)\dt}\dt} (\alpha_0+3a_5\int\beta(t)e^{\int\frac{-2\beta(t)}{a_2+3\int\beta(t)\dt}\dt}\dt).
+\end{equation}
+
+\textbf{1-2}. 考虑向量场 $V=a_1 V_1+a_2 V_2+a_4 V_4+a_5 V_5$ ($a_3=0$)
+
+(i) $a_2=0$, 即 $V=a_1 V_1+a_4 V_4+a_5 V_5$
+
+系数 $\alpha(t)$ 和 $\beta(t)$ 均为 $t$ 的任意函数且
+\begin{align}
+\xi=a_1,\quad \tau=0,\quad \eta^u=a_4v,\quad \eta^v=-a_4u \quad(a_5=0).
+\end{align}
+
+(ii) $a_2\neq0$. 不失一般性假设 $a_2=1$, 即 $V=a_1 V_1+V_2+a_4 V_4+a_5V_5$.
+
+可得 $\alpha(t)=\beta(t)(\alpha_0+3a_5\int\beta(t)\dt)$ 且
+\begin{align*}
+&\xi=a_1+2a_5\int\alpha(t)\dt,\quad \tau=\frac{1}{\beta(t)},\\
+&\eta^u=(-a_5\,x+a_4)v,\quad \eta^v=(a_5\,x-a_4)u.
+\end{align*}
+令 $a_5=0$, 则不变量为
+\begin{equation}
+\begin{aligned}
+&\zeta=x-a_1\beta_0 t,\\
+&u=F(\zeta)\sin{a_4\beta_0t}-G(\zeta)\cos{a_4\beta_0t},\\
+&v=F(\zeta)\cos{a_4\beta_0t}+G(\zeta)\sin{a_4\beta_0t},
+\end{aligned}
+\end{equation}
+于是系统 (\ref{real-hNLS}) 变为如下的常微分方程
+\begin{equation}
+\begin{aligned}
+-a_1\beta_0F'+a_4\beta_0G+\alpha_0[G''+2(F^2+G^2)G]+\beta_0[F'''+6(F^2+G^2)F']=0,\\
+a_1\beta_0G'+a_4\beta_0F+\alpha_0[F''++2(F^2+G^2)F]-\beta_0[G'''+6(F^2+G^2)G']=0.
+\end{aligned}
+\end{equation}
+
+
+\noindent \textbf{情形 2. $\delta(t)=\delta_0\neq0$}
+
+\textbf{2-1}. 考虑向量场 $a_1 V_1+a_2 V_2+a_3 V_3+a_4 V_4+a_5 V_5$ ($a_2\neq 0$)
+
+不失一般性, 设 $a_2=1$.
+
+(i) $a_3=0$, 即 $V=a_1 V_1+ V_2+a_4 V_4+a_5 V_5$
+\begin{align*}
+&\xi=a_1+2a_5\int\alpha(t)\dt,\quad \tau=1,\\
+&\eta^u=(-a_5x+a_4)v,\quad \eta^v=(a_5x-a_4)u,
+\end{align*}
+且系数满足
+\begin{equation*}
+\alpha(t)=\alpha_0+3a_5\beta_0\,t,\quad \beta(t)=\beta_0.
+\end{equation*}
+
+
+(ii) $a_3\neq0$
+
+不失一般性, 设 $a_3=1$, i.e. $V=a_1 V_1+ V_2+V_3+a_4 V_4+a_5 V_5$.
+\begin{align*}
+&\xi=a_1+a_3x+2a_5\int\alpha(t)\dt,\quad \tau=1,\\
+&\eta^u=-a_3u+(-a_5x+a_4)v,\quad \eta^v=-a_3v+(a_5x-a_4)u,
+\end{align*}
+及
+\begin{equation*}
+\alpha(t)= e^{2t}(\alpha_0+3a_5\beta_0e^{t}),\quad \beta(t)=\beta_0e^{3t}.
+\end{equation*}
+
+\textbf{2-2}. 考虑向量场 $a_1 V_1+a_3 V_3+a_4 V_4+a_5 V_5$ ($a_2= 0$)
+
+可以求得 $a_3=a_5=0$, 且系数 $\alpha(t)$ 和 $\beta(t)$ 均为 $t$ 的任意函数及
+\begin{align*}
+\xi=a_1,\quad \tau=0,\quad \eta^u=a_4v,\quad \eta^v=-a_4u.
+\end{align*}
+
+\noindent \textbf{情形 3.} $\delta'(t)\neq 0$
+
+\textbf{3-1}. 考虑向量场 $a_1 V_1+a_2 V_2+a_3 V_3+a_4 V_4+a_5 V_5$ ($a_2\neq 0$)
+
+不失一般性假设 $a_2=1$.
+\begin{align*}
+&\xi=a_1+a_3x+2a_5\int\alpha(t)\dt,\quad \tau=\frac{1}{\delta(t)},\\
+&\eta^u=-a_3u+(-a_5x+a_4)v,\quad \eta^v=-a_3v+(a_5x-a_4)u,
+\end{align*}
+系数满足
+\begin{align*}
+&\alpha(t)=\delta(t)e^{\int2a_3\delta(t)\dt} (\alpha_0+3a_5\beta_0\int\delta(t)e^{\int a_3\delta(t)\dt}\dt),\notag\\ &\beta(t)=\beta_0\delta(t)e^{\int3a_3\delta(t)\dt}.
+\end{align*}
+相应的特征方程是
+\begin{equation}\label{Charac-Eqs}
+\frac{dx}{a_1+a_3x}=\delta(t)dt=\frac{du}{-a_3u+a_4v}=\frac{dv}{-a_3v-a_4u}.
+\end{equation}
+若 $a_1=a_5=0$, 由 (\ref{Charac-Eqs}) 中第一个常微分方程积分可得相似变量
+\begin{equation}
+\zeta=xe^{-\int a_3\delta(t)\dt}.
+\end{equation}
+为了求得 (\ref{Charac-Eqs}) 的其他相似变量, 我们引入变量 $\epsilon$ 并考虑如下一阶常微分方程组
+\begin{equation}\label{epsilon-odes}
+\begin{aligned}
+&\frac{dx}{d\epsilon}=a_1+a_3x,\\
+&\frac{dt}{d\epsilon}=\frac{1}{\delta(t)},\\
+&\frac{du}{d\epsilon}=-a_3u+a_4v,\\
+&\frac{dv}{d\epsilon}=-a_3v-a_4u.
+\end{aligned}
+\end{equation}
+易知
+\begin{equation}\label{2order-v}
+\frac{d^2v}{d\epsilon^2}+2a_3\frac{dv}{d\epsilon}+(a_3^2+a_4^2)v=0,
+\end{equation}
+并得到 $\epsilon=t\delta(t)/(1+a_3t\delta(t))$. 求解 (\ref{epsilon-odes}) 和 (\ref{2order-v}) 可得
+\begin{equation}
+\begin{aligned}
+u=e^{-a_3\epsilon}(C_1\cos{a_4\epsilon}+C_2\sin{a_4\epsilon}),\\
+v=e^{-a_3\epsilon}(C_1\sin{a_4\epsilon}-C_2\cos{a_4\epsilon}).
+\end{aligned}
+\end{equation}
+积分常数 $C_1, C_2$ 用 $\zeta$ 的函数, 即 $C_1=F(\zeta), C_2=G(\zeta)$ 来代替, 便得到了相似变量. 于是 (\ref{real-hNLS}) 变为如下常微分方程组
+\begin{equation}
+\begin{aligned}
+(1-a_3)F+a_4G+\alpha_0[G''+2(F^2+G^2)G]+\beta_0[F'''+6(F^2+G^2)F']=0,\\
+(a_3-1)G+a_4F+\alpha_0[F''+2(F^2+G^2)F]-\beta_0[G'''+6(F^2+G^2)G']=0,
+\end{aligned}
+\end{equation}
+其中 $\delta(t)+t\delta'(t)=\delta(t)(1+a_3t\delta(t))^2$.
+
+\textbf{3-2}. 考虑向量场 $a_1 V_1+a_3 V_3+a_4 V_4+a_5 V_5$ ($a_2= 0$)
+
+可以得到 $a_3=a_5=0$, 且 $\alpha(t)$ 和 $\beta(t)$ 均为 $t$ 的任意函数, 及
+\begin{align*}
+\xi=a_1,\quad \tau=0,\quad \eta^u=a_4v,\quad \eta^v=-a_4u.
+\end{align*}
+
+需要指出的是, 以上情形中只有几类特殊情况可以约化为常微分方程. 为简洁起见, 我们仅考虑
+情形 1-2(ii).
+特征方程为
+\begin{equation*}
+\frac{dx}{\xi_0}=\frac{dt}{\tau_0}=\frac{du}{\eta^u}=\frac{dv}{\eta^v},
+\end{equation*}
+可以导出相似变量
+\begin{align}\label{Classic-invariant}
+\zeta=x-a_1\int\beta(t)\dt,\quad F(\zeta)=u,\quad G(\zeta)=v .
+\end{align}
+将 (\ref{Classic-invariant}) 代入 (\ref{real-hNLS}) 可得
+\begin{align}
+-a_1\beta_0F'+\alpha_0(G''+2(F^2+G^2)G)+\beta_0(F'''+6(u^2+v^2)F')=0,\notag\\
+-a_1\beta_0G'-\alpha_0(F''+2(F^2+G^2)F)+\beta_0(G'''+6(u^2+v^2)G')=0.
+\end{align}
+
+对于情形 3-1 中 $a_5=0$ 的情况, 我们可以求得 $\alpha(t), \beta(t)$ 需满足
+\begin{equation}
+\alpha(t)=\alpha_0\delta(t)e^{\int2a_3\delta(t)\dt},\quad \beta(t)=\beta_0\delta(t)e^{\int3a_3\delta(t)\dt}.
+\end{equation}
+这个条件恰好与 Painlev\'{e} 测试所得约束条件一致.
+
+
+%\subsubsection{小结?}
+%本节内容从 Lie 对称群的观点, 主要研究了广义变系数非线性 Hirota 方程. 通过将系统 (\ref{hvcNLS}) 分为实部和虚部,  求得了三种情形的 Lie 对称生成子.
+
+\section{最优系统}
+%最优系统
+由 Lie 群分析法可求得一组生成子(或向量场), 理论上讲, 这些生成子的所有可能的组合都可能求得原方程的相似约化, 我们不得不对这些所有的可能进行尝试, 这为实际计算带来大量繁琐的步骤. 为了降低这种复杂度, 即对已知方程的不变解先进行分类, ``最优系统'' 的概念应运而生. 最优系统首次由 P. Olver 提出, 其思想等价于对邻接表示的闭轨进行分类的过程, 因为每一个一维子代数由向量场的非零向量所决定\upcite{Olver1993}. 因而寻找最优系统等价于 Lie 代数在邻接表示下子代数的分类. 邻接表示的公式为
+$$\text{Ad(exp}(\epsilon V))W=W-\epsilon[V,W]+\frac{1}{2}\epsilon^2[V,[V,W]]-\cdots,$$
+其中 $\epsilon$ 是一个实数, 且 $[V,W]=VW-WV$ 为 Lie 括号.
+%邻接变换定义如下:
+%$$\text{Ad(exp}(\epsilon X_i))X_j=X_j-\epsilon[X_i,X_j]+\frac{1}{2}\epsilon^2[X_i,[X_i,X_j]]-\cdots,$$
+%其中~ $\epsilon$ 为实数, $[X_i,X_j]$ 为泊松算子, $[X_i,X_j]=X_iX_j-X_jX_i.$
+\subsection{变系数 eKdV 方程}
+\subsubsection{一维子代数最优系统}
+接下来给出变系数 eKdV 方程的情形~1-2, 1-4, 2-2, 3-2 及 3-3 的一维子代数的最优系统. 这种方法本质上是将李代数的广义元拿出来, 再通过应用``邻接变换'' (adjoint transformations)\upcite{Olver1993}, 将它约化为等价的最简单形式.
+
+为简单起见, 我们仅详细讨论
+情形~1-2 的最优子代数系统的构建,
+\begin{equation}\label{Case1.2}
+u_t+\alpha_0uu_x+\beta_0 u^2u_x+\gamma_0u_{xxx}+\delta_0 u_x=0
+\end{equation}
+表~\ref{T01} 和表~\ref{T02} 分别给出了情形~1-2 的李点对称作用表及其李代数的邻接表示. (\ref{Case1.2})~ 的一维子代数最优系统将基于表~\ref{T01} 和表~\ref{T02} 来构建. 表~\ref{T03} 给出了情形 1-2, 1-4, 2-2, 3-2 和~3-3 的最优系统.
+\begin{table}[]\caption{变系数 eKdV 方程情形~1-2 的 Lie 代数作用表}\label{T01}
+\begin{center}
+%\small{\textbf{Table 01} 情况~ 1-2 的李代数作用表}\\
+\begin{tabular}[Table 01]{|c|c|c|c|}
+%\begin{longtable}
+%\caption[]{Commutator table of the Lie algebra of 情形 1.2}
+  \hline
+  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+  $[X_i,X_j]$ & $X_1$ & $X_2$ & $X_3$ \\
+  \hline
+  $X_1$ & 0 & $-X_2$ & $-(2\delta_0-\frac{\alpha_0^2}{2\beta_0})X_2-3X_3$ \\
+  \hline
+  $X_2$ & $X_2$ & 0 & 0 \\\hline
+  $X_3$ & $(2\delta_0-\frac{\alpha_0^2}{2\beta_0})X_2+3X_3$ & 0 & 0 \\
+  \hline
+%\end{longtable}
+\end{tabular}
+\end{center}
+\end{table}
+%
+%====表02
+\begin{table}[]\caption{变系数 eKdV 方程情形~1-2 的 Lie 代数邻接作用表}\label{T02}
+\begin{center}
+%\small{\textbf{Table 02} 情况~ 1-2 的 Lie 代数的邻接表示}
+\begin{tabular}{|c|c|c|c|}
+%\caption{Adjoint table of the Lie algebra of 情形 1.2}\\
+  \hline
+  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+  Ad & $X_1$ & $X_2$ & $X_3$ \\
+  \hline
+  $X_1$ & $X_1$ & $e^{\epsilon}X_2$ & $e^{3\epsilon}X_3+(2\delta_0-\frac{\alpha_0^2}{2\beta_0})\sum\frac{\sum\limits_{k=0}^{n-1}3^k}{n!}\epsilon^n\,X_2$ \\
+  \hline
+  $X_2$ & $X_1-\epsilon X_2$ & $X_2$ & $X_3$ \\
+  \hline
+  $X_3$ & $X_1-\epsilon(2\delta_0-\frac{\alpha_0^2}{2\beta_0})X_2-3\epsilon X_3$ & $X_2$ & $X_3$ \\
+  \hline
+\end{tabular}
+\end{center}
+\end{table}
+\begin{table}\caption{变系数 eKdV 方程情形~1-2, 1-4, 2-2, 3-2 以及 3-3 的 Lie 代数最优子代数系统}\label{T03}
+\begin{center}
+%\small{\textbf{Table 3} 情况~ (1-2), (1-4), (2-2), (3-2) 以及 (3-3) 的李代数最优子代数系统}
+\begin{tabular}{|c|c|c|}
+  \hline
+  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+  情形  & 对应方程 & 最优系统 \\
+  \hline
+  1-2 & $u_t+\alpha_0uu_x+\beta_0 u^2u_x+\gamma_0u_{xxx}+\delta_0 u_x=0$ & $X_1+\lambda_1 X_3, X_2+\lambda_2 X_3, X_3$ \\
+  \hline
+  1-4 & $u_t+\alpha_0t^2(t-t_0)^muu_x+\beta_0(t-t_0)^m u^2u_x+\gamma_0u_{xxx}+\delta_0 u_x=0$ & $X_1, X_2$ \\
+  \hline
+  2-2 & $u_t+\alpha(t)uu_x+\beta(t) u^2u_x+\gamma_0u_{xxx}+\delta(t) u_x+\mu_0 u=0$ & $X_1, X_2$ \\
+  \hline
+  3-2 & $u_t+\frac{\alpha_0}{t}uu_x+\beta_0 u^2u_x+\gamma_0u_{xxx}+\delta_0 u_x+\frac{u}{t}=0$ & $X_1, X_2$ \\
+  \hline
+  3-3 & $u_t+\alpha_0uu_x+t(\ln t-t_0)^{\frac{2}{3}} u^2u_x+\frac{\gamma_0}{t}u_{xxx}+\delta(t) u_x+\frac{u}{t}=0$ & $X_1, X_2$ \\
+  \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\subsubsection{相似约化和解析解}
+根据已求得的李子代数最优系统, 我们可以求得情形~1-2 的对称约化和群不变解.
+
+\noindent(1) $X_1+\lambda_1 X_3$
+
+\lowercase\expandafter{\romannumeral1}. $\lambda_1=0$
+
+群不变解是 $u=F(z)$, 其中 $z=xt+(\delta_0-\frac{\alpha_0^2}{4\beta_0})t^2$ 为不变量.
+
+\lowercase\expandafter{\romannumeral2}. $\lambda_1\neq0$
+
+对称~ $X_1+\lambda_1 X_3$ 可得 $u=F(z)$, $z=x\,e^{-\frac{t}{\lambda_1}}-\frac{t}{\lambda_1}\,(2\delta_0-\frac{\alpha_0^2}{2\beta_0})\,\int te^{-\frac{t}{\lambda_1}}\dt.$
+
+\noindent(2) $X_2+\lambda_2 X_3$
+
+\lowercase\expandafter{\romannumeral1}. $\lambda_2=0$
+
+对应于~ $X_2$ 的群不变解是~ $u=C$, 其中~ $z=t$ 为不变量.
+
+\lowercase\expandafter{\romannumeral2}. $\lambda_2\neq0$
+
+$u=F(z)$, 其中~ $z=x-\frac{1}{\lambda_2}t$ 为不变量. 将~ $u$ 代入~ 方程~(\ref{Case1.2}) 可得到一个非线性常微分方程
+\begin{equation}\label{Case1.2-2ii-ode}
+\frac{1}{\lambda_2}(1-\delta_0)F'+\alpha_0\,FF'+\beta_0\,F^2F'+\gamma_0\,F'''=0.
+\end{equation}
+将方程~(\ref{Case1.2-2ii-ode}) 关于~ $z$ 积分两次可得
+\begin{equation}
+(\frac{d F}{d z})^2=p+q\,F-\frac{1}{\lambda_2\gamma_0}(1-\delta_0)F^2
+-\frac{\alpha_0}{3\gamma_0}F^3-\frac{\beta_0}{6\gamma_0}F^4.
+\end{equation}
+取$$p=\frac{1}{96\lambda_2}\frac{-24\gamma_0^2\beta_0+24\alpha_0^2\beta_0\delta_0+5\lambda_2\alpha_0^4}{\beta_0^3\gamma_0}, \quad q=\frac{\alpha_0^3}{6\beta_0^2\gamma_0}+\frac{1}{\lambda_2}\frac{\alpha_0(\delta_0-1)}{\beta_0\gamma_0},$$
+可得
+$$F(z)=\pm\sqrt{\frac{3\lambda_2\alpha_0^2+6\beta_0(\delta_0-1)}{2\lambda_2\beta_0^2}}\text{sech}\big(\sqrt{\frac{\lambda_2\alpha_0^2+4\beta_0(\delta_0-1)}{4\lambda_2\beta_0\gamma_0}}(z-z_0)\big)-\frac{\alpha_0}{2\beta_0},$$
+方程(\ref{Case1.2})~ 的群不变解为
+$$u(x,t)=\pm\sqrt{\frac{3\lambda_2\alpha_0^2+6\beta_0(\delta_0-1)}{2\lambda_2\beta_0^2}}
+\text{sech}\big(\sqrt{\frac{\lambda_2\alpha_0^2+4\beta_0(\delta_0-1)}{4\lambda_2\beta_0\gamma_0}}
+(x-\frac{1}{\lambda_2}t-C)\big)-\frac{\alpha_0}{2\beta_0}.$$
+
+
+\noindent(3) $X_3$
+
+对称~ $X_3$ ~导出 $u=F(z)$, 其中~ $z=x$. 将~ $u$ 代入方程~(\ref{Case1.2}) 可得常微分方程
+\begin{equation}\label{Case1.2-3-ode}
+\alpha_0\,FF'+\beta_0\,F^2F'+\gamma_0\,F'''+\delta_0\,F'=0.
+\end{equation}
+将~ (\ref{Case1.2-3-ode}) 关于~ $z$ 积分两次, 可以得到一个一阶非线性常微分方程
+\begin{equation}
+(\frac{d F}{d z})^2=p+q\,F-\frac{\delta_0}{\gamma_0}\,F^2
+-\frac{\alpha_0}{3\gamma_0}F^3-\frac{\beta_0}{6\gamma_0}F^4
+\end{equation}
+取~ $$p=\frac{-\alpha_0^4+12 \alpha_0^2 \beta_0 \delta_0-36 \beta_0^2 \delta_0^2}{24 \beta_0^3 \gamma_0},\quad q=\frac{\alpha_0^3-6\alpha_0\beta_0\delta_0}{6\beta_0^2\gamma_0},$$
+可以得到~ (\ref{Case1.2}) 的群不变解
+$$u(x,t)=\pm\frac{1}{2} \sqrt{\frac{3(\alpha_0^2-4\beta_0\delta_0)}{\beta_0^2}}\text{coth}
+\big(\sqrt{\frac{4\beta_0\delta_0-\alpha_0^2}{8\beta_0\gamma_0}}(x-C)\big)
+-\frac{\alpha_0}{2\beta_0}.$$
+
+
+
+\subsection{变系数含交叉项的 NLS 方程}
+%根据经典lie群的结果. 由于d=0时,可以进行Painleve 检测. 故设d=0.
+考虑方程 \eqref{vcNLS} 在 $d=0$ 的情形,
+此时无穷小生成子 $X$ 为
+\begin{align}
+&p=f=0,\quad l=-g,\\
+&a(t)g_{xx}=bg_{xt},\quad a(t)\xi_{xx}=b\xi_{xt},\\
+&a'(t)\tau=-b^2g_t,\quad \tau_t=bg_x,\quad h_t \tau=g_t,\\
+&\xi_x=-bg_x,\quad \xi_t=bg_t-2a(t)g_x.
+\end{align}
+
+\noindent \textbf{情形 1. $a(t)=a_0$}
+\begin{align}
+&\xi=-bc_1\,x-2a_0c_1\,t+c_2,\\
+&\tau=bc_1\,t+c_3,\\
+&\eta^u=(c_1\,x+c_4)v,\\
+&\eta^v=-(c_1\,x+c_4)u,
+\end{align}
+$c_1,c_2,c_3,c_4$ 为任意常数.
+做变换 $\frac{\partial}{\partial v}\rightarrow i\,\frac{\partial}{\partial v}$, 可求得四维 Lie 代数的一组基
+\begin{align}\label{a0_X}
+&X_1=(-bx-2a_0t)\frac{\partial}{\partial x}+bt\frac{\partial}{\partial t}+xv\frac{\partial}{\partial u}-i\,xu\frac{\partial}{\partial v},\notag\\
+&X_2=\frac{\partial}{\partial x},
+X_3=\frac{\partial}{\partial t},
+X_4=v\frac{\partial}{\partial u}-i\,u\frac{\partial}{\partial v}.
+\end{align}
+\begin{table}\caption{变系数含交叉项 NLS 方程情形~1~的Lie 代数作用表}\label{T11}
+\begin{center}
+%\small{\textbf{Table 11} Lie 代数作用表}
+\begin{tabular}[Table 1]{|c|c|c|c|c|}
+%\begin{longtable}
+%\caption[]{Commutator table of the Lie algebra of 情形 1.2}
+  \hline
+  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+  $[X_i,X_j]$ & $X_1$ & $X_2$ & $X_3$ & $X_4$\\
+  \hline
+  $X_1$ & 0 & $bX_2-X_4$ & $2a_0X_2-bX_3$ & $0$\\
+  \hline
+  $X_2$ & $-bX_2+X_4$ & 0 & 0 & $0$\\
+  \hline
+  $X_3$ & $-2a_0X_2+bX_3$ & 0 & 0 & $0$\\
+  \hline
+  $X_4$ & $0$ & $0$ & $0$ & $0$\\
+  \hline
+%\end{longtable}
+\end{tabular}
+\end{center}
+\end{table}
+表 \ref{T11} 将用于最优系统的计算.
+\begin{table}\caption{变系数含交叉项 NLS 方程情形~1 的Lie 代数邻接作用表}\label{T12}
+\begin{center}
+%\small{\textbf{Table 12} Lie 代数的邻接作用表}\\
+\begin{tabular}[Table 12]{|c|c|c|c|c|}
+\hline
+  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+  $\text{Ad}$ & $X_1$ & $X_2$ & $X_3$ & $X_4$\\
+  \hline
+  $X_1$& $X_1$ &$e^{-b\epsilon}(X_2+\epsilon X_4)$&
+  $[1-\frac{2a_0}{b}\sinh {\epsilon b}]X_2+(e^{\epsilon b-1})X_3+\frac{2a_0}{b^2}[1-\cosh{\epsilon b}]X_4$
+  & $X_4$\\
+  \hline
+  $X_2$ &$X_1+\epsilon(bX_2-X_4)$& $X_2$ & $X_3$ & $X_4$\\
+  \hline
+  $X_3$ & $X_1+\epsilon(2a_0X_2-bX_3)$ & $X_2$ & $X_3$ & $X_4$\\
+  \hline
+  $X_4$ & $X_1$ & $X_2$ & $X_3$ &$X_4$\\
+  \hline
+\end{tabular}
+\end{center}
+\end{table}
+%The following is the deduction procedure of one-dimensional optimal system of (\ref{a0_X}) by using the method given in \upcite{Olver1993}.
+%%=====过程===
+%Given a nonzero vector
+%$$X=a_1X_1+a_2X_2+a_3X_3+a_4X_4,$$
+%our task is to simplify as many of the coefficients $a_i$ as possible through judicious applications of adjoint maps to $X$.
+
+%Suppose first that $a_4\neq 0$. Scalling $X$ if necessary, we can assume that $a_4=1$. Refering to table (2), if we act on such a $X$ by $\text{Ad(exp}(-\frac{a_3}{ba_1}a_3X_3))$, we can make the coefficient of $X_3$ vanish:
+%$$X'=\text{Ad(exp}(-\frac{a_3}{ba_1}a_3X_3))X=a'_1X_1+a'_2X_2+X_4$$
+%for certain scalars $a'_1,a'_2$ depending on $a_1,a_2,a_3$. Next we act on $X'$ by
+
+基 (\ref{a0_X}) 的一维子代数最优系统为
+\begin{align}
+(a)& \quad X_1\notag\\
+(b)& \quad \lambda X_1+X_4\notag\\
+(c)& \quad \lambda X_1+\mu X_2+X_3\notag\\
+(d)& \quad \lambda X_1+X_2
+\end{align}
+
+
+\noindent \textbf{情形 2.} $a(t)$ 为任意函数且 $a'(t)\neq 0$
+\begin{equation}
+\begin{aligned}
+&\xi=-bc_1\,x-\frac{1}{b}\int_1^t a'(t)(bc_1\,t+c_3)\dt+c_2,\\
+&\tau=bc_1\,t+c_3,\\
+&\eta^u=[c_1\,x-\frac{1}{b^2}\int_1^t a'(t)(bc_1\,t+c_3)\dt +c_4]v,\\
+&\eta^v=-[c_1\,x-\frac{1}{b^2}\int_1^t a'(t)(bc_1\,t+c_3)\dt +c_4]u.
+\end{aligned}
+\end{equation}
+向量场为
+\begin{align}\label{a(t)_X}
+&X_1=(-bx-\int_1^ta'(t)t\dt)\frac{\partial}{\partial x}+bt\frac{\partial}{\partial t}+(x-\frac{1}{b}\int_1^ta'(t)t\dt)v\frac{\partial}{\partial u}-i\,(x-\frac{1}{b}\int_1^ta'(t)t\dt)u\frac{\partial}{\partial v},\notag\\
+&X_2=\frac{\partial}{\partial x},
+X_3=\frac{\partial}{\partial t},
+X_4=v\frac{\partial}{\partial u}-i\,u\frac{\partial}{\partial v}.
+\end{align}
+表 \ref{T13} 和表 \ref{T14} 分别给出变系数含交叉项 NLS 方程情形~2 的Lie 代数作用表和Lie 代数邻接作用表, 其中 $(m=ta')$.
+\begin{table}\caption{变系数含交叉项 NLS 方程情形~2 的Lie 代数作用表}\label{T13}
+\begin{center}
+%\small{\textbf{Table 13} Lie 代数作用表}
+\begin{tabular}[Table 3]{|c|c|c|c|c|}
+%\begin{longtable}
+%\caption[]{Commutator table of the Lie algebra of 情形 1.2}
+  \hline
+  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+  $[X_i,X_j]$ & $X_1$ & $X_2$ & $X_3$ & $X_4$\\
+  \hline
+  $X_1$ & 0 & $bX_2-X_4$ & $ta'(t)X_2-bX_3+\frac{ta'(t)}{b}X_4$ & $0$\\
+  \hline
+  $X_2$ & $-bX_2+X_4$ & 0 & 0 & $0$\\\hline
+  $X_3$ & $-ta'(t)X_2+bX_3-\frac{ta'(t)}{b}X_4$ & 0 & 0 & $0$\\
+  \hline
+  $X_4$ & $0$ & $0$ & $0$ & $0$\\
+  \hline
+%\end{longtable}
+\end{tabular}
+\end{center}
+\end{table}
+\begin{table}\caption{变系数含交叉项 NLS 方程情形~2 的 Lie 代数邻接作用表}\label{T14}
+\begin{center}
+%\small{\textbf{Table 4} Lie 代数邻接作用表}\\
+\begin{tabular}[Table 4]{|c|c|c|c|c|}
+\hline
+  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+  $\text{Ad}$ & $X_1$ & $X_2$ & $X_3$ & $X_4$\\
+  \hline
+  $X_1$ & $X_1$ & $e^{-b\epsilon}(X_2+\epsilon X_4)$ &
+  $(-\frac{m}{b}\sinh{\epsilon b})X_2+e^{-\epsilon b}X_3+\frac{m}{b^2}(2-\cosh{\epsilon b}-2e^{-\epsilon b})X_4$
+   & $X_4$\\
+  \hline
+  $X_2$ & $X_1+\epsilon(bX_2-X_4)$ & $X_2$ & $X_3$ & $X_4$\\
+  \hline
+  $X_3$ & $X_1+\epsilon (mX_2-bX_3+\frac{m}{b}X_4)$ & $X_2$ & $X_3$ & $X_4$\\
+  \hline
+  $X_4$ & $X_1$ & $X_2$ & $X_3$ & $X_4$\\
+  \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+
+于是基 (\ref{a(t)_X}) 的最优系统为
+\begin{equation}
+\begin{aligned}
+(a)& \quad X_1,\\
+(b)& \quad \lambda X_1+X_2,\\
+(c)& \quad \lambda X_1+X_4,\\
+(d)& \quad \lambda X_1+\mu X_2+X_3.
+\end{aligned}
+\end{equation}
+
+
+\subsection{变系数高阶 Hirota 方程}
+在这一节中, 我们构造系统 (\ref{real-hNLS}) 在情形 1 下的一维 Lie 子代数最优系统, 利用这些子代数, 得到了 (\ref{real-hNLS}) 的群不变量, 可用于将偏微分方程 (\ref{real-hNLS}) 约化为常微分方程.
+
+
+为简洁, 仅考虑 情形 1 在 $\alpha=3, \beta=1$ 时, 即
+\begin{equation}\label{Case1}
+iU_t+3(U_{xx}+2|U|^2U)+i(U_{xxx}+6|U|^2U_x)=0.
+\end{equation}
+的 Lie 代数最优系统. 
+Lie 点对称的作用表以及 (\ref{Case1}) 关于其 Lie 代数的邻接表示表分别在表~\ref{T21} 和表~\ref{T22}  给出.
+基于表~\ref{T21}  和表~\ref{T22} , 表~\ref{T23}  构造了一维子代数最优系统并给出了相应的群不变量.
+\begin{table}\caption{变系数高阶 Hirota 方程情形 1 的 Lie 代数作用表}\label{T21}
+\begin{center}
+%\small{\textbf{表 1}  情形 1 的 Lie 代数作用表}\\
+\begin{tabular}[Table 1]{|c|c|c|c|c|c|}
+%\begin{longtable}
+%\caption[]{Commutator table of the Lie algebra of 情形 1.2}
+  \hline
+  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+  $[V_i,V_j]$ & $V_1$ & $V_2$ & $V_3$ & $V_4$ & $V_5$\\
+  \hline
+  $V_1$ & 0 & $0$ & $V_1$ & $0$ & $-V_4$\\
+  \hline
+  $V_2$ & $0$ & $0$ & $3V_2$ & $0$ & $6V_1$ \\
+  \hline
+  $V_3$ & $-V_1$ & $-3V_2$ & $0$ & $0$ & $12tV_1-xV_4$ \\
+  \hline
+  $V_4$ & $0$ & $0$ & $0$ & $0$ & $0$ \\
+  \hline
+  $V_5$ & $V_4$ & $-6V_1$ & $-12tV_1+xV_4$ & $0$ & $0$ \\
+  \hline
+%\end{longtable}
+\end{tabular}
+\end{center}
+\end{table}
+\begin{table}\caption{变系数高阶 Hirota 方程情形 1 的 Lie 代数邻接表}\label{T22}
+\begin{center}
+%\small{\textbf{表 2} 情形 1 的 Lie 代数邻接表}\\
+\begin{tabular}{|c|c|c|c|c|c|}
+  \hline
+  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+  \text{Ad(exp($\epsilon V_i))V_j$} & $V_1$ & $V_2$ & $V_3$ & $V_4$ & $V_5$\\
+  \hline
+  $V_1$ & $V_1$ & $V_2$ & $V_3-\epsilon V_1$ & $V_4$ & $V_5+\epsilon V_4$\\
+  \hline
+  $V_2$ & $V_1$ & $V_2$ & $V_3-3\epsilon V_2$ & $V_4$ & $V_5-6\epsilon V_1$ \\
+  \hline
+  $V_3$ & $\footnotesize{e^{\epsilon}V_1}$ & $\footnotesize{e^{3\epsilon}V_2}$ & $V_3$ & $V_4$ & \footnotesize{$V_5+6t(e^{-2\epsilon}-1)V_1-x(e^{-\epsilon}-1)V_4$} \\
+  \hline
+  $V_4$ & $V_1$ & $V_2$ & $V_3$ & $V_4$ & $V_5$ \\
+  \hline
+  $V_5$ & \footnotesize{$V_1-\epsilon V_4$} & \footnotesize{$V_2+6\epsilon V_1-\epsilon^2V_4$} & \footnotesize{$V_3+12t\epsilon V_1-(\epsilon x+3\epsilon^2t)V_4$} & $V_4$ & $V_5$ \\
+  \hline
+\end{tabular}
+\end{center}
+\end{table}
+一维子代数最优系统为
+\begin{equation}
+\begin{aligned}
+&(a) \lambda V_1+\mu V_3+V_5,\\
+&(b) \lambda V_3+V_4,\\
+&(c) \lambda V_1+V_3,\\
+&(d) \lambda V_1+V_2,\\
+&(e) V_1.
+\end{aligned}
+\end{equation}
+\begin{table}\caption{变系数高阶 Hirota 方程情形 1 的 Lie 子代数和群不变量}\label{T23}
+\begin{center}
+%\small{\textbf{表 3} \ 情形 1 的 Lie 子代数和群不变量}
+\begin{tabular}[Table 3]{|c|c|cc|}
+\hline
+序号 & 向量场 &  &\hspace{-30mm} 群不变量\\
+\hline
+$(a)$ & $\lambda V_1+\mu V_3+V_5$ & $\zeta=(x-3t)t^{-\frac{1}{3}}$, &  $\hspace{-15mm}u^2+v^2=e^{-2s}F(\zeta)^2$, with $s=x(4t^{1/3}\zeta+13t)^{-1}$\\
+& $(\lambda\rightarrow 0, \mu\rightarrow 1)$& &\hspace{-26mm}$uv=e^{-2s}(G(\zeta)^2+F(\zeta)^2\int\cos{2y(s)}ds)$\\
+\hline
+$(b)$ & $\lambda V_3+V_4$ & $\zeta=xt^{-\frac{1}{3}}$, & \hspace{-38mm}$u=e^{\lambda s}(F(\zeta)\cos{s}+G(\zeta)\sin{s})$\\
+& & & $v=e^{\lambda s}(G(\zeta)\cos{s}-F(\zeta)\sin{s})$, with $s=\frac{1}{4\lambda}(\ln\zeta+\frac{4}{3}\ln t)$\\
+\hline
+$(c)$ & $\lambda V_1+V_3$ & $\zeta=(x+4)t^{-\frac{1}{3}}$, & \hspace{-40mm}$\hspace{-23mm}u=e^{-s}F(\zeta)$\\
+&$(\lambda\rightarrow 4)$ & & $\hspace{-34mm}v=e^{-s}G(\zeta)$, with $s=\frac{1}{4}xt^{1\frac{1}{3}}\zeta^{-1}$\\
+\hline
+$(d)$ & $\lambda V_1+V_2$ & $\zeta=x-\lambda t$, & $\hspace{-50mm}u=F(\zeta),\quad v=G(\zeta)$\\
+\hline
+$(e)$ & $V_1$ & $\zeta= t$, & $\hspace{-50mm}u=F(\zeta), \quad v=G(\zeta)$.\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+%\subsection{小结}
+
+\section{守恒律}
+基于 Lie 对称的守恒律, 也是非线性偏微分方程的一种重要性质 \upcite{NM2008}.
+文献 \cite{INH07} 提出了一个将自适应方程考虑在内的推导守恒率的公式. 然而, 大部分方程虽有很好的对称性质和物理背景, 但并不是自适应的.
+为了解决这个问题, N.H. Ibragimov 引入了``类自适应方程" 的概念, 使 ``自适应方程" 的概念得以扩展\upcite{INH06,NTT11}. Gandarias 又将 ``类自适应方程" 的概念加以扩展, 得到了`` 弱自适应方程"\upcite{BMS09,GML11,GML2012}. `` 弱自适应性" 对于给定偏微分方程基于对称的守恒率的构造具有重要的意义\upcite{GML2012}, 关于``弱自适应性" 的更多细节可参见文献 \cite{NTT11,BMS09}. 
+
+本节将给出系统 (\ref{real-hNLS}) 的自适应性与守恒律.
+
+%\subsection{系统 (\ref{real-hNLS}) 的自适应性与守恒律}
+\subsection{自适应性}
+根据文献 \cite{INH07,INH06} 中的定义, 系统 (\ref{real-hNLS}) 的标准 Lagrangian 表达式为
+\begin{equation}\label{Lagrange}
+L=ZE_1+WE_2,
+\end{equation}
+其中 $Z, W$ 是关于 $x$ 和 $t$ 的两个新的独立变量, 系统 (\ref{real-hNLS}) 的邻接表示为
+\begin{equation}\label{E^*}
+\begin{aligned}
+E_1^*=\frac{\delta L}{\delta u}=0,\\
+E_2^*=\frac{\delta L}{\delta v}=0,
+\end{aligned}
+\end{equation}
+其中
+\begin{equation}\label{delta-Operator}
+\begin{aligned}
+\frac{\delta}{\delta u}=\frac{\pa}{\pa u}-D_t\frac{\pa}{\pa u_t}-D_x\frac{\pa}{\pa u_x}+D_{xx}\frac{\pa}{\pa u_{xx}}-D_{xxx}\frac{\pa}{\pa u_{xxx}},\\
+\frac{\delta}{\delta v}=\frac{\pa}{\pa v}-D_t\frac{\pa}{\pa v_t}-D_x\frac{\pa}{\pa v_x}+D_{xx}\frac{\pa}{\pa v_{xx}}-D_{xxx}\frac{\pa}{\pa v_{xxx}},
+\end{aligned}
+\end{equation}
+其中 $D_x, D_t$ 是关于 $x$ 和 $t$ 的全导数. 将 (\ref{real-hNLS}) 和(\ref{delta-Operator}) 代入 (\ref{E^*}) 可得 (\ref{real-hNLS}) 的邻接系统
+\begin{equation}
+\begin{aligned}
+E_1^*=&-Z_t-6\beta(t)Z_x(u^2+v^2)-\gamma(t)W_x+\alpha(t)W_{xx}-\beta(t)Z_{xxx}+\delta(t)Z +12\beta(t)Z uu_x\\
+&+4\alpha(t)Zuv+2\alpha(t)W(3u^2+v^2)-12\beta(t)Wuv_x,\\
+E_2^*=&W_t+6\beta(t)W_x(u^2+v^2)-\gamma(t)Z_x+\alpha(t)Z_{xx}+\beta(t)W_{xxx}-\delta(t)W -12\beta(t)W vv_x\\
+&+4\alpha(t)Wuv+2\alpha(t)Z(3v^2+u^2)+12\beta(t)Zvu_x.
+\end{aligned}
+\end{equation}
+基于 ``弱自适应方程" 的概念 \upcite{GML2012,GML11}, 系统 (\ref{real-hNLS}) 被称为是弱自适应的, 如果其邻接系统等同于经过如下变换后的系统
+\begin{equation}\label{ZW}
+Z=H(x,t,u,v),\quad W=G(x,t,u,v),
+\end{equation}
+其中 $H$ 和 $W$ 是关于 $x, t, u$ 和 $v$ 的解析函数. 即称系统 (\ref{real-hNLS}) 是弱自适应的, 当且仅当
+\begin{equation}\label{E^*lambda}
+\begin{aligned}
+E_1^*|_{Z=H,W=G}=\lambda_{11}E_1 +\lambda_{12}E_2,\\
+E_2^*|_{Z=H,W=G}=\lambda_{21}E_1 +\lambda_{22}E_2,
+\end{aligned}
+\end{equation}
+其中 $\lambda_{ij}(i, j = 1,2)$ 为待定系数, 函数 $H$  $G$ 满足如下条件
+\begin{equation}
+\begin{aligned}
+H_x^2+H_t^2\neq 0,\quad H_u^2+H_v^2\neq 0,\\
+G_x^2+G_t^2\neq 0,\quad G_u^2+G_v^2\neq 0.
+\end{aligned}
+\end{equation}
+将 $E_i(i = 1,2)$ 和 $E_i^*(i = 1, 2)$ 的表达式代入 (\ref{E^*lambda}) 可得如下方程组
+\begin{equation}\label{Eqs-GH}
+\begin{aligned}
+&G_u=H_v=0,\quad \lambda_{12}=\lambda_{21}=0,\\
+&G_v=-\lambda_{22},\quad H_u=-\lambda_{11},\quad \lambda_{11}+\lambda_{22}=0,\\
+&G_t-G\delta(t)-G_v\delta(t)v=0,\\
+&H_t-H\delta(t)-H_u\delta(t)u=0.
+\end{aligned}
+\end{equation}
+求解方程组 (\ref{Eqs-GH}) 可得
+\begin{equation}
+H=e^{\int 2\delta(t)\dt} u, \quad G=-e^{\int 2\delta(t)\dt}v, \quad \lambda_{11}=-e^{\int 2\delta(t)\dt},\quad \lambda_{12}=\lambda_{21}=0,\quad  \lambda_{22}=e^{\int 2\delta(t)\dt}.
+\end{equation}
+%We then obtain the following theorem and corollary.
+
+%\textbf{Theorem 4.1} System (5) is weak self-adjoint.
+因此系统 (\ref{real-hNLS}) 是弱自适应的, 且 (\ref{real-hNLS}) 的标准 Lagrangian 表达式为
+%\textbf{Corollary 4.1} The formal Lagrangian of system (5) reads as
+\begin{equation}
+\begin{aligned}
+L=&e^{\int 2\delta(t)\dt}[uu_t+vv_t+\alpha(t)(uv_{xx}-vu_{xx})+\beta(t)(uu_{xxx}+vv_{xxx})\\
+&+6\beta(t) (u^2+v^2)(uu_x+vv_x)+\gamma(t)(uv_x-vu_x)+\delta(t)(u^2+v^2)].
+\end{aligned}
+\end{equation}
+\subsection{变系数高阶 Hirota 方程的守恒律}
+为了推导守恒律, 我们需要用到文献 \cite{INH06} 中陈述的定理.
+
+\textbf{定理 1} $m$ 个方程组成的系统 (含 $n$ 个独立变量 $x=(x^1, x^2, \cdot\cdot\cdot, x^n)$ 和 $m$ 个独立因变量 $u=(u^1, u^2, \cdot\cdot\cdot, u^m)$)
+\begin{align}
+F_{s}(x, u, u_{(1)},\cdot\cdot\cdot, u_{(N)})=0,  ~~~~~~s=1,2,\cdot\cdot\cdot,m, \label{14}
+\end{align}
+的任意 Lie 点对称, Lie-B\"{a}cklund 或非局域对称
+\begin{align}
+V=\xi^{i}(x, u, u_{(1)},\cdot\cdot\cdot )\dfrac{\partial}{\partial x^i}+\eta^s(x, u, u_{(1)},\cdot\cdot\cdot)\dfrac{\partial}{\partial u^s}
+\end{align}
+可以给出系统 (\ref{14}) 的守恒率及相应的邻接系统
+\begin{align}
+F_{s}^{*}(x, u, v, u_{(1)}, v_{(1)}\cdot\cdot\cdot, u_{(N)}, v_{(N)})\equiv \dfrac{\delta (v^i F_i )}{\delta u^s}=0, ~~~~~s=1,2,\cdot\cdot\cdot,m.
+\end{align}
+守恒向量 $T=(T^1, T^2, \cdot\cdot\cdot, T^n)$ 的表达式如下
+\begin{equation}\label{ConservationLaw}
+\begin{aligned}
+&T^i=\xi^i L+W^s [\dfrac{\partial L}{\partial u_i^s}-D_{x^j}(\dfrac{\partial L}{\partial u_{ij}^s})+D_{x^j}D_{x^k}(\dfrac{\partial L}{\partial u_{ijk}^s})-\cdot\cdot\cdot]\\
+&~~~~+D_{x^j}(W^s)[\dfrac{\partial L}{\partial u_{ij}^s}-D_{x^k}(\dfrac{\partial L}{\partial u_{ijk}^s})+D_{x^k}D_{x^r}(\dfrac{\partial L}{\partial u_{ijkr}^s})-\cdot\cdot\cdot]\\
+&~~~~ +D_{x^j}D_{x^k}(W^s)[\dfrac{\partial L}{\partial u_{ijk}^s}-D_{x^r}(\dfrac{\partial L}{\partial u_{ijkr}^s})+\cdot\cdot\cdot]+\cdot\cdot\cdot,
+\end{aligned}
+\end{equation}
+其中
+
+\begin{equation}
+W^s=\eta^s-\xi^i u_i^s, ~~~~~s=1,2,\cdot\cdot\cdot, m.
+\end{equation}
+
+接下来我们将应用此定理来寻求方程 \eqref{real-hNLS} 的守恒律. 首先系统 (\ref{real-hNLS}) 满足弱自适应性, 因此其具有守恒律. 通过将 (\ref{ZW}) 代入向量 (\ref{ConservationLaw}), 本章将给出系统 (\ref{real-hNLS}) 的两种特殊情形的守恒律.
+
+\noindent \textbf{情形 2-1 (ii)}
+
+系统 (\ref{real-hNLS}) 对应的向量场为
+\begin{equation}
+V^1=[a_1+a_3x+2a_5\int\alpha(t)\dt]\frac{\pa }{\pa x}+\frac{\pa}{\pa t}-[a_3u+(a_5x-a_4)v]\frac{\pa}{\pa u}-[a_3v-(a_5x-a_4u)]\frac{\pa}{\pa v},
+\end{equation}
+守恒律为
+\begin{equation}
+\begin{aligned}
+T^x=&e^{\int 2\delta(t)\dt}\big[A(uu_t+vv_t)+A\delta_0(u^2+v^2)-6a_3\beta_0e^{3t}(u^2+v^2)^2] -3a_3Be^{2t}(uv_x-vu_x)\\
+&-4a_3\beta_0e^{3t}(uu_{xx}+vv_{xx})-6\beta_0e^{3t}(u^2+v^2)(uu_t+vv_t) -Be^{2t}(v_xu_t-u_xv_t)\\
+&-\beta_0e^{3t}(u_{xx}u_t+v_{xx}v_t)+2a_3\beta_0e^{3t}(u_x^2+v_x^2) a_5Be^{2t}(u^2+v^2)+3a_5\beta_0e^{3t}(u_xv-uv_x)\\
+&+u_{tx}(e^{2t}Bv+e^{3t}\beta_0u_x) -v_{tx}(e^{2t}Bu-e^{3t}\beta_0v_x)-\beta_0e^{3t}(uu_{txx}+vv_{txx})\big],\\
+T^t=&e^{\int 2\delta(t)\dt}\big[(\delta_0-a_3)(u^2+v^2)+Be^{2t}(uv_{xx}-vu_{xx})\\ &+\beta_0e^{3t}(uu_{xxx}+vv_{xxx})+6\beta_0e^{3t}(u^2+v^2)(uu_x+vv_x)-A(uu_x+vv_x)\big],
+\end{aligned}
+\end{equation}
+其中
+$$A=a_1+a_3x+2a_5\int\alpha(t)\dt,\quad B=\alpha_0+3a_5\beta_0e^t.$$
+
+\noindent \textbf{情形 3-2}
+
+系统 (\ref{real-hNLS}) 的向量场为
+\begin{equation}
+V^2=a_1\frac{\pa }{\pa x}+a_4v\frac{\pa}{\pa u}-a_4u\frac{\pa}{\pa v},
+\end{equation}
+对应的守恒律是
+\begin{equation}
+\begin{aligned}
+&T^x=e^{\int 2\delta(t)\dt}a_1[(uu_t+vv_t)+(u^2+v^2)],\\
+&T^t=e^{\int 2\delta(t)\dt}a_1(uu_x+vv_x).
+\end{aligned}
+\end{equation}
+
+
+%\section{Transformations and Exact Solutions}
+%In this paper, the focus is going to be on obtaining the localized stationary solution to (1) of the form
+%\begin{align}\label{T-hvcNLS}
+%U(x,t)=\phi(x)e^{-i\lambda t}
+%\end{align}
+%where $k$ is a constant and the function $\phi$ depends on the variable $x$ alone. Thus, from \myeqref{hvcNLS} and (2),  satisfies the time independent
+%inhomogeneous nonlinear equation that is given by
+
+
+根据 ``弱自适应性" 的概念, 已求得系统满足弱自适应性, 并得到了标准 Lagrangian 表达式. 同时推导出了基于 Lie 点群的系统 (\ref{hvcNLS}) 的守恒律.
+\subsection{小结}
+借助符号计算工具, 本章证明了系统 (\ref{real-hNLS}) 是弱自适应的并得到了相应的 Lagrangian 表达式. 对应于 情形 2-1(ii) 和 情形 3-2 的两种守恒律已给出, 所得结果对相关方程的研究有一定价值.

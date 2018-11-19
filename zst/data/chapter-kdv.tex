@@ -1,0 +1,604 @@
+﻿\chapter{变系数KdV方程的解析研究及孤立波模拟}
+本部分所研究的方程为变系数KdV方程。KdV方程作为最为重要的非线性发展方程之一，其在流体力学、海洋动力学和空气力学等领域有着广泛的应用\upcite{kdv-1,kdv-2}。本部分所研究的方程相比于之前学者所研究的方程，其变系数更为复杂，因此可以描述更多的非线性现象。
+本部分所研究方程如下：
+\begin{equation}
+u_t+[\alpha _0(t)+\alpha _1(t)x]u_x+ \alpha _2(t)u u_x+ \alpha _3(t) u_{xxx} + \alpha _4(t)u=0,\label{gvckdv}
+\end{equation}
+其中 $\alpha _0(t)$, $\alpha _1(t)$, $\alpha _2(t)$, $\alpha _3(t)$
+  和 $\alpha _4(t)$ 为 $t$ 的解析函数。
+方程 (\ref{gvckdv}) 的许多简化形式已经被许多学者所研究。
+例如当$ \alpha _0(t)=0$, $\alpha _1(t)=0$, $\alpha _2(t)=6$ , $\alpha _3(t)=1$, $\alpha _4(t)=0$
+的时候 ，方程 (\ref{gvckdv}) 为标准的KdV方程。
+当 $\alpha _0(t)=0$, $\alpha _1(t)=0$, $\alpha _2(t)=6$, $\alpha _3(t)=1$, $\alpha _4(t)=\frac{1}{t}$, 此时方程为如下圆柱形KdV方程，
+\begin{equation}
+u_t+ 6u u_x+u_{xxx} + \frac{1}{t} u=0,\label{kdv-equ1}
+\end{equation}
+文献 \cite{kdv-4} 将此方程用于描述径向入射声波的传播，进而得到了方程的数值解并与球形孤子做了对比。
+当 $ \alpha _0(t)=l(t)$, $\alpha _1(t)=0$, $\alpha _2(t)=f(t)$, $\alpha _3(t)=g(t)$, $\alpha _4(t)=h(t)$ 的时候, 方程 (\ref{gvckdv}) 被简化为
+\begin{equation}
+u_t+ f(t)u u_x+g(t)u_{xxx} + h(t) u+l(t)u_x=0,\label{kdv-equ2}
+\end{equation}
+文献 \cite{kdv-5} 研究了此方程的Lax对，B\"{a}cklund变换，非线性叠加公式和无穷守恒律。
+当 $ \alpha _0(t)=0$, $\alpha _1(t)=\frac{1}{2t}$, $\alpha _2(t)=6$, $\alpha _3(t)=1$, $\alpha _4(t)=\frac{1}{t}$ 的时候, 方程 (\ref{gvckdv}) 的形式如下
+\begin{equation}
+u_t+ 6u u_x+u_{xxx} + \frac{1}{t} u+\frac{1}{2t} x u_x=0,\label{kdv-equ3}
+\end{equation}
+文献 \cite{kdv-6} 证明了此方程可以由方程 (\ref{kdv-equ1}) 推出并可以转化为标准的KdV方程。
+这种变换提供了一个在时间依赖性和非均匀背景下的描述孤子相交的解决方案。
+当 $\alpha _0(t)=d_1$, $\alpha _1(t)=\beta$, $\alpha _2(t)=6$, $\alpha _3(t)=1$, $\alpha _4(t)=2\beta$，方程变为
+\begin{equation}
+u_t+(d_1+\beta x )u_x+ 6u u_x+u_{xxx} + 2 \beta u=0,\label{kdv-equ4}
+\end{equation}
+文献 \cite{kdv-7} 得到了方程的 $N$ 孤子解并以此描述特定的非线性现象。
+
+通过以上可以看出，本章节所研究的方程极具有研究价值。本章将得到方程的
+Painlev\'{e}可积条件、B\"{a}cklund变换、Lax对、双线性形式、$N$ 孤子解以及孤立波传播的模拟及
+变系数作用分析。
+
+\section{Painlev\'{e}分析和B\"{a}cklund变换}
+\subsection{Painlev\'{e}分析}
+
+假设方程 (\ref{gvckdv}) 的解具有如下形式：
+\begin{equation}
+u(x,t)=\phi^{-\alpha}(x,t)\sum\limits_{j=0}^{\infty}u_j(x,t)\phi^{j}(x,t),\label{equ_1}
+\end{equation}
+其中 $u_j(x,t)$ 为任意函数，$\alpha$ 为正整数。 根据 Kruskal 简化形式，$\phi(x,t)$ 表达为以下形式
+\begin{equation}
+\phi(x,t)=x+\psi(t).
+\end{equation}
+通过主项分析，可以得到
+\begin{equation}
+\alpha=2,\quad u_0= -12\frac{\alpha _3}{\alpha _2} \phi _x^2 .
+\end{equation}
+进而由符号计算，得到共振点 $j= -1, 4, 6$， 其中 $j = -1$ 和 $j = 4$ 时， 相容条件满足。 当 $j = 6$ 时，需满足如下条件，
+\begin{align}
+& \nonumber \alpha _3(t) \alpha _2(t) \alpha _2''(t)-\alpha _2(t){}^2 \alpha _3''(t)+2 \alpha _3(t) \alpha _2(t){}^2 \alpha _1'(t)+4 \alpha _3(t) \alpha _4(t) \alpha _2(t) \alpha _2'(t)-2 \alpha _3(t) \alpha _4(t){}^2 \alpha _2(t){}^2\\ \nonumber
+& +3 \alpha _2(t) \alpha _2'(t) \alpha _3'(t)-3 \alpha _3(t) \alpha _2'(t){}^2 +3 \alpha _1(t) \alpha _2(t){}^2 \alpha _3'(t)-3 \alpha _4(t) \alpha _2(t){}^2 \alpha _3'(t)   -\alpha _3(t) \alpha _2(t){}^2 \alpha _4'(t)
+\\
+&-5 \alpha _1(t) \alpha _3(t) \alpha _2(t) \alpha _2'(t) -2 \alpha _1(t){}^2 \alpha _3(t) \alpha _2(t){}^2+5 \alpha _1(t) \alpha _3(t) \alpha _4(t) \alpha _2(t){}^2=0. \label{PT}
+\end{align}
+通过求解以上方程，可以得到以下三组 Painlev\'{e} 可积条件，
+\begin{align}
+\nonumber
+& \alpha _4(t)=2\alpha _1(t) \, , \\
+& \alpha _3(t)=k \alpha _2(t)+c_1 \alpha _2(t) (\int \alpha _2(t)
+e^{-3 \int \alpha _1(t) \, dt} \, dt),
+\label{pt5}\\
+\nonumber
+& \alpha _3(t)=k \alpha _2(t)\, ,\\
+& \alpha _4(t)=2\alpha _1(t) \quad \text{or} \quad
+\alpha _4(t)=\frac{\alpha _2(t)e^{-\int 3 \alpha _1(t)  \, dt}}
+{c_2+2  \int{ \alpha _2(t) e^{-\int {3 \alpha _1(t) } \, dt} \, dt}}+2 \alpha _1(t),\label{pt6}
+\end{align}
+\begin{align}
+\alpha _4(t)=\frac{\alpha _2'(t)}{\alpha _2(t)}-\frac{\alpha _1'(t)}{\alpha _1(t)},\ \
+ \alpha _3(t)=c_3 \alpha _1(t) e^{\int \alpha _1(t) \, dt}, \label{pt7}
+\end{align}
+
+\subsection{B\"{a}cklund变换}
+通过之前的主项分析，为求出B\"{a}cklund变换，采用Painlev\'{e}截断，将表达式$u(x,t)=\phi^{-2}(x,t)\sum\limits_{j=0}^{2}u_j(x,t)\phi^{j}(x,t)$ 代入方程(\ref{gvckdv})，使 $\phi(x,t)$ 各项系数均为0， 可以求出以下条件，
+\begin{align}
+u_0=-12 k \phi _x^2,
+\quad\quad\quad
+u_1=12 k \phi _{xx}. \label{BTphi-4}
+\end{align}
+经过符号计算，得到如下的B\"{a}cklund变换
+\begin{equation}
+u = 12k\frac{\partial^{2}}{\partial
+x^{2}}\, \ln \phi +u_2
+ \; ,  \label{BT}
+\end{equation}
+其中 $\phi$ 和 $u_2$ 需要满足如下条件，
+\begin{align}
+& 4 k \alpha _2(t) \phi_{xxx} \phi_x-3 k \alpha _2(t) \phi_{xx}^2+\alpha _2(t) u_2 \phi_x^2+\alpha _0(t) \phi_x^2+x \alpha _1(t) \phi_x^2+\phi_t \phi_x=0,
+ \;  \label{BT-1}\\
+& k \alpha _2(t) \phi_{xxxx}+\alpha _2(t) u_2 \phi_{xx}+\left(\alpha _4(t)-\alpha _1(t)\right) \phi_x+\left(\alpha _0(t)+x \alpha _1(t)\right) \phi_{xx}+\phi_{xt}=0
+ \;,   \label{BT-2}\\
+& u_{2,t} + [\alpha _0(t)+\alpha _1(t)x] u_{2,x}+\alpha _2(t) u_2 u_{2,x} + k \alpha _2(t) u_{2,xxx}+\alpha _4(t) u_2=0
+ \;  . \label{BT-3}
+\end{align}
+通过以上的B\"{a}cklund变换，根据选取 $\phi(x,t)$ 为不同形式，进而代入以上三个约束条件，可以得到方程不同的解析解，比如单孤子解、有理解和周期解。令 $\phi(x,t)=1+ e^{p(t)\,x + q(t)}, u_2(x,t)=r(t) x+s(t)$ ，可以得到如下的单孤子解 $u^{\uppercase\expandafter{\romannumeral 1}}$ ，
+\begin{equation}
+ u^{\uppercase\expandafter{\romannumeral 1}}= 3 k p^2(t) \text{sech}^2\frac{p(t)x+q(t)}{2}+s(t)
+ \;  , \label{BT-s8}
+\end{equation}
+其中参数需满足如下条件，
+\begin{align}
+& p(t)=c_5 e^{-\int \alpha _1(t) \, dt}
+,  \label{BT-s3}\\
+& q(t)=-\int \left[k p(t)^3 \alpha _2(t)+p(t) s(t) \alpha _2(t)+p(t) \alpha _0(t)\right] \, dt+c_6
+  , \label{BT-s4}\\
+& s(t)=c_4 e^{-\int \alpha _4(t) \, dt}
+,  \label{BT-s5}\\
+& \alpha _4(t)=2 \alpha _1(t). \label{BT-s7}
+\end{align}
+令 $\phi(x,t)=1+ e^{\mbox{i}(m(t)\,x + n(t))}, u_2(x,t)=0$ ，可以得到如下的周期解 $u^{\uppercase\expandafter{\romannumeral 2}}$，
+\begin{equation}
+u^{\uppercase\expandafter{\romannumeral 2}}=-3 k m^2(t) \sec ^2
+\frac{m(t) x +n(t)}{2}
+ \; .  \label{BT-p6}
+\end{equation}
+其中参数需满足如下条件，
+\begin{align}
+& m(t)=c_{11} e^{\int -\alpha _1(t) \, dt},
+ \label{BT-p3}\\
+& n(t)=\int c_{11} e^{\int -\alpha _1(t) \, dt} \left(k c_{11}^2 \alpha _2(t)
+e^{2 \int -\alpha _1(t) \, dt}-\alpha _0(t)\right) \, dt+c_{12} ,
+ \label{BT-p4}\\
+& \alpha _4(t)=2 \alpha _1(t)
+ \;  , \label{BT-p5}
+\end{align}
+同样地，令 $\phi(x,t)=a(t)x^2 +b(t)x +c(t), u_2(x,t)=f(t)x+g(t)$ ，可以得到如下的有理解 $u^{\uppercase\expandafter{\romannumeral 3}}$，
+\begin{equation}
+u^{\uppercase\expandafter{\romannumeral 3}} =-12k \frac{b^2(t)}{[b(t)x+c(t)]^2}+f(t)x+g(t)
+ \; ,  \label{BT-r9}
+\end{equation}
+其中参数需满足如下条件，
+\begin{align}
+& a(t)=0,\quad\quad\quad
+ b(t)=c_{15}  e^{-\int \left(f(t) \alpha _2(t)+\alpha _1(t)\right) \, dt} ,
+ \label{BT-r4}\\
+& c(t)=-\int \left(b(t) g(t) \alpha _2(t)+b(t) \alpha _0(t)\right) \, dt+c_{16} ,
+ \label{BT-r5}\\
+& f(t)=\frac{e^{-\int 3 \alpha _1(t) \, dt}}
+{c_{13}+2 \int \alpha _2(t) e^{-\int 3 \alpha _1(t) \, dt} \, dt},
+ \label{BT-r6}\\
+& g(t)=c_{14} f(t) e^{\int \alpha _1(t) \, dt}-f(t) e^{\int \alpha _1(t) \, dt}
+\int \alpha _0(t) e^{-\int \alpha _1(t) \, dt} \, dt ,
+ \label{BT-r7}\\
+& \alpha _4(t)=\frac{\alpha _2(t)e^{-\int 3 \alpha _1(t)  \, dt}}
+{c_{13}+2  \int{ \alpha _2(t) e^{-\int {3 \alpha _1(t) } \, dt} \, dt}}+2 \alpha _1(t).  \label{BT-r8}
+\end{align}
+通过以上的B\"{a}cklund变换，本节得到了方程的不同形式的解析解，下一节将会通过构造方程Lax对求得另外两种形式的
+B\"{a}cklund变换。
+
+
+\section{Lax对, B\"{a}cklund变换和类孤子解}
+\subsection{Lax对}
+Lax对不仅为逆散射方法求解非线性发展方程的初值问题提供了基础，而且还能用于推导非线性发展方程的Bcklund变换、Darboux变换、无穷守恒律和无穷对称等可积性质。在本小节中，将采用扩展的AKNS方法构造方程(\ref{gvckdv})的Lax对，根据方程 (\ref{gvckdv})的特点，假设其Lax对具有如下形式：
+\begin{align}
+& \Phi_x=U \Phi=
+\begin{pmatrix}
+\lambda & u+E(x,t)\\
+F(x,t) & -\lambda
+\end{pmatrix}\Phi,\label{lp1}\\
+& \Phi_t=V \Phi=
+\begin{pmatrix}
+A(x,t,\lambda) & B(x,t,\lambda)\\
+C(x,t,\lambda) & -A(x,t,\lambda)
+\end{pmatrix}\Phi,\label{lp2}
+\end{align}
+其中 $U$ 和 $V$ 是两个 $2 \times 2$ 矩阵,
+ $\lambda$ 是一个独立于 $x$ 和 $t$ 的参数，
+$A(x,t,\lambda)$, $B(x,t,\lambda)$ 和 $C(x,t,\lambda)$ 是
+$x$ 和 $t$ 的函数。  $A(x,t,\lambda)$,
+$B(x,t,\lambda)$ 和 $C(x,t,\lambda)$ 具有如下的表达式
+\begin{align}
+&A(x,t,\lambda )=a_0(x,t)+a_1(x,t)\lambda  + a_2(x,t)\lambda^2
++ a_3(x,t)\lambda^3 ,\\
+&B(x,t,\lambda )=b_0(x,t)+b_1(x,t)\lambda  + b_2(x,t)\lambda^2 ,\\
+&C(x,t,\lambda )=c_0(x,t)+c_1(x,t)\lambda  + c_2(x,t)\lambda^2.
+\end{align}
+以上假设形式是经过多次验算而提出的，本部分的重要创新点之一在于之前并没有与此完全相同的Lax对的假设形式。将以上表达式代入到相容条件 $U_t - V_x + U V - V U = 0$ 中，经过计算得到，
+\begin{align}
+%\nonumber
+& E(x,t)=M(t)x+Q(t),\label{et} \\
+%\nonumber
+& M(t)=\frac{\alpha _1(t)}{\alpha _2(t)}, \label{mt}\\
+%\nonumber
+& Q(t)=c_{17} \frac{\alpha _1(t)}{\alpha _2(t)} e^ {\int
+\alpha _1(t) \, dt}
+ -\frac{\alpha _1(t)}{\alpha _2(t)} e^ {\int
+\alpha _1(t) \, dt}\times
+ \int \alpha _0(t) e^ {-\int
+\alpha _1(t) \, dt},\label{qt}\\
+& F(x,t)=-\frac{\alpha _2(t)}{6 \alpha _3(t)}, \label{F}\\
+\nonumber
+& A(x,t,\lambda )=-4 \alpha _3(t)\lambda^3+\big[\frac{2}{3} Q(t) \alpha _2(t)
+-\frac{1}{3} \alpha _2(t) u(x,t)
+-\alpha _0(t)-\frac{1}{3} x \alpha _1(t)\big]\lambda   \\
+& \qquad \qquad \quad -\frac{1}{6} \alpha _2(t) u_{x}(x,t)
++\frac{\alpha _1(t)}{3}-\frac{\alpha _2'(t)}{2\alpha _2(t)}+\frac{\alpha _1'(t)}{2\alpha _1(t)}
+  ,\\
+&  C(x,t,\lambda )=\frac{2 \alpha _2(t)}{3}\lambda^2+
+\frac{\alpha _2(t){}^2 u(x,t)}{18 \alpha _3(t)}-\frac{Q(t) \alpha _2(t){}^2}{9 \alpha _3(t)}
++\frac{\alpha _0(t) \alpha _2(t)}{6 \alpha _3(t)}
++\frac{x \alpha _1(t) \alpha _2(t)}{18 \alpha _3(t)}
+ , \label{ct}
+\end{align}
+\begin{align}
+\nonumber
+B(x,t,\lambda )=&\big[-4 \alpha _3(t) u(x,t)-4 Q(t) \alpha _3(t)
+-\frac{4 x \alpha _1(t) \alpha _3(t)}{\alpha _2(t)}\big]\lambda^2
+ -\big[ 2 \alpha _3(t) u_{x}(x,t) \\
+&+\frac{2 \alpha _1(t) \alpha _3(t)}{\alpha _2(t)}\big]\lambda
++ \frac{1}{3} Q(t) \alpha _2(t) u(x,t)-\alpha _3(t) u_{xx}(x,t)
+-\alpha _0(t) u(x,t)
+\\
+\nonumber
+&-\frac{2}{3} x \alpha _1(t) u(x,t)-\frac{1}{3} \alpha _2(t) u(x,t)^2
++\frac{2}{3} Q(t)^2 \alpha _2(t)-Q(t) \alpha _0(t)
+\\
+\nonumber
+&+\frac{1}{3} x Q(t) \alpha _1(t)-\frac{x^2 \alpha _1(t){}^2}{3 \alpha _2(t)}-\frac{x \alpha _0(t) \alpha _1(t)}{\alpha _2(t)}.
+\end{align}
+其中方程系数需要满足如下条件，
+\begin{align}
+%\nonumber
+&\alpha _4(t)=\frac{\alpha _2'(t)}{\alpha _2(t)}-\frac{\alpha _1'(t)}{\alpha _1(t)} , \\
+&\alpha _3(t)=c_{18} \alpha _1(t) e^{\int \alpha _1(t) \, dt} ,
+\label{l1}
+\end{align}
+其中 $c_{17}$ 和 $c_{18}$ 是两个任意常数。 可以证明在 (\ref{et} - \ref{ct}) 约束条件 下等式 $\Phi_ {xt}=\Phi_ {tx}$ 可以推出方程 (\ref{gvckdv})。
+
+\subsection{ Riccati型  B\"{a}cklund变换和 Wahlquist-Estabrook型 B\"{a}cklund 变换}
+通过一个方程的种子解，由B\"{a}cklund变换可以构造另外一个孤子解。此种B\"{a}cklund变换可以用于将 $N-1$ 孤子解变换为 $N$ 孤子解。 为了求出方程 (\ref{gvckdv}) 的Riccati型 B\"{a}cklund变换， 需要引入函数 $\Gamma(x,t)=\frac{\phi_1}{\phi_2}$， 进而Lax对 (\ref{lp1}) 和 (\ref{lp2}) 可以变换为如下$\Gamma$-Riccati型的系统：
+\begin{align}
+&\Gamma_x=u+M(t)x+Q(t)+2 \lambda \Gamma - F(x,t)\Gamma^2,\label{lp3-0}\\
+&\Gamma_t=B(x,t,\lambda) + 2 A(x,t,\lambda) \Gamma - C(x,t,\lambda) \Gamma^2.\label{lp3}
+\end{align}
+Riccati型的 B\"{a}cklund 变换定义如下，
+\begin{align}
+& \Gamma'=\Gamma'[\lambda,X(x,t),\Gamma], \qquad
+ u'=u+U[\lambda,X(x,t),\Gamma],\label{lp4}
+\end{align}
+其中 $\Gamma'$ 和 $\Gamma$ 是 $\Gamma-$Riccati 系统(\ref{lp3-0})和(\ref{lp3})的两个不同的解， $u'$
+和 $u$ 是方程 (\ref{gvckdv}) 两个不同的解， $X(x,t)$ 是一个待求的函数，将 (\ref{lp4}) 代入到方程 (\ref{lp3}) 通过符号计算得到
+\begin{align}
+& \Gamma'=\frac{2 \lambda}{F(x,t)}-\Gamma,\label{lp5}\\
+& u'=u-2\Gamma_x.\label{lp6}
+\end{align}
+方程组 (\ref{lp5}) 和 (\ref{lp6}) 构成了 Riccati型的 B\"{a}cklund 变换，
+运用此变换一次可以将 $(n-1)$孤子解 变为 $n$ 孤子解。通过以上方法， 迭代 $n$ 次后，可由种子解得到 $n$ 孤子解。
+后面会运用此方法求出单孤子解和双孤子解。
+
+接下来将要构造 Wahlquist-Estabrook型的 B\"{a}cklund 变换。 通过方程 (\ref{lp6}) 求得 $\Gamma$，
+\begin{equation}
+\Gamma=\int\frac{u-u'}{2}dx .\label{lp8}
+\end{equation}
+令 $u=-\omega_x$ ， $u'=-\omega'_x$ ($\omega'$ 和 $\omega$ 都是 $x$ 和 $t$ 的函数)， 将方程 (\ref{lp8}) 代入到(\ref{lp3-0}) 和 (\ref{lp3})， 可以得到如下的 Wahlquist-Estabrook型的 B\"{a}cklund 变换，
+\begin{align}
+&\omega'_x+\omega_x=2 M(t) x + 2 Q(t)+ 2 \lambda(\omega-\omega')
++F(x,t)\frac{(\omega-\omega')^2}{2}, \label{lp9-0}
+\\
+\begin{split}
+ &\omega'_t+\omega_t=-\frac{4 \lambda  c_{18} \alpha _1^2(t) e^{\int \alpha _1(t) \, dt}}{\alpha _2(t)}+
+ \left(4 \alpha _1 \lambda ^2 c_{18} e^{\int \alpha _1(t) \, dt}-\frac{2}{3} t \alpha _2(t)\right) \left(\omega _x-\omega '_x\right)\\
+%\nonumber
+&\quad\quad\quad\quad+4 \alpha _1 \lambda  c_{18}  e^{\int \alpha _1(t) \, dt} \omega _{xx} +\frac{2}{3} \alpha _1(t) \left(\omega '+2 \omega \right)
++ \left(\frac{\alpha _1'(t)}{\alpha _1(t)}
+-\frac{\alpha _2'(t)}{\alpha _2(t)}\right) \left(\omega '+\omega \right)  \\
+%\nonumber
+&\quad\quad\quad\quad-\alpha _0(t) \left(\omega '_x
++\omega _x\right)-\frac{1}{3} x \alpha _1(t) \left(\omega '_x+5 \omega _x\right)
++\frac{1}{3} \alpha _2(t) \left((\omega'_x)^2
++2 \omega _x^2\right)\\
+&\quad\quad\quad\quad-\frac{1}{3} \alpha _2(t) \omega _{xx} \left(\omega '-\omega \right)
+.\label{lp9}
+\end{split}
+%\label{lp9}
+\end{align}
+
+非线性叠加公式可以通过已知的孤子解得到新的更为复杂的孤子解。 通过Wahlquist-Estabrook型的 B\"{a}cklund 变换 (\ref{lp9-0}) 和 (\ref{lp9})， 经过计算可以得到如下的非线性叠加公式
+\begin{equation}
+\omega_3=\omega_0+\frac{2(\lambda_1+\lambda_2)(\omega_1-\omega_2)}
+{2(\lambda_1-\lambda_2)+F(x,t)(\omega_1-\omega_2)},\label{lp11}
+\end{equation}
+其中 $\omega_1$ 和  $\omega_2 $ 是由已知的孤子解 $\omega_0$ 通过一组不同的参数 $\lambda_1$ 和 $\lambda_2$ 得到的新解。
+
+\subsection{类孤子解}
+上一节求得了方程Riccati型的 B\"{a}cklund 变换，其中表达式(\ref{lp5}) 和 (\ref{lp6})可以由种子解构造更多的解，本节将通过一个种子解迭代求解方程的单孤子解和双孤子解。
+选择 $u=-M(t)x- Q(t)$ 作为种子解， 通过求解Riccati型的 B\"{a}cklund 变换的空间部分 (\ref{lp3-0}) ，可以求得 $\Gamma_1$，
+\begin{equation}
+\Gamma _1(x,t)=\frac{2 \lambda _1 P(t)
+e^{2 \lambda _1 x}}{P(t) e^{2 \lambda _1 x} F(x,t)+1}.\label{lp10}
+\end{equation}
+进而通过求解Riccati型的 B\"{a}cklund 变换的时间部分 (\ref{lp3}) 可以得到 $P(t)$ 的表达式 ，
+再将 $\Gamma _1$ 代入 (\ref{lp6})， 可以得到方程 (\ref{gvckdv}) 的单类孤子解，
+\begin{equation}
+u_1=-M(t)x-Q(t)+\frac{24 \lambda _1 ^2 \alpha_3}
+{-\alpha_2+ \alpha_2 \cosh(2 \lambda _1 x+\ln (-P_1\alpha_2/6\alpha_3))}
+,\label{lp10-1}
+\end{equation}
+其中参数需满足如下条件，
+\begin{align}
+& P_1(t)=c_{20} e^{\int R_1(t) \, dt}\\
+\nonumber
+& R_1(t)=2\lambda _1 \alpha _1(t) {}
+e^{ \int \alpha _1(t) \, dt}\big[ ( c_{19}-4 c_{18} \lambda _1^2)
+ - \int\! \alpha _0(t)  e^{ -\int\!
+\alpha _1(t) \, dt} \, dt
+\big]-2 \lambda _1 \alpha _0(t) \\
+& +\frac{\alpha _1'(t)}{\alpha _2(t)}-\frac{\alpha _2'(t)}{\alpha _1(t)}+\alpha _1(t){},
+\end{align}
+$c_{19}$ 和 $c_{20}$ 是两个任意常数， $M(t)$ 和 $Q(t)$ 表达式如 (\ref{mt}) 和 (\ref{qt}) 。
+ 通过类似的过程，由 (\ref{lp3-0}) 和 (\ref{lp3}) 可以得到 $\Gamma_2$，进而求得如下的双类孤子解，
+\begin{align}
+&u_2=-M(t)x-Q(t)+48 \lambda _1 \alpha _3
+\big[ \lambda_2^3 P_1^2 P_2 \alpha _2^2
+e^{4 \lambda _1 x+2 \lambda_2 x}
++36  \lambda _2^3 P_2 \alpha _3{}^2
+e^{2 \lambda_2 x}\\
+&\quad\quad+6 P_1 \alpha _2 \alpha _3 e^{2 \lambda _1 x}
+\big(\lambda _2^2 (\lambda _1^2-\lambda _2^2){} \lambda _1 P_2{}^2
++2 \lambda _2 (\lambda _1^2-\lambda _2^2){} P_2 e^{2 \lambda_2 x}
++ \frac{\lambda _1^3 e^{4 \lambda_2 x}}{\lambda _1^2-\lambda _2^2}\big)\big]
+\\ \nonumber
+&\quad\quad/ \big[\alpha _2 \big( P_1 \alpha _2
+e^{2 \lambda _1 x} (\lambda _2 (\lambda _1+\lambda _2){}
+ P_2+ \frac{\lambda _1}{\lambda _1+\lambda _2} e^{2 \lambda_2 x})
+ +6 \alpha _3 (\lambda _2
+(\lambda _1-\lambda _2){} P_2\\
+&\quad\quad + \frac{\lambda _1}{\lambda _1-\lambda _2}
+e^{2 \lambda_2 x})\big){}^2\big]
+,\label{lp12}\\
+&P_2(t)=c_{21} e^{\int\!\! R_2(t) \, dt}\,,\ \\
+&R_2(t)=\alpha _1(t) {}
+e^{ \int \!\! \alpha _1(t) \, dt}\big[\big(-2 c_{19} \lambda _2
++4 c_{20} \lambda _2^2 \big)
++ \int \!\! \alpha_0(t)  e^{ -\int\!\!
+\alpha _1(t) \, dt} \, dt
+ \big ]+\alpha _0(t).
+\end{align}
+
+
+\section{贝尔多项式和 $N$ 孤子解}
+在这一节中，将运用贝尔多项式方法求得方程的双线性形式和 $N$ 孤子解。
+将以下表达式
+\begin{equation}
+u=\nu(t) H_{xx}
+\end{equation}
+代入方程 (\ref{gvckdv})， 根据贝尔多项式的概念得到
+\begin{align}
+\nonumber
+&  \mathcal{P}_{x,t}(H) + [\alpha _0(t)+x \alpha _1(t)]\mathcal{P}_{2x}(H) +
+ \mathcal{P}_{4x}(H) +[\frac{\nu(t)\alpha _2(t)}{2} - 3  \alpha _3(t) ]H^2_{xx} +
+\\ & \qquad \qquad \qquad \qquad
+[\alpha _4(t)-\alpha _1(t) + \frac{\nu'(t)}{\nu(t)}]H_x=0\,,\label{bp8}
+\end{align}
+其中 $H$ 是一个 $x$ 和 $t$ 的函数， $\nu(t)$ 是关于 $t$ 的函数。
+令 $\dfrac{\nu(t)\alpha _2(t)}{2} - 3  \alpha _3(t)=0$，得到
+\begin{equation}
+\nu(t)=6 \frac{\alpha _3(t)}{\alpha _2(t)}.
+\end{equation}
+通过 (\ref{bp8})， 假设函数 $H=2\text{ln}\phi$，$\phi$ 为 $x$ 和 $t$ 的函数 ，可以推出方程的
+双线性形式
+\begin{equation}
+\Big [ D_t+  \big(\alpha _0(t)+x \alpha _1(t)\big)D_x +
+\alpha_3(t)D_x^3 - \alpha _1(t)+ \alpha _4(t)+\frac{\alpha' _3(t)}{\alpha _3(t)}
+-\frac{\alpha' _2(t)}{\alpha _2(t)} \Big ]\phi \cdot \phi _x=0.\label{bp9}
+\end{equation}
+将 $\phi$ 展开成为参数 $ \epsilon $ 的形式
+\begin{eqnarray}
+\phi(x,t)=1+\sum_{i = 1}^{\infty}
+\epsilon^{\,i}\,F_{i}(x,t)\;. \label{b2}
+\end{eqnarray}
+并将此表达式代入方程 (\ref{bp9}) ，经过复杂的计算和整理后，可以得到如下等式
+\begin{eqnarray}
+ &\nonumber \epsilon\, B(F_{1,x}\cdot 1)+\epsilon^{\,2}
+B(F_{2,x}\cdot 1+F_{1,x} \cdot F_{1})+\epsilon^{\,3}
+B(F_{3,x}\cdot 1+F_{2,x}\cdot F_{1}+F_{1,x}\cdot F_{2})
+\\&\qquad\qquad\qquad +\cdot\cdot\cdot +\epsilon^{r}B(\sum_{m = 0}^{\,r-1}
+    F_{r-m,x}\cdot
+F_{m})+\cdot\cdot\cdot=0\;, \label{kdv-262}
+\end{eqnarray}
+其中 $F_{0}=1$，算子 $B$ 的形式如下
+\begin{eqnarray}
+B=D_t+\left[\alpha _0(t)+x \alpha _1(t)\right]D_x +
+\alpha_3(t)D_x^3 - \alpha _1(t)+ \alpha _4(t)+\frac{\alpha' _3(t)}{\alpha _3(t)}
+-\frac{\alpha' _2(t)}{\alpha _2(t)}.\label{kdv-263}
+\end{eqnarray}
+根据 $\epsilon$ 的系数，上述等式可以等价为以下等式组，
+\begin{align}
+&(\frac{\partial}{\partial t}+[\alpha _0(t)+x \alpha _1(t)]\frac{\partial}{\partial x}+\alpha _3(t) \frac{\partial^{3}}{\partial x^{3}}- \alpha _1(t)+ \alpha _4(t)+\frac{\alpha' _3(t)}{\alpha _3(t)}
+-\frac{\alpha' _2(t)}{\alpha _2(t)})F_{1,x}=0\;, \label{kdv-271}
+ \\
+&(\frac{\partial}{\partial t}+[\alpha _0(t)+x \alpha _1(t)]\frac{\partial}{\partial x}+ \alpha _3(t)\frac{\partial^{3}}{\partial x^{3}}- \alpha _1(t)+ \alpha _4(t)+\frac{\alpha' _3(t)}{\alpha _3(t)}
+-\frac{\alpha' _2(t)}{\alpha _2(t)})F_{2,x}
+=-B(F_{1,x} \cdot F_{1})\;,
+ \label{kdv-272}
+ \\ \nonumber
+&(\frac{\partial}{\partial t}+[\alpha _0(t)+x \alpha _1(t)]\frac{\partial}{\partial x}+\alpha _3(t) \frac{\partial^{3}}{\partial x^{3}}- \alpha _1(t)+ \alpha _4(t)+\frac{\alpha' _3(t)}{\alpha _3(t)}
+-\frac{\alpha' _2(t)}{\alpha _2(t)})F_{3,x}
+ \\
+&=-B( F_{2,x} \cdot F_{1}+F_{1,x} \cdot F_{2})\;,\label{kdv-273}
+  \\ \nonumber
+&(\frac{\partial}{\partial t}+[\alpha _0(t)+x \alpha _1(t)]\frac{\partial}{\partial x} + \alpha _3(t) \frac{\partial^{3}}{\partial x^{3}}
+- \alpha _1(t)+ \alpha _4(t)+\frac{\alpha' _3(t)}{\alpha _3(t)}-\frac{\alpha' _2(t)}{\alpha _2(t)})F_{4,x}
+\\
+&=-B( F_{3,x} \cdot F_{1}+F_{2,x} \cdot F_{3}+F_{1,x} \cdot F_{3})\;,\label{kdv-274}
+\\
+&\qquad\qquad\qquad\qquad\qquad\qquad\qquad \qquad  \quad ...... \nonumber
+\end{align}
+以上给出了孤子解需要满足的条件，下面分三种情况分别求解方程的单孤子解、双孤子解和 $N$ 孤子解的形式。
+
+\vspace{1mm}
+ \noindent {\textbf{单孤子解}}
+\vspace{2mm}
+
+根据双线性的算法, 假设 $F_1(x,t)$ 具有如下的形式，
+\begin{equation}
+ F_1=e^{\theta_1},\ \ \ \  \theta_1=h_1(t)\,x+l_1(t), \label{kdv-275}
+\end{equation}
+其中 $ h(t) $ 和 $ l(t) $ 都是可微的函数并且 $h(t)$ 满足 $ h(t)\neq 0 $。
+将等式 (\ref{kdv-275}) 代入方程 (\ref{kdv-271}) 来求解 $ h(t) $ 和 $ l(t) $，可以
+得到以下结果，
+\begin{align}
+&h(t)=k_1 e^{-\int \alpha _1(t) \, dt},
+\\&
+l_1(t)=\int \left(- k k_1^3 \alpha _2(t)e^{3 \int -\alpha _1(t) \, dt}-k_1 \alpha _0(t) e^{\int -\alpha _1(t) \, dt}+2 \alpha _1(t)-\alpha _3(t)\right) \, dt+ \delta_1,
+\end{align}
+其中参数 $k_1$ 和 $\delta_1$ 都是任意常数。
+令方程 (\ref{b2}) 中的 $F_i=0, \,i=2,\cdots N $ ，当以下约束条件成立时，方程 (\ref{kdv-272}) 成立,
+\begin{equation}
+\alpha _3(t)=2\alpha _1(t),\label{kdv-b3}
+\end{equation}
+可以看出这个条件与 Painlev\'{e} 可积条件 (\ref{pt6}) 一致。
+令 $\epsilon=1$，再进行一定的数学整理，可以得到方程如下的单孤子解，
+\begin{equation}
+u(x,t)=3 k k_1^2 e^{-2 \int \alpha _1(t) \, dt}
+\text{sech}^2\frac{\theta_1}{2}. \label{single}
+\end{equation}
+需要注意的是， 此处求得的单孤子解 (\ref{single}) 与 通过B\"{a}cklund变换求得的孤子解 (\ref{single})相同，其
+约束条件也相同。进而可以发现孤子解 (\ref{single}) 中 $x$ 的系数是 $t$ 的函数，与一般求得的解不同，鉴于这种情况， 孤子解 (\ref{single}) 可以描述更多的非线性现象。
+
+\vspace{1mm}
+ \noindent {\textbf{双孤子解}}
+\vspace{2mm}
+
+在求解方程双孤子解的时候，需要用到求解单孤子解时的条件，此时假设 $F_1(x,t)$ 和 $F_2(x,t)$ 有如下形式，
+\begin{align}
+& F_1=e^{\theta_1}+e^{\theta_2} \;,\\
+& F_2=a_{12}(t) e^{\theta_1+\theta_2}  \;,\label{kdv-280}\\
+& \theta_{i}=h_{i}(t)\,x+l_{i}(t),i=1,2 \label{kdv-1000},
+\end{align}
+\begin{align}
+& h_{i}(t)=k_i e^{-\int \alpha _1(t) \, dt},\\
+& l_{i}(t)=\int \left(- k k_i^3 \alpha _2(t)e^{3 \int -\alpha _1(t) \, dt}-k_i \alpha _0(t) e^{\int -\alpha _1(t) \, dt}+2 \alpha _1(t)-\alpha _3(t)\right) \, dt+\delta_i,
+\end{align}
+等式中 $k_i\neq 0,\,\delta_i \ (i=1, 2)$ 都是任意常数。
+在约束条件 (\ref{kdv-b3}) 下，将以上方程代入 (\ref{kdv-272}) 来求解 $a_{12}(t)$ 得到
+\begin{equation}
+\ \ a_{12}(t)=\frac{(k_1-k_2)^2}
+{(k_1+k_2)^2}\ .
+\label{kdv-281}
+\end{equation}
+令 $\epsilon=1$, $F_i=0, \,i=3,\cdots N $， 再进行一些数学计算和整理得到方程的双孤子解如下，
+\begin{align}
+ \begin{split}
+ &u(x,t) = 12k\big[\frac{(\frac{k_1-k_2}{2})^2 \cosh \frac{\theta_1-\theta_2}{2}
++\frac{1}{4}(k_1-k_2)(k_1+k_2) \cosh \frac{\theta_1+\theta_2+A_{12}}{2}}
+{\cosh \frac{\theta_1-\theta_2}{2}+ \frac{k_1-k_2}{k_1+k_2} \cosh \frac{\theta_1+\theta_2+A_{12}}{2} }
+   \\
+& \quad \quad \quad-\frac{[(\frac{k_1-k_2}{2})^2 \sinh \frac{\theta_1-\theta_2}{2}+
+\frac{k_1-k_2}{2} \sinh \frac{\theta_1+\theta_2+A_{12}}{2}]^2}
+{(\cosh \frac{\theta_1-\theta_2}{2}+ \frac{k_1-k_2}{k_1+k_2} \cosh \frac{\theta_1+\theta_2+A_{12}}{2} )^2}
+\big] \; .  \label{kdv-284}
+ \end{split}
+\end{align}
+
+\vspace{1mm}
+ \noindent {\textbf{ $N$ 孤子解}}
+\vspace{2mm}
+
+根据之前求解过程，假设 $F_1(x,t)$ 的形式如下，
+\begin{align}
+& F_1=\sum_{i = 1}^{N} e^{\theta_i}\;,
+ \label{kdv-286}\\
+&\theta_{i}=h_{i}(t)\,x+l_{i}(t),i=1,\cdots,N ,\\
+&h_{i}(t)=k_i e^{-\int \alpha _1(t) \, dt},\\
+&l_{i}(t)=\int \left(- k k_i^3 \alpha _2(t)e^{3 \int -\alpha _1(t) \, dt}-k_i \alpha _0(t) e^{\int -\alpha _1(t) \, dt}+2 \alpha _1(t)-\alpha _3(t)\right) \, dt+\delta_i,
+\end{align}
+在满足约束条件 (\ref{pt5}) 和 $c_1=0$ 的情况下
+，求得如下的 $N$ 孤子解
+\begin{align}
+& u(x,t) = 12k\frac{\partial^{2}}{\partial
+x^{2}}\, \ln \phi
+ \;,   \label{kdv-287}\\
+&\phi=\sum_{\mu =0, 1}\exp\Big(\sum_{i =
+1}^{N}\mu_i\,\theta_i+ \sum_{ i< j}^{(N)}\mu_i\,\mu_j\,A_{ij}\Big)\;
+,\ \  e^{A_{ij}}=\frac{(k_i-k_j)^2}
+{(k_i+k_j)^2}\; .
+\label{kdv-288}
+\end{align}
+其中 $\sum_{\mu =0, 1}$ 表示 $\mu_i=0,1\,(i=1,\cdots,N)$ 所有可能的组合， $\sum_{i<
+j}^{(N)}$ 代表 $N$ 个元素所有可能的组合。此时求得的 $N$ 孤子解为形式上的，并没有严格证明，在验证多孤子解的
+时候会出现指数爆炸的问题，因而目前 $N$ 孤子解的验证仍是一个尚未解决的问题。
+
+
+\section{孤子解模拟}
+这一小节将要给出孤立波的定性分析和图像，并以此分析变系数对孤立波传播的影响。
+对于单孤子解 (\ref{single})，其孤立波的振幅和速度的表达式如下：
+\begin{align}
+%\vspace{-5mm}
+A_{\mbox{w}}=&3| k| k_1^2 e^{-2 \int \!\alpha _1(t)  dt},\label{A_ISW}
+\\ \nonumber
+ V_{\mbox{w}}=&k k_1^2 \alpha_2(t) e^{-2 \int \!\! \alpha_1(t) \, dt}+\alpha_1(t) e^{\int \! \alpha _1(t)  dt} [\int e^{-\int \!\!\alpha _1(t) \, dt} (k k_1^2 \alpha _2(t) e^{-2 \int \! \!\alpha _1(t)  dt} \\
+ &+\alpha _0(t))  dt] +\alpha _0(t) \  . \label{V_ISW}
+\end{align}
+从表达式可以看出， 振幅 $A_{\mbox{w}}$ 的影响参数有 $k$, $k_1$ 和变系数 $\alpha_1(t)$， 速度 $V_{\mbox{w}}$ 的影响参数有 $k$, $k_1$ 和三个变系数 $\alpha_0(t)$，$\alpha_1(t)$ 和 $\alpha_2(t)$。
+
+\subsection{孤立波的传播与相交}
+此小节将讨论多孤子的传播与相交。通过选取孤子解 (\ref{kdv-287} - \ref{kdv-288}) 不同的参数，可以得到以下四孤子解的传播图 \ref{a0}，
+\begin{figure}[th]
+\centering
+\subfigure[]{
+\includegraphics[width=0.28\linewidth]{a01.jpg}
+\label{a01}
+}
+%\qquad
+%\subfigure[]{
+%\includegraphics[width=0.28\linewidth]{a02.jpg}
+%\label{a02}
+\subfigure[]{
+\includegraphics[width=0.28\linewidth]{a03.jpg}
+\label{a03}
+}
+\qquad
+\subfigure[]{
+\includegraphics[width=0.28\linewidth]{a02.jpg}
+\label{a02}
+%\qquad
+%\subfigure[]{
+%\includegraphics[width=0.28\linewidth]{a03.jpg}
+%\label{a03}
+}
+\caption{四孤子孤立波传播}
+%with same parameters~$k=1 , \alpha_2(t)=1, \alpha_0(t)=0$.
+\label{a0}
+\end{figure}
+其中三幅图共同的参数有 $k=1$, $\alpha_0(t)=0$, $\alpha_2(t)=1$ ，图 \ref{a01} 中的其余参数为 $\alpha_1(t)=0.1 t^2$ , $k_1=0.3$ , $k_2=0.31$ , $k_3=0.32$ , $k_4=0.33$，
+$\delta_1=2$, $\delta_2=12$ , $\delta_3=22$, $\delta_4=32$ ，图 \ref{a03} 中的其余参数为 $\alpha_1(t)=0.1 t^2$, $k_1=0.3$, $k_2=0.31$, $k_3=0.32$, $k_4=0.33$,
+$\delta_1=2$, $\delta_2=12$, $\delta_3=22$, $\delta_4=32$，
+图~\ref{a02} 中的其余参数为 $\alpha_1(t)=0.07$, $k_1=0.3$, $k_2=-0.51$, $k_3=0.32$, $k_4=-0.53$,
+$\delta_1=2$, $\delta_2=-18$, $\delta_3=3$, $\delta_4=-28$。
+图 \ref{a01} 和 图~\ref{a03} 显示了孤立波传播方向的变化。 图~\ref{a02} 显示了四个孤立波的相交，当孤立波相交的时候发生弹性碰撞，在图像上显示为相位转移，振幅小的波将暂时超过振幅大的孤立波，在弹性碰撞后，相交孤立波恢复之前传播状态。
+
+\subsection{变系数$ \alpha_1(t) $ 对孤立波传播的影响}
+由之前的分析可知，方程变系数 $ \alpha_1(t) $ 是唯一对孤立波的传播速度的振幅都产生影响的。
+为了讨论出其对孤立波传播的影响，选择双孤子解来展示孤立波受 $ \alpha_1(t) $ 影响的结果。
+在图~\ref{a11} - ~\ref{a16} 中，选定除 $ \alpha_1(t) $ 以外其他参数均相同。
+其中选取的相同的参数为 $k_1=0.5$ , $k_2=0.4$, $\delta_1=0$, $\delta_2=21$, $k=1$ , $\alpha_0(t)=0, \alpha_2(t)=1$。
+通过下图 \ref{a1} 可以看出，不同的 $ \alpha_1(t) $ 的取值对孤立波的波形波速都有很大影响。通过之前
+可以看出变系数 $ \alpha_1(t) $ 对振幅和速度的影响是指数性的，图 \ref{a1} 中六种 $ \alpha_1(t) $ 的不同取值
+孤立波的传播会呈现不同的特点，可以以此来描述更多的非线性现象。
+\begin{figure}[H]
+\centering
+\subfigure[$\alpha_1(t)=0$]{
+\includegraphics[width=0.4\linewidth]{a11.jpg}
+\label{a11}
+}
+\qquad
+\subfigure[$\alpha_1(t)=0.06$]{
+\includegraphics[width=0.4\linewidth]{a12.jpg}
+\label{a12}
+}\\
+\qquad
+\subfigure[$\alpha_1(t)=0.1t$]{
+\includegraphics[width=0.4\linewidth]{a13.jpg}
+\label{a13}
+}
+\centering
+\subfigure[$\alpha_1(t)=0.1t^2$]{
+\includegraphics[width=0.4\linewidth]{a14.jpg}
+\label{a14}
+}\\
+\qquad
+\subfigure[$\alpha_1(t)=-0.65+0.1t$]{
+\includegraphics[width=0.4\linewidth]{a15.jpg}
+\label{a15}
+}
+\qquad
+\subfigure[$\alpha_1(t)=\frac{1}{t}$]{
+\includegraphics[width=0.4\linewidth]{a16.jpg}
+\label{a16}
+}
+\caption{$\alpha_1(t)$ 对孤立波的影响}
+\label{a1}
+\end{figure}
+
+\section{本章小结}
+本章研究了一个同时含有变系数 $x$ 和 $t$ 的 KdV 方程的可积性和解析解。通过Painlev\'{e}检测，得到了方程(\ref{gvckdv})的Painlev\'{e}可积条件。在此基础上，通过Painlev\'{e}截断得到了方程(\ref{gvckdv}) 的B\"{a}cklund变换和三组解析解，其中包括孤子解，周期解和有理解。进而通过扩展的AKNS系统构造了方程的Lax 对，$\Gamma$-Riccati型的B\"{a}cklund变换和Wahlquist-Estabrook型的B\"{a}cklund变换。通过贝尔多项式方法又得到了方程的双线性形式和 $N$ 孤子解。最后，借助于所得到的 $N$ 孤子解，本章对孤立波进行了模拟并分析了变系数对孤立波传播的影响。
+
+
+

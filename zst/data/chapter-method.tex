@@ -1,0 +1,467 @@
+% !Mode:: "TeX:UTF-8"
+
+\chapter{理论和方法}
+\section{可积性}
+可积性问题是动力学系统的基本问题，也是孤子理论研究中的重要问题，它不仅受到广泛的关注，而且相关的研究已有深入而系统的成果。
+
+逆散射方法(inverse scattering method)最早由C. S. Gardner， J. M. Greene， M. Kruskal 和R. M. Miura 提出并用于求解 KdV 方程的初值问题，因为该方法的有效性，逆散射方法被广大学者研究、总结和扩展，最终形成了系统的解法，成为了研究可积性最重要的方法之一\upcite{nisanshe}。要想知道一个偏微分方程是否完全可积，可以尝试用逆散射方法对其求解，如果能够求解，则可以认为该方程是完全可积的，然而，如何系统地判断一个偏微分方程是否能够用逆散射方法求解仍是未解之谜。
+
+1980年，M. J. Ablowitz，A. Ramani和H. Segur提出一种研究偏微分方程的方法：首先通过某种变换将偏微分方程转换为常微分方程，分析该常微分方程的奇点，就可以得到偏微分方程的结果，这种方法被称为 ARS 方法。经过大量的事实证明，一个偏微分方程只要可以用逆散射方法求解，该方程经过某种变换转化成的常微分方程都具有Painlev\'{e}性质\upcite{keji}，因此，他们大胆推测，如果一个非线性偏微分方程经过某种变换转化成的常微分方程具有 Painlev\'{e} 性质，则该方程一定可以用逆散射方法求解\upcite{keji}。虽然很多事实都已经证实了这个推测，但至今都还没有清晰而系统的证明。
+
+1983年，J. Weiss，M. Tabor和G. Carnevale提出一种想法，要想证明一个偏微分方程是否具有Painlev\'{e}性质，可以根据变换转化成的常微分方程是否具有Painlev\'{e}性质来判断，并且给出了证明常微分方程是否有Painlev\'{e}性质的方法，根据他们的名字将该方法称为 WTC 法。另外，通过 WTC 方法不仅可以判断要研究的偏微分方程是否具有Painlev\'{e}性质，而且还可以进一步求得该方程的双线性形式、B\"{a}cklund 变换、Lax 对和各种不同形式的解，事实证明了该方法的有效性，已经有许多研究者通过 WTC 方法对偏微分方程进行解析研究取得成果。
+\subsection{Painlev\'{e} 性质}
+一个偏微分方程被称为是 Painlev\'{e} 可积，当且仅当该方程关于非特征流动的奇异流形的解是“单值”的，一般来说，如果要对一个偏微分方程进行解析研究，首先要判断其是否具有 Painlev\'{e} 性质，如果该方程具有 Painlev\'{e} 性质，人们就认为该方程是完全可积的，经过已有的大量研究发现，完全可积的方程大都可以用反散射方法求解，并且可以求得它的 B\"{a}cklund 变换、Lax 对、无穷守恒律以及多种形式的解析解等重要性质，下面给出具体的 WTC 方法的求解步骤。
+
+1+1 维常系数非线性偏微分发展方程的一般形式为
+\begin{equation}
+u_t=P(u),\label{method-equ}
+\end{equation}
+其中 $u$ 是空间变量 $x$ 和 时间变量 $t$ 的函数，$P(u)$ 是 $u$ 以及 $u$ 关于 $x$ 的各阶偏导数的函数，下面我们用 WTC 法判断上述方程是否具有 Painlev\'{e} 性质：
+
+(一) 主项分析求主项
+
+假设方程(\ref{method-equ})有如下形式的解
+\begin{equation}
+u(x,t)=\phi^p(x,t) u_0(x,t),\label{method-lead}
+\end{equation}
+其中 $u_0(x,t)\neq 0$，它是在由 $\phi(x,t)=0$ 所确定的非特征可移动奇异流形的邻域内的解析函数。将等式 (\ref{method-lead})代入方程 (\ref{method-equ})，由 $\phi$ 的最低次幂项可以求出 $p$ 和 $u_0(x,t)$，有一点需要注意，Painlev\'{e} 性质要求 $p$ 始终是一个负整数，我们可以更加直观地确定出 $p$ 的值。
+
+(二)求递推关系和共振点
+
+假设上面给出的 1+1 维非线性方程(\ref{method-equ})的解有以下的广义 Laurent 展开式
+\begin{equation}
+u(x,t)=\phi^p(x,t)\sum_{j=0}^\infty u_j(x,t) \phi^j(x,t),\label{method-expand}
+\end{equation}
+这里 $u_j(x,t)(j=0,1,2,\cdots)$ 是某领域内的解析函数，该领域是由 $\phi(x,t)=0$ 决定的，并且是非特征流动奇异流形的，将展开式 (\ref{method-expand}) 代入方程 (\ref{method-equ})，令 $\phi$ 的各次幂的系数为零，逐步推导出 $u_j$ 的递推关系式，此时便很容易可以得到方程的共振点。
+
+(三)讨论相容条件
+
+首先计算第二步求出的不同共振点的个数，看是否与方程 (\ref{method-equ}) 的最高阶数相同，如果相同则继续检查除 0 和 -1 之外的共振点是否都是正整数，如果第二步求出的共振点满足以上两个条件则最后分析相容条件，若相容条件恒成立，则称该方程具有 Painlev\'{e} 性质。
+
+对于简单方程的 Painlev\'{e} 分析可以借助已有的 Mathematica 程序包，但是对于复杂的方程就不得不借助符号计算利用 WTC 方法一步一步分析求解，下面我们通过 WTC 方法一步一步对标准的 Burgers 方程进行处理，判断其是否具有 Painlev\'{e} 性质，其中标准的 Burgers 方程有以下形式，
+\begin{equation}
+u_t + u u_x - u_{xx}=0.\label{p-1}
+\end{equation}
+首先进行主项分析，将表达式 (\ref{method-lead}) 代入方程 (\ref{p-1}) 定出
+\begin{equation}
+p=-1, \quad u_0(x,t)=-2 \phi_x.\nonumber
+\end{equation}
+其次求递推关系
+\begin{align}
+&u(x,t)=\phi^{-1}(x,t)\Sigma_{j=0}^{\infty}u_j(x,t)\phi^j(x,t)=\Sigma_{j=0}^{\infty}u_j(x,t)\phi^{j-1}(x,t),\label{p-2}\\
+&u_t=\Sigma_{j=0}^{\infty}[u_{j,t}\phi^{j-1}+(j-1)u_j\phi_t\phi^{j-2}]=\Sigma_{j=0}^{\infty}[u_{j-2,t}\phi^{j-1}+(j-2)u_{j-1}\phi_t]\phi^{j-3}\nonumber\\
+&u_x=\Sigma_{j=0}^{\infty}[u_{j,x}\phi^{j-1}+(j-1)u_j\phi_x\phi^{j-2}]=\Sigma_{j=0}^{\infty}[u_{j-1,x}+(j-1)u_{j}\phi_x]\phi^{j-2},\nonumber\\
+&u_{xx}=\Sigma_{j=0}^{\infty}[u_{j,xx}\phi^{j-1}+2(j-1)u_{j,x}\phi_x\phi^{j-2}+(j-1)u_j\phi_{xx}\phi^{j-2}+(j-1)(j-2)u_j\phi_x^2\phi^{j-3}]\nonumber\\
+&~~~~~~=\Sigma_{j=0}^{\infty}[(j-1)(j-2)u_{j}\phi_x^2+2(j-2)u_{j-1,x}+(j-2)u_{j-1}\phi_{xx}\phi^{xx}+u_{j-2,xx}]\phi^{j-3},\nonumber\\
+&uu_x=\phi^{-3}\Sigma_{j=0}^{\infty}u_j\phi^j\cdotp \Sigma_{j=0}^{\infty}[u_{j-1,x}+(j-1)u_j\phi_x]\phi^j\nonumber\\
+&~~~~~~=\phi^{-3}\Sigma_{j=0}^{\infty}\Sigma_{k=0}^{j}[(u_{k-1,x}+(k-1)u_k\phi_x)u_{j-k}]\phi^j\nonumber\\
+&~~~~~~=\Sigma_{j=0}^{\infty}\Sigma_{k=0}^{j}[(u_{k-1,x}+(k-1)u_k\phi_x)u_{j-k}]\phi^{j-3}.\label{p-3}
+\end{align}
+将式 (\ref{p-2})-(\ref{p-3}) 式代入原方程，整理可得如下的递推关系式
+\begin{equation}
+(j+1)(j-2)u_j=F_j,\label{p-4}
+\end{equation}
+这里
+\begin{align}
+F_j=&\frac{1}{\phi_x^2}\big[ u_{j-2,t} + (j-2) u_{j-1}\phi_t +\sum^{j-1}_{k=1} u_{j-k} [ u_{k-1,x} +
+(k-1) u_k \phi_x] -u_{j-2,xx} \nonumber\\
+&- (j-2)(u_{j-1,x} \phi_x +u_{j-1} \phi_{xx}) \big],\nonumber
+\end{align}
+($j\geq 0$，定义当 $j<0$ 时 $u_j=0$)。从式 (\ref{p-4}) 可看出，当 $j = −1$ 和 $j = 2$ 时，$u_j$ 可以为任何值，因此方程 (\ref{p-1}) 的共振点为 −1 和 2，其中 $j = −1$ 对应函数 $\phi(x,t)$ 的任意性，也就是当 $j$ 的值取 2 时会出现一个相容条件，将 $j = 1$ 和 $j = 2$ 分别代入方程 (\ref{p-4})，整理可得
+\begin{align}
+& j=1: \quad \phi_t +u_t \phi_x=\phi_{xx},\label{p-5}\\
+& j=2: \quad \frac{\partial}{\partial x}\big( \phi_t+u_t \phi_x - \phi_{xx} \big)=0.\nonumber
+\end{align}
+式 (\ref{p-5}) 即为相容条件，可以看出该式是恒成立的，即方程 (\ref{p-1}) 具有 Painlev\'{e} 性质，至此我们用 WTC 法完成了标准 Burgers 方程是否具有 Painlev\'{e} 性质的检验。
+\subsection{B\"{a}cklund 变换}
+B\"{a}cklund 变换可以是两个偏微分方程的解之间的关系表达式，也可以是一个偏微分方程的两个不同的解之间的关系表达式。通过前者可以利用其中一个方程的已知解以及 B\"{a}cklund~ 变换的表达式求出另一个方程的解，后者也称为自 B\"{a}cklund 变换，通过后者可以根据方程的一个已知解求的该方程的另一个解，理论上来说，通过B\"{a}cklund 变换可以求出方程的所有解，但由于方程和解的形式的复杂性，随着迭代次数越多，计算过程就越复杂，不过通过种子解求方程的一个解仍是可行的，并且该方法已被广泛应用与偏微分方程的求解。
+
+一八八三年，瑞典数学家 A. V. B\"{a}cklund 发现关于复常数曲率曲面的  Sine-Gordon 方程 $u_{xt}=\sin u $ 的两个解 $u$ 和 $u^*$
+存在如下关系：
+\begin{eqnarray}
+& (\frac{u+u^*}{2})_{x}= a\ \sin \frac{u-u^*}{2}  , \label{method-BT-151}
+\\
+& (\frac{u-u^*}{2})_{t}= a^{-1}\ \sin \frac{u+u^*}{2} , \label{method-BT-152}
+\end{eqnarray}
+其中 $a\neq 0$ 且 $a$ 为常数，方程(\ref{method-BT-151}) 和 (\ref{method-BT-152}) 就是
+Sine-Gordon 方程的自 B\"{a}cklund 变换表达式，通过求得的自 B\"{a}cklund 变换很容易可以求出 Sine-Gordon 方程的解，取平凡解 $u=0$，
+通过自 B\"{a}cklund 变换表达式 (\ref{method-BT-151}) 和 (\ref{method-BT-152}) 可以求出 Sine-Gordon 方程的一个解：
+\begin{eqnarray}
+u^*=4\arctan (e^{a\,x+a^{-1}\,t+\alpha} ) ,
+\label{method-BT-153}
+\end{eqnarray}
+其中 $\alpha$ 是积分常数，因为其特殊形态，式 (\ref{method-BT-153}) 被称为 Sine-Gordon 方程的扭结孤子解。 理论上，若将此解 \eqref{method-BT-153} 代入自 B\"{a}cklund 变换表达式 (\ref{method-BT-151}) 和 (\ref{method-BT-152})，则又可以得到 Sine-Gordon 方程的新解，重复上述过程，自然可以求出更多的解。然而在实际计算中，随着代入次数的增加，求解方程 (\ref{method-BT-151}) 和 (\ref{method-BT-152}) 的复杂度越来越高，以至于不可行，这制约着 B\"{a}cklund 变换的使用，直至发现互换定理和非线性叠加公式，该变换的作用才得以充分发挥。
+
+上面介绍了利用 B\"{a}cklund 变换求解非线性发展方程的解的重要性，求得方程 B\"{a}cklund 变换的表达式的常见方法有：(1) AKNS$\footnote{Ablowitz, Kaup, Newell, Segur}$ 系统及逆散射方法；(2) Painlev\'{e} 截断方法；(3) 可积性条
+件；(4) 双线性形式；(5) 齐次
+平衡法。本文涉及的方法主要有AKNS系统及逆散射方法和双线性形式。
+\subsection{Lax 对}
+如果一个非线性偏微分方程可以由一对可积表达式表示，并且该表达式是关于线性问题的，我们就说该方程
+Lax 可积，利用已知的 Lax 对可以进一步推导该方程的 B\"{a}cklund 变换、用逆散射方法求该方程的解析解、推导 Darboux 变换和无穷守恒律等重要性质。
+
+对于方程 (\ref{method-equ}) 的解 $\phi$， 如果存在矩阵 $U, V$ 满足
+\begin{align}
+&\phi_x=U \phi, \qquad\nonumber
+\phi_t=V \phi, \label{method-Lax}
+\end{align}
+其中 $\Phi=(\phi_1, \phi_2, \phi_3)^T, \Phi_x\footnote{矩阵求导是每个元素求导.}=(\phi_{1x}, \phi_{2x}, \phi_{3x})^T, \Phi_t=(\phi_{1t}, \phi_{2t}, \phi_{3t})^T, \phi_1, \phi_2, \phi_3$ 是关于 $x$ 和 $t$ 的函数, $T$ 表示向量的转置, 将条件 $\Phi_{xt}=\Phi_{tx}$ 作用到 (\ref{method-Lax}) 式可以得到如下等式
+\begin{align}
+U_t-V_x+UV-VU=0,\nonumber
+\end{align}
+该等式也称相容条件，或圆曲率方程。结合原方程，如果存在矩阵 $U, V$ 使上述等式成立，那么该方程 Lax 可积，(\ref{method-Lax}) 式称为 Lax 方程，$U, V$ 称为方程的 Lax 对。本文涉及到的构造 Lax 对的方法有 AKNS 方法和双线性法，目前为止还没有方法可以系统地判断一个方程是否 Lax 可积，只能根据已有方程的 Lax 对和构造 Lax 对的方法进行改进和拓展来研究未知方程的 Lax 可积性，所以对偏微分方程的 Lax 可积性的研究仍是广大学者关注的重点。
+\subsection{守恒律}
+提到守恒律一般人们会想到物理学中的三大守恒定律，有质量守恒、能量守恒和动量守恒，而数学中的
+守恒律是如何定义？一般来说，如果一种现象可以被一个偏微分方程表示，并且该偏微分方程的解及其对空间
+变量的各阶导数均满足某一关系式，即存在稳定关系，则该偏微分方程具有守恒律。 即对于一个偏微分方程
+\begin{align}
+u_t=H(u)=H(u,u_x,u_{xx},\cdots)\label{inf02}
+\end{align}
+的解 $u(x,t),$ 若存在 $u$ 及其对空间变量的各阶导数 $\dfrac{\partial^pu}{\partial x^p}(p=1,2,\cdots)$ 的函数 $T(u), X(u)$, 使
+\begin{align}
+\frac{\partial T(u)}{\partial t}+\frac{\partial X(u)}{\partial x}=0\label{inf01}
+\end{align}
+成立，那么我们就可以将 (\ref{inf01}) 式称为方程 (\ref{inf02}) 的一个守恒律，其中 $T(u)$ 称为守恒密度， $X(u)$ 称为 $T$ 的流量。特别地，若 $T$ 仅只是 $u$ 及 $u$ 对 $x$ 的各阶导数的多项式，不显含 $x, t,$ 则称 $T$ 为多项式守恒密度，此时称 (\ref{inf02}) 式是方程 (\ref{inf02}) 的一个多项式守恒律。
+%当 $X(u)$ 是空间变量 $x$ 的周期函数或在无穷远处 ($x\textrightarrow \pm \infty$) 迅速趋于零时，由 (\ref{inf01}) 关于 $x$ 积分得
+%\begin{align}
+%\dfrac{d}{dt}\int_{-\infty}^{\infty}T(u)dx=0\nonumber
+%\end{align}
+%或
+%\begin{align}
+%\int_{-\infty}^{\infty}T(u)dx=I=const\label{inf03}
+%\end{align}
+%与时间 $t$ 无关，也就是在变化过程中始终保持守恒，也称方程 (\ref{inf03}) 为守恒积分或运动积分或运动常数。若 $T(u)$ 对一切 $u$ 可表为 $T(u)=F_x(u)$，则称守恒密度是平凡的，因为这时自然有
+%\begin{align}
+%(F_{x})_t+(-F_t)_x=0.
+%\end{align}
+
+%守恒律（如能量守恒、质量守恒定律）历来是物理学中研究的中心课题之一，在数学中借助运动常数，对偏微分方程的解做出先验估计，这些估计是方程解的存在性、唯一性及稳定性的核心和关键，在计算数学中较好的稳定差分格式，也用到守恒律，更有意思的是，越来越多的事实表明：孤立子的存在与无穷多个守恒律的存在是有密切联系的，具有孤子解的非线性发展方程，无论是 KdV 方程还是薛定谔方程，一般都具有无穷守恒律这一性质，只是很多方程的守恒律至今还没有找到，因此研究守恒律以及是否存在无穷多守恒律是具有现实意义与理论意义的\upcite{keji}。
+\section{贝尔多项式方法}
+通常来说，如果能够将一个非线性偏微分方程转化为双线性形式，这个方程就存在 $N$ 孤子解，可以构成一个孤子系统，并且是可积的。那么如何能在不依赖巧妙猜测的情况下找到方程的双线性形式或者找到合适的因变量变换，将原方程转化为双线性方程呢？一种方法是通过将 Hirota 程序和其它直接技术如相似性方法或 Painlev\'{e} 奇异性分析相结合，另一种方法是基于贝尔多项式的直接双线性方案，这里先介绍贝尔多项式的基本概念。
+
+一维一元的贝尔多项式有如下定义：
+\begin{align}
+Y_{mx}(a)\equiv Y_m(a_1, a_2, \cdot\cdot\cdot, a_m)=e^{-a} \partial_x^m e^a, m=1, 2, \cdot\cdot\cdot,   \label{method-bell-2}
+\end{align}
+其中 $a$ 是关于 $x$ 的连续函数，$a_m=\partial_x^m a$。下面给出几个具体例子：
+\begin{align}
+& Y_{1x}(a)=e^{-a} \partial_x^1 e^a=e^{-a}  e^a \partial_x^1 a=a_1,\nonumber\\
+& Y_{2x}(a)=e^{-a} \partial_x^2 e^a=e^{-a} \partial_x^1 (\partial_x^1 e^a)=e^{-a} \partial_x^1(e^a \partial_x^1 a)=e^{-a}[e^{a}\partial_x^1 a\cdot\partial_x^1 a+e^a \partial_x^2 a]=a_2+a_1^2, \nonumber\\
+& Y_{3x}(a)=a_3+3 a_2 a_1+a_1^3, \label{method-bell-3} \\
+& \cdots\nonumber
+\end{align}
+
+基于上述贝尔多项式的定义，二元贝尔多项式，即 $\mathcal{Y}$-多项式，可以表示为如下
+\begin{align}
+\mathcal{Y}_{mx}(V,W)=Y_{mx}(a)|_{a_{nx}=\left\{
+\begin{aligned}
+V_{nx} ~~n \text{是奇数} \\
+W_{nx} ~~n \text{是偶数}
+\end{aligned}
+\right.} \label{method-bell-4}
+\end{align}
+其中 $n\leq m$.
+
+引入自变量可以将贝尔多项式扩展到多维。二维贝尔多项式的定义如下:
+\begin{align}
+Y_{mx,nt}(a)\equiv Y_{m,n}(a_{i,j})=e^{-a} \partial_x^m \partial_t^n e^a, ~~~~~~i=1, 2, \cdots, m,~~j=1, 2, \cdots, n. \label{method-bell-5}
+\end{align}
+其中 $a$ 是关于 $x, t$ 的 $C^{\infty}$ 函数，$a_{i,j}=\partial_x^i \partial_t^j a$. 例
+\begin{align}
+& Y_{x,t}(a)=e^{-a} \partial_x^1 \partial_t^1 e^a=e^{-a} \partial_x^1 (e^a \partial_t^1 a)=e^{-a} [e^a \partial_x^1 a \partial_t^1 a+e^a \partial_x^1 \partial_t^1 a]
+\nonumber\\
+&~~~~~~~~~~
+=a_{x,t}+a_x a_t,\nonumber\\
+& Y_{2x,t}(a)=a_{2x,t}+a_{2x} a_t+2 a_{x,t} a_x+a_x^2 a_t, \cdot\cdot\cdot. \label{method-bell-6}
+\end{align}
+
+相应地，二维二元贝尔多项式，也即二维 $\mathcal{Y}$-多项式，有如下形式
+\begin{equation}
+\mathcal{Y}_{mx,nt}(V,W)=Y_{mx,nt}(a)|_{a_{m_1x,n_1t}=
+\begin{cases}
+V_{m_1x,n_1t} ~~m_1+n_1 \text{是奇数} \\
+W_{m_1x,n_1t} ~~m_1+n_1 \text{是偶数}
+\end{cases}
+}\label{method-bell-7}
+\end{equation}
+其中 $m_1\leq m, n_1\leq n, V, W$ 是 $x,t$ 的$C^{\infty}$ 函数。
+
+根据上述定义，我们给出一些 $\mathcal{Y}$-多项式的具体形式：
+\begin{align}
+& \mathcal{Y}_x(V,W)=V_x, \label{method-bell-8}\\
+& \mathcal{Y}_{2x}(V,W)=W_{2x}+V_x^2,\label{method-bell-9}\\
+& \mathcal{Y}_{x,t}(V,W)=W_{x,t}+V_x V_t,\label{method-bell-10}\\
+& \mathcal{Y}_{3x}(V,W)=V_{3x}+3 V_x W_{2x}+V_x^3,\label{method-bell-11}\\
+& \mathcal{Y}_{2x,t}(V,W)=V_{2x,t}+V_t W_{2x}+2 V_x W_{x,t}+V_x^2 V_t,\label{method-bell-12}\\
+& \mathcal{Y}_{4x}(V,W)=W_{4x}+4 V_x V_{3x}+3 W_{2x}^2+6 V_x^2 W_{2x}+V_x^4,\label{method-bell-13}\\
+& \mathcal{Y}_{5x}(V,W)=V_{5x}+5 V_x W_{4x}+10 V_{3x} W_{2x}+10 V_x^2 V_{3x}+15 V_x W_{2x}^2+10 V_x^3 W_{2x}+V_x^5,\label{method-bell-14}
+\end{align}
+\begin{align}
+& \mathcal{Y}_{6x}(V,W)=W_{6x}+6 V_x V_{5x}+15 W_{2x} W_{4x}+10 V_{3x}^2+15 V_x^2 W_{4x}+60 V_x W_{2x} V_{3x}+15 W_{2x}^3
+\nonumber\\
+&~~~~~~~~~~~~~~~~~
++20 V_{x}^3 V_{3x}+45 V_x^2 W_{2x}^2+15 V_x^4 W_{2x}+V_x^6,\nonumber\\
+& \mathcal{Y}_{7x}(V,W)=V_{7x}+7 V_x W_{6x}+35 V_{3x} W_{4x}+21 V_{5x} W_{2x}+105 V_x W_{2x} W_{4x}+105 V_{3x} W_{2x}^2
+\nonumber\\
+&~~~~~~~~~~~~~~~~+21 V_x^2 V_{5x}+70 V_x V_{3x}^2+105 V_x W_{2x}^3+35 V_x^3 W_{4x}+210 V_x^2 V_{3x} W_{2x}
+\nonumber\\
+&~~~~~~~~~~~~~~~~
++35 V_x^4 V_{3x}+105 V_x^3 W_{2x}^2+21 V_x^5 W_{2x}+V_x^7.\label{method-bell-15}
+\end{align}
+
+此外，方程 (\ref{method-bell-7}) 与 Hirota 算子
+\begin{align}
+D_x^mD_t^na\cdot b\equiv \left.\left(\dfrac{\partial}{\partial x}-\dfrac{\partial}{\partial x'}\right)^m\left(\dfrac{\partial}{\partial t}-\dfrac{\partial}{\partial t'}\right)^na(x,\,t)b(x',\,t')\right|_{x'=x,\,t'=t}\label{method-bell-16}
+\end{align}
+之间的关系可以表示为
+\begin{align}
+\dfrac{1}{GF}D_x^mD_t^nG\cdot F=\mathcal{Y}_{mx,nt}(V=\ln(G/F),W=\ln(GF)),\label{method-bell-17}
+\end{align}
+$a, b, G, F$ 都是 $x, t$ 的函数。假设 $Q=W-V$, 则 $\mathcal{P}$-多项式被定义为
+\begin{align}
+\mathcal{P}_{mx,nt}(Q)=\mathcal{Y}_{mx,nt}(0,Q),\label{method-bell-18}
+\end{align}
+
+此时，式 (\ref{method-bell-18}) 可以被重写为
+\begin{align}
+& \mathcal{P}_{2x}(Q)=Q_{2x}, \label{method-bell-19}\\
+& \mathcal{P}_{x,t}(Q)=Q_{x,t},\label{method-bell-20}\\
+& \mathcal{P}_{4x}(Q)=Q_{4x}+3 Q_{2x}^2,\label{method-bell-21}\\
+& \mathcal{P}_{3x,t}(Q)=Q_{3x,t}+3 Q_{2x}Q_{x,t},\label{method-bell-22}\\
+& \mathcal{P}_{6x}(Q)=Q_{6x}+15 Q_{2x} Q_{4x}+15 Q_{2x}^3,\label{method-bell-23}\\
+& \mathcal{P}_{8x}(Q)=Q_{8x}+28 Q_{2x} Q_{6x}+35 Q_{4x}^2+210 Q_{2x}^2 Q_{4x}+105 Q_{2x}^4.\label{method-bell-24}
+\end{align}
+
+当 $G=F$ 时，通过变换 $Q=2\ln F$, 存在如下表达式
+\begin{align}
+\dfrac{1}{F^2}D_x^mD_t^nF\cdot F=\mathcal{P}_{mx,nt}(Q).\label{method-bell-25}
+\end{align}
+\section{怪波解}
+\subsection{Darboux 变换法求怪波解}
+\subsubsection{方法简介}
+方程
+\begin{equation}
+-\varphi_{xx} + u \varphi = \lambda \varphi \label{1.1}
+\end{equation}
+称为定态(stationary state, 数学上称为静态) Schr\"{o}dinger 方程，$\varphi$ 称为波函数，$u$ 为势函数，$\lambda$ 为谱参数。该方程是 1926 年 Schr\"{o}dinger
+提出的标准的非相对论量子力学方程的空间部分。1882 年 Darboux 发现，方程 (\ref{1.1}) 与下面的方程
+\begin{equation}
+-\bar{\varphi}_{xx} + \bar{u} \bar{\varphi} = \lambda \bar{\varphi}
+\label{1.2}
+\end{equation}
+之间存在变换：
+\begin{equation}
+\left\{
+\begin{aligned}
+&\bar{\varphi}  =  \varphi_x - \alpha \varphi = \varphi_x - \frac{f_x(x, \lambda_0)}{f(x, \lambda_0)} \varphi\,,\ \ \ \alpha = \frac{f_x(x, \lambda_0)}{f(x, \lambda_0)}=(\log f)_{x}\,, \\
+&\bar{u}  =  u - 2 \alpha_x = u - 2 (\log f)_{xx}\,,
+\end{aligned} \label{1.3}
+\right.
+\end{equation}
+其中 $f$ 为方程 (\ref{1.1}) 对应 $\lambda = \lambda_0$ 的一个特解。\\
+下面验证该事实。
+
+由 (\ref{1.3}) 的第一式得
+\begin{equation}
+\bar{\varphi}_{xx} = (\varphi_{x}- \alpha \varphi)_{xx} = (\varphi_{xx})_x - (\alpha_{xx} \varphi + 2 \alpha_x \varphi_x + \alpha \varphi_{xx})\, \label{1.4}
+\end{equation}
+将式 (\ref{1.3}) 与 $\alpha$ 的表达式代入式 (\ref{1.4}), 有
+\begin{align}
+\bar{\varphi}_{xx} &= ((u - \lambda)\varphi)_x - (\alpha_{xx} \varphi + 2 \alpha_x \varphi_x + \alpha \varphi_{xx}) \notag \\
+&= u_x \varphi + \underline{(u - \lambda)\varphi_x} - (\log f)_{xxx} \varphi \  \underline{- 2(\log f)_{xx} \varphi_x - (\log f)_x \varphi_{xx}}\,,\label{1.5}
+\end{align}
+而
+\begin{align}
+(\bar{u} - \lambda)\bar{\varphi} &= (u - 2 \alpha_x  - \lambda)(\varphi_x - \alpha \varphi) \notag \\
+&= (u - \lambda)(\varphi_x - \alpha \varphi) - 2 \alpha_x (\varphi_x-\alpha  \varphi) \notag \\
+&= \underline{(u - \lambda)\varphi_x-(\log f)_x \varphi_{xx} - 2(\log f)_{xx} \varphi_x } + 2(\log f)_x (\log f)_{xx} \varphi \,.\label{1.6}
+\end{align}
+
+比较（\ref{1.5}）与（\ref{1.6}）两式，发现只需证明\  $u_x \varphi - (\log f)_{xxx} \varphi = 2 (\log f)_x (\log f)_{xx} \varphi\, .$ 因为
+\begin{align*}
+(\log f)_{xxx}  &= (\frac{f_x}{f})_{xx} = (\frac{f f_{xx} - f_x^2}{f^2})_x  \\
+&= (\frac{(u - \lambda_0) f^2 - f_x^2}{f^2})_x = (u - \lambda_0)_x - (\frac{f_x^2}{f^2})_x \\
+&= u_x - 2 \frac{f_x}{f} (\frac{f_x}{f})_x = u_x - 2(\log f)_x (\log f)_{xx}\,.
+\end{align*}
+所以有\ \ $-\bar{\varphi}_{xx} + \bar{u} \bar{\varphi} = \lambda \bar{\varphi}.$
+
+\subsubsection{迭代过程}
+\subsection{双线性方法求解怪波}
+为了将非线性发展方程化为双线性形式，需要引入双线性化变换。常见的有以下三种：
+
+(1) 有理变换 $ u(x, t)=\dfrac{f(x, t)}{g(x, t)} $
+
+这种变换多用于非线性 Schr\"{o}dinger 型方程的双线性化。
+
+(2) 对数变换 $ u(x, t)=2(\log{f(x, t)})_{xx} $
+
+对数变换多用于 KdV 型和 KP 型方程的双线性化。
+
+(3) 双对数变换 $ u(x, t)=\log{\big(\dfrac{f(x, t)}{g(x, t)}\big)} $
+
+双对数变换多用于修正的 KdV 型 ( mKdV 型) 和 sine-Gordon 型方程的双线性化。有时，双对数变换会与变换 $ v(x, t)=\log{[f(x, t)g(x, t)]} $ 同时出现。
+
+{\textbf{例 2}} \ \ 带导数的PT对称的非线性薛定谔方程
+\begin{equation}
+iA_t+icA_x+A_{xx}+\sigma A[(-x,t)]^{*}A+3i\lambda\sigma AA[(-x,t)]^{*}A_x=0\label{1.25}
+\end{equation}
+
+引入变换
+
+\begin{align*}
+A=\rho e^{-iwt}\frac{g(-x,t)}{f(x,t)},~~~~w=-\sigma\rho^2
+\end{align*}
+
+根据双线性算子的定义和运算性质，(\ref{1.25}) 式可以改写为双线性方程
+
+\begin{align}
+& D_x^2f \cdot f-\sigma\rho^2(gg(-x,t)^{*}-f^2)=0\\
+& [iD_t+i(c+3\lambda\sigma\rho^2)D_x+D_x^2+i\lambda D_x^3]g \cdot f=0
+\end{align}
+
+将$f, g$展开成下列形式，
+\begin{align*}
+& g=1+(a_1+ib_1)e^{ipx-\Omega t+\xi_1}+(a_2+ib_2)e^{-ipx-\Omega t+\xi_2}+M(a_1+ib_1)(a_2+ib_2)e^{-2\Omega t+\xi_1+\xi_2}\\
+& f=1+e^{ipx-\Omega t+\xi_1}+e^{-ipx-\Omega t+\xi_2}+Me^{-2\Omega t+\xi_1+\xi_2}
+\end{align*}
+
+下面将$f,g$的展开式代入到双线性的第一式中，得
+\begin{align*}
+& e^{ipx-\Omega t+\xi_1} : -2p^2+2\sigma\rho^2-2a_1\sigma\rho^2=0,\\
+& e^{-ipx-\Omega t+\xi_2} : -2p^2+2\sigma\rho^2-2a_2\sigma\rho^2=0,\\
+& e^{-ipx-\Omega t+2\xi_1+\xi_2-3\Omega t} : -2Mp^2+2M\sigma\rho^2-2Ma_1^2a_2\sigma\rho^2-2Mb_1^2a_2\sigma\rho^2=0,\\
+& e^{-ipx-\Omega t+\xi_1+2\xi_2-3\Omega t} : -2Mp^2+2M\sigma\rho^2-2Ma_1a_2^2\sigma\rho^2-2Ma_1b_2^2\sigma\rho^2=0,\\
+& e^{2ipx-2\Omega t+2\xi_1} : \sigma\rho^2(1-a_1^2-b_1^2)=0,\\
+& e^{2ipx-2\Omega t+2\xi_1} : -8p^2+2\sigma\rho^2+2M\sigma\rho^2-2\sigma\rho^2(a_1a_2+b_1b_2)-2M\sigma\rho^2(a_1a_2-b_1b_2)=0
+\end{align*}
+整理得到
+\begin{align*}
+& a_2=a_1\\
+& b_2=b_1\\
+& b_1^2=1-a_1^2\\
+& a_1=1-\frac{p^2}{\sigma\rho^2}\\
+& M=-\frac{2\sigma\rho^2}{p^2-2\sigma\rho^2}
+\end{align*}
+同理将$f,g$的展开式代入到双线性的第二式中，令实部虚部为零，得
+\begin{align*}
+& b_1=\frac{2p^2}{\Omega}-\frac{p^4}{\sigma\rho^2\Omega}\\
+& \Omega^2=-p^4+2p^2\sigma\rho^2\\
+& a_1=\cos\beta=\frac{\Omega^2-p^4}{p^4+\Omega^2}\\
+& b_1=\sin\beta=\frac{2p^2\Omega}{p^4+\Omega^2}\\
+& a_1+ib_1=a_2+ib_2=e^{i\beta}.
+\end{align*}
+令$\sqrt{M}e^{\xi}=e^{\Omega t_0}, \xi_1=\xi_2=\xi$，则呼吸子解为：
+\begin{align}
+\nonumber
+& A=\rho e^{i\sigma\rho^2t}\frac{1+2e^{i\beta-\Omega t+\xi}\cos(px)+Me^{2(i\beta-\Omega t+\xi)}}{2e^{-\Omega t+\xi}\cos(px)+Me^{2(-\Omega t+\xi)}}\\
+\nonumber
+& ~~=\rho e^{i\sigma\rho^2t}\frac{[\sqrt{M}\cosh{[i\beta-\Omega (t-t_0)]}+\cos(px)]e^{i\beta}}{\sqrt{M}\cosh{[-\Omega (t-t_0)]}+\cos(px)}\\
+& ~~=\rho e^{i\sigma\rho^2t}\frac{[\sqrt{M}(\cos{\beta})\cosh{[\Omega (t-t_0)]}-i\sin\beta\sinh{[\Omega (t-t_0)]}+\cos(px)     ](\cos\beta+i\sin\beta)}{\sqrt{M}\cosh{[\Omega (t-t_0)]}+\cos(px)}
+\end{align}
+最后，取$t_0=0, \sqrt{M}=-\sqrt{\frac{2\sigma\rho^2}{2\sigma\rho^2-p^2}}$，对呼吸子解中的函数二阶泰勒展开，并关于$p$取极限，得到方程(\ref{1.25})怪波解，
+\begin{align}
+A_r=\rho e^{i\sigma\rho^2t}\frac{2\sigma\rho^2x^2+4\sigma^2\rho^4t^2-8i\sigma\rho^2t-3}{2\sigma\rho^2x^2+4\sigma^2\rho^4t^2+1}
+\end{align}
+
+为了叙述方便，将第 $N$ 次迭代得到的结果记为\ $\varphi[N]$ 和\ $u[N]$。比如，第一次的为\ $\varphi[1]$ 和\ $u[1]$。
+\begin{align*}
+\text{方程(0)}:\ &- \varphi_{xx} + u \varphi = \lambda \varphi  \Rightarrow \\
+\text{方程(1)}:\ &- \varphi_{xx}[1] + u[1] \varphi[1] = \lambda \varphi[1] \Rightarrow \\
+\text{方程(2)}:\ &- \varphi_{xx}[2] + u[2] \varphi[2] = \lambda \varphi[2] \Rightarrow \\
+\text{方程(3)}:\ &- \varphi_{xx}[3] + u[3] \varphi[3] = \lambda \varphi[3] \Rightarrow \\
+& \cdots\cdots  \\
+\text{方程(N)}:\ &- \varphi_{xx}[N] + u[N] \varphi[N] = \lambda \varphi[N]
+\end{align*}
+迭代公式为
+$\left\{
+\begin{aligned}
+&\varphi[k]  =  \varphi_x[k - 1] - \alpha \varphi[k - 1]\,, \\
+&u[k]   =  u[k - 1] - 2 \alpha_x\,,
+\end{aligned}
+\right.$
+\  $\alpha = [\log f[k]]_x = \dfrac{f_x[k]}{f[k]}$   %repair this line \\
+
+\vspace{2mm}
+下面通过计算来解决这个难题，希望所有的\ $f[k]$ 都可以由最底层的方程，\ 即由没有迭代时的方程对应不同谱参数的特解得到，以第二次迭代为例，即将\ $f[2]$ 由最底层方程的解表示。\\
+\textbf{1.\ 第一次迭代}
+\begin{equation}
+\left\{
+\begin{aligned}
+&\varphi[1] = \varphi_x - \frac{f_x}{f} \varphi \triangleq \varphi_x - \frac{{f_1}_x}{f_1}\varphi = \frac{\varphi_x f_1 - {f_1}_x \varphi}{f_1} = \frac{w(f_1, \varphi)}{f_1}\,, \\
+&u[1] = u - 2 [\log f_1]_{xx},  \ \ w(f_1, \varphi) =
+\begin{vmatrix}
+f_1 & {f_1}_x \\
+\varphi & \varphi_x \\
+\end{vmatrix} \ \;\; \text{为朗斯基行列式(wronskian)}.
+\end{aligned}
+\right. 
+\end{equation} \label{1.7}
+为方便起见，记这里的 $f$ 为 $f_1$ 对应$\lambda = \lambda_1$ 时方程（0）的特解。\\
+\textbf{2.\ 第二次迭代}
+\begin{equation*}
+\varphi[2] = (\frac{\partial}{\partial x} - \frac{f[1]_x}{f[1]})\varphi[1]=(\frac{\partial}{\partial x} - \frac{f[1]_x}{f[1]}) (\frac{w(f_1, \varphi)}{f_1})\,,
+\end{equation*}
+其中$f[1]$ 是方程(1)对应\ $\lambda = \lambda_2$ 时的一个特解。\\
+
+若 $\varphi$ 满足方程(0)，则由(\ref{1.7})生成的\ $\varphi[1]$ 就满足方程(1)，所以取\ $f_2$ 为方程(0)对应\ $\lambda = \lambda_2$ 时的一个特解，于是\ $f[1] = \dfrac{w(f_1, f_2)}{f_1}$ 一定是方程(2)对应$\lambda = \lambda_2$ 时的一个特解。\ 故取$f[1] = \dfrac{w(f_1, f_2)}{f_1}$，于是
+\begin{align}
+\varphi[2] &= \frac{\partial}{\partial x}(\frac{w(f_1, \varphi)}{f_1}) - [\frac{\partial}{\partial x}(\frac{w(f_1, f_2)}{f_1})/\frac{w(f_1, f_2)}{f_1}]\frac{w(f_1, \varphi)}{f_1} \notag \\
+\Rightarrow\ \ \varphi[2] &= \frac{f_1 w(f_1, \varphi)_x - {f_1}_x w(f_1, \varphi)}{f_1^2} - \frac{f_1 w(f_1, f_2)_x - {f_1}_x w(f_1, f_2)}{f_1^2} \cdot \frac{f_1}{w(f_1, f_2)} \cdot \frac{w(f_1, \varphi)}{f_1} \notag \\
+&= \frac{f_1 w(f_1, \varphi)_x - {f_1}_x w(f_1, \varphi)}{f_1^2} - \frac{[f_1 w(f_1, f_2)_x - {f_1}_x w(f_1, f_2)] w(f_1, \varphi)}{f_1^2 w(f_1, f_2)} \notag \\
+& = \frac{f_1 w(f_1, \varphi)_x w(f_1, f_2) - {{f_1}_x w(f_1, \varphi) w(f_1, f_2)} - f_1 w(f_1, f_2)_x w(f_1, \varphi) + {{f_1}_x w(f_1, f_2) w(f_1, \varphi)}}{f_1^2 w(f_1, f_2)} \notag \\
+& = \frac{f_1[ w(f_1, \varphi)_x w(f_1, f_2) - w(f_1, f_2)_x w(f_1, \varphi)]}{f_1^2 w(f_1, f_2)}
+=\frac{ w(f_1, \varphi)_x w(f_1, f_2) - w(f_1, f_2)_x w(f_1, \varphi)}{f_1\, w(f_1, f_2)}  \label{1.8}
+\end{align}
+而\  $w(f_1, \varphi)_x =
+\begin{vmatrix}
+f_1 & {f_1}_x \\
+\varphi & \varphi_x \\
+\end{vmatrix}_x =
+\begin{vmatrix}
+{f_1}_x & {f_1}_x \\
+\varphi_x & \varphi_x \\
+\end{vmatrix} +
+\begin{vmatrix}
+f_1 & {f_1}_{xx} \\
+\varphi & \varphi_{xx} \\
+\end{vmatrix} =
+f_1 \varphi_{xx} - \varphi {f_1}_{xx}$ \,, \
+$w(f_1, f_2)_x = f_1 {f_2}_{xx} - f_2 {f_1}_{xx}$\,, \\
+
+故式 (\ref{1.8}) 化为
+\begin{align}
+\varphi[2] &= \frac{(f_1 \varphi_{xx} - \varphi {f_1}_{xx}) w(f_1, f_2) - (f_1 {f_2}_{xx} - f_2 {f_1}_{xx})w(f_1, \varphi)}{f_1\, w(f_1, f_2)} \notag \\
+& = \frac{\varphi_{xx} w(f_1, f_2) - {f_2}_{xx} w(f_1, \varphi)}{w(f_1, f_2)} +\frac{ {f_1}_{xx}\,[- \varphi  w(f_1, f_2) + f_2  w(f_1, \varphi)]}{f_1\, w(f_1, f_2)}\,  \label{1.9}
+\end{align}
+式 (\ref{1.9}) 右端的第二项为
+\begin{align*}
+&\frac{{f_1}_{xx}}{f_1\, w(f_1, f_2)}[-\varphi(f_1 {f_2}_x - f_2 {f_1}_x) + f_2(f_1 \varphi_x - {f_1}_x \varphi)] \\
+=& \frac{{f_1}_{xx}}{f_1\, w(f_1, f_2)}[-f_1 \varphi {f_2}_x + f_1 f_2 \varphi_x + {\varphi f_2 {f_1}_x} - {f_2 {f_1}_x \varphi}] \\
+=& \frac{{f_1}_{xx}}{f_1\, w(f_1, f_2)} f_1 w(f_2, \varphi) = \frac{{f_1}_{xx} w(f_2, \varphi)}{ w(f_1, f_2)}\,,
+\end{align*}
+所以式 (\ref{1.9})可化为
+\begin{align*}
+\varphi[2] &= \frac{\varphi_{xx} w(f_1, f_2) - {f_2}_{xx} w(f_1, \varphi) + {f_1}_{xx} w(f_2, \varphi)}{w(f_1, f_2)} = \frac{w(f_1, f_2, \varphi)}{w(f_1, f_2)}\,,
+\end{align*}
+于是
+\begin{align*}
+u[2] = u[1] - 2(\log f[1])_{xx} = u - 2(\log f_1)_{xx} - 2[\log \frac{w(f_1, f_2)}{f_1}]_{xx} = u - 2[\log w(f_1, f_2)]_{xx}\,.
+\end{align*}
+故
+\begin{equation*}
+\begin{cases}
+\varphi[2] = \frac{w(f_1, f_2, \varphi)}{w(f_1, f_2)}, \\
+u[2] = u - 2[\log w(f_1, f_2)]_{xx}.
+\end{cases}
+\end{equation*}
+\textbf{3.\ 第 $N$ 次迭代}
+\begin{equation*}
+\left\{
+\begin{aligned}
+&\varphi[N] = (\frac{\partial}{\partial x} - \frac{f_x[N-1]}{f[N-1]}) \varphi[N-1] = \frac{w(f_1, f_2, \cdots , f_N, \varphi)}{w(f_1, f_2, \cdots, f_N)} \\
+&u[N] = u[N-1] - 2(\log f[N -1])_{xx} = u - 2[\log w(f_1, f_2, \cdots , f_N)]_{xx}
+\end{aligned}
+\right.
+\end{equation*}
+$f_i$是方程(0)对应$\lambda_i$ 的一个特解,\ $\lambda_i \ne \lambda_j\ (i \ne j)$.\\
+
+Darboux 变换是一种系统求解怪波的方法，能够通过多次的迭代得到方程的高阶怪波，是值得深入学习的。我们可以根据方程的类型，恰当选择 Darboux 变换方法来求解怪波。

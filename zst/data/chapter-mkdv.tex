@@ -1,0 +1,489 @@
+﻿\chapter{变系数Gardner方程的解析研究及孤立波模拟}
+上一章研究了变系数KdV方程，其在实际场景中有很多应用。但是当需要考虑临界速度、临界密度、尘埃例子声波等场景时，KdV 方程没有表现出良好的效果\upcite{mkdv-1}。此时需要考虑高阶非线性项，即mKdV(modified KdV)方程。Gardner 方程是KdV方程与mKdV方程的结合，其结合了部分KdV方程和mKdV方程的特点，极具研究价值\upcite{mkdv-1,mkdv-2}，本节所要研究的Gardner 方程具有如下的形式，
+\begin{equation}
+u_t+[p(t)+q(t) x]u_x +k(t)u u_x+ f(t)u^2 u_x  +g(t)u_{xxx}+l(t)u=h(t) , \label{mkdv}
+\end{equation}
+其中关于 $t$ 的解析函数 $p(t)$, $q(t)$, $k(t )$, $f(t )$, $g(t)$, $l(t)$ 和
+$h(t )$ 分别对应耗散项、非均匀项、二阶非线性项、三阶非线性项、色散项、松弛项和外力项。
+方程 (\ref{mkdv}) 的许多简化形式已经被许多学者研究过。
+
+当 $ q(t)=0$ 的时候，方程 (\ref{mkdv}) 变为如下Gardner方程，
+\begin{equation}
+u_t+p(t)u_x +k(t)u u_x+ f(t)u^2 u_x +g(t)u_{xxx}+l(t)u=h(t), \label{eq2}
+\end{equation}
+文献 \cite{mkdv-4,mkdv-5} 得到了它的Painlev\'{e}可积条件，Lax对，B\"{a}cklund变换和 $N$ 孤子解。
+当 $ f(t)=0, k(t)=6, g(t)=1$, $h(t)=0$，方程 (\ref{mkdv}) 简化为
+\begin{equation}
+u_t+[p(t)+q(t)x]\,u_x  +6 u u_x+u_{xxx}+l(t)u=0, \label{eq3}
+\end{equation}
+文献 \cite{mkdv-6} 给出了方程的Painlev\'{e}可积条件，B\"{a}cklund变换和N孤子解。
+当 $ f(t)=6, k(t)=0, g(t)=-1$, $h(t)=0$, 方程 (\ref{mkdv}) 变为
+\begin{equation}
+u_t+[p(t)+q(t)x]\,u_x  +6 u^2 u_x-u_{xxx}+l(t)u=0, \label{eq3-1}
+\end{equation}
+文献 \cite{mkdv-8} 求解出了方程的Painlev\'{e}可积条件，Lax对和B\"{a}cklund变换。
+当  $l(t)=A q(t)$，$h(t)=0$， 方程形式如下
+\begin{equation}
+u_t+[p(t)+q(t)x]u_x +k(t)u u_x+ f(t)u^2 u_x +g(t)u_{xxx}+A q(t)u=0, \label{eq4}
+\end{equation}
+文献 \cite{mkdv-9} 研究了该方程，得到了Painlev\'{e}可积条件，Lax对，B\"{a}cklund变换和 $N$ 孤子解等一系列
+解析结果。
+
+本部分将研究方程 \ref{mkdv}，研究主要内容与之前学者所研究大体一致，其中主要包括Painlev\'{e}分析、贝尔多项式、AKNS、B\"{a}cklund 变换和孤立波模拟等。
+
+\section{可积性质}
+\subsection{Painlev\'{e}性质}
+与之前求解过程类似，
+将 $u(x,t)=\phi^{-\alpha}(x,t)\sum\limits_{j=0}^{\infty}u_j(x,t)\phi^{j}(x,t),\label{mkdv-equ_1}$
+和 Kruskal 简化形式代入原方程，
+通过主项分析，可以得到
+\begin{equation}
+\alpha=1,\quad u_0(t)=\pm  \sqrt{\frac{6g(t)}{-f(t)}}  \, ,
+\end{equation}
+此处的 $u_0$ 可以取正负两种情况，因此后续的求解需要分为正负两种情形，这里先讨论 $u_0(t)=  \sqrt{\frac{6g(t)}{-f(t)}}$ 的情况。在进行了主项分析之后，将主项分析的结果带回原方程，
+进而通过符号计算，可以得到共振点 $j= -1, 3, 4$， 其中 $j = -1$ 相容条件满足。 当 $j = 3$ 和 $j = 4$ 时，经过求解方程系数需要满足如下条件，
+%\begin{align}
+%& g(t)f'(t)-f(t) g'(t)+2 f(t)g(t)[q(t) -l(t)]=0, \label{mkdv-pt3-1}\\
+%& k(t)f'(t)-f(t) k'(t)-f(t)[2 f(t) h(t)+k(t) l(t)]=0.\label{ptmkdv-3-2}
+%\end{align}
+%求解以上方程，得到如下的 Painlev\'{e} 可积条件
+\begin{align}
+& f(t)=c_1 g(t) e^{\int 2[\,l(t)- q(t)] \, dt}\label{mkdv-pt1},\\
+& k(t)=c_1  g(t) e^{\int [l(t)-2 q(t)] \, dt}\big(c_2-2  \int \!h(t) e^{\int l(t) \, dt} \, dt \big),
+\label{mkdv-pt2}
+\end{align}
+其中 $c_1$ 和 $c_2$ 为常数并且 $c_1\neq 0$。进而通过相似的过程求解当 $u_0(t)=  -\sqrt{\frac{6g(t)}{-f(t)}}$ 的情况可以得到与 (\ref{mkdv-pt2})相同的Painlev\'{e}可积条件，因此当(\ref{mkdv-pt2})满足的时候，方程(\ref{mkdv})满足Painlev\'{e}检测。
+\subsection{Lax对}
+在本小节中，将通过采用扩展的AKNS方法构造方程(\ref{mkdv})的Lax对。AKNS方法的核心是方程Lax对的假设形式，许多方程难以求解到Lax对的原因大多是因为其形式没有假设正确。综合之前学者研究的成果以及待求解的方程的特点，本节假设方程的 Lax 对具有如下形式：
+\begin{align}
+&\Phi_x=U \Phi=
+\begin{pmatrix}
+E(t)\lambda & C(x,t)[u+B(t)]\\
+A(x,t) & -E(t)\lambda
+\end{pmatrix}\Phi,\label{mkdv-lp1}
+\end{align}
+\begin{align}
+&\Phi_t=V \Phi=
+\begin{pmatrix}
+H(x,t,\lambda) & G(x,t,\lambda)\\
+F(x,t,\lambda) & -H(x,t,\lambda)
+\end{pmatrix}\Phi,\label{mkdv-lp2}
+\end{align}
+其中 $H(x,t,\lambda)$,
+$G(x,t,\lambda)$ 和 $F(x,t,\lambda)$ 的表达式如下：
+\begin{align}
+&H(x,t,\lambda )=h_0(x,t)+h_1(x,t)\lambda  + h_2(x,t)\lambda^2
++ h_3(x,t)\lambda^3 ,\\
+&G(x,t,\lambda )=g_0(x,t)+g_1(x,t)\lambda  + g_2(x,t)\lambda^2 ,\\
+&F(x,t,\lambda )=f_0(x,t)+f_1(x,t)\lambda  + f_2(x,t)\lambda^2,
+\end{align}
+将此代入到相容条件 $U_t - V_x + U V - V U = 0$ 中，可以求得
+\begin{align}
+%\nonumber
+& C(x,t)=c_3(t) e^{ c_4 E(t) x  },\label{mkdv-lp11} \\
+& E(t)=c_5 e^{-\int q(t) \, dt}, \label{mkdv-lp12} \\
+& B(t)= e^{-\int l(t) \, dt}[c_6 - \int h(t) e^{\int l(t) \, dt} \, dt], \label{mkdv-lp13}\\
+%\nonumber
+& A(x,t)=\frac{  B(t)f(t)-k(t)-f(t)u}{6 g(t) C(x,t)} ,\label{mkdv-lp13-1}  \\
+&H_1(t)=-[B(t)^2 f(t)-B(t) k(t)+3 c_4^2 E(t)^2 g(t)+p(t)],\label{mkdv-lp14}
+\\
+%\begin{split}
+\nonumber
+&H_0(t)=\frac{E(t)}{2}\big[- c_4 B(t)^2  f(t)+ c_4 B(t) k(t)- c_4^3 E(t)^2 g(t)%\\
+%&\quad \quad\quad \,\,
+- c_4 p(t)\big]\\
+& \quad \quad\quad\quad-\frac{l(t)}{2}+\frac{q(t)}{2}+\frac{c'_3(t)}{2c_3(t)},
+%\end{split}
+\label{mkdv-lp15}
+\\
+\begin{split}
+& H(x,t,\lambda )=-4  E(t)^3 g(t)\lambda ^3+6 c_4 E(t)^3 g(t) \lambda ^2+E(t)\big[\frac{1}{3}B(t)^2  f(t)- q(t)  x - \frac{1}{3}B(t)  k(t)
+ \\ %\nonumber
+&\quad \quad\quad  \quad\quad
++ H_1(t)-\frac{1}{3}  f(t)u^2-\frac{1}{3} k(t) u\big]\lambda
++\big[\frac{1}{3} B(t) f(t) -\frac{1}{6} k(t)\big] u_x
+\\&\quad \quad\quad  \quad\quad
++\frac{c_4}{6}  E(t) \big[f(t)u^2
++k(t)u-   B(t)^2  f(t)+   B(t)  k(t)\big]+H_0(t),
+\end{split}
+\label{mkdv-lp16}\\
+\begin{split}
+& G(x,t,\lambda )=C(x,t)
+\Big\{-4  E(t)^2 g(t)[B(t)+u] \lambda ^2
++2 E(t) g(t) \big[2 c_4    E(t) [B(t)+u]- u_x \big]\lambda \\ %\nonumber
+&\quad \quad\quad  \quad\quad
+-\frac{1}{3}f(t) u^3 -\frac{1}{3}[B(t) f(t)+k(t)]  u^2
++ \big[ 2c_4^2  E(t)^2 g(t)- q(t)  x-\frac{2}{3}  B(t) k(t) \\ %\nonumber
+&\quad \quad\quad  \quad\quad
++ H_1(t) +\frac{1}{3}  B(t)^2 f(t)   \big]u
+- g(t) u_{xx}+ c_4 E(t) g(t) u_x
+\\
+&\quad \quad\quad  \quad\quad
++ B(t)\big[2 c_4^2  E(t)^2 g(t) - x q(t)
++\frac{1}{3}B(t)^2 f(t)
++H_1(t)-\frac{1}{3} B(t) k(t)\big]
+\Big\},
+\end{split}
+\label{mkdv-lp17}
+\end{align}
+\begin{align}
+ \nonumber
+&F(x,t,\lambda )=\frac{1}{ C(x,t)}
+\Big\{\frac{2}{3} E(t)^2 [f(t)u-B(t)f(t) +k(t)] \lambda ^2 -\frac{1}{3} E(t) f(t)\Big[  u_x
+\\ \nonumber
+&\quad \quad\quad  \quad\quad
++2 c_4  B(t) E(t) \big[u +\frac{k(t)}{f(t)}-B(t)\big]
+\Big]\lambda
++\frac{f(t)^2}{18g(t)}\big[u^3 +  [\frac{2k(t)}{f(t)}-B(t)]u^2\big]
+\\ \nonumber
+&\quad \quad\quad  \quad\quad
++\frac{f(t)}{18g(t)}\big[\frac{k(t)^2}{f(t)} -B(t)^2 f(t)
+-6 c_4^2  E(t)^2 g(t)
++3q(t)x -3H_1(t) \big]u
+\\ \nonumber
+&\quad \quad\quad  \quad\quad
++ \frac{ f(t)}{6} [ u_{xx}+c_4 E(t) u_x]
+-\frac{c_4^2}{3}   E(t)^2 k(t)
++\frac{1}{6g(t)} [H_1(t)-q(t)x ][f(t)B(t)-k(t)]
+\\
+&\quad \quad\quad  \quad\quad
++ \frac{B(t)f(t)}{18g(t)}\big[ \frac{k(t)^2}{f(t)}+6 c_4^2 E(t)^2  g(t)
+-2B(t)k(t)+B(t)^2 f(t)\big]
+\Big\}.
+\label{mkdv-lp18}
+\end{align}
+
+\section{B\"{a}cklund变换和类孤子解}
+根据上一节得到的Lax对，这一节得到两种类型的 B\"{a}cklund变换，Riccati型的B\"{a}cklund变换和
+Wahlquist-Estabrook型的B\"{a}cklund变换。基于所得到的B\"{a}cklund变换，进一步可求得方程的类孤子解。
+
+\subsection{Riccati型的B\"{a}cklund变换和孤子解}
+为构造方程Riccati型的B\"{a}cklund变换，需要引入函数 $\Gamma(x,t)=\dfrac{\phi_1}{\phi_2}$  并将其代入 Lax对  (\ref{mkdv-lp1}) 和 (\ref{mkdv-lp2})中，由此可以得到如下的等价的$\Gamma$-Riccati系统：
+\begin{align}
+&\Gamma_x=C(x,t)[u+B(t)]+2  \lambda E(t) \Gamma - A(x,t)\Gamma^2,\label{mkdv-lp3}\\
+&\Gamma_t=G(x,t,\lambda) + 2 H(x,t,\lambda) \Gamma - F(x,t,\lambda) \Gamma^2.\label{mkdv-lp4}
+\end{align}
+结合上述等式和Riccati型的B\"{a}cklund变换的定义，可以得到
+\begin{align}
+\Gamma'&=-\frac{ 12 \lambda  E(t) g(t)  e^{\int l(t) \, dt}+c_7 f(t) \Gamma (x,t)}{f(t) \left[c_7-2 \lambda  E(t) \Gamma (x,t) e^{\int l(t) \, dt}\right]},\label{mkdv-lp5}\\
+\nonumber u'&=u -\big[12  g(t) C(x,t) \Gamma _x(x,t) \big]/\big[f(t) \Gamma(x,t)^2+6  g(t) C(x,t)^2\big] + \big[12 \lambda  E(t) g(t)  e^{\int l(t) \, dt} \\
+ &\quad \times C_x(x,t) (c_7 f(t) \Gamma(x,t)^2- 6 c_7 g(t) C(x,t)^2+24 \lambda  E(t) g(t) C(x,t) \Gamma(x,t) e^{\int l(t) \, dt})\big]/ \label{mkdv-lp6}
+ \\
+\nonumber & \quad / \big[C(x,t) (6 g(t) C(x,t)^2+f(t) \Gamma(x,t) ^2) (c_7^2 f(t)+24 \lambda ^2 E(t)^2 g(t) e^{2 \int l(t) \, dt})\big],
+\end{align}
+其中 $c_7=c_2-2c_6$。
+方程组 (\ref{mkdv-lp5}) 和 (\ref{mkdv-lp6}) 可以将方程
+$N-1$ 孤子解转换为 $N$ 孤子解。 当 $C(x,t)=1$ 时， 对Riccati型的B\"{a}cklund变换迭代 $n$ 次，可以通过一个已知的种子解 $u$ 得到新的解 $u_n$，
+\begin{align}
+u_n=u-\frac{12 g(t)\Gamma_n (\lambda_j) _x }{f(t) \Gamma_n  (\lambda_j)^2+6 g(t)}, \label{mkdv-lp7}
+\end{align}
+选择 $u=-B(t)$ 作为种子解， 从Riccati型的B\"{a}cklund变换的空间部分 (\ref{mkdv-lp3}) 解得 $\Gamma_1$ 为
+\begin{equation}
+\Gamma _1(x,t)=\frac{2 \lambda  E(t) e^{2 \lambda  x E(t)}}{A(x,t) e^{2 \lambda  x E(t)}+\alpha(t)},  \label{lp20}
+\end{equation}
+进而通过B\"{a}cklund变换的时间部分(\ref{mkdv-lp4}) 求解 $\alpha(t)$ ，再将 $\Gamma _1$ 代入到 (\ref{mkdv-lp7})，满足约束条件 (\ref{mkdv-pt1})的情况下可以得到方程的单孤子解，
+\begin{align}
+\nonumber
+& u_1=-B(t)-\big[288 c_1^2 \lambda ^2 \alpha(t) E(t)^2 e^{ 2 [\lambda  x E(t)+\theta(t)]}\big]/ \big[-12 c_7 c_1 \alpha(t) e^ {2 \lambda  x E(t)+\theta(t)}
+\\
+&\quad \quad +36 c_1^2 \alpha(t)^2 e^ { 2 \theta(t)}+c_7^2 e^{4 \lambda  x E(t)} + 24  c_1  \lambda ^2 E(t)^2 e^{4 \lambda  x E(t)+2\int  q(t) \, dt} \big]
+,\label{mkdv-lp10-1}
+\end{align}
+其中部分参数表达式如下，
+\begin{align}
+&\theta(t)=\int [2 q(t)-l(t)] \, dt,
+\\&
+\alpha(t)=c_{8} e^{\int \alpha_1(t) \, dt},
+\\&
+\alpha_1(t)=2 \lambda  B(t) E(t)[ B(t)f(t)- k(t)]+2 \lambda  E(t)[4 \lambda ^2 E(t)^2 g(t)+ p(t)]+l(t)-2 q(t).
+\end{align}
+\subsection{Wahlquist-Estabrook型的B\"{a}cklund变换}
+上一小节求得了方程的 Riccati型的B\"{a}cklund变换和孤子解。这一小节将进一步将构造方程的Wahlquist-Estabrook型的B\"{a}cklund变换。由于Gardner方程的特点，其Wahlquist-Estabrook型的B\"{a}cklund变换与方程系数 $f(t)$ 和 $g(t)$ 的正负有关，因此这里需要分为两种情况讨论，$f(t) \cdot g(t) >0$ 和 $f(t) \cdot g(t) <0$ 。
+
+\vspace{1mm}
+\noindent {\textbf{情况1 $f(t) \cdot g(t) >0$}}
+\vspace{1mm}
+
+在此直接求解方程的Wahlquist-Estabrook型的B\"{a}cklund变换十分困难，需要对进行简化后再求解。在这里将约束条件 $C(x,t)=c_3(t)$， 通过方程 (\ref{mkdv-lp6}) 求解 $\Gamma$ 得
+\begin{equation}
+\Gamma=c_3(t)\sqrt{\frac{6g(t)}{f(t)}} \tan \left[ \frac{1}{2} \sqrt{\frac{f(t)}{6 g(t)}} [\int (u-u') \, dx+\beta_1(t)]\right] ,\label{mkdv-lp8}
+\end{equation}
+其中 $\beta_1(t)$ 为任意函数。
+令 $u=-\omega_x$， $u'=-\omega'_x$， 将方程 (\ref{mkdv-lp8}) 代入到 (\ref{mkdv-lp3}) 和 (\ref{mkdv-lp4})，可以得到如下的Wahlquist-Estabrook型的B\"{a}cklund变换
+\begin{align}
+& \omega'_x+\omega_x=2 B(t)+c_7 e^{-\int l(t)\, dt}-c_7 e^{-\int l(t) \, dt} \cos \xi  +2 \lambda  E(t) \sqrt{\frac{6g(t)}{f(t)}} \sin \xi , \label{mkdv-lp8-1}  \\
+& \omega'_t+\omega_t= R_1(t) \sin \xi+ R_2(t) \cos \xi +R_3(t)  , \label{mkdv-lp9}
+\end{align}
+其中相应参数满足如下条件，
+\begin{align}
+& \xi(x,t)=\sqrt{\frac{f(t)}{6g(t)}} [-\omega+\omega'+\beta_1(t)],\nonumber \\
+\nonumber
+& R_1(t)= \frac{ c_7}{3}f(t)e^{-\int l(t) \, dt} \, \big[\omega_x^2 -2 B(t)  \omega_x -2B(t)^2 \big]
+-\frac{c_7^2}{3}f(t) e^{-2 \int l(t) \, dt} \big[ \omega_x
++2B(t)\big]
+\\ \nonumber
+&\quad\quad\quad
++ c_7 e^{-\int l(t) \, dt}\big[4\lambda ^2 E(t)^2 g(t) + p(t) + x q(t) \big]+4 \lambda  E(t) g(t) \omega_{xx}\, ,
+\\ \nonumber
+& R_2(t)= \frac{2 \sqrt{6}  \lambda } {3} E(t) \sqrt{f(t) g(t)}\, \big[ 2B(t)  \omega_x - \omega_x^2+2 B(t)^2 \big]-\sqrt{\frac{6g(t)}{f(t)}}\frac{c'_3(t)}{c_3(t)}\\ \nonumber
+& \quad\quad\quad
++\frac{\sqrt{6}c_7}{3}\sqrt{f(t) g(t)} e^{-\int l(t) \, dt}
+\big[2 \lambda  E(t) \omega_x +\omega_{xx}+4\lambda  B(t) E(t) \big]
+\\ \nonumber
+& \quad\quad\quad
+ -2 \lambda E(t) \sqrt{\frac{6g(t)}{f(t)}}\,\big[ p(t)   +  x  q(t)  + 4  \lambda ^2 E(t)^2 g(t) \big],
+ \\ \nonumber
+& R_3(t)= 2 B(t) f(t) \omega_x^2[f(t)-1] +\frac{1}{3} c_7^2 f(t)  e^{-2 \int l(t) \, dt}[\omega_x+2B(t)]\\ \nonumber
+& \quad\quad\quad +c_7 f(t) e^{-\int l(t) \, dt}[f(t)  \omega_x^2-\omega_x^2+2B(t)^2]+8 \lambda ^2 E(t)^2 g(t) [\omega_x- B(t)] \\ \nonumber
+& \quad\quad\quad
++[q(t)-l(t)](\omega+\omega'+\beta_1(t))
+ +2B(t)[\frac{2}{3} B(t)^2 f(t)- B(t) - x  q(t)]
+\\ \nonumber
+& \quad\quad\quad - c_7 e^{-\int l(t) \, dt}[4\lambda ^2 E(t)^2 g(t) + p(t) + x q(t)]-\beta_1'(t)-2 x h(t).
+\end{align}
+至此本章求得了方程一种情况下的Wahlquist-Estabrook型的B\"{a}cklund变换，可以看出所求变换系数十分复杂，整个计算都需借助符号计算工具的辅助，否则只通过手工计算，将难以求解如此复杂的方程的解。\\
+\vspace{1mm}
+\noindent {\textbf{情况 2. \ \ $f(t) \cdot g(t) <0$}}
+\vspace{1mm}\\
+在这种情况下，可以得到与前一种情况不同的 $\Gamma$ 的表达式如下，
+\begin{equation}
+\Gamma=-c_3(t) \sqrt{\frac{6g(t)}{-f(t)}} \tanh \left[\frac{1}{2} \sqrt{\frac{-f(t)}{6 g(t)}} \Big(\int (u-u') \, dx+\beta_2(t)\Big)\right] \label{mkdv-lp8-2}
+\end{equation}
+进行和之前相似的过程，可以得到此种情况下的Wahlquist-Estabrook型的B\"{a}cklund变换如下，
+\begin{align}
+& \omega'_x+\omega_x=-2 B(t)-c_7 e^{-\int l(t)\, dt}+ 4 \omega_x +c_7 e^{-\int l(t) \, dt} \cosh \eta
+-2 \lambda  E(t) \sqrt{\frac{6g(t)}{-f(t)}} \sinh \eta , \label{lp8-3}  \\
+& \omega'_t+\omega_t= S_1(t) \sinh \eta + S_2(t) \cosh \eta +S_3(t)  , \label{mkdv-lp9-1}
+\end{align}
+相应的系数也需要满足如下条件，
+\begin{align}
+&\eta(x,t)=\sqrt{\frac{-f(t)}{6g(t)}} [-\omega+\omega'+\beta_2(t)]\ ,\nonumber \\
+\nonumber
+& S_1(t)= -R_1(t),
+\\ \nonumber
+& S_2(t)= -\frac{2 \sqrt{6}  \lambda } {3} E(t) \sqrt{-f(t) g(t)}\, \big[ 2B(t)  \omega_x - \omega_x^2+2 B(t)^2 \big]+\sqrt{\frac{6g(t)}{-f(t)}}\frac{c'_3(t)}{c_3(t)}\\ \nonumber
+& \quad\quad\quad
+-\frac{\sqrt{6}c_7}{3}\sqrt{-f(t) g(t)} e^{-\int l(t) \, dt}
+\big[2 \lambda  E(t) \omega_x +\omega_{xx}+4\lambda  B(t) E(t) \big]
+\\ \nonumber
+& \quad\quad\quad
+ +2 \lambda E(t) \sqrt{\frac{6g(t)}{-f(t)}}\,\big[ p(t)   +  x  q(t)  + 4  \lambda ^2 E(t)^2 g(t) \big],\\
+\nonumber
+& S_3(t)= 2 B(t) f(t) \omega_x^2[f(t)+1] -\frac{1}{3} c_7^2 f(t)  e^{-2 \int l(t) \, dt}[\omega_x+2B(t)]\\ \nonumber
+& \quad\quad\quad +c_7 f(t) e^{-\int l(t) \, dt}[f(t)  \omega_x^2+\omega_x^2-2B(t)^2]-8 \lambda ^2 E(t)^2 g(t) [\omega_x- B(t)] \\ \nonumber
+& \quad\quad\quad
++[q(t)-l(t)](\omega+\omega'+\beta_2(t))
+ +2B(t)[-\frac{2}{3} B(t)^2 f(t)+ B(t) + x  q(t)]
+\\ \nonumber
+& \quad\quad\quad + c_7 e^{-\int l(t) \, dt}[4\lambda ^2 E(t)^2 g(t) + p(t) + x q(t)]-\beta_2'(t)-2 x h(t)
+\\ \nonumber
+& \quad\quad\quad
+-\frac{4}{3} f(t) \omega_x^3-4 g(t) \omega_{xxx}-4 p(t) \omega_x-4 x q(t) \omega_x.
+\end{align}
+
+\section{贝尔多项式和 $N$ 孤子解}
+将下列变换 $u=a(t) H_{x}+b(t)$ 代入到方程 (\ref{mkdv})， 可以得到
+\begin{align}
+\begin{split}
+& a'(t) H_{x}+2 a(t)^2 b(t) f(t) H_{x} H_{xx}+a(t) b(t)^2 f(t) H_{xx}+a(t) b(t) k(t) H_{xx}\\ %\nonumber
+& +a(t)^3 f(t) H_{x}^2 H_{xx}+a(t) g(t) H_{4x}+a(t) h(t) H_{x}+a(t)^2 k(t) H_{x} H_{xx}\\
+& +a(t) p(t) H_{xx}+x a(t) q(t) H_{xx}+a(t) H_{xt}+b'(t)+b(t) l(t)-h(t)=0,
+\end{split}
+\label{mkdv-bn1}
+\end{align}
+其中 $H$ 是一个关于 $x$ 和 $t$ 的函数。 令 $b'(t)+b(t) l(t)-h(t)=0$， 有以下等式成立，
+\begin{equation}
+b(t)=b_1 e^{\int -l(t) \, dt}+e^{\int -l(t) \, dt} \int h(t) e^{\int l(t) \, dt} \, dt,
+\end{equation}
+其中 $b_1$ 为任意常数。
+进而对 方程 (\ref{mkdv-bn1}) 积分一次并令 $H$ 之前系数为 $0$ ，可以得到
+\begin{equation}
+a(t)= a_1 e^{\int(q(t)-l(t)) \, dt},
+\end{equation}
+其中 $a_1$ 是任意常数。
+进而方程 (\ref{mkdv-bn1}) 可以简化为
+\begin{align}
+\begin{split}
+& a(t) b(t) f(t) H_{x}^2+ b(t)^2 f(t) H_{x}+ b(t) k(t) H_{x}+\frac{1}{3} a(t)^2 f(t) H_{x}^3\\
+& + g(t) H_{xxx}+\frac{1}{2} a(t) k(t) H_{x}^2+ p(t) H_{x}+x  q(t) H_{x}+ H_{x}=0 .
+\end{split}
+\label{mkdv-bn2}
+\end{align}
+此时无法直接得到方程的双线性形式，需要根据方程系数 $f(t)$ 和 $g(t)$ 的正负的不同分别求解，进而可以得到两组双线性形式和 $N$ 孤子解。\\
+\vspace{1mm}
+\noindent {\textbf{情况 1. \ \ $f(t) \cdot g(t) >0$}}
+\vspace{1mm}\\
+将 $H(x,t)= -\mbox{i} \ln{\frac{G(x,t)}{F(x,t)}}$
+代入方程 (\ref{mkdv-bn2})， 令 $V=\ln(G/F), W=\ln(GF)$，得到如下等式
+\begin{align}
+&
+\mathcal{Y}_{t}(V,W)+\big[b^2(t)+x q(t) +p(t)+b(t)k(t)\big]\mathcal{Y}_{x}(V,W)+g(t) \mathcal{Y}_{3x}(V,W)=0,\\
+&
+2\mbox{i}g(t)\mathcal{Y}_{2x}(V,W)+ \big[\frac{1}{2}a(t)k(t)+a(t)b(t)f(t)\big] \mathcal{Y}_{x}(V,W)  =0.
+\end{align}
+通过双线性算子与贝尔多项式的对应关系，可以推出如下的双线性形式，
+\begin{align}
+&
+\Big [ D_t+  \big[b^2(t)+x q(t) +p(t)+b(t)k(t)\big]D_x +
+g(t)D_x^3  \Big ]G \cdot F =0, \label{mkdv-bn3} \\
+&\Big [2\mbox{i} g(t)D_x^2+ \big[\frac{1}{2}a(t)k(t)+a(t)b(t)f(t)\big] D_x \Big ] G \cdot F =0, \label{mkdv-bn4}
+\end{align}
+其中方程参数需要满足 $g(t)=\frac{1}{24} a(t)^2 f(t)$， 同时这个约束也满足Painlev\'{e}可积条件(\ref{mkdv-pt1})。
+进而将 $G = F^{\uppercase\expandafter{\romannumeral 1}} + \mbox{i}G^{\uppercase\expandafter{\romannumeral 1}}$ 和 $F = F^{\uppercase\expandafter{\romannumeral 1}} - \mbox{i } G^{\uppercase\expandafter{\romannumeral 1}}$
+代入方程组 (\ref{mkdv-bn3}) 和 (\ref{mkdv-bn4}) 可以推出
+\begin{align}
+&\Big [ D_t+  \big[b^2(t)f(t)+x q(t) +p(t)+b(t)k(t)\big]D_x +
+g(t)D_x^3  \Big ]G^{\uppercase\expandafter{\romannumeral 1}} \cdot F^{\uppercase\expandafter{\romannumeral 1}} =0,\label{mkdv-bn5}\\
+&
+-3 g(t) D_x^2 F^{\uppercase\expandafter{\romannumeral 1}} \cdot F^{\uppercase\expandafter{\romannumeral 1}} -3 g(t) D_x^2 G^{\uppercase\expandafter{\romannumeral 1}} \cdot G^{\uppercase\expandafter{\romannumeral 1}} +\big[\frac{1}{2}a(t)k(t)+a(t)b(t)f(t)\big] D_x G^{\uppercase\expandafter{\romannumeral 1}} \cdot F^{\uppercase\expandafter{\romannumeral 1}} =0.\label{mkdv-bn6}
+\end{align}
+将 $G^{\uppercase\expandafter{\romannumeral 1}}$ 和 $F^{\uppercase\expandafter{\romannumeral 1}}$ 展开为 $ \epsilon $ 的级数的形式如下
+\begin{equation}
+G^{\uppercase\expandafter{\romannumeral 1}}(x,t)=1+\sum_{i = 1}^{\infty}
+\epsilon^{\,i}\,G_{i}(x,t)\;, \ \
+F^{\uppercase\expandafter{\romannumeral 1}}(x,t)=1+\sum_{i = 1}^{\infty}
+\epsilon^{\,i}\,F_{i}(x,t)\;, \label{mkdv-bn8}
+\end{equation}
+进而将以上两式代入方程 (\ref{mkdv-bn5}) 和 (\ref{mkdv-bn6})，这里省略了复杂的中间计算过程，具体的计算过程与上一章计算KdV的 $N$ 孤子解类似。经过复杂的符号计算，可以得到约束条件 (\ref{mkdv-pt2}) 下的 $N$ 孤子解，
+\begin{equation}
+u(x,t) =a(t)\big[ \arctan{\frac{G^{\uppercase\expandafter{\romannumeral 1}}}{F^{\uppercase\expandafter{\romannumeral 1}}}}  \big]_x +b(t)\ ,\label{mkdv-bn9}
+\end{equation}
+其中孤子解中的参数都有极为复杂的形式，具体的表达式如下，
+\begin{align}
+\nonumber
+& G^{\uppercase\expandafter{\romannumeral 1}}=1+  \sum_{i = 1}^{n} g^{\uppercase\expandafter{\romannumeral 1}}_i \exp{(\theta_i)}
++ \sum_{1 \leq s_1 < s_2 \leq n} g^{\uppercase\expandafter{\romannumeral 1}}_{s_1 s_2}\exp{(\theta_{s_1}+\theta_{s_2})}\\
+&\quad\quad +\cdots + \sum_{1 \leq s_1 < \cdots < s_{n-1} \leq n} g^{\uppercase\expandafter{\romannumeral 1}}_{s_1 \cdots s_{n-1}}\exp{\big(\sum_{i = 1}^{n-1} \theta_{s_i} \big )}
++ g^{\uppercase\expandafter{\romannumeral 1}}_{12 \cdots n}\exp{\big(\sum_{i = 1}^{n} \theta_{s_i} \big )},
+\\
+\nonumber
+& F^{\uppercase\expandafter{\romannumeral 1}}=1+  \sum_{i = 1}^{n} \exp{(\theta_i)}
++ \sum_{1 \leq s_1 < s_2 \leq n} f^{\uppercase\expandafter{\romannumeral 1}}_{s_1 s_2}\exp{(\theta_{s_1}+\theta_{s_2})}\\
+&\quad\quad +\cdots + \sum_{1 \leq s_1 < \cdots < s_{n-1} \leq n} f^{\uppercase\expandafter{\romannumeral 1}}_{s_1 \cdots s_{n-1}}\exp{\big(\sum_{i = 1}^{n-1} \theta_{s_i} \big )}
++ f^{\uppercase\expandafter{\romannumeral 1}}_{12 \cdots n}\exp{\big(\sum_{i = 1}^{n} \theta_{s_i} \big )},
+\\
+& \theta_i=M_i(t) x + N_i(t) + \delta_i,
+\\ & M_i(t)= m_i e^{-\int q(t) \, dt},\\
+ & N_i(t)=\int \big[-M_i(t) (b(t)^2 f(t)+b(t) k(t)+g(t)  M_i(t)^2+p(t))\big] dt,\\
+ & g^{\uppercase\expandafter{\romannumeral 1}}_i =\frac{a_1 m_i+4 b_1+2 c_2}{-a_1 m_i +4 b_1+2 c_2},\\
+& f^{\uppercase\expandafter{\romannumeral 1}}_{s_1 \cdots s_{j}}=\frac{\prod_{s_i < s_j}^{(n)} (m_{s_i}-m_{s_j})^2  }{\prod_{s_i < s_j}^{(n)} (m_{s_i}+m_{s_j})^2} R_f^j, 1 \leq s_1 <\cdots < s_{j} \leq n,\\
+& R_f^j =\frac{\sum_{l = 0}^{j}(4 b_1+2 c_2)^{j-l} (a_1 m_i)^{l} (-1)^{[\frac{l}{2}]}
+\sum_{1 \leq s_1 < \cdots < s_l \leq n} m_{s_1} m_{s_2} \cdots m_{s_2}}
+{\prod_{l = s_1}^{s_j} (4b_1+2c_1-a_1 m_l)},
+\\ & g^{\uppercase\expandafter{\romannumeral 1}}_{s_1 \cdots s_{j}}=\frac{\prod_{s_i < s_j}^{(n)} (m_{s_i}-m_{s_j})^2  }{\prod_{s_i < s_j}^{(n)} (m_{s_i}+m_{s_j})^2} R_g^j, 1 \leq s_1 < \cdots < s_{j} \leq n,
+\\ & R_g^j = \frac{\sum_{l = 0}^{j}(4 b_1+2 c_2)^{j-l} (a_1 m_i)^{l} (-1)^{[\frac{l+1}{2}]}
+\sum_{1 \leq s_1 < \cdots < s_l \leq n} m_{s_1} m_{s_2} \cdots m_{s_2}}
+{\prod_{l = s_1}^{s_j} (4b_1+2c_1-a_1 m_l)}.
+\end{align}
+其中 $m_i$ 和 $\delta_i$ 为任意常数。
+当 $n=1$ 的时候，在约束条件 $c_2 = -2 b_1$ 下，得到如下单孤子解，
+\begin{equation}
+u(x,t)=-a(t) M_1(t)\frac{\text{sech}\, \theta_1}{2}+b(t). \label{mkdv-single}
+\end{equation}
+
+\vspace{1mm}
+\noindent {\textbf{情况 2. \ \ $f(t) \cdot g(t) <0$}}
+\vspace{1mm}\\
+在这种约束下，为求解方程另一种双线性形式，令
+\begin{equation}
+u(x,t) =a(t)\big( \ln{\frac{G^{\uppercase\expandafter{\romannumeral 2}}}{F^{\uppercase\expandafter{\romannumeral 2}}}}  \big)_x +b(t). \label{mkdv-bn11}
+\end{equation}
+经过与之前相同的计算过程， 可以得到此种条件下的方程双线性形式
+\begin{align}
+&\Big [ D_t+  \big(b^2(t)f(t)+x q(t) +p(t)+b(t)k(t)\big)D_x +
+g(t)D_x^3  \Big ]G^{\uppercase\expandafter{\romannumeral 2}} \cdot F^{\uppercase\expandafter{\romannumeral 2}} =0,\label{mkdv-bn12}\\
+ &- 3 g(t) D_x^2 G^{\uppercase\expandafter{\romannumeral 2}} \cdot  F^{\uppercase\expandafter{\romannumeral 2}}  +\big[\frac{1}{2}a(t)k(t)+a(t)b(t)f(t)\big] D_x  G^{\uppercase\expandafter{\romannumeral 2}} \cdot  F^{\uppercase\expandafter{\romannumeral 2}} =0,\label{mkdv-bn13}
+\end{align}
+其中 $g(t)=-\frac{1}{6} a(t)^2 f(t)$。进而得到如下的 $N$ 孤子解，
+\begin{align}
+\nonumber
+ &G^{\uppercase\expandafter{\romannumeral 2}}=1+  \sum_{i = 1}^{n} g^{\uppercase\expandafter{\romannumeral 2}}_i \exp{(\theta'_i)}
++ \sum_{1 \leq s_1 < s_2 \leq n} g^{\uppercase\expandafter{\romannumeral 2}}_{s_1 s_2}\exp{(\theta'_{s_1}+\theta'_{s_2})}\\
+&\quad\quad \,\,+\cdots + \sum_{1 \leq s_1 < \cdots < s_{n-1} \leq n} g^{\uppercase\expandafter{\romannumeral 2}}_{s_1 \cdots s_{n-1}}\exp{\big(\sum_{i = 1}^{n-1} \theta'_{s_i} \big )}
++ g^{\uppercase\expandafter{\romannumeral 2}}_{12 \cdots n}\exp{\big(\sum_{i = 1}^{n} \theta'_{s_i} \big )},
+\\
+\nonumber
+ &F^{\uppercase\expandafter{\romannumeral 2}}=1+  \sum_{i = 1}^{n} \exp{(\theta'_i)}
++ \sum_{1 \leq s_1 < s_2 \leq n} f^{\uppercase\expandafter{\romannumeral 2}}_{s_1 s_2}\exp{(\theta'_{s_1}+\theta'_{s_2})}\\
+&\quad\quad\,\, +\cdots + \sum_{1 \leq s_1 < \cdots < s_{n-1} \leq n} f^{\uppercase\expandafter{\romannumeral 2}}_{s_1 \cdots s_{n-1}}\exp{\big(\sum_{i = 1}^{n-1} \theta'_{s_i} \big )}
++ f^{\uppercase\expandafter{\romannumeral 2}}_{12 \cdots n}\exp{\big(\sum_{i = 1}^{n} \theta'_{s_i} \big )},
+\end{align}
+相应的系数表达式如下，
+\begin{align}
+& \theta'_i=M'_i(t) x + N'_i(t) + \delta'_i,
+\\ & M'_i(t)= m'_i e^{-\int q(t) \, dt},
+\\  & N'_i(t)= \int \big[-M'_i(t) (b(t)^2 f(t)+b(t) k(t)+g(t) M'_i(t)^2+p(t))\big] dt,
+\\ & g^{\uppercase\expandafter{\romannumeral 2}}_i =\frac{a_1 m'_i+4 b_1+2 c_2}{-a_1 m'_i +4 b_1+2 c_2},
+\\ & f^{\uppercase\expandafter{\romannumeral 2}}_{s_1 \cdots s_{j}}=\frac{\prod_{s_i < s_j}^{(n)} (m'_{s_i}-m'_{s_j})^2  }{\prod_{s_i < s_j}^{(n)} (m'_{s_i}+m'_{s_j})^2} , 1 \leq s_1 < \cdots < s_{j} \leq n,
+\\ & g^{\uppercase\expandafter{\romannumeral 2}}_{s_1 \cdots s_{j}}=\frac{\prod_{s_i < s_j}^{(n)} (m'_{s_i}-m'_{s_j})^2  }{\prod_{s_i < s_j}^{(n)} (m'_{s_i}+m'_{s_j})^2} \prod_{l=1}^{j} g^{\uppercase\expandafter{\romannumeral 2}}_{s_l}, 1 \leq s_1 < \cdots < s_{j} \leq n,
+\end{align}
+当 $n=1$ 时，得到单孤子解如下，
+\begin{equation}
+u(x,t)=a(t) M'_1(t)\text{csch} \,\theta'_1   +b(t), \label{mkdv-single2}
+\end{equation}
+可以看出此时得到的单孤子解与之前得到的 (\ref{mkdv-single}) 不同。
+
+
+\section{孤立波的传播与相交}
+在本节中，将给出两组图像来展示变系数对方程孤立波传播的影响以及孤立波传播的特点。由于孤子解 (\ref{mkdv-bn9}) 包含一般孤子和呼吸子，而解(\ref{mkdv-bn11})只含有孤立子，因此本节选择当 $N=3$ 时候的解(\ref{mkdv-bn9}) 来展示孤立波的传播，相交以及孤立子与呼吸子的相交。
+可以通过选取解(\ref{mkdv-bn9})中一对共轭的参数来得到呼吸子波，其具有周期性震动的特点。
+图 \ref{mkdv-fig1} 中的两组图显示了呼吸子和孤子的相交，图 \ref{mkdv-fig1-1} 和 \ref{mkdv-fig2-2} 展示了孤立子和呼吸子在三维空间传播的特点，图 \ref{mkdv-fig2-1} 和 \ref{mkdv-fig1-2}显示了特定时间孤立子和呼吸子在空间中传播特点的变化。图 \ref{mkdv-fig2} 显示普通孤立波传播的方向改变与相交，可以看出通过不同参数的选取，孤立波的传播变化很大，以此可以描述各种非线性现象。
+
+\begin{figure}[!htp]
+\centering
+
+\subfigure[]{
+\includegraphics[width=0.4\linewidth]{fig1-1.jpg}
+\label{mkdv-fig1-1}
+}
+\qquad
+\subfigure[]{
+\includegraphics[width=0.5\linewidth]{fig1-2.jpg}
+\label{mkdv-fig2-1}
+}
+\\
+\centering
+\subfigure[]{
+\includegraphics[width=0.4\linewidth]{fig2-1.jpg}
+\label{mkdv-fig2-2}
+}
+\qquad
+\subfigure[]{
+\includegraphics[width=0.5\linewidth]{fig2-2.jpg}
+\label{mkdv-fig1-2}
+
+}
+
+\caption{孤立子和呼吸子的传播与相交}
+\label{mkdv-fig1}
+\end{figure}
+
+
+\begin{figure}[!htp]
+\centering
+
+\subfigure[]{
+\includegraphics[width=0.25\linewidth]{fig3.jpg}
+\label{mkdv-fig3}
+}
+\qquad
+\subfigure[]{
+\includegraphics[width=0.25\linewidth]{fig4.jpg}
+\label{mkdv-fig4}
+}
+\qquad
+\subfigure[]{
+\includegraphics[width=0.25\linewidth]{fig5.jpg}
+\label{mkdv-fig5}
+}
+
+
+\caption{三孤子的传播与相交}
+\label{mkdv-fig2}
+\end{figure}
+
+\section{本章小结}
+本章对变系数Gardner方程(\ref{mkdv})的可积性和解析解进行了深入的研究。首先，对所研究方程的研究现状进行了分析。进而通过Painlev\'{e}检测，得到了方程(\ref{mkdv})的Painlev\'{e}可积条件。通过扩展的AKNS系统，构造了方程的Lax 对，$\Gamma$-Riccati型的B\"{a}cklund变换和Wahlquist-Estabrook型的B\"{a}cklund变换。通过贝尔多项式方法，得到了方程的双线性形式和 $N$ 孤子解。最后，借助于所得到的 $N$ 孤子解，对孤立波进行了模拟，展示了孤立子和呼吸子的传播特点。
+
+
+

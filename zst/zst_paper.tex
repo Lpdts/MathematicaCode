@@ -1,0 +1,56 @@
+% !Mode:: "TeX:UTF-8"
+%=====6章
+
+%%
+%\makeatletter
+%\def\@cite#1#2{\textsuperscript{[{#1\if@tempswa , #2\fi}]}}
+%\makeatother
+
+%\newcommand{\uupcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}%此命令无用!!!!
+\documentclass[master,openright,oneside]{buaathesis}
+
+\usepackage{diagbox}
+\usepackage{float}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+% Custom
+% \include{data/custom}
+
+\begin{document}
+% 用户信息
+\include{data/com_info}
+\include{data/master/master_info}
+
+% 中英封面、提名页、授权书
+\maketitle
+% 前言页眉页脚样式anderson2012optimal
+\pagestyle{frontmatter}
+% 摘要
+\include{data/abstract}
+% 目录、插图目录、表格目录\cite{}
+\tableofcontents
+%\listoffigures
+%\listoftables
+% 将表格的行距增大为正常行距
+\renewcommand{\arraystretch}{1.5}
+%添加subsubsection编号为1. 2.
+\renewcommand{\thesubsubsection}{\arabic{subsubsection}.}
+\setcounter{secnumdepth}{3}
+% 正文页码样式
+\mainmatter
+% 正文页眉页脚样式
+\pagestyle{mainmatter}
+
+%修改表格命令
+\newcolumntype{C}[1]{>{\centering}p{#1}}
+\setlength\belowcaptionskip{0pt}
+
+% 正文
+\include{data/chapter-introduction}
+\include{data/chapter-ss}
+
+% 参考文献
+\include{data/reference}
+
+\end{document}
