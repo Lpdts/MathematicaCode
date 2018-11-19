@@ -1,0 +1,246 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{titlesec}
+\usepackage{geometry}
+\usepackage{cite}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage[colorlinks,linkcolor=blue,filecolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+
+\renewcommand{\baselinestretch}{1.2}
+
+\title{\large\bfseries Integrability and soliton solution for a generalized variable-coefficient nonlocal Sasa-Satsuma equation}
+\author{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+A generalized variable-coefficient nonlocal Sasa-Satsuma equation which can describe the ultra short pulses in optical fiber communications and propagation of deep ocean waves is investigated in this Letter. With symbolic computation help, Lax pair and Riccati-type auto-B\"acklund transformation are constructed. Based on the result, the explicit one-soliton solutions is obtained and an infinite number of conservation laws are derived recursively. In additionally, exact explicit rogue wave solution is presented by use of a Darboux transformation under certain conditions. \\
+\indent\textbf{Keywords:} Variable-coefficient nonlocal schro\"dinger equation, Lax Pair, B\"acklund transformation, Conservation law
+\end{abstract}
+
+\section{Introduction}
+Sasa-Satsuma equation (SSE) is one of the nonlinear evolution equations (NLEEs), which has attracted much attentions and studied in recent years. It is used to describe and explain many phenomenons in different fields such as fluid dynamics, plasma physics, and optical fiber communications.\cite{1,2,3,4,5,6,7,8,9,10,11,12,13} When under different conditions or complex scenes, the variable-coefficient NLEEs are able to describe various situations more realistically than their constant-coefﬁcient counterparts.\cite{12,13} In this Letter we will investigate a generalized and expanded Sasa-Satsuma equation with variable coefficients as follows,
+\begin{align}
+  & \mathrm{i}u_{t} + \alpha_1(t) u_{xx} + \alpha_2(t)u^2u^*(-x,t) + \mathrm{i}\left[\alpha_3(t)u_{xxx} + \alpha_{4}(t)[u^{2}u^*(-x,t)]_{x}  \right. \notag\\
+  & \left. + \alpha_{5}(t)[uu^*(-x,t)]_{x}u + \alpha_{6}(t)u + \alpha_{7}(t)u_x\right] = 0,   \label{1}
+\end{align}
+where $u$ denotes the complex envelope of the wave field, and all coefficients $\alpha_{1}(t), \cdots, \alpha_{7}(t)$ are real functions of $t$, describing the effects of group velocity dispersion, self-phase modulation, third order dispersion, self-steepening and self-frequency shifting via stimulated Raman scattering respectively.
+
+This Letter is arranged as follows. In Section 2, based on the extended AKNS system, the Lax pair of Eq.\eqref{1} will be constructed. In Section 3, Riccati-type auto-B\"acklund transformations will be presented and then one-soliton of Eq.\eqref{1} will be provided via the obtained B\"acklund transformation. And an infinite number of recursive conservation laws will be derived in Section 4. In Section 5, A twisted rogue-wave pair will be given under certain constraints. Finally, we will get conclusion and discussion in Section 6.
+
+\section{Lax Pair}
+    The Lax pair may ensure the complete integrability of a NLEE, and can be used to obtain B\"acklund transformation, soliton solutions and conservation laws\cite{12}. To construct the Lax pair of Eq.(1), we extend AKNS procedure and introduce the function $a(t)$ and $b(t)$ as below,
+\begin{align}
+  & \Phi_{x} = U\Phi = a(t)(\lambda U_{0} + U_{1})\Phi  \label{2}\\
+  & \Phi_{t} = V\Phi = b(t)(\lambda^{3}V_{0} + \lambda^{2}V_{1} + \lambda V_{2} + V_{3})\Phi  \label{3}
+\end{align}
+where $\Phi=(\Phi_{1}, \Phi_{2}, \Phi_{3})^{T}$, $\lambda$ is a parameter independent of $x$ and $t$, $U$ and $V$ are two $3 \times 3$ matrices, which must satisfy the compatibility condition $U_{t} - V_{x} + UV - VU = 0$.
+
+In the following procedure, we assume the matrices $U_{0}, U_{1}, V_{0}, V_{1}, V_{2}$ and $V_{3}$ can be determined in the following forms:
+\begin{align}
+  & U_{0} = \begin{pmatrix}
+             -\mathrm{i} & 0 & 0 \\
+              0 & \mathrm{i} & 0 \\
+              0 & 0 & \mathrm{i}
+            \end{pmatrix}, \label{4} \\ \notag\\
+  & U_{1} = \begin{pmatrix}
+              0 & ku^{*}(-x,t) & k^{*}(-x,t)u \\
+              -k^{*}(-x,t)u & 0 & 0 \\
+              -ku^{*}(-x,t) & 0 & 0
+            \end{pmatrix}, \label{5} \\ \notag\\
+  & V_{0} = \frac{2}{3}U_{0}, \quad V_{1} = \frac{2}{3}U_{1}, \\ \notag\\
+  & V_{2} = \begin{pmatrix}
+              2A_{1} & kA_{2} & -k^{*}(-x,t)A_{2}^{*}(-x,t) \\
+              -k^{*}(-x,t)A_{2}^{*}(-x,t) & A_{1}^{*}(-x,t) & -k^{*}(-x,t)^{2}A_{3}^{*}(-x,t) \\
+              kA_{2} & k^{2}A_{3} & A_{1}^{*}(-x,t)
+            \end{pmatrix}, \\ \notag\\
+  & V_{3} = \begin{pmatrix}
+              0 & kA_{4} & k^{*}(-x,t)A_{4}^{*}(-x,t) \\
+              -k^{*}(-x,t)A_{4}^{*}(-x,t) & A_{5} & 0 \\
+              -kA_{4} & 0 & -A_{5}^{*}(-x,t)
+            \end{pmatrix}, \label{8}
+\end{align}
+with $k=e^{\left[\mathrm{i}k_{1}(t) + k_2(t)\right]x + \mathrm{i}k_{3}(t) + k_4(t)}$, and substituting them into the compatibility condition yield
+\begin{align}
+  & a(t) = a \\
+  & b(t) = 6a^{3}\alpha_{3}(t) \\
+  & \delta(t) = e^{\int \alpha_6(t)dt} \\
+  & k =\mathrm{Exp}\left[\beta x + \int \alpha_6(t)dt \right] \\
+  & A_{1} =  \mathrm{i}\gamma + \frac{1}{3}\mathrm{i}\delta(t)^2u(x,t)u^*(-x,t) \\
+  & A_{2} = \frac{\mathrm{i}\left[\beta u^*(-x,t) - u^*_x(-x,t)\right]}{3a}  \\
+  & A_{3} = -\frac{\mathrm{i}}{3}u^{*}(-x,t)^{2}  \\
+  & A_{4} = -\frac{(9a^2\gamma+\beta^2)u^*(-x,t)}{6a^2}-\frac{2}{3}\delta(t)^2uu^*(-x,t)^2 +\frac{2\beta u^*_x(-x,t) - u^*_{xx}(-x,t)}{6a^2} \\
+  & A_{5} = \frac{-9a^2\beta \gamma - \beta^3}{6a^3} + \frac{\delta(t)^2\left[2\beta uu^*(-x,t) - u_xu^*(-x,t) - uu^*_x(-x,t)\right]}{6a}
+\end{align}
+under the constraint
+\begin{align}
+  & \alpha_{4}(t) = 6a^{2}\delta(t)^{2}\alpha_{3}(t) \\
+  & \alpha_{7}(t) = 9a^2\gamma\alpha_3(t) + 3\beta^2\alpha_3(t)
+\end{align}
+where $\beta, \gamma, a$ are unconstrained parameters, and $*$ denotes the complex conjugate. It can be verified that the compatibility condition $\Phi_{xt} = \Phi_{tx}$ with Eqs.\eqref{2}-\eqref{8} leads to Eq.\eqref{1}.
+
+\section{Auto-B\"acklund transformation}
+The B\"acklund transformation is a useful method to construct the solutions of NLEEs. We can get a new analytic solution form a known solution via the B\"acklund transformation\cite{11,14,15,16}. First, we construct the B\"acklund transformation of Eq.\eqref{1} in Riccati form.
+
+By introducing the function $\Gamma_{1}(x,t), \Gamma_{2}(x,t)$ as
+\begin{equation}
+  \Gamma_{1} = \frac{\phi_{1}}{\phi_{3}}, \quad \Gamma_{2} = \frac{\phi_{2}}{\phi_{3}}
+\end{equation}
+Lax pair \eqref{2} and \eqref{3} can be reduced to the following $\Gamma$-Riccati system,
+\begin{align}
+  \Gamma_{1x} &= a(k^{*}u - 2\mathrm{i}\lambda \Gamma_{1} + ku^{*}\Gamma_{2} + ku^{*}\Gamma_{1}^{2}) \label{22} \\
+  \Gamma_{2x} &= a(-uk^{*}\Gamma_{1} + ku^{*}\Gamma_{1}\Gamma_{2})  \label{23}
+\end{align}
+We can define a transformation from $(\Gamma_{1}, \Gamma_{2}, \lambda, u)$ to $(\Gamma_{1}^{'}, \Gamma_{2}^{'}, \lambda^{'}, u^{'})$, which keeps the forms of \eqref{22} and \eqref{23} invariant. For simplicity, the transformation can be tried by giving $\Gamma_{1}^{'} = \Gamma_{1}, \Gamma_{2}^{'} = \Gamma_{2}$ together with $\lambda^{'} = \lambda^{*}$, and then we can get the following relationships:
+\begin{equation}
+  u^{'} - u = \frac{2\mathrm{i}\Gamma_{1}\Gamma_{2}(\lambda^{*}-\lambda)}{2k^{*}\Gamma_{2} + k^{*}\Gamma_{1}^{2}} \label{24}
+\end{equation}
+The Eq.\eqref{24} can be regard as the BT for \eqref{1}, and we can obtain a series of new accurate solutions from a given seed solution. For instance, by choosing $u_{0} = 0$ and $\lambda = i\eta$ ($\eta$ is a real constant), we obtain the following pseudopotentials via \eqref{22} and \eqref{23}:
+\begin{align}
+  & \Gamma_{1} = f(t)\mathrm{Exp}[2a\eta x] \\
+  & \Gamma_{2} = g(t)
+\end{align}
+where $f(t)$ and $g(t)$ are two arbitrary integral function of $t$. Follow the same method as described above, $f(t)$ and $g(t)$ are determined by $\Gamma_{1t}$ and $\Gamma_{2t}$, then we can obtain the expressions of $\Gamma_{1}, \Gamma_{2}$ as shown below,
+\begin{align}
+  & \Gamma_{1} = d_{1}\mathrm{Exp}\left[2a\eta x + \left(-8a^3\eta^3\gamma-18a^3\eta \gamma-9a^2\beta\gamma - \beta^3\right)\int \alpha_{3}(t)dt\right] \label{27}\\
+  & \Gamma_{2} = d_{2}\mathrm{Exp}\left[\left(-18a^2\beta \gamma-2\beta^3\right)\int \alpha_{3}(t)dt\right] \label{28}
+\end{align}
+where $d_{1}, d_{2}$ are two complex integral constants. Substituting Eqs.\eqref{27} and \eqref{28} into \eqref{24}, we can get the solitary-wave solutions for Eq.\eqref{1},
+\begin{align}
+    u(x,t) = \frac{4d_1d_2\eta\mathrm{Exp}\left[\beta x - \int \alpha_6(t)dt + (8a^3\eta^3-\beta^3+9a^2\gamma(2a\eta-\beta))\int \alpha_3(t)dt\right]}{2d_2 \mathrm{Exp}\left[4a^3\eta(4\eta^2+9\gamma)\int \alpha_3(t)dt\right] + d_1^2}
+\end{align}
+
+\section{Infinite Number of Conservation Laws}
+The soliton presented in last section reveals that the existence of an infinite number of conservation laws, which provides a compelling evidence to show the integrability of Eq.\eqref{1} in the Liouville sense\cite{5,12,13,17,18,19}. In this section, we will construct an infinite number of conservation laws through the B\"acklund Transformation.
+
+Firstly, assume $\Phi$ has the form as follow\cite{5,12},
+\begin{equation}\label{30}
+  \Phi = (\phi_{1}, \phi_{2}, \phi_{3})^{T}.
+\end{equation}
+Substitution of Eqs.\eqref{4} and \eqref{5} into Eq.\eqref{2} gives rise to
+\begin{align}
+  & \phi_{1x} = a(-\mathrm{i}\lambda\phi_{1} + ku^{*}\phi_{2} +k^{*}u\phi_{3}) \label{31}\\
+  & \phi_{2x} = a(-k^{*}u\phi_{1} + \mathrm{i}\lambda\phi_{2}) \label{32} \\
+  & \phi_{3x} = a(-ku^{*}\phi_{1} + \mathrm{i}\lambda\phi_{3}) \label{33}
+\end{align}
+Defining another two associated Riccati variables in terms of $T_{1} = \phi_{2}/\phi_{1}$ and $T_{2} = \phi_{3}/\phi_{1}$ and substituting them into Eqs.\eqref{31}-\eqref{33}, we derive the following two Riccati equations,
+\begin{align}
+  T_{1x} &= a(-k^{*}u + 2\mathrm{i}\lambda T_{1} - ku^{*}T_{1}^{2} - k^{*}uT_{1}T_{2}) \label{34}\\
+  T_{2x} &= a(-ku^{*} + 2\mathrm{i}\lambda T_{2} - k^{*}uT_{2}^{2} - ku^{*}T_{1}T_{2}) \label{35}
+\end{align}
+In order to search for series of solutions of Eqs.\eqref{34} and \eqref{35}, we assume that $T_{1}$ and $T_{2}$ are in the forms,
+\begin{align}
+  & T_{1} = \sum_{n=0}^{\infty}c_{n}\lambda^{-n} \label{36} \\
+  & T_{2} = \sum_{n=0}^{\infty}d_{n}\lambda^{-n} \label{37}
+\end{align}
+Substituting the above expressions into \eqref{34}, the recursion relations are given by
+\begin{align}
+  & c_{0} = 0, \quad c_{1} = \frac{k^{*}u}{2\mathrm{i}}, \\
+  & 2a\mathrm{i}c_{n+2} = c_{n+1,x} + a\sum_{m=0}^{n+1}(c_{m}c_{n+1-m}ku^{*} + c_{m}d_{n+1-m}k^{*}u).
+\end{align}
+Similarly, via \eqref{35}, we can find the recursion relations,
+\begin{align}
+  & d_{0} = 0, \quad d_{1} = \frac{ku^{*}}{2\mathrm{i}}, \\
+  & 2a\mathrm{i}d_{n+2} = d_{n+1,x} + a\sum_{m=0}^{n+1}(d_{m}d_{n+1-m}k^{*}u + d_{m}c_{n+1-m}ku^{*}).
+\end{align}
+Substituting the recursion relations of $c_{n}$ and $d_{n}$ into Eq.\eqref{36} and \eqref{37}, then we can get the explicit expressions of $T_{1}$ and $T_{2}$. Thus, inserting $T_{1}$ and $T_{2}$ into the compatibility condition $(\mathrm{ln}\phi_{1})_{xt} = (\mathrm{ln}\phi_{1})_{tx}$, an infinite number of conservation laws can be generated as
+\begin{equation}
+  \frac{\partial D_{n}}{\partial t} = \frac{\partial F_{n}}{\partial x}\quad(n = 1, 2, \cdots)
+\end{equation}
+where $D_{n}$ and $F_{n}$ are called the conserved density and flux. Accordingly, the first three conserved quantities are given as,
+\begin{align}
+  D_{1} =& -\mathrm{i}a\delta(t)^{2} uu^{*} \\
+  F_{1} =&\ \mathrm{i}b(t)\delta(t)^{2} \left[\delta(t)^2u^2(u^*)^2 + \frac{(3a^2\gamma + \beta^2)uu^*}{2a^2} - \frac{\beta u^*u_x}{2a^2} - \frac{\beta uu^*_x}{2a^2} + \frac{u_xu^*_x}{6a^2} + \frac{u^*u_{xx}}{6a^2} \right. \notag \\
+  & \left. + \frac{uu^*_{xx}}{6a^2} \right] \\
+  D_{2} =& \frac{\delta(t)^{2}}{4}(uu^{*}_{x} - u_{x}u^{*}) \\
+  F_{2} =&\ b(t)\delta(t)^{2} \left[\frac{(3a^2\gamma+\beta^2)u_xu^*}{8a^3} + \frac{\delta(t)^2u(u^*)^2u_x}{2a} - \frac{(3a^2\gamma+\beta^2)uu^*_x}{8a^3} - \frac{\delta(t)^2u^2u^*u^*_x}{2a} \right. \notag\\
+  & \left. - \frac{\beta u^*u_{xx}}{8a^3} + \frac{\beta uu^*_{xx}}{8a^3} + \frac{u^*u_{xxx}}{24a^3} - \frac{uu^*_{xxx}}{24a^3}\right] \\
+  D_{3} =&\ \mathrm{i}a\delta(t)^2\left[\frac{1}{2}\delta(t)^2u^2(u^*)^2 + \frac{\beta^2 uu^*}{4a^2} - \frac{\beta u_xu^*}{4a^2} - \frac{\beta uu^*_x}{4a^2} + \frac{u^*u_{xx}}{8a^2} + \frac{uu^*_{xx}}{8a^2}\right] \\
+  F_{3} =&\ \mathrm{i}b(t)\delta(t)^{2} \left[ -\frac{(3a^2\gamma\beta^2+\beta^4)uu^*}{8a^4} -\frac{3}{4}\gamma\delta(t)^2u^2(u^*)^2 -\frac{3\delta(t)^2\beta^2 u^2(u^*)^2}{4a^2} + \frac{3\gamma\beta u^*u_x}{8a^2} \right. \notag \\
+  & \left. -\frac{2}{3}\delta(t)^4u^3(u^*)^3 + \frac{\beta^3 u^*u_x}{4a^4} + \frac{3\delta(t)^2\beta uu_x(u^*)^2}{4a^2} -\frac{5\delta(t)^2(u^*)^2u_x^2}{48a^2} + \frac{3\gamma\beta uu^*_x}{8a^2}  \right. \notag \\
+  & \left. + \frac{\beta^3 uu^*_x}{4a^4} +\frac{3\delta(t)^2\beta u^2u^*u^*_x}{4a^2} - \frac{7\beta^2 u_xu^*_x}{24a^4} +\frac{7\delta(t)^2 uu^*u_xu^*_x}{24a^2} - \frac{5\delta(t)^2 u^2(u^*_x)^2}{48a^2}  \right. \notag\\
+  & \left. -\frac{3\gamma u^*u_{xx}}{16a^2} -\frac{11\beta^2u^*u_{xx}}{48a^4} -\frac{5\delta(t)^2u(u^*)^2u_{xx}}{12a^2} + \frac{7\beta u^*_xu_{xx}}{48a^4} -\frac{3\gamma uu^*_{xx}}{16a^2} - \frac{11\beta^2 uu^*_{xx}}{48a^4} \right. \notag \\
+  & \left. - \frac{5\delta(t)^2u^2u^*u^*_{xx}}{12a^2} + \frac{7\beta u_xu^*_{xx}}{48a^4}  -\frac{u_{xx}u^*_{xx}}{24a^4} + \frac{5\beta u^*u_{xxx}}{48a^4} - \frac{u^*_xu_{xxx}}{48a^4} + \frac{5\beta uu^*_{xxx}}{48a^4} - \frac{u_xu^*_{xxx}}{48a^4} \right. \notag \\
+  & \left. -\frac{u^*u_{xxxx}}{48a^4} -\frac{uu^*_{xxxx}}{48a^4} \right]
+\end{align}
+
+\section{Conclusion and discussion}
+In this Letter, we have investigated the properties of variable-coefficient Sass-Satsuma equation \eqref{1} from the integrable point of view. By extending AKNS system, we have constructed the Lax pair, auto-B\"acklund transformation. Based on the B\"acklund transformation, one-soliton solution has been presented. Then an infinite number of conservation laws have been derived in explicit recursion forms by the symmetrical Riccati equations. Besides based on the obtained Lax pair, we have provided an explicit rogue wave solution. We hope that it is helpful in studying the nonlinear evolution equations like SSE. As the extended form of the SSE, Eq.\eqref{1} may contain some other specific meaningful cases with different coefficients to be investigated.
+
+
+\begin{thebibliography}{19}
+
+\bibitem{1}
+Yang B , Yang J . Transformations between nonlocal and local integrable equations[J]. Studies in Applied Mathematics, 2017, 140(2).
+
+\bibitem{2}
+Ma L Y , Zhao H Q , Gu H . Integrability and gauge equivalence of the reverse space–time nonlocal Sasa–Satsuma equation[J]. Nonlinear Dynamics, 2018, 91(3):1909-1920.
+
+\bibitem{3}
+Ablowitz M J, Musslimani Z H. Integrable nonlocal nonlinear Schrödinger equation[J]. Physical review letters, 2013, 110(6): 064105.
+
+\bibitem{4}
+Li J , Zhang H Q , Xu T , et al. Soliton-like solutions of a generalized variable-coefficient higher order nonlinear Schrödinger equation from inhomogeneous optical fibers with symbolic computation[J]. Journal of Physics A Mathematical Theoretical, 2007, 40(44):13299.
+
+\bibitem{5}
+Zhang, Yu-Ping and Yu, Lan and Wei, Guang-Mei. Integrable aspects and rogue wave solution of Sasa--Satsuma equation with variable coefficients in the inhomogeneous fiber. Modern Physics Letters B, 32(05):1850059, 2018.
+
+\bibitem{6}
+Chen, Shihua. Twisted rogue-wave pairs in the Sasa-Satsuma equation. Physical Review E, 88(2):023202,2013.
+
+\bibitem{7}
+Mu, Gui and Qin, Zhenyun. Dynamic patterns of high-order rogue waves for Sasa--Satsuma equation. Nonlinear Analysis: Real World Applications, 31:179--209,2016.
+
+\bibitem{8}
+Soto-Crespo, JM and Devine, Natasha and Hoffmann, NP and Akhmediev, Nail. Rogue waves of the Sasa-Satsuma equation in a chaotic wave field. Physical Review E,90(3):032902,2014.
+
+\bibitem{9}
+Xu, Tao and Li, Min and Li, Lu. Anti-dark and Mexican-hat solitons in the Sasa-Satsuma equation on the continuous wave background. EPL (Europhysics Letters),109(3):30006,2015.
+
+\bibitem{10}
+Liu, Lei and Tian, Bo and Chai, Han-Peng and Yuan, Yu-Qiang. Certain bright soliton interactions of the Sasa-Satsuma equation in a monomode optical fiber. Physical Review E,95(3):032202,2017.
+
+\bibitem{11}
+Liu, Ying and Gao, Yi-Tian and Xu, Tao and L{\"u}, Xing and Sun, Zhi-Yuan and Meng, Xiang-Hua and Yu, Xin and Gai, Xiao-Ling. Soliton solution, B{\"a}cklund transformation, and conservation laws for the Sasa-Satsuma equation in the optical fiber communications. Zeitschrift f{\"u}r Naturforschung A,65(4):291--300,2010.
+
+\bibitem{12}
+Du, Zhong and Tian, Bo and Wu, Xiao-Yu and Liu, Lei and Sun, Yan. Conservation laws and rogue waves for a higher-order nonlinear Schr{\"o}dinger equation with variable coefficients in the inhomogeneous fiber. Superlattices and Microstructures,107:310--319,2017.
+
+\bibitem{13}
+Li, Min and Xu, Tao and Wang, Lei and Qi, Feng-Hua. Nonautonomous solitons and interactions for a variable-coefficient resonant nonlinear Schr{\"o}dinger equation. Applied Mathematics Letters,60:8--13,2016.
+
+\bibitem{14}
+Yuping, Zhang and Junyi, Wang and Guangmei, Wei and Ruiping, Liu. The Painlev{\'e} property, B{\"a}cklund transformation, Lax pair and new analytic solutions of a generalized variable-coefficient KdV equation from fluids and plasmas. Physica Scripta,90(6):065203,2015.
+
+\bibitem{15}
+Mahalingam, A and Alagesan, T. Singularity structure analysis of inhomogeneous Hirota and higher order nonlinear Schr{\"o}dinger equations. Chaos, Solitons \& Fractals,25(2):319--323,2005.
+
+\bibitem{16}
+Meng, Xiang-Hua and Liu, Wen-Jun and Zhu, Hong-Wu and Zhang, Chun-Yi and Tian, Bo. Multi-soliton solutions and a B{\"a}cklund transformation for a generalized variable-coefficient higher-order nonlinear Schr{\"o}dinger equation with symbolic computation. Physica A: Statistical Mechanics and its Applications,387(1):97--107,2008.
+
+\bibitem{17}
+Li, Zhonghao and Li, Lu and Tian, Huiping and Zhou, Guosheng. New types of solitary wave solutions for the higher order nonlinear Schr{\"o}dinger equation. Physical review letters,84(18):4096,2000.
+
+\bibitem{18}
+Yang, Rongcao and Li, Lu and Hao, Ruiyu and Li, Zhonghao and Zhou, Guosheng. Combined solitary wave solutions for the inhomogeneous higher-order nonlinear Schr{\"o}dinger equation. Physical Review E,71(3):036616,2005.
+
+\bibitem{19}
+Xu, Tao and Zhang, Chun-Yi and Wei, Guang-Mei and Li, Juan and Meng, Xiang-Hua and Tian, Bo. Symbolic-computation construction of transformations for a more generalized nonlinear Schr{\"o}dinger equation with applications in inhomogeneous plasmas, optical fibers, viscous fluids and Bose-Einstein condensates. The European Physical Journal B,55(3):323--332,2007.
+
+\end{thebibliography}
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
