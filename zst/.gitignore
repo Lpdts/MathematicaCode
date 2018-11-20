@@ -1,8 +1,8 @@
-*.*
-!*.tex
-!*.bib
-!*.cls
-!data/
-!figure/
-!.gitignore
-
+*.aux
+*.log
+*.lof
+*.out
+*.synctex
+*.thm
+*.toc
+*.pdf
