@@ -1,10 +1,35 @@
 \chapter{变系数的 Sasa-Satsuma 方程}
-
-
-我们要研究的方程是
+本章我们要研究的方程是变系数的 Sasa-Satsuma 方程，
 \begin{equation}
-  \mathrm{i}u_{t} + \alpha_{1}(t)u_{xx} + \alpha_2(t)|u|^{2}u + \mathrm{i}\left[\alpha_3(t)u_{xxx} + \alpha_{4}(t)(|u|^{2}u)_{x} + \alpha_{5}(t)(|u|^{2})_{x}u + \alpha_{6}(t)u \right] = 0
+  \mathrm{i}u_{t} + \alpha_{1}(t)u_{xx} + \alpha_2(t)|u|^{2}u + \mathrm{i}\left[\alpha_3(t)u_{xxx} + \alpha_{4}(t)(|u|^{2}u)_{x} + \alpha_{5}(t)(|u|^{2})_{x}u + \alpha_{6}(t)u \right] = 0  \label{ss-1}
 \end{equation}
+其中 $u$ 表示关于变量 $x, t$ 的复函数， $|u|^2$ 表示 $u$ 函数和其共轭函数 $u^*$ 的乘积，方程中各项的系数 $\alpha_1(t) - \alpha_6(t)$ 是关于变量 $t$ 的实函数。
+
+之前已经有关人员对方程 (\ref{ss-1}) 的一些特殊形式进行了相关的研究，例如
+\begin{itemize}
+  \item 当系数满足 $\alpha_1(t)=\alpha_1, \alpha_2(t)=\alpha_2, \alpha_3(t)=\beta_1, \alpha_4(t)=\beta_2+2\beta_3, \alpha_5(t)=\beta_2+3\beta_3, \alpha_6(t) = 0$ 时，方程 (\ref{ss-1}) 可以被简化为
+      \begin{equation}
+        \mathrm{i}u_t + \alpha_1 u_{xx} + \alpha_2 |u|^2u + \mathrm{i}\left[\beta_1u_{xxx} + \beta_2|u|^2u_x + \beta_3u(|u|^2)_x\right] = 0,
+      \end{equation}
+      文献 \cite{ss-46} 给出了该方程的双线性形式和多孤子解。
+  \item 当系数满足 $\alpha_1(t)=\dfrac{1}{2}, \alpha_2(t)=1, \alpha_3(t)=\dfrac{1}{6\varepsilon}, \alpha_4(t)=\dfrac{1}{\varepsilon}, \alpha_5(t)=-\dfrac{1}{2\varepsilon}, \alpha_6(t) = 0$ 时，方程 (\ref{ss-1}) 的形式如下
+      \begin{equation}
+        \mathrm{i}u_t + \frac{1}{2}u_{xx} + u^2u^* + \frac{\mathrm{i}}{6\varepsilon}\left[u_{xxx} + 6uu_xu^* + 3u(uu^*)_x\right] = 0,
+      \end{equation}
+      文献 \cite{ss-45} 研究了此方程的 Lax pair, Ba\"cklund 变换，单孤子解和无穷守恒律。
+  \item 当系数满足 $\alpha_1(t)=\dfrac{1}{2}, \alpha_2(t)=1, \alpha_3(t)=\epsilon, \alpha_4(t)=6\epsilon, \alpha_5(t)=3\epsilon, \alpha_6(t) = 0$ 时，方程 (\ref{ss-1}) 变为
+      \begin{equation}
+        \mathrm{i}u_t + \frac{1}{2}u_{xx} + |u|^2u + \mathrm{i}\epsilon\left[u_{xxx} + 3(|u|^2)_xu + 6|u|^2u_x \right] = 0,
+      \end{equation}
+      文献 \cite{ss-40} 使用了达布变换的方式得到了此方程的怪波解。
+  \item 当系数满足 $\alpha_1(t)=-1, \alpha_2(t)=-2, \alpha_3(t)=1, \alpha_4(t)=6, \alpha_5(t)=-3, \alpha_6(t) = 0$ 时，方程 (\ref{ss-1})可以简化为以下的项式
+      \begin{equation}
+        \mathrm{i}u_t - u_{xx} - 2|u|^2u + \mathrm{i}\left[u_{xxx} + 6(|u|^2u)_x - 3(|u|^2)_xu \right] = 0,
+      \end{equation}
+\end{itemize}
+
+
+
 其中方程(1)需要满足以下的约束条件
 \begin{align}
    & 3\alpha_{2}(t)\alpha_{3}(t) + 2\alpha_{1}(t)\alpha_{5}(t) = 0 \\
