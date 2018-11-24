@@ -22,134 +22,78 @@
 \chapter{ss方程守恒律程序包开发}
 第二章第二节中介绍了偏微分方程的守恒律，守恒律作为非线性偏微分方程中一个很重要的性质，对于研究非线性偏微分来说具有很重要的作用。然而，求解偏微分方程守恒律的过程并不是一成不变的，一般来说不同类型方程的求解方式会具有很大的差异，在求解的过程中，往往只能凭借研究人员的个人的思考和过往研究经验对中间过程进行人工处理，才能得到最终的结果。幸运的是，在求解方程守恒律的过程中并不是所有的步骤都需要人工式的处理，仍然有一些步骤是机械式的流程，对于不同类型的方程，只要给出足够必要的条件，就能不断的迭代产生出从第一项到任意一项的守恒律。以 Sasa-Satsuma 方程为例，首先得到目标方程分别关于时间和空间多项式 $D_n$ 和 $F_n$ 的表达式，然后再得到表达式中依赖项的形式和起始项，就很容易的可以推导出任意一项的守恒律，最后进行验证是否正确。 因此可以将这一部分流程抽象出来，编写出用于求解守恒律的程序包。本章将主要介绍使用 Mathematica 内置的编程语言 Wolfram 来封装求解守恒律过程的程序包。
 
-\section{Mathematica 基本介绍}
-Wolfram 语言主要用于解决符号计算和函数式编程，它的语法和用法与其它高级语言有很大不同。Wolfram 语言是交互式语言，在 Mathematica 编辑器中敲入输入，然后按下 Shift+Enter 便可运行输出结果，另一种情况是在输入后添加分号，按下 Shift+Enter 则只计算但不输出计算结果。相比于 C 语言和其他面向对象语言，Wolfram 语言的语法规则十分简单。Wolfram 中的一切都是符号表达式，没有元素类型的划分。而符号表达式主要分为两类，第一类是原子表达式：数字、实数、分数、复数、符号和字符串等；而由原子表达式组成的普通表达式一般都具有相同的基本结构：$head[arguments]$
-
-${1,2,3} \cdots List[1,2,3]$
-
-$1+2 \cdots Plus[1,2]$\\
-其中 $head$ 成为头部，$arguments$ 是该表达式的参数，参数也可以是符号表达式：
-
-$x^2+2y^2 \cdots Plus[Power[x,2],Times[2,Power[y,2]]]$
-
+\section{Wolfram Mathematica 基本介绍}
+Mathematica 是一款用于符号计算的软件，也被称为计算机代数系统，广泛用于科学研究、工程、数学计算等领域， 也是目前使用最为广泛的数学软件之一。而 Wolfram 语言是用于 Mathematica 的编程语言，它的用法和其它的高级编程语言有着很大的不同。Wolfram 集合了大量的编程模式，并使用独特的符号编程理念，是一种基于知识的语言，在编程上具有很大的灵活度。它使用各种语法规则去解释输入，使用标准输入框将字符串或框符转化为表达式。Wolfram 是一种交互式的编程语言，使用时只需敲入输入，然后按 SHIFT+ENTER 便可进行计算得到结果。下面将简要的介绍 Wolfram 语言中最基础的语法和概念。
 \begin{itemize}
-\item 列表
+    \item 表达式
 \end{itemize}
 
-列表是 Wolfram 语言的一种最常见的存储变量的数据结构，可以存储任意类型和任意容量的数据的集合，类似于其它语言的数组或者序列。列表在 Wolfram 中用 ${\cdots}$ 表示，列表中的元素可以是任何类型的表达式，列表的索引从 1 开始，可以用 $[[\cdots]]$ 提取列表的元素：
+在 Wolfram 语言中，一切都是符号表达式。尽管 Wolfram 语言可以处理多种不同形式的对象，例如数学公式、列表、图形等，它们在形式上看起来有所不同，但是 Wolfram 语言以统一的方式来表达它们。符号表达式可以进一步的划分为两种类型：原子表达式和普通表达式。原子表达式是组成表达式中最小单元，主要包括数字、分数、实数、复数、符号、字符串等。普通表达式由原子表达式组成，所有的普通符号表达式都具有相同的基本结构：$head[arguments]$
 
-${a,b,c}[[1]]$ 的结果是 $a$.
+${a, b, c} \cdots List[a, b, c]$
+
+$2 + 2 \cdots Plus[2, 2]$
+
+其中 $head$ 是表达式的头部， $arguments$ 表示表达式的参数，参数也可以是任何符号表达式，例如
+
+$x^2 + 3y^3 \cdots Plus[Power[x, 2], Times[3, Power[y, 3]]]$
+
 \begin{itemize}
-\item 函数
+   \item 列表
 \end{itemize}
 
-下列是定义一个带有 $x$ 和 $y$ 两个参数的函数
+列表是 Wolfram 语言的一种重要的数据结构，用来表示各种类型的集合、数组以及序列。列表可以是任意的结构和大小，甚至包含数百万个元素。 Wolfram 语言可以直接在列表上操作的函数超过 1000 个，这使得列表成为 Mathematica 中一个协同工作的强大工具。在 Wolfram 语言中列表用 $\{\cdots\}$ 表示，其中的元素可以是任何类型的表达式。列表部分的索引从 1 开始，可以使用 $[[\cdots]]$ 进行提取，而负索引从列表的结尾向前开始计数，例如
 
-$f[\_x,\_y]:= x+y$
+$\{a, b, c\}[[3]]$ 的结果是 $c$，
 
-使用上面定义的函数：
+$\{a, b, c, d, e, f\}[[-3]]$ 的结果是 $d$。
+ 
+\begin{itemize}
+    \item 函数
+\end{itemize}
 
-$f[1,2]$ 的结果是 3.
+Wolfram 系统的符号语言模式，将变量和函数的定义提高到了一个新的层次。 在 Wolfram 系统中，变量不仅可以代表一个数值，而且可以作为一个纯粹的符号来使用。基于 Wolfram 系统强大的模式语言， “函数” 定义不仅仅是变量，而且可以转换为任意结构的模式。在 Wolfram 语言中，函数定义只是给出模式变换规则的复制，例如定义一个带有命名为 $x$ 和 $y$ 两个参数的函数
 
-一般来说，在一个自定义的函数中会用到其他辅助变量，但是 Wolfram 语言默认定义的变量是全局变量，当定义多个函数时需要注意同名变量相互覆盖的问题，为解决这个问题，Wolfram 提供 Module 模块定义局部变量:
+$f[x\_ , y\_ ]:= x + y$
 
-$f[\_x,\_y]:=(Module[{a,b},\cdots])$
+使用上述定义
 
-其中 $a,b$ 是局部变量，省略号处为函数体。另外，函数表达式还可以使用 /; 限制定义，使其只适用于某种条件：
+$f[4, a]$ 输出结果是 $4 + a$.
 
-$f[\_x,\_y]:= x-y/;x>y$
+通常情况下，Wolfram 语言一般假设变量是全局变量. 即每次使用  $x$ 等名字时，Wolfram 语言总认为在调用同一对象。然而在编程时，不需要将所有变量都作为全局变量。例如，在两个不同的程序中，$x$ 可用来指代两个不同的变量. 此时，每个程序中的 $x$ 都必须作为局部变量。为了解决这个问题，在 Wolfram 语言中可以使用  Modules 定义局部变量，
 
-Wolfram 语言除了自定义函数，还有近 5000 个内置函数，前面介绍的列表是 Wolfram 语言中最常用的数据结构，下面给出一些 Wolfram 语言内置的关于列表操作的函数：
+$f[x\_ , y\_ ]:= (Module[\{x, y, \cdots\}, body])$
 
-$Prepend[list,element]$	\quad 在 list 的开头添加元素 element
+其中 $x, y$ 是局部变量，$body$ 处为具体的函数体
 
-$Append[list,element]$	\quad 在 list 的末尾添加元素 element
+除了可以自定义函数外，Wolfram 语言还提供近 5000 个内置函数共用户使用，一般每个内置函数名称的首字母均为大写。这些内置函数会大大的简化程序编写的工作量，下面给出一些常用到的内置函数
 
-$Insert[list,element,i]$ \quad	在 list 的第 i 个位置上插入 element
+$Simplify[expr]$  \quad   化简表达式 $expr$
 
-$Insert[list,element,-i]$ \quad	在 list 的倒数第 i 个位置上插入 element\\
-另外还有一些常用的内置函数
+$Expand[expr]$ \quad    展开表达式 $expr$ 的每一项
 
-$Expand[exp]$ \quad                       展开表达式 $exp$ 的每一项
+$Solve[expr, vars]$  \quad 求解以 $vars$ 为变量的方程组或不等式组 $expr$
 
-$Simplify[exp]$  \quad                     化简表达式 $exp$
+$DSolve[eqn, u, x]$ \quad  为函数 $u$ 求解微分方程，$x$ 为独立变量
 
-$Solve[eq,x]$  \quad           解关于未知数 $x$ 的方程 $eq$
+$DSolve[\{eqn_1, eqn_2, \cdots \}, \{u_1, u_2, \cdots \}, \cdots ]$ \quad  用来求解一系列微分方程
 
-$NSolve[\{eql,eq2,...\},\{x1, x2...\}]$   \quad    解关于未知数 $xi$ 的方程组 $eq1,eq2,...$
+$D[f,x]$     \quad  关于函数 $f$ 对 $x$ 求微分
 
-$D[f,x]$     \quad                    关于函数 $f$ 对 $x$ 求微分
+$D[f,{x,n}]$     \quad     关于函数 $f$ 求 $x$ 的 $n$ 阶微分
 
-$D[f,{x,n}]$     \quad                    关于函数 $f$ 求 $x$ 的 $n$ 次微分
+$Coefficient[expr, form]$   \quad  给出了多项式 $expr$ 中 $form$ 的系数
 
-$Coefficient[exp,item]$   \quad       取多项式 exp 中 item 项的系数
-\section{变量变换方法的实现}
-如果已知一个简单方程的怪波解，那么我们就可以求得同类型复杂方程的怪波解，首先要求得复杂方程到简单方程的关系表达式。\\
+$CoefficientList[poly, var]$   \quad  给出在 $poly$ 中 $var$ 的幂系数的列表，从 0 次幂开始
 
-以下是实现代码：
+\section{守恒律的求解实现}
+如果知道一个微分方程的守恒律的表达式以及表达式依赖项的形式和起始项，那么我们就可以求出该方程任意一组的守恒律，当然首先是需要得到守恒律的通项公式。
+
+以下是代码的简单实现
 \begin{lstlisting}[language=Mathematica,caption=变量变换方法的实现]
-(*coe1第一个方程的各项系数组成的列表*)
-(*coe2第二个方程的各项系数组成的列表*)
-(*item1两个方程各项的函数部分组成的列表*)
-(*item2第一个方程的项变量替换后的项的形式*)
 
-DeReplace[coe1_,coe2_,item1_,item2_]:=(Module[{equ1,equ2,coe3,constrants,i,j,k},
-equ1=0;
-equ2=0;
-coe3=List[];
-constrants=List[];
-For[i=1,i<Length[coe1]+1,i++,
-equ1=equ1+coe1[[i]]*item1[[i]];
-];
-
-u^{(1,0)}[x,t]=D[u[x,t],x];
-u^{(0,1)}[x,t]=D[u[x,t],t];
-v^{(1,0)}[x,t]=D[v[x,t],x];
-u^{(2,0)}[x,t]=D[u[x,t],{x,2}];
-u^{(3,0)}[x,t]=D[u[x,t],{x,3}];
-u[x,t]=A U[X[x,t],T[t]];
-v[x,t]=A V[X[x,t],T[t]];
-X[x,t]=a x + b ;
-a2[t]=m a5[t];
-equ3=Expand[equ1];
-For[j=1,j<Length[item2]+1,j++,
-coe3=Append[coe3,Coefficient[equ3,item2[[j]]]];
-]
-
-Print["变量变换后的系数："];
-Print[coe3];
-flag=coe3[[1]]/coe2[[1]];
-For[k=2,k<Length[coe2]+1,k++,
-constrants=Append[constrants,coe3[[k]]==coe2[[k]]*flag]
-]
-Print["约束条件："];
-Print[constrants];
-NSolve[constrants,{Derivative[1][T][t],A,a,b}]
-])
 \end{lstlisting}
-$DeReplace$ 函数接收四个参数，$coe1$ 是复杂方程的各项系数组成的列表，$coe2$ 是简单方程的各项系数组成的列表，$item1$ 是复杂方程各项的函数部分组成的列表，因为复杂方程与简单方程同类型，所以有相同的项，$item2$ 是变量变换后的各项的函数部分组成的列表。首先通过循环将 $coe1$ 和 $item1$ 还原简单方程表达式赋值给 $equ1$，然后假设变量变换的表达式为
-\begin{align}
-&u[x,t]=A U[X[x,t],T[t]],\label{wol-1}\\
-&v[x,t]=A V[X[x,t],T[t]],\\
-&X[x,t]=a x + b. \label{wol-2}
-\end{align}
-$a2[t]=m a5[t]$ 是 Painlev\'{e} 可积条件，将式 (\ref{wol-1})-(\ref{wol-2}) 代入 $equ1$ 便得到变量变换后的方程表达式 $equ3$，获取 $equ3$ 各项的系数存入列表 $coe3$，然后找出新的系数列表 $coe3$ 与简单方程的系数列表 $coe2$ 之间的约束关系列表 $constrants$，最后通过解方程组求出 $T[t], a, b, A$ 的值，也就得到了前面假设的变量变换关系。
 
-以简单方程 (\ref{ss-9}) 和复杂方程 (\ref{ss-1}) 为例，运用上述函数求得方程 (\ref{ss-9}) 和方程 (\ref{ss-1}) 的变量变换关系表达式：
-\begin{figure}[!htp]
-\centering
-\includegraphics[width=\linewidth]{replaceResult.jpg}
-\caption{变量变换运行结果}
-%with same parameters~$k=1 , \alpha_2(t)=1, \alpha_0(t)=0$.
-\label{pro-doper3}
-\end{figure}
-为调用 $DeReplace$ 函数，首先要导入封装该函数的程序包 $Doperator.m$，Mathematica 提供的自定义程序包是以 .m 为后缀的文件。$Package "D-operator" is successfully loaded!$ 是程序包成功加载的自定义输出，运行结果打印出这句话，说明程序包成功加载。从输入可以看到，$coe1$ 和 $item1$ 分别是方程 (\ref{ss-1}) 的系数列表和项的函数列表，$coe2$ 和 $item1$ 分别是方程 (\ref{ss-9}) 的系数列表和项的函数列表，$item2$ 是方程 (\ref{ss-1}) 变量变换后项的函数列表，调用 $DeReplace$ 函数可以看到打印出的一系列中间结果和最后的输出结果。由假设的变量变换形式 (\ref{wol-1})-(\ref{wol-2}) 可以看出我们需要求解 $T[t], a, b, A$ 四个未知变量，将约束条件中的五个等式解方程组得到了最后输出结果的四组解。显然，$A$ 和 $a$ 不能为零，所以只有后两组解是我们想要的结果。还可以注意到，后两组解中都没有给出变量 $b$ 的表达式，也就是说 $b$ 是自由的，可以取任意值。至此我们得到了方程 (\ref{ss-9}) 和方程 (\ref{ss-1}) 的变量变换关系表达式 (\ref{wol-1})-(\ref{wol-2})，其中
-\begin{align}
- &T[t]=-18 d^2 s m^3 \int a5[t] dt + C,\nonumber\\
- &X[x,t]=-3 d m x,\nonumber\\
- &A = \pm 3 \sqrt{2} d m \sqrt{s}.\nonumber
-\end{align}
-$C$ 为任意积分常数。
 
 \section{验证怪波解}
 上一节实现了两个方程的变量变换，接下来将变量变换关系应用于方程的已知怪波解，就能得到另一个方程的怪波解，并且进行验证。具体实现代码如下：
