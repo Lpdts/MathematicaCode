@@ -47,7 +47,7 @@ $x^2 + 3y^3 \cdots Plus[Power[x, 2], Times[3, Power[y, 3]]]$
 $\{a, b, c\}[[3]]$ 的结果是 $c$，
 
 $\{a, b, c, d, e, f\}[[-3]]$ 的结果是 $d$。
- 
+
 \begin{itemize}
     \item 函数
 \end{itemize}
@@ -90,9 +90,38 @@ $CoefficientList[poly, var]$   \quad  给出在 $poly$ 中 $var$ 的幂系数的
 如果知道一个微分方程的守恒律的表达式以及表达式依赖项的形式和起始项，那么我们就可以求出该方程任意一组的守恒律，当然首先是需要得到守恒律的通项公式。
 
 以下是代码的简单实现
-\begin{lstlisting}[language=Mathematica,caption=变量变换方法的实现]
+\begin{lstlisting}[language=Mathematica,caption=守恒律求解的实现]
+(*
+	输出 ss 方程第 n 组的守恒律
+	c0：系数 cn 的第一项
+	d0：系数 dn 的第一项
+	n：第 n 组的守恒律，要求 n 必须大于 0
+*)
+Conservation[c0_, d0_,  n_]:=Module[{equ1, equ2, clist, dlist},
+	If[n <= 0, Print["n输入不合法"],
+	
+	clist = List[];
+	dlist = List[];
+	clist = Append[clist, 0];
+	dlist = Append[dlist, 0];
+	clist = Append[clist, c0];
+	dlist = Append[dlist, d0];
+	
+	Print["第 ".n." 项 c 是："]
+	Print[Simplify[clist[[n+1]]]];
+	Print["第 ".n." 项 d 是："]
+	Print[Simplify[dlist[[n+1]]]];
+
+	
+	Print["第 ".n." 项 D 是："]
+	Print[Expand[Dn]];
+	Print["第 ".n." 项 F 是："]
+	Print[Expand[Fn]];
+]
+]
 
 \end{lstlisting}
+$Conservation$ 函数接收三个参数，$c0$ 是守恒律表达式所依赖项系数 $c_n$ 的第一项， $d0$ 是守恒率表达式所依赖项系数 $d_n$ 的第一项， $n$ 表示想要得到第几组守恒律。 
 
 
 \section{验证怪波解}
