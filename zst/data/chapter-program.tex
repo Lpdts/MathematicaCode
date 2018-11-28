@@ -106,13 +106,30 @@ Conservation[c0_, d0_,  n_]:=Module[{equ1, equ2, clist, dlist},
 	dlist = Append[dlist, 0];
 	clist = Append[clist, c0];
 	dlist = Append[dlist, d0];
+
+    l1[t] = 0;
+    l2[t] = l2;
+    l3[t] = 0;
+    l4[t] = \int \alpha6[t] dt;
+    k1[x,t] = Exp[I l1[t] x + l2[t] x + I l3[t] + l4[t]];
+    k2[-x,t] = Exp[I l1[t] x - l2[t] x - I l3[t] + l4[t]];
 	
+    For[i=2, i <= n+3, i++,
+	   equ1 = 
+	
+	   clist = Append[clist, equ1];
+	   dlist = Append[dlist, equ2];
+	]
+
 	Print["第 ".n." 项 c 是："]
 	Print[Simplify[clist[[n+1]]]];
 	Print["第 ".n." 项 d 是："]
 	Print[Simplify[dlist[[n+1]]]];
+    
+    
+    A1 = \frac{i (l2[t]u^*{-x,t} - u^*_x[-x,t])}{3a};
+    A2 = \frac{i (l2[t]u{-x,t} - u_x[-x,t])}{3a};
 
-	
 	Print["第 ".n." 项 D 是："]
 	Print[Expand[Dn]];
 	Print["第 ".n." 项 F 是："]
@@ -121,46 +138,48 @@ Conservation[c0_, d0_,  n_]:=Module[{equ1, equ2, clist, dlist},
 ]
 
 \end{lstlisting}
-$Conservation$ 函数接收三个参数，$c0$ 是守恒律表达式所依赖项系数 $c_n$ 的第一项， $d0$ 是守恒率表达式所依赖项系数 $d_n$ 的第一项， $n$ 表示想要得到第几组守恒律。 
+$Conservation$ 函数接收三个参数，$c0$ 是守恒律表达式所依赖项系数 $c_n$ 的第一项， $d0$ 是守恒率表达式所依赖项系数 $d_n$ 的第一项， $n$ 表示想要得到第几组守恒律。
 
 
-\section{验证怪波解}
-上一节实现了两个方程的变量变换，接下来将变量变换关系应用于方程的已知怪波解，就能得到另一个方程的怪波解，并且进行验证。具体实现代码如下：
+\section{验证守恒律}
+上一节实现了用于求解方程守恒律的程序，接下来这一节对得到的守恒律进行验证，然而不像求解守恒律那么般有规律，不同组的守恒律验证往往又不一样，因此目前程序只对前两组守恒律进行验证。
 
-\begin{lstlisting}[language=Mathematica,caption=验证怪波解]
-(*将第一个方程到第二个方程的变量变换的结果应用到第二个方程的怪波解上可以得到第一个方程的怪波解*)
-(*X T A 分别是前一步变量变换求得的结果*)
-(*equ第一个方程，即最后我们要验证怪波解的方程*)
-DeRogue[X_,T_,A_,equ_]:=(Module[{d,c,k},
-d=1;
-c=1;
-k=1;
-a2[t]=m a5[t];
-K=1+3k;
-u0[x,t]=-A c/(2d) Exp[-I/(2d) (k X-w/(4d) T)];
-v0[x,t]=-A c/(2d) Exp[I/(2d) (k X-w/(4d) T)];
-w=2c^2 (1+3k)-k^2-k^3;
-G=(d^2 (9c^2+2K^2))/(2c^2 K^2) (a+(4k1^2 k2^2)/(9c^2+2K^2) T)^2+(8d^2 k1^2 k2^2 (k1^2-k2^2))/(c^2 (9c^2+2K^2)) T^2+(162d^6 (9c^2+2K^2)^3)/(c^2 k1^2 k2^2 (k1^2+k2^2)^2);
-H=1/(2K) (a^2/4+k1^2 k2^2 T^2-(243d^4 (9c^2+2K^2)^2)/(k1^2 k2^2 (18c^2+K^2)))(a+(4k1^2 k2^2)/(9c^2) T)+(16d^4 k1^2 k2^2 (27c^2+2K^2))/(c^4 K(18c^2+K^2)) T;
-B=1/(36d^2) (a^2/4+k1^2 k2^2 T^2+(18^2 d^4 (k1^4-k1^2 k2^2-k2^4))/(k1^2 k2^2 (k1^2+k2^2)))^2+(9d^2 k2^2)/(k1^2+k2^2)^2 (a+2k1^2 T)^2+(108^2 d^6)/(k2^2 (k1^2+k2^2));
-a=(K^2-1-27c^2)T+12d X;
-k1=Sqrt[2]/2 (Sqrt[K^2 (18c^2+K^2)]-9c^2+K^2)^(1/2);
-k2=Sqrt[2]/2 (Sqrt[K^2 (18c^2+K^2)]+9c^2-K^2)^(1/2);
-u[x,t]=u0[x,t](1-(G+I H)/B);
-v[x,t]=v0[x,t](1-(G-I H)/B);
-Simplify[equ]
-])
+\begin{lstlisting}[language=Mathematica,caption=验证守恒律]
+(*
+	equ1: 表示多研究的目标方程
+	equ2: 表示目标方程的共轭形式
+	d, f: 表示守恒律的表达式
+	n: 表示第几组守恒律
+	c: 表示一个常数项
+*)
+validateConservation[equ1_, equ2_, d_, f_, n_, c_]:=Module[{result, m},
+	If[n != 1, Print["n 输入不合法"],
+	
+	result = 0;
+
+	If[n == 1,
+		result = Simplify[(D[d,t] - D[f, x]) / (SuperStar[u][-x,t] equ1 - u[x,t] equ2) / c];
+	];
+	If[n == 2,
+		result = Simplify[(D[d,t] - D[f, x])/(D[equ2, x]u[x,t]-D[equ1, x]SuperStar[u][-x,t] + D[SuperStar[u][-x,t],x]equ1 + D[u[x,t],x] equ2) / c];
+	];
+	Print["结果为". result];
+	If[result == 1,
+		Print["验证成功"];
+	];
+	]
+];
 \end{lstlisting}
-$DeRogue$ 函数接收四个变量，$X, T, A$ 是前一步求出的变量变换中假设变量的值，$equ$ 是要求解怪波解的方程。$u0[x,t]$ 和 $v0[x,t]$ 是简单方程的平波解，$u[x,t]$ 和 $v[x,t]$ 是简单方程的怪波解，将变量变换的关系式代入就能得到复杂方程的怪波解，最后对复杂方程的怪波解进行验证，如果最后输出的结果为零，则怪波解求解成功。上面已经求到了方程 (\ref{ss-9}) 到方程 (\ref{ss-1}) 变量变换的关系表达式，接下来继续代入求怪波解并进行验证。
+$validateConservation$ 函数接收 6 个参数， $equ1, equ2$ 分别表示所研究的目标方程和目标方程的共轭形式，$d, f$ 是前一步中求得的一组守恒律。$n$ 表示传入进来的守恒律是第几组，$c$ 表示一个不含函数 $u[x,t]$ 和其共轭函数的常数项。验证的思路如下：将守恒律中 $d$ 项函数对 $t$ 进行求导，对守恒律中 $f$ 项函数对 $x$ 求导，两者的结果相减，如果结果等于 0，那么守恒律就成立。但是一般相减后结果仍然是一个关于函数 $u$ 的多项式，如果它能与研究的目标方程等价，那么结果也就自然等于 0 了。这时，往往对原方程和其共轭方程进行各种形式的变形，使其能够与之前相减的结果等价。对于不同组的守恒律找到的变形往往是不同的，越是往后的守恒律往往形式越是复杂，因此该程序目前是能验证守恒律中前两组相对简单的形式。验证的结果如下图所示：
 \begin{figure}[!htp]
 	\centering
 	\includegraphics[width=\linewidth]{rogueResult.jpg}
-	\caption{验证怪波运行结果}
+	\caption{验证守恒律成立}
 	%with same parameters~$k=1 , \alpha_2(t)=1, \alpha_0(t)=0$.
 	\label{}
 \end{figure}
-$X, T, A$ 是上一步变量变换得到的结果，$equ$ 是方程 (\ref{ss-1}) 的表达式，将变量变换后的怪波解代入 $equ$ 输出结果为零，完成验证。
+
 \section{本章小结}
-本章首先介绍了 Mathematica 内置 Wolfram 语言的基本语法、常用函数的用法与含义，然后用 Wolfram 封装了根据已知方程的怪波解得到另一方程的怪波解的过程。这个过程主要分为两个部分，第一，找到两个方程的变量变换的关系表达式，即 $DeReplace$ 函数的实现；第二，将变量变换的关系表达式代入已知的怪波解就可以得到另一方程的怪波解，并进行了验证，即 $DeRogue$ 函数的实现。最后，可以看到本章通过间接法得到的怪波解与第三章用 Darboux 变换法直接法求得的怪波解一致，变量变换为同一类型的方程的研究提供了捷径，也为求解怪波解提供了一个新思路。
+本章首先介绍了符号计算软件 Mathematica 的程序编程语言 Wolfram 的基本语法和常用的函数，然后基于 Mathematica 开发了用于得到 ss 方程的守恒律的程序包。这个程序包主要包含两部分的内容，首先是根据方程无穷守恒律的关系表达式迭代推导出前几组的守恒律具体的形式，即 $Conservation$ 函数的实现内容；然后，根据之前得到的守恒律进行验证，验证的方法就是通过寻找方程的各种变形使守恒律达到平衡，即 $validateConservation$ 函数的具体实现内容。最后可以看到本章通过程序包求得的守恒律与第四章求得的守恒律完全一致，并最终通过了验证，这也说明程序包运行的具有较好的正确性和可靠性。
 
 

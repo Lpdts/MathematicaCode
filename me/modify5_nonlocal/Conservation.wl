@@ -27,22 +27,20 @@ Conservation[c0_, d0_,  n_]:=Module[{equ1, equ2, clist, dlist},
 	dlist = Append[dlist, 0];
 	clist = Append[clist, c0];
 	dlist = Append[dlist, d0];
-	Subscript[k, 11][t]=0;
-	Subscript[k, 12][t]=Subscript[k, 12];
-	Subscript[k, 21][t]=0;
-	Subscript[k, 22][t]=\[Integral](Subscript[\[Alpha], 6][t])\[DifferentialD]t;
-	k[x,t]= Exp[ I Subscript[k, 11][t]x+Subscript[k, 12][t]x+I Subscript[k, 21][t]+Subscript[k, 22][t]];
-	SuperStar[k][-x,t]= Exp[ I Subscript[k, 11][t]x-Subscript[k, 12][t]x-I Subscript[k, 21][t]+Subscript[k, 22][t]];
+	l1[t] = 0;
+	l2[t] = l2;
+	l3[t] = 0;
+	l4[t] = \[Integral](\[Alpha]6[t])\[DifferentialD]t;
+	k1[x,t] = Exp[I l1[t] x + l2[t] x + I l3[t] + l4[t]];
+	k2[-x,t] = Exp[I l1[t] x - l2[t] x - I l3[t] + l4[t]];
 	(*Print[n];*)
 	For[i=2, i <= n+3, i++,
 	(*Print[clist[[i]]];*)
 	equ1 = 1/(2a I) (D[clist[[i]],x]+a \!\(
-\*UnderoverscriptBox[\(\[Sum]\), \(m = 0\), \(i - 1\)]\((clist[\([m + 1]\)] clist[\([i - m]\)] k[x, t]\ 
-\(\*SuperscriptBox[\(u\), \(*\)]\)[\(-x\), t] + clist[\([m + 1]\)] dlist[\([i - m]\)] 
-\(\*SuperscriptBox[\(k\), \(*\)]\)[\(-x\), t]\ u[x, t])\)\));
+\*UnderoverscriptBox[\(\[Sum]\), \(m = 0\), \(i - 1\)]\((clist[\([m + 1]\)] clist[\([i - m]\)] k1[x, t]\ 
+\(\*SuperscriptBox[\(u\), \(*\)]\)[\(-x\), t] + clist[\([m + 1]\)] dlist[\([i - m]\)] k2[\(-x\), t]\ u[x, t])\)\));
 	equ2 = 1/(2a I) (D[dlist[[i]],x]+a \!\(
-\*UnderoverscriptBox[\(\[Sum]\), \(m = 0\), \(i - 1\)]\((dlist[\([m + 1]\)] dlist[\([i - m]\)] 
-\(\*SuperscriptBox[\(k\), \(*\)]\)[\(-x\), t]\ u[x, t] + dlist[\([m + 1]\)] clist[\([i - m]\)] k[x, t]\ 
+\*UnderoverscriptBox[\(\[Sum]\), \(m = 0\), \(i - 1\)]\((dlist[\([m + 1]\)] dlist[\([i - m]\)] k2[\(-x\), t]\ u[x, t] + dlist[\([m + 1]\)] clist[\([i - m]\)] k1[x, t]\ 
 \(\*SuperscriptBox[\(u\), \(*\)]\)[\(-x\), t])\)\));
 	clist = Append[clist, equ1];
 	dlist = Append[dlist, equ2];
@@ -52,7 +50,7 @@ Conservation[c0_, d0_,  n_]:=Module[{equ1, equ2, clist, dlist},
 	Print["\:7b2c ".n." \:9879 d \:662f\:ff1a"]
 	Print[Simplify[dlist[[n+1]]]];
 
-	Subscript[A, 2]=(I (Subscript[k, 12] SuperStar[u][-x,t]-
+	A1=(I (l2[t] SuperStar[u][-x,t]-
 \!\(\*SuperscriptBox[\((
 \*SuperscriptBox[\(u\), \(*\)])\), 
 TagBox[
@@ -60,21 +58,21 @@ RowBox[{"(",
 RowBox[{"1", ",", "0"}], ")"}],
 Derivative],
 MultilineFunction->None]\)[-x,t]))/(3 a);
-	SuperStar[Subscript[A, 2]]=(I (u[x,t] Subscript[k, 12] -
+	A2=(I (u[x,t] l2[t] - 
 \!\(\*SuperscriptBox[\(u\), 
 TagBox[
 RowBox[{"(", 
 RowBox[{"1", ",", "0"}], ")"}],
 Derivative],
 MultilineFunction->None]\)[x,t]))/(3 a);
-	Subscript[A, 4]=-(1/(6 a^2))(9 a^2 C2 SuperStar[u][-x,t]-Subscript[k, 11][t]^2 SuperStar[u][-x,t]+2 I Subscript[k, 11][t] Subscript[k, 12][t] SuperStar[u][-x,t]+Subscript[k, 12][t]^2 SuperStar[u][-x,t]+4 a^2 E^(2 I x Subscript[k, 11][t]+2 Subscript[k, 22][t]) u[x,t] SuperStar[u][-x,t]^2-2 I Subscript[k, 11][t] 
+	A3=-(1/(6 a^2))(9 a^2 C2 SuperStar[u][-x,t]-l1[t]^2 SuperStar[u][-x,t]+2 I l1[t] l2[t] SuperStar[u][-x,t]+l2[t]^2 SuperStar[u][-x,t]+4 a^2 E^(2 I x l1[t]+2 l4[t]) u[x,t] SuperStar[u][-x,t]^2-2 I l1[t] 
 \!\(\*SuperscriptBox[\((
 \*SuperscriptBox[\(u\), \(*\)])\), 
 TagBox[
 RowBox[{"(", 
 RowBox[{"1", ",", "0"}], ")"}],
 Derivative],
-MultilineFunction->None]\)[-x,t]-2 Subscript[k, 12][t] 
+MultilineFunction->None]\)[-x,t]-2 l2[t] 
 \!\(\*SuperscriptBox[\((
 \*SuperscriptBox[\(u\), \(*\)])\), 
 TagBox[
@@ -89,13 +87,13 @@ RowBox[{"(",
 RowBox[{"2", ",", "0"}], ")"}],
 Derivative],
 MultilineFunction->None]\)[-x,t]);
-	SuperStar[Subscript[A, 4]]=-(1/(6 a^2))(-9 a^2 C2 u[x,t]+u[x,t] Subscript[k, 11][t]^2-u[x,t] Subscript[k, 12][t]^2-4 a^2 E^(2 I x Subscript[k, 11][t]+2 Subscript[k, 22][t]) u[x,t]^2 SuperStar[u][-x,t]+2 Subscript[k, 12][t] 
+	A4=1/(6 a^2) (-9 a^2 C2 u[x,t]+u[x,t] l1[t]^2-u[x,t] l2[t]^2-4 a^2 E^(2 I x l1[t]+2 l4[t]) u[x,t]^2 SuperStar[u][-x,t]+2 l2[t] 
 \!\(\*SuperscriptBox[\(u\), 
 TagBox[
 RowBox[{"(", 
 RowBox[{"1", ",", "0"}], ")"}],
 Derivative],
-MultilineFunction->None]\)[x,t]+2 I (u[x,t] Subscript[k, 11][t] Subscript[k, 12][t]-Subscript[k, 11][t] 
+MultilineFunction->None]\)[x,t]+2 I (u[x,t] l1[t] l2[t]-l1[t] 
 \!\(\*SuperscriptBox[\(u\), 
 TagBox[
 RowBox[{"(", 
@@ -108,8 +106,8 @@ RowBox[{"(",
 RowBox[{"2", ",", "0"}], ")"}],
 Derivative],
 MultilineFunction->None]\)[x,t]);
-	Dn = a(k[x,t] SuperStar[u][-x,t] clist[[n+1]] + SuperStar[k][-x,t] u[x,t] dlist[[n+1]]);
-	Fn = b[t](Subscript[A, 2] k[x,t] clist[[n+2]] + Subscript[A, 4] k[x,t] clist[[n+1]] + 2/3 k[x,t] SuperStar[u][-x,t]clist[[n+3]]+ 2/3 u[x,t]SuperStar[k][-x,t] dlist[[n+3]]-SuperStar[Subscript[A, 2]] SuperStar[k][-x,t] dlist[[n+2]]+SuperStar[Subscript[A, 4]] SuperStar[k][-x,t] dlist[[n+1]]);
+	Dn = a(k1[x,t] SuperStar[u][-x,t] clist[[n+1]] + k2[-x,t] u[x,t] dlist[[n+1]]);
+	Fn = b[t](A1 k1[x,t] clist[[n+2]] +  A3 k1[x,t] clist[[n+1]] + 2/3 k1[x,t] SuperStar[u][-x,t] clist[[n+3]]+ 2/3 u[x,t]k2[-x,t] dlist[[n+3]]-A2 k2[-x,t] dlist[[n+2]]+A4 k2[-x,t] dlist[[n+1]]);
 	Print["\:7b2c ".n." \:9879 D \:662f\:ff1a"]
 	Print[Expand[Dn]];
 	Print["\:7b2c ".n." \:9879 F \:662f\:ff1a"]
@@ -119,7 +117,7 @@ MultilineFunction->None]\)[x,t]);
 
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*\:9a8c\:8bc1\:602a\:6ce2\:89e3*)
 
 
@@ -155,12 +153,16 @@ q[x,t]=v0[x,t](1-(G-I H)/B);
 
 
 
+
+
 \!\(\*SuperscriptBox[\(p\), 
 TagBox[
 RowBox[{"(", 
 RowBox[{"1", ",", "0"}], ")"}],
 Derivative],
 MultilineFunction->None]\)[x,t]=D[p[x,t],x];
+
+
 
 
 
@@ -187,6 +189,8 @@ MultilineFunction->None]\)[x,t]=D[p[x,t],t];
 
 
 
+
+
 \!\(\*SuperscriptBox[\(q\), 
 TagBox[
 RowBox[{"(", 
@@ -203,12 +207,16 @@ MultilineFunction->None]\)[x,t]=D[q[x,t],x];
 
 
 
+
+
 \!\(\*SuperscriptBox[\(p\), 
 TagBox[
 RowBox[{"(", 
 RowBox[{"2", ",", "0"}], ")"}],
 Derivative],
 MultilineFunction->None]\)[x,t]=D[p[x,t],{x,2}];
+
+
 
 
 
