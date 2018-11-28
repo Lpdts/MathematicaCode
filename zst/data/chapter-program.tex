@@ -23,7 +23,7 @@
 第二章第二节中介绍了偏微分方程的守恒律，守恒律作为非线性偏微分方程中一个很重要的性质，对于研究非线性偏微分来说具有很重要的作用。然而，求解偏微分方程守恒律的过程并不是一成不变的，一般来说不同类型方程的求解方式会具有很大的差异，在求解的过程中，往往只能凭借研究人员的个人的思考和过往研究经验对中间过程进行人工处理，才能得到最终的结果。幸运的是，在求解方程守恒律的过程中并不是所有的步骤都需要人工式的处理，仍然有一些步骤是机械式的流程，对于不同类型的方程，只要给出足够必要的条件，就能不断的迭代产生出从第一项到任意一项的守恒律。以 Sasa-Satsuma 方程为例，首先得到目标方程分别关于时间和空间多项式 $D_n$ 和 $F_n$ 的表达式，然后再得到表达式中依赖项的形式和起始项，就很容易的可以推导出任意一项的守恒律，最后进行验证是否正确。 因此可以将这一部分流程抽象出来，编写出用于求解守恒律的程序包。本章将主要介绍使用 Mathematica 内置的编程语言 Wolfram 来封装求解守恒律过程的程序包。
 
 \section{Wolfram Mathematica 基本介绍}
-Mathematica 是一款用于符号计算的软件，也被称为计算机代数系统，广泛用于科学研究、工程、数学计算等领域， 也是目前使用最为广泛的数学软件之一。而 Wolfram 语言是用于 Mathematica 的编程语言，它的用法和其它的高级编程语言有着很大的不同。Wolfram 集合了大量的编程模式，并使用独特的符号编程理念，是一种基于知识的语言，在编程上具有很大的灵活度。它使用各种语法规则去解释输入，使用标准输入框将字符串或框符转化为表达式。Wolfram 是一种交互式的编程语言，使用时只需敲入输入，然后按 SHIFT+ENTER 便可进行计算得到结果。下面将简要的介绍 Wolfram 语言中最基础的语法和概念。
+Mathematica 是一款用于符号计算的软件，也被称为计算机代数系统，广泛用于科学研究、工程、数学计算等领域， 也是目前使用最为广泛的数学软件之一。而 Wolfram 语言是用于 Mathematica 的编程语言，它的用法和其它的高级编程语言有着很大的不同。Wolfram 集合了大量的编程模式，并使用独特的符号编程理念，是一种基于知识的语言，在编程上具有很大的灵活度。它使用各种语法规则去解释输入，使用标准输入框将字符串或框符转化为表达式。Wolfram 是一种交互式的编程语言，使用时只需敲入输入，然后按 SHIFT+ENTER 便可进行计算得到结果\upcite{syc-5}。下面将简要的介绍 Wolfram 语言中最基础的语法和概念。
 \begin{itemize}
     \item 表达式
 \end{itemize}
@@ -106,39 +106,60 @@ Conservation[c0_, d0_,  n_]:=Module[{equ1, equ2, clist, dlist},
 	dlist = Append[dlist, 0];
 	clist = Append[clist, c0];
 	dlist = Append[dlist, d0];
-
     l1[t] = 0;
     l2[t] = l2;
     l3[t] = 0;
     l4[t] = \int \alpha6[t] dt;
     k1[x,t] = Exp[I l1[t] x + l2[t] x + I l3[t] + l4[t]];
     k2[-x,t] = Exp[I l1[t] x - l2[t] x - I l3[t] + l4[t]];
-	
     For[i=2, i <= n+3, i++,
-	   equ1 = 
-	
-	   clist = Append[clist, equ1];
-	   dlist = Append[dlist, equ2];
+        equ1 = 1/(2aI)(D[clist[i],x]+a(clist[[m+1]]clist[i-m]k1[x,t]u^*[-x,t]
+            +clist[[m+1]]dlist[[i-m]]k2[-x,t]u[x,t]));
+        equ2 = 1/(2aI)(D[dlist[i],x]+a(dlist[[m+1]]dlist[i-m]k2[x,t]u[-x,t]
+            +dlist[[m+1]]clist[[i-m]]k1[x,t]u^*[-x,t]));
+        clist = Append[clist, equ1];
+        dlist = Append[dlist, equ2];
 	]
 
 	Print["第 ".n." 项 c 是："]
 	Print[Simplify[clist[[n+1]]]];
 	Print["第 ".n." 项 d 是："]
 	Print[Simplify[dlist[[n+1]]]];
-    
-    
+
     A1 = \frac{i (l2[t]u^*{-x,t} - u^*_x[-x,t])}{3a};
     A2 = \frac{i (l2[t]u{-x,t} - u_x[-x,t])}{3a};
-
+    A3=-(1/(6 a^2))(9 a^2 C2 u^*[-x,t]-l1[t]^2 u^*[-x,t]+2 I l1[t] l2[t]u^*[-x,t]+l2[t]^2 u^*[-x,t]+4 a^2 E^(2 I x l1[t]+2 l4[t]) u[x,t] u^*[-x,t]^2-2 I l1[t] D[u^*[-x,t],x]-2 l2[t]D[u^*[-x,t],x] + D[u^*[-x,t],{x,2}]);
+    A4=1/(6 a^2) (-9 a^2 C2 u[x,t]+u[x,t] l1[t]^2-u[x,t] l2[t]^2-4 a^2 E^(2 I x l1[t]+2 l4[t]) u[x,t]^2 u^*[-x,t]+2 l2[t] + D[u[x,t],x] + 2I (u[x,t] l1[t]l2[t]-l1[t] D[u[x,t],x])-D[u[x,t],{x,2}]);
+	Dn = a(k1[x,t] u^*[-x,t] clist[[n+1]] + k2[-x,t] u[x,t] dlist[[n+1]]);
+	Fn = b[t](A1 k1[x,t] clist[[n+2]] +  A3 k1[x,t] clist[[n+1]] + 2/3 k1[x,t] u^*[-x,t] clist[[n+3]]+ 2/3 u[x,t]k2[-x,t] dlist[[n+3]]-A2 k2[-x,t] dlist[[n+2]]+A4 k2[-x,t] dlist[[n+1]]);
 	Print["第 ".n." 项 D 是："]
 	Print[Expand[Dn]];
 	Print["第 ".n." 项 F 是："]
 	Print[Expand[Fn]];
 ]
 ]
-
 \end{lstlisting}
-$Conservation$ 函数接收三个参数，$c0$ 是守恒律表达式所依赖项系数 $c_n$ 的第一项， $d0$ 是守恒率表达式所依赖项系数 $d_n$ 的第一项， $n$ 表示想要得到第几组守恒律。
+$Conservation$ 函数接收三个参数，$c0$ 是守恒律表达式所依赖项系数 $c_n$ 的第一项， $d0$ 是守恒率表达式所依赖项系数 $d_n$ 的第一项， $n$ 表示想要得到第几组守恒律。程序的内部过程是关于 ss 类型方程的守恒律的求解过程。其中守恒律中的 $D_n$ 和 $F_n$ 项的表达式如下所示,
+\begin{align}
+  & D_{n} = a(ku^{*}c_{n} + k^{*}ud_{n}) \\
+  & F_{n} = b(t)\left[A_{2}kc_{n+1} + A_{4}kc_{n} + \frac{2}{3}ku^{*}c_{n+2} + \frac{2}{3}uk^{*}d_{n+2} - A_{2}^{*}k^{*}d_{n+1} + A_{4}^{*}k^{*}d_{n}\right]
+\end{align}
+对于 ss 类型的方程守恒律的求解基本上都可以通过以下的方程来求得，因此只要指导表达式中对应元素的形式就能求得其中任意组的守恒律。而表达式中的元素 $A_2, A_4, k$ 等根据方程的不同可能会有不同的形式，$c_n, d_n$ 的形式相对固定，并且具有如下的形式
+\begin{align}
+  & c_{n+2} = \frac{1}{2a\mathrm{i}} \left[c_{n+1,x} + a\sum_{m=0}^{n+1}(c_{m}c_{n+1-m}ku^{*} + c_{m}d_{n+1-m}k^{*}u)\right] \\
+  & d_{n+2} = \frac{1}{2a\mathrm{i}} \left[ d_{n+1,x} + a\sum_{m=0}^{n+1}(d_{m}d_{n+1-m}k^{*}u + d_{m}c_{n+1-m}ku^{*}) \right]
+\end{align}
+而对于数列 $c_n, d_n$ 往往只有首项会因为不同的方程而不同，因此只要知道首项的形式就很容易推导出任意一项的结果，因而可以得到最终具体守恒律的结果。
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=\linewidth]{getConservation.jpg}
+\caption{求得方程的守恒律}
+%with same parameters~$k=1 , \alpha_2(t)=1, \alpha_0(t)=0$.
+\label{picture-5-1}
+\end{figure}
+
+以前面多研究的方程 (\ref{nss-1}) 威力，运用上述函数求得方程 (\ref{nss-1}) 的守恒律：首先导入封装该函数的程序包 $Conservation.wl$，.wl 为后缀的文件是 Mathematica 所提供的自定义程序包的文件格式。如果加载程序包后出现 $Package "D-operator" is successfully loaded!$ 的输出语句说明程序包加载成功。然后就可以调用程序包中的函数，运行结果如图 \ref{picture-5-1} 所示。
 
 
 \section{验证守恒律}
@@ -149,34 +170,36 @@ $Conservation$ 函数接收三个参数，$c0$ 是守恒律表达式所依赖项
 	equ1: 表示多研究的目标方程
 	equ2: 表示目标方程的共轭形式
 	d, f: 表示守恒律的表达式
+	u, v: 表示方程中的原子函数和其共轭函数
 	n: 表示第几组守恒律
 	c: 表示一个常数项
 *)
-validateConservation[equ1_, equ2_, d_, f_, n_, c_]:=Module[{result, m},
+validateConservation[equ1_, equ2_, u_, v_, d_, f_, n_, c_]:=Module[{result, m},
 	If[n != 1, Print["n 输入不合法"],
 	
 	result = 0;
 
 	If[n == 1,
-		result = Simplify[(D[d,t] - D[f, x]) / (SuperStar[u][-x,t] equ1 - u[x,t] equ2) / c];
+		result = Simplify[(D[d,t] - D[f, x]) / (v * equ1 - u * equ2) / c];
 	];
 	If[n == 2,
-		result = Simplify[(D[d,t] - D[f, x])/(D[equ2, x]u[x,t]-D[equ1, x]SuperStar[u][-x,t] + D[SuperStar[u][-x,t],x]equ1 + D[u[x,t],x] equ2) / c];
+		result = Simplify[(D[d,t] - D[f, x])/(D[equ2, x] * u -D[equ1, x] * v + D[v, x] * equ1 + D[u, x] * equ2) / c];
 	];
 	Print["结果为". result];
 	If[result == 1,
-		Print["验证成功"];
+		Print["验证成功"],
+		Print["验证失败"]
 	];
 	]
 ];
 \end{lstlisting}
-$validateConservation$ 函数接收 6 个参数， $equ1, equ2$ 分别表示所研究的目标方程和目标方程的共轭形式，$d, f$ 是前一步中求得的一组守恒律。$n$ 表示传入进来的守恒律是第几组，$c$ 表示一个不含函数 $u[x,t]$ 和其共轭函数的常数项。验证的思路如下：将守恒律中 $d$ 项函数对 $t$ 进行求导，对守恒律中 $f$ 项函数对 $x$ 求导，两者的结果相减，如果结果等于 0，那么守恒律就成立。但是一般相减后结果仍然是一个关于函数 $u$ 的多项式，如果它能与研究的目标方程等价，那么结果也就自然等于 0 了。这时，往往对原方程和其共轭方程进行各种形式的变形，使其能够与之前相减的结果等价。对于不同组的守恒律找到的变形往往是不同的，越是往后的守恒律往往形式越是复杂，因此该程序目前是能验证守恒律中前两组相对简单的形式。验证的结果如下图所示：
+$validateConservation$ 函数接收 8 个参数， $equ1, equ2$ 分别表示所研究的目标方程和目标方程的共轭形式，$u, v$ 分别是方程中的原子函数及其的共轭函数，即 $equ1, equ2$ 都是关于函数 $u, v$ 的非线性偏微分方程。$d, f$ 是前一步中求得的一组守恒律。$n$ 表示传入进来的守恒律是第几组，$c$ 表示一个不含函数 $u[x,t]$ 和其共轭函数的常数项。验证的思路如下：将守恒律中 $d$ 项函数对 $t$ 进行求导，对守恒律中 $f$ 项函数对 $x$ 求导，两者的结果相减，如果结果等于 0，那么守恒律就成立。但是一般相减后结果仍然是一个关于函数 $u$ 的多项式，如果它能与研究的目标方程等价，那么结果也就自然等于 0 了。这时，往往对原方程和其共轭方程进行各种形式的变形，使其能够与之前相减的结果等价。对于不同组的守恒律找到的变形往往是不同的，越是往后的守恒律往往形式越是复杂，因此该程序目前是能验证守恒律中前两组相对简单的形式。验证的结果如下图所示：
 \begin{figure}[!htp]
 	\centering
-	\includegraphics[width=\linewidth]{rogueResult.jpg}
+	\includegraphics[width=\linewidth]{validateConservation.jpg}
 	\caption{验证守恒律成立}
 	%with same parameters~$k=1 , \alpha_2(t)=1, \alpha_0(t)=0$.
-	\label{}
+	\label{picture-5-2}
 \end{figure}
 
 \section{本章小结}
