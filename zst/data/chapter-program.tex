@@ -20,7 +20,9 @@
   tabsize=3
 }
 \chapter{ss方程守恒律程序包开发}
-第二章第二节中介绍了偏微分方程的守恒律，守恒律作为非线性偏微分方程中一个很重要的性质，对于研究非线性偏微分来说具有很重要的作用。然而，求解偏微分方程守恒律的过程并不是一成不变的，一般来说不同类型方程的求解方式会具有很大的差异，在求解的过程中，往往只能凭借研究人员的个人的思考和过往研究经验对中间过程进行人工处理，才能得到最终的结果。幸运的是，在求解方程守恒律的过程中并不是所有的步骤都需要人工式的处理，仍然有一些步骤是机械式的流程，对于不同类型的方程，只要给出足够必要的条件，就能不断的迭代产生出从第一项到任意一项的守恒律。以 Sasa-Satsuma 方程为例，首先得到目标方程分别关于时间和空间多项式 $D_n$ 和 $F_n$ 的表达式，然后再得到表达式中依赖项的形式和起始项，就很容易的可以推导出任意一项的守恒律，最后进行验证是否正确。 因此可以将这一部分流程抽象出来，编写出用于求解守恒律的程序包。本章将主要介绍使用 Mathematica 内置的编程语言 Wolfram 来封装求解守恒律过程的程序包。
+本论文中的第二章主要介绍了研究过程中所使用的基础的数学方法，第三章和第四章介绍了论文研究中的主要内容。在研究过中因为涉及到了大量的数学计算、公式推导和方程求解，纯人工操作会因计算量过大以及各种可能的错误而不太可靠，因此我们不得不借助符号计算工具 Mathematica，编写基于 Wolfram 的语言的程序来去辅助计算和研究。然而由于本论文数学研究的特点以及 Mathematica 软件本身功能的局限性，并不能完全的依靠 Mathematica 软件就能得到研究的结果，往往还需要个人的思考以及人工的操作。在研究本论文内容所编写的 Wolfram 程序一般只能用于该类型的方程的研究，虽然研究方法和思想同样对其它类型的方程研究很有帮助和参考意义，但是程序本身不具有很广的泛化能力。但是虽然方程研究过程中的计算十分的繁琐并且过程对方程本身的特性和研究方法有很大的依赖性，仍然有一部分的计算过程是很有规律性或者通用性较好。在这一章中我们试图将这一部分找出来，并将其过程重构为 Mathematica 中 Package 包形式，使得其能够在更多类型的方程研究中发挥更好的作用。
+
+在本文中的第二章第三节中介绍了偏微分方程的守恒律的基础数学知识，守恒律作为非线性偏微分方程中一个很重要的性质，对于研究非线性偏微分来说具有很重要的作用。然而，求解偏微分方程守恒律的过程并不是一成不变的，一般来说不同类型方程的求解方式会具有很大的差异，在求解的过程中，往往只能凭借研究人员的个人的思考和过往研究经验对中间过程进行人工处理，才能得到最终的结果。幸运的是，在求解方程守恒律的过程中并不是所有的步骤都需要人工式的处理，仍然有一些步骤是机械式的流程，对于不同类型的方程，只要给出足够必要的条件，就能不断的迭代产生出从第一项到任意一项的守恒律。以 Sasa-Satsuma 方程为例，首先得到目标方程分别关于时间和空间多项式 $D_n$ 和 $F_n$ 的表达式，然后再得到表达式中依赖项的形式和起始项，就很容易的可以推导出任意一项的守恒律，最后进行验证是否正确。 因此可以将这一部分流程抽象出来，编写出用于求解守恒律的程序包。本章将主要介绍使用 Mathematica 内置的编程语言 Wolfram 来封装求解守恒律过程的程序包。
 
 \section{Wolfram Mathematica 基本介绍}
 Mathematica 是一款用于符号计算的软件，也被称为计算机代数系统，广泛用于科学研究、工程、数学计算等领域， 同时也是目前使用最为广泛的数学软件之一。而 Wolfram 语言是用于 Mathematica 的编程语言，它的用法和其它的高级编程语言有着很大的不同。Wolfram 集合了大量的编程模式，并使用独特的符号编程理念，是一种基于知识的语言，在编程上具有很大的灵活度。它使用各种语法规则去解释输入，使用标准输入框将字符串或框符转化为表达式。Wolfram 是一种交互式的编程语言，使用时只需敲入输入，然后按 SHIFT+ENTER 便可进行计算得到结果\upcite{syc-5}。下面将简要的介绍 Wolfram 语言中最基础的语法和概念。
@@ -68,27 +70,85 @@ $f[x\_ , y\_ ]:= (Module[\{x, y, \cdots\}, body])$
 
 除了可以自定义函数外，Wolfram 语言还提供近 5000 个内置函数共用户使用，一般每个内置函数名称的首字母均为大写。这些内置函数会大大的简化程序编写的工作量，下面给出一些常用到的内置函数
 
-$Simplify[expr]$  \quad   化简表达式 $expr$
+$\mathrm{Simplify[expr]}$  \quad   化简表达式 $expr$
 
-$Expand[expr]$ \quad    展开表达式 $expr$ 的每一项
+$\mathrm{Expand[expr]}$ \quad    展开表达式 $expr$ 的每一项
 
-$Solve[expr, vars]$  \quad 求解以 $vars$ 为变量的方程组或不等式组 $expr$
+$\mathrm{Solve[expr, vars]}$  \quad 求解以 $vars$ 为变量的方程组或不等式组 $expr$
 
-$DSolve[eqn, u, x]$ \quad  为函数 $u$ 求解微分方程，$x$ 为独立变量
+$\mathrm{DSolve[eqn, u, x]}$ \quad  为函数 $u$ 求解微分方程，$x$ 为独立变量
 
-$DSolve[\{eqn_1, eqn_2, \cdots \}, \{u_1, u_2, \cdots \}, \cdots ]$ \quad  用来求解一系列微分方程
+$\mathrm{DSolve[\{eqn_1, eqn_2, \cdots \}, \{u_1, u_2, \cdots \}, \cdots ]}$ \quad  用来求解一系列微分方程
 
-$D[f,x]$     \quad  关于函数 $f$ 对 $x$ 求微分
+$\mathrm{D[f,x]}$     \quad  关于函数 $f$ 对 $x$ 求微分
 
-$D[f,{x,n}]$     \quad     关于函数 $f$ 求 $x$ 的 $n$ 阶微分
+$\mathrm{D[f,{x,n}]}$     \quad     关于函数 $f$ 求 $x$ 的 $n$ 阶微分
 
-$Coefficient[expr, form]$   \quad  给出了多项式 $expr$ 中 $form$ 的系数
+$\mathrm{Coefficient[expr, form]}$   \quad  给出了多项式 $expr$ 中 $form$ 的系数
 
-$CoefficientList[poly, var]$   \quad  给出在 $poly$ 中 $var$ 的幂系数的列表，从 0 次幂开始
+$\mathrm{CoefficientList[poly, var]}$   \quad  给出在 $poly$ 中 $var$ 的幂系数的列表，从 0 次幂开始
 
 \section{守恒律的求解实现}
-如果知道一个微分方程的守恒律的表达式以及表达式依赖项的形式和起始项，那么我们就可以求出该方程任意一组的守恒律，当然首先是需要得到守恒律的通项公式。
+根据本论文的第三章和第四章的研究内容发现，求解守恒律的过程有相当一部分步骤的形式是一样的，尽管这两个方程之间还存在着微小的差距，但是这些差距仅仅是最基本函数形式不同，不会影响到守恒律的求解过程，因此这一小节我们将其中的公共部分抽取出来来编写适用性更广的程序。
+\subsection{依赖项系数的实现}
+如果知道一个微分方程的守恒律的表达式以及表达式依赖项的形式和起始项，那么我们就可以求出该方程任意一组的守恒律。当然首先是需要得到守恒律通项公式的依赖项系数的形式和起始项。从论文中的第三章和第四章内容我们发现依赖项系数很多但大部分的形式相似度很高，最主要是先获得依赖项 $c_n$ 和 $d_n$ 的形式。
 
+以下是代码的简单实现
+\begin{lstlisting}[language=Mathematica,caption=依赖项 $c_n$ 和 $d_n$ 的求解代码]
+(*
+	c1: 通项公式 cn 的首项内容
+	d1: 通项公式 dn 的首项内容
+	coe1: 对应系数的函数列表
+	coe2: 对应系数的函数其它形式(例如共轭)列表
+	n: 表示第 n 组的结果
+*)
+getGeneralTerm[c1_, d1_, coe1_, coe2_, n_]:=Module[{temp1, temp2, clist, dlist},
+	If[n <= 0, Print["n输入不合法"],
+	If[Length[coe1]!= Length[coe2], Print["系数列表长度不符合要求"],
+	
+	(*通项公式 C 的列表*)
+	clist = List[];
+	(*通项公式 d 的列表*)
+	dlist = List[];
+	(*列表 clist, dlist 的填充项，为保持长度统一*)
+	clist = Append[clist, 0];
+	dlist = Append[dlist, 0];
+	(*列表 clist, dlist 的首项内容*)
+	clist = Append[clist, c1];
+	dlist = Append[dlist, d1];
+
+	For[i=2, i <= n+3, i++,
+  temp1 = 1/(2aI)(D[clist[i],x]+a$\sum_{m=0}^{i-1}$(clist[[m+1]]clist[i-m]coe1[[1]]coe2[[2]]
+            +clist[[m+1]]dlist[[i-m]]coe2[[1]]coe1[[2]]));
+  temp2 = 1/(2aI)(D[dlist[i],x]+a$\sum_{m=0}^{i-1}$(dlist[[m+1]]dlist[[i-m]]coe2[[1]]coe1[[2]]
+            +dlist[[m+1]]clist[[i-m]]coe1[[1]]coe2[[2]]));
+	clist = Append[clist, temp1];
+	dlist = Append[dlist, temp2];
+	]
+	Print["第 ".n." 项 c 是："]
+	Print[Simplify[clist[[n+1]]]];
+	Print["第 ".n." 项 d 是："]
+	Print[Simplify[dlist[[n+1]]]];
+]]]
+\end{lstlisting}
+上述代码中 $getGeneralTerm$ 函数接收五个参数，$c1$ 是守恒律表达式所依赖项系数 $c_n$ 的第一项， $d1$ 是守恒律表达式所依赖项系数 $d_n$ 的第一项，$coe1$ 表示对应系数的函数列表，$co2$ 对应系数的函数其它形式列表，一般情况下是共轭形式，$n$ 表示想要得到第几组的序号。程序的内部过程是通项公式 $c_n$ 和 $d_n$ 的求解过程，在本论文中形式比较固定，它们的表达式的具体形式如下所示
+\begin{align}
+  & c_{n+2} = \frac{1}{2a\mathrm{i}} \left[c_{n+1,x} + a\sum_{m=0}^{n+1}(c_{m}c_{n+1-m}ku^{*} + c_{m}d_{n+1-m}k^{*}u)\right] \\
+  & d_{n+2} = \frac{1}{2a\mathrm{i}} \left[ d_{n+1,x} + a\sum_{m=0}^{n+1}(d_{m}d_{n+1-m}k^{*}u + d_{m}c_{n+1-m}ku^{*}) \right]
+\end{align}
+在论文中对于数列 $c_n, d_n$ 只有首项和一些系数函数会因为不同的方程而不同，它作为参数被传入到代码中的函数，因此只要知道首项的形式就很容易推导出任意一项的结果。
+
+\begin{figure}[!htp]
+	\centering
+	\includegraphics[width=0.97\linewidth]{getGeneralTerm.jpg}
+	\caption{求解依赖项的运行结果}
+	%with same parameters~$k=1 , \alpha_2(t)=1, \alpha_0(t)=0$.
+	\label{picture-5-1}
+\end{figure}
+下面是对程序的使用过程的介绍：如果想要使用该程序，首先导入封装该函数的程序包 $Conservation.wl$，以 .wl 为后缀的文件是 Mathematica 所提供的自定义程序包的文件格式。如果加载程序包后出现 $Package "Conservation" is\quad successfully\quad loaded!$ 的输出语句说明程序包加载成功。然后就可以调用程序包中的函数，运行结果如图 \ref{picture-5-1} 所示。该图只展示了所得到$c_n, d_n$ 前两项的结果。可以看到，图 \ref{picture-5-1} 的运行结果和第四章第三节中得到的结果是一致的。
+
+
+\subsection{守恒律求解的实现}
 以下是代码的简单实现
 \begin{lstlisting}[language=Mathematica,caption=守恒律求解的实现]
 (*
@@ -156,10 +216,10 @@ $Conservation$ 函数接收三个参数，$c0$ 是守恒律表达式所依赖项
 \includegraphics[width=\linewidth]{getConservation.jpg}
 \caption{求得方程的守恒律}
 %with same parameters~$k=1 , \alpha_2(t)=1, \alpha_0(t)=0$.
-\label{picture-5-1}
+\label{picture-5-2}
 \end{figure}
 
-以前面多研究的方程 (\ref{nss-1}) 威力，运用上述函数求得方程 (\ref{nss-1}) 的守恒律：首先导入封装该函数的程序包 $Conservation.wl$，.wl 为后缀的文件是 Mathematica 所提供的自定义程序包的文件格式。如果加载程序包后出现 $Package "D-operator" is successfully loaded!$ 的输出语句说明程序包加载成功。然后就可以调用程序包中的函数，运行结果如图 \ref{picture-5-1} 所示。
+以前面多研究的方程 (\ref{nss-1}) 为例，运用上述函数求得方程 (\ref{nss-1}) 的守恒律：首先导入封装该函数的程序包 $Conservation.wl$，.wl 为后缀的文件是 Mathematica 所提供的自定义程序包的文件格式。如果加载程序包后出现 $Package "D-operator" is successfully loaded!$ 的输出语句说明程序包加载成功。然后就可以调用程序包中的函数，运行结果如图 \ref{picture-5-1} 所示。
 
 
 \section{验证守恒律}
@@ -199,7 +259,7 @@ $validateConservation$ 函数接收 8 个参数， $equ1, equ2$ 分别表示所�
 	\includegraphics[width=\linewidth]{validateConservation.jpg}
 	\caption{验证守恒律成立}
 	%with same parameters~$k=1 , \alpha_2(t)=1, \alpha_0(t)=0$.
-	\label{picture-5-2}
+	\label{picture-5-3}
 \end{figure}
 
 \section{本章小结}

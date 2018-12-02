@@ -53,10 +53,10 @@ p=-1, \quad u_0(x,t)=-2 \phi_x.
 \begin{align}
 u&=\phi^{-1}(x,t)\sum_{j=0}^{\infty}u_j(x,t)\phi^j(x,t)=\sum_{j=0}^{\infty}u_j(x,t)\phi^{j-1}(x,t),\label{p-2}\\
 u_t&=\sum_{j=0}^{\infty}[u_{j,t}\phi^{j-1}+(j-1)u_j\phi_t\phi^{j-2}]=\sum_{j=0}^{\infty}[u_{j-2,t}\phi^{j-1}+(j-2)u_{j-1}\phi_t]\phi^{j-3} \\
-u_x&=\sum_{j=0}^{\infty}[u_{j,x}\phi^{j-1}+(j-1)u_j\phi_x\phi^{j-2}]=\Sigma_{j=0}^{\infty}[u_{j-1,x}+(j-1)u_{j}\phi_x]\phi^{j-2}, \\
+u_x&=\sum_{j=0}^{\infty}[u_{j,x}\phi^{j-1}+(j-1)u_j\phi_x\phi^{j-2}]=\sum_{j=0}^{\infty}[u_{j-1,x}+(j-1)u_{j}\phi_x]\phi^{j-2}, \\
 u_{xx}&=\sum_{j=0}^{\infty}[u_{j,xx}\phi^{j-1}+2(j-1)u_{j,x}\phi_x\phi^{j-2}+(j-1)u_j\phi_{xx}\phi^{j-2}+(j-1)(j-2)u_j\phi_x^2\phi^{j-3}]\nonumber\\
 &=\sum_{j=0}^{\infty}[(j-1)(j-2)u_{j}\phi_x^2+2(j-2)u_{j-1,x}+(j-2)u_{j-1}\phi_{xx}\phi^{xx}+u_{j-2,xx}]\phi^{j-3}, \\
-uu_x&=\phi^{-3}\sum_{j=0}^{\infty}u_j\phi^j\cdotp \sum_{j=0}^{\infty}[u_{j-1,x}+(j-1)u_j\phi_x]\phi^j =\phi^{-3}\Sigma_{j=0}^{\infty}\Sigma_{k=0}^{j}[(u_{k-1,x}+(k-1)u_k\phi_x)u_{j-k}]\phi^j\nonumber\\
+uu_x&=\phi^{-3}\sum_{j=0}^{\infty}u_j\phi^j\cdotp \sum_{j=0}^{\infty}[u_{j-1,x}+(j-1)u_j\phi_x]\phi^j =\phi^{-3}\sum_{j=0}^{\infty}\sum_{k=0}^{j}[(u_{k-1,x}+(k-1)u_k\phi_x)u_{j-k}]\phi^j\nonumber\\
 &=\sum_{j=0}^{\infty}\sum_{k=0}^{j}[(u_{k-1,x}+(k-1)u_k\phi_x)u_{j-k}]\phi^{j-3}.\label{p-3}
 \end{align}
 得到方程 (\ref{p-1}) 的主项分析结果后，再将 (\ref{p-2})-(\ref{p-3}) 式代入原方程，整理可得如下关系式
@@ -135,7 +135,7 @@ u_t = H(u) =  H(u, u_x, u^2,u_{xx}, \cdots)\label{inf02}
 
 
 \section{B\"{a}cklund 变换}
-除了之前介绍逆散射方法以外，还有其它的方法可以用来求解非线性偏微分方程，B\"{a}cklund 变换法就是其中的一种。B\"{a}cklund 变换是指两个偏微分方程的解之间存在的关系表达式，也就是说，知道其中一个偏微分方程的解，可以通过 B\"{a}cklund 变换得到另外一个偏微分方程的解。\upcite{syc-12,so-1,so-2syc-12}如果这两个偏微分方程刚好是同一个方程，那么这时 B\"{a}cklund 变换也被称为自 B\"{a}cklund 变换。对于自 B\"{a}cklund 变换而言，如果已知一个解，那么理论上通过自B\"{a}cklund 变换关系式可以迭代除无穷个解，只是随着迭代次数的增加，解的形式会越来越复杂，不过这种方法仍然是一个可行有效的方法。因此，B\"{a}cklund 变换法是求解非线性偏微分方程的一个很重要的方法，并已经被广泛的使用。
+除了之前介绍逆散射方法以外，还有其它的方法可以用来求解非线性偏微分方程，B\"{a}cklund 变换法就是其中的一种。B\"{a}cklund 变换是指两个偏微分方程的解之间存在的关系表达式，也就是说，知道其中一个偏微分方程的解，可以通过 B\"{a}cklund 变换得到另外一个偏微分方程的解\upcite{syc-12,so-1,so-2}。如果这两个偏微分方程刚好是同一个方程，那么这时 B\"{a}cklund 变换也被称为自 B\"{a}cklund 变换。对于自 B\"{a}cklund 变换而言，如果已知一个解，那么理论上通过自B\"{a}cklund 变换关系式可以迭代除无穷个解，只是随着迭代次数的增加，解的形式会越来越复杂，不过这种方法仍然是一个可行有效的方法。因此，B\"{a}cklund 变换法是求解非线性偏微分方程的一个很重要的方法，并已经被广泛的使用。
 
 B\"{a}cklund 变换最早由  A. V. B\"{a}cklund 提出。早在 1875 年，瑞典的一位数学家  B\"{a}cklund 在研究负常数曲率曲面(喇叭形曲面)时，发现了非线性的  Sine-Gordon 方程 $u_{xt}=\sin u $ 的两个解 $u$ 和 $u^*$ 之间有以下的关系：
 \begin{eqnarray}
