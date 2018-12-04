@@ -1,0 +1,51 @@
+% !Mode:: "TeX:UTF-8"
+
+% 中文摘要关键字
+%\ckeyword{位姿估计，P扩散和问题，拉格朗日对偶，分支定界，二次规划}
+\ckeyword{符号计算，非线性方程，B\"{a}cklund变换，孤子解，守恒律
+%, 海洋内 波, 符号计算.
+}
+
+% 英文摘要关键字
+%\ekeyword{Pose estimation,p-dispersion-sum problem,Lagrangian dual,branch-and-bound,quadratically constrained quadratic programming}
+%\ekeyword{pose estimation,p-dispersion-sum problem,Lagrangian dual,branch-and-bound,quadratic programming}
+\ekeyword{Symbolic computation, Nonlinear equations,  B\"{a}cklund transformation, Soliton solution, Conservation law
+%, Internal solitary wave, Lie group analysis
+}
+
+% 中文摘要===非线性发展方程的解析解研究与应用
+\begin{cabstract}
+现实物理世界中存在许多非线性现象，但是因为非线性因素的存在，常规的线性方程往往无法很好的描述这些现象，而非线性方程能够更精确的描述它们。研究非线性方程将有助于人们更好的理解隐藏在现实世界相关现象背后的运行机制，并且能够为相关领域的应用提供理论依据。因此非线性方程的研究变得十分重要且具有现实意义。目前研究非线性方程的方法主要有逆散射法、B\"{a}cklund变换、Darboux变换法、Hirota 双线性法等。然而随着非线性相关学科的发展，非线性方程的研究变得更加的深入，所研究的目标方程也便的越来越复杂，符号计算系统也逐渐成为研究中必不可少的工具。
+
+本文借助符号计算工具 Mathematica 对两类方程进行了解析研究，这两类方程分别是变系数的 Sasa-Satsuma 方程和非局域变系数的 Sasa-Satsuma 方程。研究的内容主要包括 Painlev\'{e}性质的分析、Lax 对、B\"{a}cklund变换、孤子解、守恒律和孤立波传播过程的模拟。进而开发基于 Mathematica 的程序包用于求解方程的守恒律，减轻了人工计算的困难。本文的研究内容主要包括以下几个方面：
+
+1. 变系数的 Sasa-Satsuma 方程的解析研究。
+该部分对一个含有 6 项变系数的 Sasa-Satsuma 方程进行研究。首先通过对方程进行 Painlev\'{e} 分析，求出了方程的可积条件，进而通过扩展的 AKNS 方法得到方程的 Lax 对，然后再根据 Lax 对得到了方程的 B\"{a}cklund 变换，并在此基础上获得了方程的单孤子解，接着又推导了方程的守恒律。最后借助所求到的单孤子解，对孤立波的传播过程进行了模拟，并分析各项系数对孤立波的影响。
+
+2. 非局域变系数的 Sasa-Satsuma 方程的解析研究。
+该部分对一个含有 7 项变系数非局域的 Sasa-Satsuma 方程进行研究。首先是构造了方程的 Lax 对，并在此基础上求得了方程的 B\"{a}cklund 变换和单孤子解，然后推导方程的守恒律，列举并检验了前几组守恒律的正确性。
+
+3. 求方程守恒律的程序包开发。
+该部分借助符号计算工具 Mathematica，开发用于求解方程守恒律的程序包。该程序包通过输入方程守恒律的迭代关系式和必要系数的通项公式以及起始项，自动求解出方程前几组的守恒律，不仅减轻了手工计算的难度，而且还能保证结果的正确性，提高了研究计算效率。
+
+\end{cabstract}
+
+
+% 英文摘要
+\begin{eabstract}
+Many nonlinear phenomena exist in the real physical world. However, because of the existence of nonlinear factors, conventional linear equations cannot describe these phenomena well, while nonlinear equations can describe them more accurately. Studying on nonlinear equations is helpful to understand the operating mechanism better which is hidden behind the phenomena in the real world, and provides a theoretical basis for the related application in the related fields. Therefore, the study of nonlinear equations becomes very important and practical.  At present, the methods of studying nonlinear equations mainly include inverse scattering method, B\"{a}cklund transformation, Darboux transformation method, and Hirota bilinear method, etc.  However, with the development of nonlinear related disciplines, the study of nonlinear equations has become more
+in-depth, the target equations studied are becoming more and more complex, and the symbolic computing system has gradually become an indispensable tool in research.
+
+In this paper, two kinds of equations are studied by means of the symbolic computing tool Mathematica. These two types of equations are the Sasa-Satsuma equation with variable coefficients and the non-local Sasa-Satsuma equation with variable coefficients. The research content mainly includes the analysis of Painlev\'{e} property, Lax pair, B\"{a}cklund transformation, soliton solution, conservation law and solitary wave propagation process simulation. Then the development of Mathematica-based package is used to solve the conservation law of the equation which alleviates the difficulty of manual calculation. The content of the research in this paper mainly includes the following aspects:
+
+1. Analytical study of the Sasa-Satsuma equation with variable coefficients.
+This section investigates a Sasa-Satsuma equation with six variable coefficients. Firstly, the integrable condition of the equation is obtained by the Pairlev\'{e} analysis of the equation. Then the Lax pair of the equation is obtained by the extended AKNS method. The B\"{a}cklund transformation and the single soliton solution of the equation are obtained according to the Lax pair which derive the conservation law of the equation. Finally, by using the obtained single soliton solution, the propagation process of solitary wave is simulated, and analyzes the effect of the variable coefficients of the equation on the effect of solitary waves.
+
+2. Analytical study of the non-local Sasa-Satsuma equation with variable coefficients
+This part studies a non-local Sasa-Satsuma equation with 7 non-local variable coefficients. Firstly, the Lax pair of the equation are constructed. On this basis, the B\"{a}cklund transformation and the single soliton solution of the equation are obtained. After that, the conservation laws of the equations are derived, and the first few sets of conservation laws is enumerated and tested. Finally, simulates and analyzes the process of the solitary wave propagation of the equation.
+
+3. The program package for solving the conservation is developed.
+In this part, develops a package for solving the conservation law of the equation by means of the symbolic calculation tool Mathematica. The program can automatically solve the first few groups of conservation laws by inputting the iterative relation of the conservation law of the equation and the general formula of the necessary coefficients and the starting term, which not only reduces the difficulty of manual calculation, but also ensures the correct result. And it can improve the computational efficiency of research.
+
+\end{eabstract}
+

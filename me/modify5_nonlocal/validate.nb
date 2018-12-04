@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    124651,       3792]
-NotebookOptionsPosition[    123345,       3745]
-NotebookOutlinePosition[    123735,       3762]
-CellTagsIndexPosition[    123692,       3759]
+NotebookDataLength[    132777,       4001]
+NotebookOptionsPosition[    130795,       3938]
+NotebookOutlinePosition[    131181,       3955]
+CellTagsIndexPosition[    131138,       3952]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -1157,6 +1157,100 @@ Cell[BoxData[{
    3.751182061984816*^9}}],
 
 Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Clear", "::", "wrsym"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\:7b26\:53f7 \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"\[FormalA]\\\"}]\\)\[NoBreak] \:88ab\:4fdd\
+\:62a4. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/wrsym\\\", ButtonNote -> \
+\\\"Clear::wrsym\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.752796676808813*^9, 3.752797271112687*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Clear", "::", "wrsym"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\:7b26\:53f7 \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"\[FormalB]\\\"}]\\)\[NoBreak] \:88ab\:4fdd\
+\:62a4. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/wrsym\\\", ButtonNote -> \
+\\\"Clear::wrsym\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.752796676808813*^9, 3.7527972712292004`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Clear", "::", "wrsym"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\:7b26\:53f7 \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"\[FormalC]\\\"}]\\)\[NoBreak] \:88ab\:4fdd\
+\:62a4. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/wrsym\\\", ButtonNote -> \
+\\\"Clear::wrsym\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.752796676808813*^9, 3.752797271318199*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"General", "::", "stop"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\:5728\:672c\:6b21\:8ba1\:7b97\:4e2d\:ff0c\[NoBreak]\\!\\(\
+\\*StyleBox[RowBox[{\\\"Clear\\\", \\\"::\\\", \\\"wrsym\\\"}], \
+\\\"MessageName\\\"]\\)\[NoBreak] \:7684\:8fdb\:4e00\:6b65\:8f93\:51fa\:5c06\
+\:88ab\:6291\:5236. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/stop\\\", ButtonNote -> \
+\\\"General::stop\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.752796676808813*^9, 3.7527972713531933`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Clear", "::", "spsym"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\:65e0\:6cd5\:6e05\:7a7a\:7279\:6b8a\:7b26\:53f7 \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"$ActivationGroupID\\\"}]\\)\[NoBreak].\"\>"}]],\
+ "Message", "MSG",
+ CellChangeTimes->{3.752796676808813*^9, 3.7527972713891926`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Clear", "::", "spsym"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\:65e0\:6cd5\:6e05\:7a7a\:7279\:6b8a\:7b26\:53f7 \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"$ActivationKey\\\"}]\\)\[NoBreak].\"\>"}]], \
+"Message", "MSG",
+ CellChangeTimes->{3.752796676808813*^9, 3.752797271395192*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Clear", "::", "spsym"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\:65e0\:6cd5\:6e05\:7a7a\:7279\:6b8a\:7b26\:53f7 \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"$ActivationUserRegistered\\\"}]\\)\[NoBreak].\"\
+\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.752796676808813*^9, 3.752797271398193*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"General", "::", "stop"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\:5728\:672c\:6b21\:8ba1\:7b97\:4e2d\:ff0c\[NoBreak]\\!\\(\
+\\*StyleBox[RowBox[{\\\"Clear\\\", \\\"::\\\", \\\"spsym\\\"}], \
+\\\"MessageName\\\"]\\)\[NoBreak] \:7684\:8fdb\:4e00\:6b65\:8f93\:51fa\:5c06\
+\:88ab\:6291\:5236.\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.752796676808813*^9, 3.752797271402192*^9}],
+
+Cell[BoxData[
  SuperscriptBox["\[ExponentialE]", 
   RowBox[{
    RowBox[{"\[Integral]", 
@@ -1178,7 +1272,7 @@ Cell[BoxData[
    3.7510117246524124`*^9, 3.751115002721245*^9, 3.751115044544636*^9, 
    3.751115085458624*^9, 3.7511151169428787`*^9, 3.7511152674954147`*^9, 
    3.751115512124543*^9, {3.751182046161866*^9, 3.7511820645247173`*^9}, 
-   3.7521045051341476`*^9}],
+   3.7521045051341476`*^9, 3.752796677145808*^9, 3.7527972714061937`*^9}],
 
 Cell[BoxData[
  SuperscriptBox["\[ExponentialE]", 
@@ -1202,7 +1296,7 @@ Cell[BoxData[
    3.7510117246524124`*^9, 3.751115002721245*^9, 3.751115044544636*^9, 
    3.751115085458624*^9, 3.7511151169428787`*^9, 3.7511152674954147`*^9, 
    3.751115512124543*^9, {3.751182046161866*^9, 3.7511820645247173`*^9}, 
-   3.752104505154148*^9}],
+   3.7521045051341476`*^9, 3.752796677145808*^9, 3.752797271411192*^9}],
 
 Cell[BoxData[
  TagBox[
@@ -1797,7 +1891,7 @@ Cell[BoxData[
    3.7510117246524124`*^9, 3.751115002721245*^9, 3.751115044544636*^9, 
    3.751115085458624*^9, 3.7511151169428787`*^9, 3.7511152674954147`*^9, 
    3.751115512124543*^9, {3.751182046161866*^9, 3.7511820645247173`*^9}, 
-   3.7521045055061564`*^9}]
+   3.7521045051341476`*^9, 3.752796677145808*^9, 3.7527972719401894`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -2408,6 +2502,100 @@ Cell[BoxData[
 
 Cell[BoxData[
  RowBox[{
+  StyleBox[
+   RowBox[{"Clear", "::", "wrsym"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\:7b26\:53f7 \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"\[FormalA]\\\"}]\\)\[NoBreak] \:88ab\:4fdd\
+\:62a4. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/wrsym\\\", ButtonNote -> \
+\\\"Clear::wrsym\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.7527974440975266`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Clear", "::", "wrsym"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\:7b26\:53f7 \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"\[FormalB]\\\"}]\\)\[NoBreak] \:88ab\:4fdd\
+\:62a4. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/wrsym\\\", ButtonNote -> \
+\\\"Clear::wrsym\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.752797444198527*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Clear", "::", "wrsym"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\:7b26\:53f7 \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"\[FormalC]\\\"}]\\)\[NoBreak] \:88ab\:4fdd\
+\:62a4. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/wrsym\\\", ButtonNote -> \
+\\\"Clear::wrsym\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.7527974442955265`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"General", "::", "stop"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\:5728\:672c\:6b21\:8ba1\:7b97\:4e2d\:ff0c\[NoBreak]\\!\\(\
+\\*StyleBox[RowBox[{\\\"Clear\\\", \\\"::\\\", \\\"wrsym\\\"}], \
+\\\"MessageName\\\"]\\)\[NoBreak] \:7684\:8fdb\:4e00\:6b65\:8f93\:51fa\:5c06\
+\:88ab\:6291\:5236. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/stop\\\", ButtonNote -> \
+\\\"General::stop\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.752797444383529*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Clear", "::", "spsym"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\:65e0\:6cd5\:6e05\:7a7a\:7279\:6b8a\:7b26\:53f7 \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"$ActivationGroupID\\\"}]\\)\[NoBreak].\"\>"}]],\
+ "Message", "MSG",
+ CellChangeTimes->{3.7527974443875256`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Clear", "::", "spsym"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\:65e0\:6cd5\:6e05\:7a7a\:7279\:6b8a\:7b26\:53f7 \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"$ActivationKey\\\"}]\\)\[NoBreak].\"\>"}]], \
+"Message", "MSG",
+ CellChangeTimes->{3.7527974443935256`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Clear", "::", "spsym"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\:65e0\:6cd5\:6e05\:7a7a\:7279\:6b8a\:7b26\:53f7 \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"$ActivationUserRegistered\\\"}]\\)\[NoBreak].\"\
+\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.7527974443985243`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"General", "::", "stop"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\:5728\:672c\:6b21\:8ba1\:7b97\:4e2d\:ff0c\[NoBreak]\\!\\(\
+\\*StyleBox[RowBox[{\\\"Clear\\\", \\\"::\\\", \\\"spsym\\\"}], \
+\\\"MessageName\\\"]\\)\[NoBreak] \:7684\:8fdb\:4e00\:6b65\:8f93\:51fa\:5c06\
+\:88ab\:6291\:5236.\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.7527974444025235`*^9}],
+
+Cell[BoxData[
+ RowBox[{
   RowBox[{"\[ImaginaryI]", " ", 
    RowBox[{"u", "[", 
     RowBox[{"x", ",", "t"}], "]"}], " ", 
@@ -2568,7 +2756,9 @@ Cell[BoxData[
       Derivative],
      MultilineFunction->None], "[", 
     RowBox[{"x", ",", "t"}], "]"}]}]}]], "Output",
- CellChangeTimes->{{3.751540289999033*^9, 3.7515403030687594`*^9}}],
+ CellChangeTimes->{{3.751540289999033*^9, 3.7515403030687594`*^9}, {
+   3.7527963844040146`*^9, 3.7527963863929863`*^9}, 3.7527966889981117`*^9, 
+   3.7527974444465227`*^9}],
 
 Cell[BoxData[
  RowBox[{
@@ -2751,7 +2941,9 @@ Cell[BoxData[
      MultilineFunction->None], "[", 
     RowBox[{
      RowBox[{"-", "x"}], ",", "t"}], "]"}]}]}]], "Output",
- CellChangeTimes->{{3.751540289999033*^9, 3.7515403030947585`*^9}}]
+ CellChangeTimes->{{3.751540289999033*^9, 3.7515403030687594`*^9}, {
+   3.7527963844040146`*^9, 3.7527963863929863`*^9}, 3.7527966889981117`*^9, 
+   3.7527974444605293`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -3021,7 +3213,8 @@ Cell[BoxData["0"], "Output",
    3.751115656495601*^9, {3.751115779450292*^9, 3.751115793557378*^9}, 
    3.751115854249023*^9, 3.7511160089883046`*^9, 3.7511821017676306`*^9, 
    3.7515399161996593`*^9, 3.751539951435485*^9, 3.7515402255681973`*^9, {
-   3.7515402987422285`*^9, 3.7515403074203386`*^9}}]
+   3.7515402987422285`*^9, 3.7515403074203386`*^9}, 3.752796390187472*^9, 
+   3.752796691705553*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -3434,8 +3627,8 @@ Cell[BoxData[{
 
 Cell[BoxData["0"], "Output",
  CellChangeTimes->{{3.751539907506542*^9, 3.751540003917653*^9}, {
-  3.751540169821982*^9, 3.7515401851155834`*^9}, {3.751540434774864*^9, 
-  3.751540444793968*^9}}]
+   3.751540169821982*^9, 3.7515401851155834`*^9}, {3.751540434774864*^9, 
+   3.751540444793968*^9}, 3.7527963953920183`*^9, 3.7527974543275614`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -3743,8 +3936,8 @@ Cell[BoxData["0"], "Output",
   3.751182109075873*^9}]
 }, Open  ]]
 },
-WindowSize->{1280, 637},
-WindowMargins->{{Automatic, -1288}, {Automatic, -8}},
+WindowSize->{1904, 997},
+WindowMargins->{{-8, Automatic}, {Automatic, 0}},
 Magnification:>1.1 Inherited,
 FrontEndVersion->"10.3 for Microsoft Windows (64-bit) (2015\:5e7411\:67084\
 \:65e5)",
@@ -3762,37 +3955,53 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 36042, 1134, 1619, "Input"],
-Cell[36625, 1158, 1136, 22, 36, "Output"],
-Cell[37764, 1182, 1134, 22, 36, "Output"],
-Cell[38901, 1206, 21489, 593, 109, "Output"]
+Cell[580, 22, 36042, 1134, 1636, "Input"],
+Cell[36625, 1158, 498, 11, 25, "Message"],
+Cell[37126, 1171, 500, 11, 27, "Message"],
+Cell[37629, 1184, 498, 11, 25, "Message"],
+Cell[38130, 1197, 627, 12, 25, "Message"],
+Cell[38760, 1211, 335, 8, 25, "Message"],
+Cell[39098, 1221, 329, 8, 25, "Message"],
+Cell[39430, 1231, 340, 8, 25, "Message"],
+Cell[39773, 1241, 435, 9, 25, "Message"],
+Cell[40211, 1252, 1182, 22, 38, "Output"],
+Cell[41396, 1276, 1180, 22, 38, "Output"],
+Cell[42579, 1300, 21535, 593, 111, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[60427, 1804, 4264, 127, 393, "Input"],
-Cell[64694, 1933, 1008, 14, 33, "Output"],
-Cell[65705, 1949, 1008, 14, 33, "Output"]
+Cell[64151, 1898, 4264, 127, 363, "Input"],
+Cell[68418, 2027, 1008, 14, 33, "Output"],
+Cell[69429, 2043, 1008, 14, 33, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[66750, 1968, 4584, 138, 373, "Input"],
-Cell[71337, 2108, 878, 12, 33, "Output"],
-Cell[72218, 2122, 878, 12, 33, "Output"]
+Cell[70474, 2062, 4584, 138, 383, "Input"],
+Cell[75061, 2202, 878, 12, 33, "Output"],
+Cell[75942, 2216, 878, 12, 33, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[73133, 2139, 8548, 267, 364, "Input"],
-Cell[81684, 2408, 4937, 162, 90, "Output"],
-Cell[86624, 2572, 5407, 181, 90, "Output"]
+Cell[76857, 2233, 8548, 267, 292, "Input"],
+Cell[85408, 2502, 478, 11, 25, "Message"],
+Cell[85889, 2515, 476, 11, 27, "Message"],
+Cell[86368, 2528, 478, 11, 25, "Message"],
+Cell[86849, 2541, 603, 12, 25, "Message"],
+Cell[87455, 2555, 313, 8, 25, "Message"],
+Cell[87771, 2565, 309, 8, 25, "Message"],
+Cell[88083, 2575, 320, 8, 25, "Message"],
+Cell[88406, 2585, 415, 9, 25, "Message"],
+Cell[88824, 2596, 5043, 164, 69, "Output"],
+Cell[93870, 2762, 5513, 183, 69, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[92068, 2758, 8366, 256, 305, "Input"],
-Cell[100437, 3016, 524, 7, 36, "Output"]
+Cell[99420, 2950, 8366, 256, 288, "Input"],
+Cell[107789, 3208, 572, 8, 33, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[100998, 3028, 12534, 404, 501, "Input"],
-Cell[113535, 3434, 194, 3, 36, "Output"]
+Cell[108398, 3221, 12534, 404, 456, "Input"],
+Cell[120935, 3627, 244, 3, 66, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[113766, 3442, 9439, 296, 605, "Input"],
-Cell[123208, 3740, 121, 2, 36, "Output"]
+Cell[121216, 3635, 9439, 296, 550, "Input"],
+Cell[130658, 3933, 121, 2, 39, "Output"]
 }, Open  ]]
 }
 ]

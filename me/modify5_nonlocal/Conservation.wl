@@ -1,6 +1,6 @@
 (* ::Package:: *)
 
-Clear["equ1", "equ2", "d", "f", "n", "c", "c1", "d1", "coe1", "coe2"]
+Clear["equ1", "equ2", "d", "f", "n", "c", "c1", "d1", "coe1", "coe2", "clist", "dlist", "u", "v"]
 Print[Style["Package \"\:6f14\:793a conservation\" is successfully loaded!",Orange,14]]
 
 
@@ -17,6 +17,7 @@ Print[Style["Package \"\:6f14\:793a conservation\" is successfully loaded!",Oran
 	d1: \:901a\:9879\:516c\:5f0f dn \:7684\:9996\:9879\:5185\:5bb9
 	coe1: \:5bf9\:5e94\:7cfb\:6570\:7684\:51fd\:6570\:5217\:8868
 	coe2: \:5bf9\:5e94\:7cfb\:6570\:7684\:51fd\:6570\:5176\:5b83\:5f62\:5f0f(\:4f8b\:5982\:5171\:8f6d)\:5217\:8868
+	n: \:8868\:793a\:7b2c n \:7ec4\:7684\:7ed3\:679c
 *)
 getGeneralTerm[c1_, d1_, coe1_, coe2_, n_]:=Module[{temp1, temp2, clist, dlist},
 	If[n <= 0, Print["n\:8f93\:5165\:4e0d\:5408\:6cd5"],
@@ -41,13 +42,51 @@ getGeneralTerm[c1_, d1_, coe1_, coe2_, n_]:=Module[{temp1, temp2, clist, dlist},
 	clist = Append[clist, temp1];
 	dlist = Append[dlist, temp2];
 	]
-	Print["\:7b2c ".n." \:9879 c \:662f\:ff1a"]
+	(*Print["\:7b2c ".n." \:9879 c \:662f\:ff1a"]
 	Print[Simplify[clist[[n+1]]]];
 	Print["\:7b2c ".n." \:9879 d \:662f\:ff1a"]
-	Print[Simplify[dlist[[n+1]]]];
+	Print[Simplify[dlist[[n+1]]]];*)
+
+	Conservation[clist, dlist, coe1, coe2, n]
 ]
 ]
 ]
+
+(*
+	clist: \:901a\:9879\:516c\:5f0f cn \:7684\:524d n \:9879\:5217\:8868
+	dlist: \:901a\:9879\:516c\:5f0f dn \:7684\:524d n \:9879\:5217\:8868
+	coe1: \:5bf9\:5e94\:7cfb\:6570\:7684\:51fd\:6570\:5217\:8868
+	coe2: \:5bf9\:5e94\:7cfb\:6570\:7684\:51fd\:6570\:5176\:5b83\:5f62\:5f0f(\:4f8b\:5982\:5171\:8f6d)\:5217\:8868
+	n: \:8868\:793a\:7b2c n \:7ec4\:7684\:7ed3\:679c
+*)
+Conservation[clist_, dlist_, coe1_, coe2_, n_]:=Module[{Dlist, Flist, dn, fn},
+	If[n <= 0, Print["n \:8f93\:5165\:4e0d\:5408\:6cd5"],
+	If[Length[coe1]!= Length[coe2] || Length[clist] != Length[dlist], 
+	Print["\:7cfb\:6570\:5217\:8868\:957f\:5ea6\:4e0d\:7b26\:5408\:8981\:6c42"],
+	
+	(*\:5b88\:6052\:5f8b Dn \:7684\:5217\:8868*)
+	Dlist = List[]; 
+	(*\:5b88\:6052\:5f8b Fn \:7684\:5217\:8868*)
+	Flist = List[];
+	(*\:5217\:8868 Dlist, Flist \:7684\:9996\:9879\:5185\:5bb9*)
+	Dlist = Append[Dlist, 0];
+	Flist = Append[Flist, 0];
+
+	For[i=1, i <= n, i++,
+	dn = a(coe1[[1]]coe2[[2]] clist[[n+1]] + coe2[[1]]coe1[[2]] dlist[[n+1]]);
+	fn = b[t](coe1[[3]] coe1[[1]] clist[[n+2]] + coe1[[4]] coe1[[1]] clist[[n+1]] +  2/3 coe1[[1]]coe2[[2]] clist[[n+3]]+  2/3 coe1[[2]]coe2[[1]] dlist[[n+3]]-coe2[[3]] coe2[[1]] dlist[[n+2]]+coe2[[4]] coe2[[1]]dlist[[n+1]]);
+	Dlist = Append[Dlist, dn];
+	Flist = Append[Flist, fn];
+	]
+	Print["\:7b2c ".n." \:9879 D \:662f\:ff1a"]
+	Print[Expand[Dlist[[n+1]]]];
+	Print["\:7b2c ".n." \:9879 F \:662f\:ff1a"]
+	Print[Expand[Flist[[n+1]]]];
+]
+]
+]
+
+
 
 
 
@@ -64,7 +103,7 @@ getGeneralTerm[c1_, d1_, coe1_, coe2_, n_]:=Module[{temp1, temp2, clist, dlist},
 	c: \:8868\:793a\:4e00\:4e2a\:5e38\:6570\:9879
 *)
 validateConservation[equ1_, equ2_, u_, v_, d_, f_, n_, c_]:=Module[{result},
-	If[n != 1, Print["n \:8f93\:5165\:4e0d\:5408\:6cd5"],
+	If[n != 1 && n != 2, Print["n \:8f93\:5165\:4e0d\:5408\:6cd5"],
 	
 	result = 0;
 

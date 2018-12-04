@@ -145,82 +145,64 @@ getGeneralTerm[c1_, d1_, coe1_, coe2_, n_]:=Module[{temp1, temp2, clist, dlist},
 	%with same parameters~$k=1 , \alpha_2(t)=1, \alpha_0(t)=0$.
 	\label{picture-5-1}
 \end{figure}
-下面是对程序的使用过程的介绍：如果想要使用该程序，首先导入封装该函数的程序包 $Conservation.wl$，以 .wl 为后缀的文件是 Mathematica 所提供的自定义程序包的文件格式。如果加载程序包后出现 $Package "Conservation" is\quad successfully\quad loaded!$ 的输出语句说明程序包加载成功。然后就可以调用程序包中的函数，运行结果如图 \ref{picture-5-1} 所示。该图只展示了所得到$c_n, d_n$ 前两项的结果。可以看到，图 \ref{picture-5-1} 的运行结果和第四章第三节中得到的结果是一致的。
+下面是对程序的使用过程的介绍：如果想要使用该程序，首先导入封装该函数的程序包 $Conservation.wl$，以 .wl 为后缀的文件是 Mathematica 所提供的自定义程序包的文件格式。如果加载程序包后出现 $Package \ "Conservation" \ is \ successfully \  loaded!$ 的输出语句说明程序包加载成功。然后就可以调用程序包中的函数，运行结果如图 \ref{picture-5-1} 所示。该图只展示了所得到$c_n, d_n$ 前两项的结果。可以看到，图 \ref{picture-5-1} 的运行结果和第四章第三节中得到的结果是一致的。
 
 
 \subsection{守恒律求解的实现}
+在实现依赖项求解之后，接下来的问题就是如何求解方程的守恒律。和上一小节的过程类似，我们在得到方程守恒律的通项公式后，就可以很容易的求得任意项的守恒律，这些通项公式中的一些参数系数部分是上一小节求得的结果，另一部分是固定形式的参数，它们被当作变量传入到代码的函数中。
+
 以下是代码的简单实现
-\begin{lstlisting}[language=Mathematica,caption=守恒律求解的实现]
+\begin{lstlisting}[language=Mathematica,caption=守恒律求解的代码]
 (*
-	输出 ss 方程第 n 组的守恒律
-	c0：系数 cn 的第一项
-	d0：系数 dn 的第一项
-	n：第 n 组的守恒律，要求 n 必须大于 0
+	clist: 通项公式 cn 的前 n 项列表
+	dlist: 通项公式 dn 的前 n 项列表
+	coe1: 对应系数的函数列表
+	coe2: 对应系数的函数其它形式(例如共轭)列表
+	n: 表示第 n 组的结果
 *)
-Conservation[c0_, d0_,  n_]:=Module[{equ1, equ2, clist, dlist},
-	If[n <= 0, Print["n输入不合法"],
+Conservation[clist_, dlist_, coe1_, coe2_, n_]:=Module[{Dlist, Flist, dn, fn},
+	If[n <= 0, Print["n 输入不合法"],
+	If[Length[coe1]!= Length[coe2] || Length[clist] != Length[dlist],
+	Print["系数列表长度不符合要求"],
 	
-	clist = List[];
-	dlist = List[];
-	clist = Append[clist, 0];
-	dlist = Append[dlist, 0];
-	clist = Append[clist, c0];
-	dlist = Append[dlist, d0];
-    l1[t] = 0;
-    l2[t] = l2;
-    l3[t] = 0;
-    l4[t] = \int \alpha6[t] dt;
-    k1[x,t] = Exp[I l1[t] x + l2[t] x + I l3[t] + l4[t]];
-    k2[-x,t] = Exp[I l1[t] x - l2[t] x - I l3[t] + l4[t]];
-    For[i=2, i <= n+3, i++,
-        equ1 = 1/(2aI)(D[clist[i],x]+a(clist[[m+1]]clist[i-m]k1[x,t]u^*[-x,t]
-            +clist[[m+1]]dlist[[i-m]]k2[-x,t]u[x,t]));
-        equ2 = 1/(2aI)(D[dlist[i],x]+a(dlist[[m+1]]dlist[i-m]k2[x,t]u[-x,t]
-            +dlist[[m+1]]clist[[i-m]]k1[x,t]u^*[-x,t]));
-        clist = Append[clist, equ1];
-        dlist = Append[dlist, equ2];
+	(*守恒律 Dn 的列表*)
+	Dlist = List[];
+	(*守恒律 Fn 的列表*)
+	Flist = List[];
+	(*列表 Dlist, Flist 的首项内容*)
+	Dlist = Append[Dlist, 0];
+	Flist = Append[Flist, 0];
+
+	For[i=1, i <= n, i++,
+	dn = a(coe1[[1]]coe2[[2]] clist[[n+1]] + coe2[[1]]coe1[[2]] dlist[[n+1]]);
+	fn = b[t](coe1[[3]] coe1[[1]] clist[[n+2]] + coe1[[4]] coe1[[1]] clist[[n+1]] +  2/3 coe1[[1]]coe2[[2]] clist[[n+3]]+  2/3 coe1[[2]]coe2[[1]] dlist[[n+3]]-coe2[[3]] coe2[[1]] dlist[[n+2]]+coe2[[4]] coe2[[1]]dlist[[n+1]]);
+	Dlist = Append[Dlist, dn];
+	Flist = Append[Flist, fn];
 	]
-
-	Print["第 ".n." 项 c 是："]
-	Print[Simplify[clist[[n+1]]]];
-	Print["第 ".n." 项 d 是："]
-	Print[Simplify[dlist[[n+1]]]];
-
-    A1 = \frac{i (l2[t]u^*{-x,t} - u^*_x[-x,t])}{3a};
-    A2 = \frac{i (l2[t]u{-x,t} - u_x[-x,t])}{3a};
-    A3=-(1/(6 a^2))(9 a^2 C2 u^*[-x,t]-l1[t]^2 u^*[-x,t]+2 I l1[t] l2[t]u^*[-x,t]+l2[t]^2 u^*[-x,t]+4 a^2 E^(2 I x l1[t]+2 l4[t]) u[x,t] u^*[-x,t]^2-2 I l1[t] D[u^*[-x,t],x]-2 l2[t]D[u^*[-x,t],x] + D[u^*[-x,t],{x,2}]);
-    A4=1/(6 a^2) (-9 a^2 C2 u[x,t]+u[x,t] l1[t]^2-u[x,t] l2[t]^2-4 a^2 E^(2 I x l1[t]+2 l4[t]) u[x,t]^2 u^*[-x,t]+2 l2[t] + D[u[x,t],x] + 2I (u[x,t] l1[t]l2[t]-l1[t] D[u[x,t],x])-D[u[x,t],{x,2}]);
-	Dn = a(k1[x,t] u^*[-x,t] clist[[n+1]] + k2[-x,t] u[x,t] dlist[[n+1]]);
-	Fn = b[t](A1 k1[x,t] clist[[n+2]] +  A3 k1[x,t] clist[[n+1]] + 2/3 k1[x,t] u^*[-x,t] clist[[n+3]]+ 2/3 u[x,t]k2[-x,t] dlist[[n+3]]-A2 k2[-x,t] dlist[[n+2]]+A4 k2[-x,t] dlist[[n+1]]);
 	Print["第 ".n." 项 D 是："]
-	Print[Expand[Dn]];
+	Print[Expand[Dlist[[n+1]]]];
 	Print["第 ".n." 项 F 是："]
-	Print[Expand[Fn]];
+	Print[Expand[Flist[[n+1]]]];
 ]
 ]
+]
+
 \end{lstlisting}
-$Conservation$ 函数接收三个参数，$c0$ 是守恒律表达式所依赖项系数 $c_n$ 的第一项， $d0$ 是守恒率表达式所依赖项系数 $d_n$ 的第一项， $n$ 表示想要得到第几组守恒律。程序的内部过程是关于 ss 类型方程的守恒律的求解过程。其中守恒律中的 $D_n$ 和 $F_n$ 项的表达式如下所示,
+上述代码中 $Conservation$ 函数接收五个参数，$clist$ 是上一小节得到的 $c_n$ 前 $n$ 项的列表，而$dlist$ 是则是上一小节中的得到的 $d_n$ 的前 $n$ 项列表，$coe1$ 表示对应系数的函数列表，$co2$ 对应系数的函数其它形式列表，一般情况下是共轭形式，$n$ 表示想要得到第几组守恒律。程序的内部过程是关于 Sasa-Satsuma 类型方程的守恒律的求解过程。其中守恒律中的 $D_n$ 和 $F_n$ 项的表达式如下所示,
 \begin{align}
   & D_{n} = a(ku^{*}c_{n} + k^{*}ud_{n}) \\
   & F_{n} = b(t)\left[A_{2}kc_{n+1} + A_{4}kc_{n} + \frac{2}{3}ku^{*}c_{n+2} + \frac{2}{3}uk^{*}d_{n+2} - A_{2}^{*}k^{*}d_{n+1} + A_{4}^{*}k^{*}d_{n}\right]
 \end{align}
-对于 ss 类型的方程守恒律的求解基本上都可以通过以下的方程来求得，因此只要指导表达式中对应元素的形式就能求得其中任意组的守恒律。而表达式中的元素 $A_2, A_4, k$ 等根据方程的不同可能会有不同的形式，$c_n, d_n$ 的形式相对固定，并且具有如下的形式
-\begin{align}
-  & c_{n+2} = \frac{1}{2a\mathrm{i}} \left[c_{n+1,x} + a\sum_{m=0}^{n+1}(c_{m}c_{n+1-m}ku^{*} + c_{m}d_{n+1-m}k^{*}u)\right] \\
-  & d_{n+2} = \frac{1}{2a\mathrm{i}} \left[ d_{n+1,x} + a\sum_{m=0}^{n+1}(d_{m}d_{n+1-m}k^{*}u + d_{m}c_{n+1-m}ku^{*}) \right]
-\end{align}
-而对于数列 $c_n, d_n$ 往往只有首项会因为不同的方程而不同，因此只要知道首项的形式就很容易推导出任意一项的结果，因而可以得到最终具体守恒律的结果。
+对于 Sasa-Satsuma 类型的方程守恒律的求解基本上都可以通过上述的方程来求得，因此只要指导表达式中对应元素的形式就能求得其中任意组的守恒律。而表达式中的元素 $A_2, A_4, k$ 等根据方程的不同可能会有不同的形式，$c_n, d_n$ 的形式相对固定，并且求解过程在上一小节中已给出。下面介绍该函数的使用过程和运行结果。
 
+使用上述代码之前需要调用上一小节中的代码。以本论文中的第四章研究的方程 (\ref{nss-1}) 为例，运用上述函数求得方程 (\ref{nss-1}) 的守恒律：首先导入封装该函数的程序包 $Conservation.wl$，加载程序包后出现 $Package \ "Conservation" \ is \ successfully \  loaded!$ 表示加载成功。然后就可以调用程序包中的 $getGeneralTerm$ 函数，并在该函数的内部调用 $Conservation$，并传入相应的参数。运行结果如图 \ref{picture-5-2} 所示。这里我们只运行给出了方程 (\ref{nss-1}) 的第一组守恒律的结果。可以看到守恒律的结果和第四章第三节中的结果是一致的。
 \begin{figure}[!htp]
 \centering
 \includegraphics[width=\linewidth]{getConservation.jpg}
-\caption{求得方程的守恒律}
+\caption{求解方程的守恒律}
 %with same parameters~$k=1 , \alpha_2(t)=1, \alpha_0(t)=0$.
 \label{picture-5-2}
 \end{figure}
-
-以前面多研究的方程 (\ref{nss-1}) 为例，运用上述函数求得方程 (\ref{nss-1}) 的守恒律：首先导入封装该函数的程序包 $Conservation.wl$，.wl 为后缀的文件是 Mathematica 所提供的自定义程序包的文件格式。如果加载程序包后出现 $Package "D-operator" is successfully loaded!$ 的输出语句说明程序包加载成功。然后就可以调用程序包中的函数，运行结果如图 \ref{picture-5-1} 所示。
-
 
 \section{验证守恒律}
 上一节实现了用于求解方程守恒律的程序，接下来这一节对得到的守恒律进行验证，然而不像求解守恒律那么般有规律，不同组的守恒律验证往往又不一样，因此目前程序只对前两组守恒律进行验证。
@@ -234,8 +216,8 @@ $Conservation$ 函数接收三个参数，$c0$ 是守恒律表达式所依赖项
 	n: 表示第几组守恒律
 	c: 表示一个常数项
 *)
-validateConservation[equ1_, equ2_, u_, v_, d_, f_, n_, c_]:=Module[{result, m},
-	If[n != 1, Print["n 输入不合法"],
+validateConservation[equ1_, equ2_, u_, v_, d_, f_, n_, c_]:=Module[{result},
+	If[n != 1 && n != 2, Print["n 输入不合法"],
 	
 	result = 0;
 
@@ -253,14 +235,24 @@ validateConservation[equ1_, equ2_, u_, v_, d_, f_, n_, c_]:=Module[{result, m},
 	]
 ];
 \end{lstlisting}
-$validateConservation$ 函数接收 8 个参数， $equ1, equ2$ 分别表示所研究的目标方程和目标方程的共轭形式，$u, v$ 分别是方程中的原子函数及其的共轭函数，即 $equ1, equ2$ 都是关于函数 $u, v$ 的非线性偏微分方程。$d, f$ 是前一步中求得的一组守恒律。$n$ 表示传入进来的守恒律是第几组，$c$ 表示一个不含函数 $u[x,t]$ 和其共轭函数的常数项。验证的思路如下：将守恒律中 $d$ 项函数对 $t$ 进行求导，对守恒律中 $f$ 项函数对 $x$ 求导，两者的结果相减，如果结果等于 0，那么守恒律就成立。但是一般相减后结果仍然是一个关于函数 $u$ 的多项式，如果它能与研究的目标方程等价，那么结果也就自然等于 0 了。这时，往往对原方程和其共轭方程进行各种形式的变形，使其能够与之前相减的结果等价。对于不同组的守恒律找到的变形往往是不同的，越是往后的守恒律往往形式越是复杂，因此该程序目前是能验证守恒律中前两组相对简单的形式。验证的结果如下图所示：
+$validateConservation$ 函数接收 8 个参数， $equ1, equ2$ 分别表示所研究的目标方程和目标方程的共轭形式，$u, v$ 分别是方程中的原子函数及其的共轭函数，即 $equ1, equ2$ 都是关于函数 $u, v$ 的非线性偏微分方程。$d, f$ 是前一步中求得的一组守恒律。$n$ 表示传入进来的守恒律是第几组，$c$ 表示一个不含函数 $u[x,t]$ 和其共轭函数的常数项。验证的思路如下：将守恒律中 $d$ 项函数对 $t$ 进行求导，对守恒律中 $f$ 项函数对 $x$ 求导，两者的结果相减，如果结果等于 0，那么守恒律就成立。但是一般相减后结果仍然是一个关于函数 $u$ 的多项式，如果它能与研究的目标方程等价，那么结果也就自然等于 0 了。这时，往往对原方程和其共轭方程进行各种形式的变形，使其能够与之前相减的结果等价。对于不同组的守恒律找到的变形往往是不同的，越是往后的守恒律往往形式越是复杂，因此该程序目前是能验证守恒律中前两组相对简单的形式。验证的结果如图  \ref{picture-5-3} 所示，从图中的运行结果我们可以看到方程的前两组的守恒律都成立。
+
 \begin{figure}[!htp]
 	\centering
-	\includegraphics[width=\linewidth]{validateConservation.jpg}
-	\caption{验证守恒律成立}
-	%with same parameters~$k=1 , \alpha_2(t)=1, \alpha_0(t)=0$.
+	\subfigure[验证第一组守恒律成立]{
+		\includegraphics[width=\linewidth]{validateConservation1.jpg}
+		\label{picture-5-31}
+	}
+	\ \
+	\subfigure[验证第二组守恒律成立]{
+		\includegraphics[width=\linewidth]{validateConservation2.jpg}
+		\label{picture-5-32}
+	}
+    \caption{验证守恒律成立}
 	\label{picture-5-3}
 \end{figure}
+
+
 
 \section{本章小结}
 本章首先介绍了符号计算软件 Mathematica 的程序编程语言 Wolfram 的基本语法和常用的函数，然后基于 Mathematica 开发了用于得到 ss 方程的守恒律的程序包。这个程序包主要包含两部分的内容，首先是根据方程无穷守恒律的关系表达式迭代推导出前几组的守恒律具体的形式，即 $Conservation$ 函数的实现内容；然后，根据之前得到的守恒律进行验证，验证的方法就是通过寻找方程的各种变形使守恒律达到平衡，即 $validateConservation$ 函数的具体实现内容。最后可以看到本章通过程序包求得的守恒律与第四章求得的守恒律完全一致，并最终通过了验证，这也说明程序包运行的具有较好的正确性和可靠性。

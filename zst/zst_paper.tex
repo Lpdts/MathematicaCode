@@ -27,10 +27,10 @@
 % 前言页眉页脚样式anderson2012optimal
 \pagestyle{frontmatter}
 % 摘要
-\include{data/abstract}
+\include{data/abstract1}
 % 目录、插图目录、表格目录\cite{}
 \tableofcontents
-%\listoffigures
+\listoffigures
 %\listoftables
 % 将表格的行距增大为正常行距
 \renewcommand{\arraystretch}{1.5}
@@ -47,16 +47,22 @@
 \setlength\belowcaptionskip{0pt}
 
 % 正文
-\include{data/chapter-introduction}
+\include{data/chapter-introduction1}
 \include{data/chapter-method}
 \include{data/chapter-ss}
-\include{data/chapter-nss}
+\include{data/chapter-nss1}
 \include{data/chapter-program}
-\include{data/chapter-sum}
+\include{data/chapter-sum1}
 
 % 参考文献
 \include{data/reference}
 
+% 附录
+%\appendix
+\renewcommand{\theequation}{\Alph{chapter}\arabic{equation}}  % 附录中公式、图、表的编号
+\renewcommand{\thefigure}{\Alph{chapter}\arabic{figure}}
+\renewcommand{\thetable}{\Alph{chapter}\arabic{table}}
+%\include{data/appendix-A}
 
 % 附页标题样式
 \backmatter
