@@ -224,7 +224,7 @@ B\"acklund 变换是根据方程的已知解推导出新解的一种有效的方
 \end{align}
 其中$d_{1}, d_{2}$是复常数， 将  (\ref{ss-g1})， (\ref{ss-g2}) 代入到  (\ref{ss-backlund}) 式可得到单孤子解，并将得到的解代入到原方程验证可以得到 $d_{2} = 1$，因此方程 (\ref{ss-1}) 的单孤子解如下
 \begin{align}
-  u(x,t) = \frac{4\eta d_{1}\mathrm{Exp}\Big[(2a\eta+\mathrm{i}\beta)x + (8a^{3}\eta^{3} - 2\beta^{3} + 18a^{3}\eta C_{2})\int \alpha_{3}(t)dt - \int \alpha_{6}(t)dt\Big]}{C_1 d_{1}^{2}\mathrm{Exp}[4a\eta x] + 2C_1 \mathrm{Exp}\Big[(16a^{3}\eta^{3}+36a^{3}\eta C_{2})\int \alpha_{3}(t)dt\Big]}
+  u(x,t) = \frac{4\eta d_{1}\mathrm{Exp}\Big[(2a\eta+\mathrm{i}\beta)x + (8a^{3}\eta^{3} - 2\beta^{3} + 18a^{3}\eta C_{2})\int \alpha_{3}(t)dt - \int \alpha_{6}(t)dt\Big]}{C_1 d_{1}^{2}\mathrm{Exp}[4a\eta x] + 2C_1 \mathrm{Exp}\Big[(16a^{3}\eta^{3}+36a^{3}\eta C_{2})\int \alpha_{3}(t)dt\Big]}  \label{ss-single-soliton}
 \end{align}
 
 \section{无穷守恒律}
@@ -340,51 +340,89 @@ B\"acklund 变换是根据方程的已知解推导出新解的一种有效的方
 \section{孤子解的模拟}
 本小节将讨论孤子解的传播图像的相关特征。为了研究不同系数对于孤子解传播的影响，我们选择一些特殊具体的数值或者函数对得到的孤子解进行了模拟分析。由之前得到的 Lax 对可以知道原方程的各个系数之间都存在着约束关系，从约束关系中可以看到所有的系数都与 $\alpha_3(t), \alpha_6(t)$ 存在关系，而从单孤子解的结构中也能看出这一点，因此我们主要讨论系数 $\alpha_3(t),\alpha_6(t)$ 对孤子波形的影响。
 
-为了简单方便，我们令 $\alpha_3(t) = 0$，$\alpha_6(t)$ 取不同的函数，然后画出单孤子解的波形，图 \ref{wave-1} 分别时 $\alpha_6(t)$ 取 $0, 0.5, t, t^3, cos(t), 1/t$ 时的波形图，由此可见$\alpha_6(t)$的取值不同会对孤立波振幅、波形、传播方向的变化产生不同的影响。
+为了方便简单讨论，对于单孤子解 (\ref{ss-single-soliton})，令 $C_2 = 0$，则单孤子解可以简化为以下的形式
+\begin{align}
+    u(x, t) = \frac{\eta d_1 \mathrm{Exp}\left(-\delta - \int \alpha_6(t)dt\right)}{C_1}\cdot \mathrm{sech}\left(2a\eta x - 8a^3\eta^3 \int \alpha_3(t)dt + \delta\right)  \label{ss-simple}
+\end{align}
+其中 $\delta = \dfrac{1}{2}\mathrm{ln}\dfrac{d_1^2}{2}$.
 
-\section{本章小结}
-本章研究一个含有 6 项关于 $t$ 函数的变系数的  Sasa-Satsuma 方程 (\ref{ss-1})的可积性质和解析解。首先通过 Painlev$\'{e}$ 分析得到方程 (\ref{ss-1}) 的可积条件。在此基础上由相容条件和扩展的 AKNS 系统得到了方程 (\ref{ss-1}) 的 Lax 对，并进一步的求得了方程的 B\"{a}cklund 变换和单孤子解，然后推导得出方程的无穷守恒律，列出并验证了前三组的守恒律。最后借助得到方程的单孤子解，本章对孤立波进行了模拟，并分析讨论了方程各项的变系数对于孤立波传播的影响。本章与之前的研究内容最大的区别在方程的项数较多且是变系数，因此本章的研究结果例如解的范围会更加广泛，能够将之前部分的研究包含进去，将有助于更好的认识 ss 类的方程。
+从上述表达式中可以看出，不同变量对于单孤子波会产生不同的影响。单孤子波的振幅的影响参数有 $\eta, d_1, C_1$ 和变系数 $\alpha_6(t)$，相位的影响参数有 $a, \eta, d_1$ 和变系数 $\alpha_3(t)$。为了说明原方程的系数 $\alpha_6(t)$ 对单孤子波的影响，我们取 $\eta = 1, d_1 = 1, a = 1, C_1 = 1, \alpha_3(t) = 0$，然后再分别取 $\alpha_6(t) = 0.8, \alpha_6(t) = -0.5$，得到了图 \ref{picture-ss1} 中的波形。可以图中看到，随着参数 $\alpha_6(t)$ 的改变，单孤子波的振幅也发生了改变。与图 \ref{ss-a01} 相对比，图 \ref{ss-a02} 中的单孤子波的波形振幅变小，波长便大。接着我们再来通过改变系数 $\alpha_3(t)$的取值，来说明系数 $\alpha_3(t)$ 的取值对于单孤子波的影响。我们令 $\eta = 1, d_1 = 1, a = 1, C_1 = 1, \alpha_6(t) = 0$，然后分别取 $\alpha_3(t) = 1, \alpha_3(t) = -2$，得到了类似图 \ref{picture-ss2} 的波形。可以从两个对比图中看到，$\alpha_3(t)$ 取值的不同会使得单孤子波的波形发生改变，而且取值的符号不同会使得单孤子波的传播方向发生明显的改变。
+
+上述讨论分别阐述了原方程的系数 $\alpha_3(t)$ 和 $\alpha_6(t)$ 的取值不同对单孤子波的振幅、传播方向和波形等所产生的影响。然而上述讨论只是说明了系数取具体实数值时一种简单的情况，事实上系数 $\alpha_3(t)$ 和 $\alpha_6(t)$ 取值范围可以更广，并且可以以此来去描述更多的非线性的现象。图 \ref{picture-ss3} 是在 $\eta = 1, d_1 = 1, a = 1, C_1 = 1$ 的情况下 $\alpha_3(t)$ 和 $\alpha_6(t)$ 取不同值或者函数下单孤子波形的波形。可以从图中看到，$\alpha_3(t)$ 和 $\alpha_6(t)$ 的取值不同，单孤子波的波形会发生非常明显的变化。
+\begin{figure}[!htp]
+	\centering
+	\subfigure[$\alpha_6(t) = 0.8$]{
+		\includegraphics[width=0.4\linewidth]{figure/a6_1.pdf}
+		\label{ss-a01}
+	}
+	\ \
+	\subfigure[$\alpha_6(t) = -0.5$]{
+		\includegraphics[width=0.4\linewidth]{figure/a6_2.pdf}
+		\label{ss-a02}
+	}
+	\caption{$\eta = 1, d_1 = 1, a = 1, C_1 = 1, \alpha_3(t) = 0$, 方程 (\ref{ss-simple}) 表示的单孤子波振幅和波形的变化}
+	\label{picture-ss1}
+\end{figure}
 
 \begin{figure}[!htp]
 	\centering
-	\subfigure[$\alpha_6(t)=0$]{
-		\includegraphics[width=0.4\linewidth]{ss-1.jpg}
+	\subfigure[$\alpha_3(t) = 1$]{
+		\includegraphics[width=0.4\linewidth]{figure/a3_1.pdf}
+		\label{ss-a03}
+	}
+	\ \
+	\subfigure[$\alpha_3(t) = -2$]{
+		\includegraphics[width=0.4\linewidth]{figure/a3_2.pdf}
+		\label{ss-a04}
+	}
+	\caption{$\eta = 1, d_1 = 1, a = 1, C_1 = 1, \alpha_6(t) = 0$, 方程 (\ref{ss-simple}) 表示的单孤子波传播方向和波形的变化}
+	\label{picture-ss2}
+\end{figure}
+
+
+%为了简单方便，我们令 $\alpha_3(t) = 0$，$\alpha_6(t)$ 取不同的函数，然后画出单孤子解的波形，图 \ref{wave-1} 分别时 $\alpha_6(t)$ 取 $0, 0.5, t, t^3, cos(t), 1/t$ 时的波形图，由此可见$\alpha_6(t)$的取值不同会对孤立波振幅、波形、传播方向的变化产生不同的影响。
+
+\section{本章小结}
+本章研究一个含有 6 项关于 $t$ 函数的变系数的  Sasa-Satsuma 方程 (\ref{ss-1})的可积性质和解析解。首先通过 Painlev$\'{e}$ 分析得到方程 (\ref{ss-1}) 的可积条件。在此基础上由相容条件和扩展的 AKNS 系统得到了方程 (\ref{ss-1}) 的 Lax 对，并进一步的求得了方程的 B\"{a}cklund 变换和单孤子解，然后推导得出方程的无穷守恒律，列出并验证了前三组的守恒律。最后借助得到方程的单孤子解，本章对孤立波进行了模拟，并分析讨论了方程各项的变系数对于孤立波传播的影响。本章与之前的研究内容最大的区别在方程的项数较多且是变系数，因此本章的研究结果例如解的范围会更加广泛，能够将之前部分的研究包含进去，将有助于更好的认识 Sasa-Satsuma 类的方程。
+
+\begin{figure}[!htp]
+	\centering
+	\subfigure[$\alpha_3(t)=0, \alpha_6(t)=0$]{
+		\includegraphics[width=0.4\linewidth]{figure/a36_1.pdf}
 		\label{ss-a11}
 	}
 	\ \
-	\subfigure[$\alpha_6(t)=0.5$]{
-		\includegraphics[width=0.4\linewidth]{ss-2.jpg}
+	\subfigure[$\alpha_3(t)=1, \alpha_6(t)=-2$]{
+		\includegraphics[width=0.4\linewidth]{figure/a36_2.pdf}
 		\label{ss-a12}
 	}
 
 	\label{a1}
 
     \centering
-	\subfigure[$\alpha_6(t)=t$]{
-		\includegraphics[width=0.4\linewidth]{ss-3.jpg}
+	\subfigure[$\alpha_3(t)=-0.5t, \alpha_6(t)=0.5t$]{
+		\includegraphics[width=0.4\linewidth]{figure/a36_3.pdf}
 		\label{ss-a21}
 	}
 	\ \
-	\subfigure[$\alpha_6(t)=t^3$]{
-		\includegraphics[width=0.4\linewidth]{ss-4.jpg}
+	\subfigure[$\alpha_3(t)=-t^2, \alpha_6(t)=t$]{
+		\includegraphics[width=0.4\linewidth]{figure/a36_4.pdf}
 		\label{ss-a22}
 	}
-    \newline
-    \newline
-    \newline
+   
 	\label{a1}
 
     \centering
-	\subfigure[$\alpha_6(t)=cos(t)$]{
-		\includegraphics[width=0.4\linewidth]{ss-5.jpg}
+	\subfigure[$\alpha_3(t)=\frac{1}{t}, \alpha_6(t)=0$]{
+		\includegraphics[width=0.4\linewidth]{figure/a36_5.pdf}
 		\label{ss-a31}
 	}
 	\ \
-	\subfigure[$\alpha_6(t)=1/t$]{
-		\includegraphics[width=0.4\linewidth]{ss-6.jpg}
+	\subfigure[$\alpha_3(t)=\sin t, \alpha_6(t)=\sin t$]{
+		\includegraphics[width=0.4\linewidth]{figure/a36_6.pdf}
 		\label{ss-a32}
 	}
-	\caption{$\alpha_6(t)$的取值不同导致孤立波振幅、波形、传播方向的变化}
-	\label{wave-1}
+	\caption{$\alpha_3(t), \alpha_6(t)$的取值不同导致孤立波振幅、波形、传播方向的变化}
+	\label{picture-ss3}
 \end{figure}
 

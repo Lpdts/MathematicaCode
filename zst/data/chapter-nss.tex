@@ -155,7 +155,7 @@ U_{t} - V_{x} + UV - VU = 0
 \subsection{单孤子解}
 我们使用上一节得到的 B\"acklund 变换，从零解出发得到方程 (\ref{nss-1}) 的单孤子解\upcite{nss-5,nss-6,nss-7,nss-8}。
 
-令 $u_{0} = 0, \lambda = i\eta$ ($\eta$ 是常数) 代入方程 (\ref{nss-4}) 和 (\ref{nss-5} 可得
+令 $u_{0} = 0, \lambda = i\eta$ ($\eta$ 是常数) 代入方程 (\ref{nss-4}) 和 (\ref{nss-5}) 可得
 \begin{align}
   & \Gamma_{1x} = 2a\eta\Gamma_{1} \\
   & \Gamma_{2x} = 0
@@ -181,7 +181,7 @@ U_{t} - V_{x} + UV - VU = 0
 \end{align}
 将得到的单孤子解 (\ref{nss-soliton1}) 式代入到方程 (\ref{nss-1}) 进行验证可以的到约束关系
 \begin{equation}
-  \gamma = -\dfrac{4}{9}\eta^2
+  \gamma = -\dfrac{4}{9}\eta^2 \label{nss-yuesu}
 \end{equation}
 因此得到的 (\ref{nss-soliton1}) 可以进一步的简化为
 \begin{equation}
@@ -282,6 +282,50 @@ U_{t} - V_{x} + UV - VU = 0
   & \left. -\frac{5\delta(t)^2u(u^*)^2u_{xx}}{12a^2} + \frac{7\beta u^*_xu_{xx}}{48a^4} -\frac{3\gamma uu^*_{xx}}{16a^2} - \frac{11\beta^2 uu^*_{xx}}{48a^4} - \frac{5\delta(t)^2u^2u^*u^*_{xx}}{12a^2} + \frac{7\beta u_xu^*_{xx}}{48a^4} \right. \notag \\
   & \left. -\frac{u_{xx}u^*_{xx}}{24a^4} + \frac{5\beta u^*u_{xxx}}{48a^4} - \frac{u^*_xu_{xxx}}{48a^4} + \frac{5\beta uu^*_{xxx}}{48a^4} - \frac{u_xu^*_{xxx}}{48a^4} -\frac{u^*u_{xxxx}}{48a^4} -\frac{uu^*_{xxxx}}{48a^4}\right]
 \end{align}
+
+\section{孤子解的模拟}
+本小节主要分析方程 (\ref{nss-1}) 所求得的单孤子解的特性。与第三章所求得的单孤子解 (\ref{ss-single-soliton}) 形式不同，本章中所求得的单孤子解 (\ref{nss-soliton2}) 得形式要简单许多。两者相对比可以发现，孤子解 (\ref{nss-soliton2}) 中不包含虚数单位 $\mathrm{i}$，也就是说本章所求得的是一个实解，这是与第三章中所得到单孤子解一个很重要的不同地方，同时也是非局域的 Sasa-Satsuma 方程与局域的 Sasa-Satsuma 方程一个很重要的区别。另外我们可以看到单孤子解 (\ref{nss-soliton2}) 中只有分子部分包含关于 $\mathrm{e}$ 的指数形式，也就是该解不能够转化为双曲函数的形式，就是一个相对简单关于 $\mathrm{e}$ 指数的函数，因此该单孤子解的波形的模拟就会变得十分的简单并且没有特别多的意义。而如果我们忽略掉条件 (\ref{nss-yuesu}) 后，单孤子解才能够转换成双线性的形式，因此我们按照单孤子解的原始形式 (\ref{nss-soliton1})，并令 $d_1=1, d_2=1, a=1, \beta=1, \gamma=1,\eta=1$，然后并让系数 $\alpha_3(t)$ 和 $\alpha_6(t)$ 取不同的数值或者函数时，得到如图 (\ref{picture-nss-1}) 所示的单孤子波的波形图和密度图。可以从图中看到，系数 $\alpha_3(t)$ 和 $\alpha_6(t)$ 的取值不同会对单孤子波的波形产生不同的影响，因此也可以更好的模拟非线性的现象。
+
+
+\begin{figure}[!htp]
+	\centering
+	\subfigure[$\alpha_3(t) = t, \alpha_6(t) = -t$]{
+		\includegraphics[width=0.4\linewidth]{figure/nss_11.pdf}
+		%\label{a21}
+		%}
+		%\ \
+		%\subfigure[]{
+		\hspace{5mm}
+		\vspace{3mm}
+		\includegraphics[width=0.22\linewidth]{figure/nss_12.pdf}
+		\label{nss-a22}
+	}
+	\ \
+	\subfigure[$\alpha_3(t) = t^2, \alpha_6(t) = -t^2$]{
+		\includegraphics[width=0.4\linewidth]{figure/nss_21.pdf}
+		%\label{a23}
+		%}
+		%\ \
+		%\subfigure[]{
+		\hspace{5mm}
+		\includegraphics[width=0.22\linewidth]{figure/nss_22.pdf}
+		\label{nss-a24}
+	}
+	\ \
+	\subfigure[$\alpha_3(t) = \sin t, \alpha_6(t) = -\sin t$]{
+		\includegraphics[width=0.4\linewidth]{figure/nss_31.pdf}
+		%\label{a25}
+		%}
+		%\ \
+		%\subfigure[]{
+		\hspace{5mm}
+		\includegraphics[width=0.22\linewidth]{figure/nss_32.pdf}
+		\label{nss-a26}
+	}
+	
+	\caption{$d_1=1, d_2=1, a=1, \beta=1, \gamma=1,\eta=1$, 方程 (\ref{nss-soliton1}) 表示的怪波波形}
+	\label{picture-nss-1}
+\end{figure}
 
 \section{本章小结}
 本章研究一个含有 7 项关于 $t$ 函数的变系数的 非局域 Sasa-Satsuma 方程 (\ref{nss-1})。首先通过 扩展的 AKNS 系统得到了方程 (\ref{nss-1}) 的 Lax 对，在此基础上通过引入辅助函数求得了方程自 B\"{a}cklund 变换，并通过种子零解和之前的 B\"{a}cklund 变换得到了方程 (\ref{nss-1})的单孤子解，然后通过引入 Riccati 形式的变量推导得出方程的无穷守恒律，列出并验证了前三组的守恒律。最后借助得到方程的单孤子解，对孤立波的传播性质进行了模拟，并分析讨论了方程各项的变系数对于孤立波传播的影响。本章与之前的研究内容最大的区别有两点，一是方程的项数较多且是变系数，而且方程的空间变量 $x$ 是局域的，因此本章对方程 (\ref{nss-1}) 的研究有很大的意义，相信研究结果将有助于更好认识 ss 方程以及其它方程的研究。
