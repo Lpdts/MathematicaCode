@@ -1,5 +1,7 @@
 \chapter{变系数的 Sasa-Satsuma 方程}
-本章我们要研究的方程是变系数的 Sasa-Satsuma 方程，具有如下的项式，
+Sasa-Satsuma 方程 (SSE) 是非线性薛定谔方程的一个重要的可积扩展，同时也是少数的可积模型之一，在非线性领域一直是研究的热点。该方程在经典的非线性薛定谔方程之外，还包括了三阶色散项、自陡峭项和自频率项，因此可以被用来描述更多的非线性的现象\upcite{ss-39,ss-40,ss-44,ss-45,ss-46,ss-47,ss-69}。当方程的系数满足一些约束条件时，可以将方程的解简化为有理解，从而可以用来应用于动力学问题的研究。此外，这些结果还有助于证明在海水、光纤和其它色散非线性介质中出现的怪波现象\upcite{ss-48,ss-49,ss-50,ss-52,ss-53,ss-54}。当传播介质不均匀时，变系数模型通常比常系数模型能描述更多的情况\upcite{ss-66}。
+
+本章我们要研究的方程是变系数的 Sasa-Satsuma 方程，具有如下的形式，
 \begin{equation}
   \mathrm{i}u_{t} + \alpha_{1}(t)u_{xx} + \alpha_2(t)|u|^{2}u + \mathrm{i}\left[\alpha_3(t)u_{xxx} + \alpha_{4}(t)(|u|^{2}u)_{x} + \alpha_{5}(t)(|u|^{2})_{x}u + \alpha_{6}(t)u \right] = 0  \label{ss-1}
 \end{equation}
@@ -75,9 +77,7 @@ Lax 对的本质是通过变换将一个非线性偏微分方程转变为多个�
              -\mathrm{i} & 0 & 0 \\
               0 & \mathrm{i} & 0 \\
               0 & 0 & \mathrm{i}
-            \end{pmatrix}, \label{ss-lax1}
-\end{align}
-\begin{align}
+            \end{pmatrix}, \label{ss-lax1} \\
   & U_{1} = \begin{pmatrix}
               0 & ku^{*} & k^{*}u \\
               -k^{*}u & 0 & 0 \\
@@ -161,12 +161,10 @@ B\"acklund 变换是根据方程的已知解推导出新解的一种有效的方
 \end{equation}
 则有
 \begin{align}
-  \Gamma_{1x} &= \left(\frac{\phi_1}{\phi_3}\right)_x=\frac{\phi_{1x}\phi_3-\phi_1\phi_{3x}}{\phi_3^2}=\frac{a(-\mathrm{i}\lambda\phi_1+ku^*\phi_2+k^*u\phi_3)}{\phi_3}-\frac{\phi_1a(-ku^*\phi_1+\mathrm{i}\lambda\phi_3)}{\phi_3^2} \nonumber\\
+ \Gamma_{1x} &= \left(\frac{\phi_1}{\phi_3}\right)_x=\frac{\phi_{1x}\phi_3-\phi_1\phi_{3x}}{\phi_3^2}=\frac{a(-\mathrm{i}\lambda\phi_1+ku^*\phi_2+k^*u\phi_3)}{\phi_3}-\frac{\phi_1a(-ku^*\phi_1+\mathrm{i}\lambda\phi_3)}{\phi_3^2} \nonumber\\
   &= a(k^{*}u - 2\mathrm{i}\lambda \Gamma_{1} + ku^{*}\Gamma_{2} + ku^{*}\Gamma_{1}^{2}), \\
   \Gamma_{2x} &=\left(\frac{\phi_2}{\phi_3}\right)_x=\frac{\phi_{2x}\phi_3-\phi_2\phi_{3x}}{\phi_3^2}=\frac{a(\mathrm{i}\lambda\phi_2-uk^*\phi_1)}{\phi_3}-\frac{\phi_2a(-ku^*\phi_1+\mathrm{i}\lambda\phi_3)}{\phi_3^2}\nonumber\\
-  &= a(-uk^{*}\Gamma_{1} + ku^{*}\Gamma_{1}\Gamma_{2}),
-\end{align}
-\begin{align}
+  &= a(-uk^{*}\Gamma_{1} + ku^{*}\Gamma_{1}\Gamma_{2}), \\
   \Gamma_{1t} &= \left(\frac{\phi_1}{\phi_3}\right)_t=\frac{\phi_{1t}\phi_3-\phi_1\phi_{3t}}{\phi_3^2} \notag \\
   &= \left[\frac{2}{3}\lambda^{2}k^{*}u - \lambda k^{*}A_{2}^{*} + k^{*}A_{4}^{*} - \lambda k^{2}A_{3}\Gamma_{1}\Gamma_{2} + (-\frac{4}{3}\mathrm{i}\lambda^{3} + 2\lambda A_{1} - \lambda A_{1}^{*} - A_{5}^{*})\Gamma_{1} + (\lambda kA_{2} \right. \notag\\
   & \left. + kA_{4} + \frac{2}{3}\lambda^{2}ku^{*})\Gamma_{2} + (-\lambda kA_{2} + kA_{4} + \frac{2}{3}\lambda^{2}ku^{*})\Gamma_{1}^{2}\right] b(t), \label{ss-gt1}\\
@@ -174,7 +172,7 @@ B\"acklund 变换是根据方程的已知解推导出新解的一种有效的方
   &= \left[ -\lambda(k^{*})^{2}A_{3}^{*} + (-\frac{2}{3}\lambda^{2}uk^{*} - \lambda k^{*}A_{2}^{*} - k^{*}A_{4}^{*})\Gamma_{1} + (A_{5}-A_{5}^{*})\Gamma_{2} + (-\lambda kA_{2} +kA_{4} \right. \notag\\
   & \left. + \frac{2}{3}\lambda^{2}ku^{*})\Gamma_{1}\Gamma_{2} - \lambda k^{2}A_{3}\Gamma_{2}^{2} \right] b(t), \label{ss-gt2}
 \end{align}
-由上述的计算结果可以得知方程 $\ref{ss-2}$ 可以表示为如下的 $\Gamma$-Riccati 形式
+由上述的计算结果可以得知方程 ($\ref{ss-2}$) 可以表示为如下的 $\Gamma$-Riccati 形式
 \begin{align}
   & \Gamma_{1x} = a(k^{*}u - 2\mathrm{i}\lambda \Gamma_{1} + ku^{*}\Gamma_{2} + ku^{*}\Gamma_{1}^{2}), \label{ss-4} \\
   & \Gamma_{2x} = a(-uk^{*}\Gamma_{1} + ku^{*}\Gamma_{1}\Gamma_{2}), \label{ss-5}
@@ -200,7 +198,7 @@ B\"acklund 变换是根据方程的已知解推导出新解的一种有效的方
 (\ref{ss-backlund}) 式即为方程 (\ref{ss-1}) 的 B\"acklund 变换。B\"acklund 变换揭示方程解与解之间的关系，即可以从给出的已知解得到另外一个解。
 
 \subsection{单孤子解}
-孤子解是有理函数和超越函数的复合函数, 所以孤子解的偏导是连续的, 这也证明了相容条件的成立。单孤子解含有一个自由变元, 双孤子解含有两个自由变元。通过自 B\"{a}cklund 变换可以很容易求得单孤子解\upcite{ss-13,ss-15,ss-16,ss-17,ss-18}。本小节根据之前得到的 B\"acklund 变换，从零解出发，推导得出方程 (\ref{ss-1}) 的单孤子解。
+孤子解是有理函数和超越函数的复合函数, 所以孤子解的偏导是连续的, 这也证明了相容条件的成立。单孤子解含有一个自由变元, 双孤子解含有两个自由变元。通过自 B\"{a}cklund 变换可以很容易求得单孤子解\upcite{ss-13,ss-14,ss-15,ss-16,ss-17,ss-18}。本小节根据之前得到的 B\"acklund 变换，从零解出发，推导得出方程 (\ref{ss-1}) 的单孤子解。
 
 令 $u_{0} = 0, \lambda = i\eta$ ($\eta$ 是常数), 代入 (\ref{ss-4}) 和  (\ref{ss-5})式可得
 \begin{align}
@@ -242,7 +240,9 @@ B\"acklund 变换是根据方程的已知解推导出新解的一种有效的方
   &= a(-ku^{*} + 2\mathrm{i}\lambda T_{2} - k^{*}uT_{2}^{2} - ku^{*}T_{1}T_{2}) \label{ss-t2x} \\
   T_{1t} &=\left(\frac{\phi_2}{\phi_1}\right)_t=\frac{\phi_{2t}\phi_1-\phi_2\phi_{1t}}{\phi_1^2}\nonumber\\
   &= \left[-\frac{2}{3}\lambda^{2}k^{*}u - \lambda k^{*}A_{2}^{*} - k^{*}A_{4}^{*} + (\frac{4}{3}\mathrm{i}\lambda^{3}-2\lambda A_{1}+A_{5}+\lambda A_{1}^{*})T_{1} - \lambda (k^{*})^{2}A_{3}^{*}T_{2} + (-\lambda kA_{2} \right.\notag\\
-  & \left. - kA_{4} - \frac{2}{3}\lambda ku^{*})T_{1}^{2} + (-\frac{2}{3}\lambda^{2}k^{*}u+\lambda k^{*}A_{2}^{*}-k^{*}A_{4}^{*})T_{1}T_{2} \right]b(t) \\
+  & \left. - kA_{4} - \frac{2}{3}\lambda ku^{*})T_{1}^{2} + (-\frac{2}{3}\lambda^{2}k^{*}u+\lambda k^{*}A_{2}^{*}-k^{*}A_{4}^{*})T_{1}T_{2} \right]b(t) 
+\end{align}
+\begin{align}
   T_{2t} &=\left(\frac{\phi_3}{\phi_1}\right)_t=\frac{\phi_{3t}\phi_1-\phi_3\phi_{1t}}{\phi_1^2}\nonumber\\
   &= \left[-\frac{2}{3}\lambda^{2}ku^{*} + \lambda kA_{2} - kA_{4} + \lambda k^{2}A_{3}T_{1} + (\frac{4}{3}\mathrm{i}\lambda^{3}-2\lambda A_{1}+\lambda A_{1}^{*}+A_{5}^{*})T_{2} + (-\frac{2}{3}\lambda^{2}uk^{*} \right. \notag\\
   & \left. +\lambda k^{*}A_{2}^{*}-k^{*}A_{4}^{*})T_{2}^{2} + (-\lambda kA_{2}-kA_{4}-\frac{2}{3}\lambda^{2}ku^{*})T_{1}T_{2} \right]b(t)

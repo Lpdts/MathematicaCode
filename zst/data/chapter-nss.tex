@@ -1,10 +1,12 @@
 \chapter{变系数的非局域  Sasa-Satsuma 方程}
+最近几年，许多非局域可积方程被提出，关于相应的可积非局域模型的研究得到了极大的发展。在适当的PT对称设置下，可以在各种波混合现象中找到这些模型的物理应用\upcite{nss-1,nss-2}。一般非局域指的是空间局域性和时间局域性，而本节只关注空间局域性的情况。
 
 本节我们要研究的方程是非局域情况下的 Sasa-Satsuma 方程
 \begin{align}
 & \mathrm{i}u_{t} + \alpha_1(t) u_{xx} + \alpha_2(t)u^2u^*(-x,t) + \mathrm{i}\left[\alpha_3(t)u_{xxx} + \alpha_{4}(t)[u^{2}u^*(-x,t)]_{x}  \right. \notag\\
 & \left. + \alpha_{5}(t)[uu^*(-x,t)]_{x}u + \alpha_{6}(t)u + \alpha_{7}(t)u_x\right] = 0 \label{nss-1}
 \end{align}
+其中 $u$ 表示关于变量 $x, t$ 的复函数， $u^*(-x,t)$ 表示 $u$ 函数的共轭函数且空间变量取反，方程中各项的系数 $\alpha_1(t) - \alpha_7(t)$ 是关于变量 $t$ 的实函数。
 
 方程 (\ref{nss-1}) 的许多简化形式已经被很多学者研究过，例如
 \begin{itemize}
@@ -53,8 +55,10 @@
               2A_{1} & kA_{2} & -k^{*}(-x,t)A_{2}^{*}(-x,t) \\
               -k^{*}(-x,t)A_{2}^{*}(-x,t) & A_{1}^{*}(-x,t) & -k^{*}(-x,t)^{2}A_{3}^{*}(-x,t) \\
               kA_{2} & k^{2}A_{3} & A_{1}^{*}(-x,t)
-            \end{pmatrix} \\
-  & V_{3} = \begin{pmatrix}
+            \end{pmatrix}
+\end{align}
+\begin{align}
+   & V_{3} = \begin{pmatrix}
               0 & kA_{4} & k^{*}(-x,t)A_{4}^{*}(-x,t) \\
               -k^{*}(-x,t)A_{4}^{*}(-x,t) & A_{5} & 0 \\
               -kA_{4} & 0 & -A_{5}^{*}(-x,t)
@@ -78,15 +82,16 @@ U_{t} - V_{x} + UV - VU = 0
   & A_{4} = -\frac{(9a^2\gamma+\beta^2)u^*(-x,t)}{6a^2}-\frac{2}{3}\delta(t)^2uu^*(-x,t)^2 +\frac{2\beta u^*_x(-x,t) - u^*_{xx}(-x,t)}{6a^2} \\
   & A_{5} = \frac{-9a^2\beta \gamma - \beta^3}{6a^3} + \frac{\delta(t)^2\left[2\beta uu^*(-x,t) - u_xu^*(-x,t) - uu^*_x(-x,t)\right]}{6a}
 \end{align}
-其中$\beta, \gamma, a$为自由变量，并且$\alpha_{3}(t), \alpha_{4}(t), \alpha_{7}(t)$需要满足以下的约束条件
+其中$\beta, \gamma, a$为自由变量，并且$\alpha_{3}(t), \alpha_{4}(t), \alpha_5(t), \alpha_{7}(t)$需要满足以下的约束条件
 \begin{align}
+  & \alpha_4(t) = -2\alpha_5(t) \\
   & \alpha_{4}(t) = 6a^{2}\delta(t)^{2}\alpha_{3}(t) \\
   & \alpha_{7}(t) = 9a^2\gamma\alpha_3(t) + 3\beta^2\alpha_3(t)
 \end{align}
 
 \section{B\"acklund变换和孤子解}
 \subsection{B\"acklund变换}
-根据上一节得到的 Lax 对，可以据此来去构造方程 (\ref{nss-1}) 的 Riccati 形式的 B\"acklund 变换。进一步的可以根据此变换求得方程 (\ref{nss-1}) 的孤子解\upcite{ss-68,ss-69,nss-1,nss-2,nss-3}。
+根据上一节得到的 Lax 对，可以据此来去构造方程 (\ref{nss-1}) 的 Riccati 形式的 B\"acklund 变换。进一步的可以根据此变换求得方程 (\ref{nss-1}) 的孤子解\upcite{ss-68,ss-69,nss-1,nss-2,nss-3,nss-4}。
 
 为了构造方程 (\ref{nss-1}) 的 Riccati 形式的 B\"acklund变换，将 $U_{0}$ 和 $U_{1}$ 代入 (\ref{nss-2}) 式中有
 \begin{equation}
@@ -114,12 +119,10 @@ U_{t} - V_{x} + UV - VU = 0
 \end{equation}
 则有
 \begin{align}
-   \Gamma_{1x} &= \left(\frac{\phi_1}{\phi_3}\right)_x=\frac{\phi_{1x}\phi_3-\phi_1\phi_{3x}}{\phi_3^2}=\frac{a(-\mathrm{i}\lambda\phi_1+ku^*\phi_2+k^*u\phi_3)}{\phi_3}-\frac{\phi_1a(-ku^*\phi_1+\mathrm{i}\lambda\phi_3)}{\phi_3^2} \nonumber\\
+\Gamma_{1x} &= \left(\frac{\phi_1}{\phi_3}\right)_x=\frac{\phi_{1x}\phi_3-\phi_1\phi_{3x}}{\phi_3^2}=\frac{a(-\mathrm{i}\lambda\phi_1+ku^*\phi_2+k^*u\phi_3)}{\phi_3}-\frac{\phi_1a(-ku^*\phi_1+\mathrm{i}\lambda\phi_3)}{\phi_3^2} \nonumber\\
   &= a(k^{*}u - 2\mathrm{i}\lambda \Gamma_{1} + ku^{*}\Gamma_{2} + ku^{*}\Gamma_{1}^{2}) \label{nss-g1x} \\
   \Gamma_{2x} &=\left(\frac{\phi_2}{\phi_3}\right)_x=\frac{\phi_{2x}\phi_3-\phi_2\phi_{3x}}{\phi_3^2}=\frac{a(\mathrm{i}\lambda\phi_2-uk^*\phi_1)}{\phi_3}-\frac{\phi_2a(-ku^*\phi_1+\mathrm{i}\lambda\phi_3)}{\phi_3^2}\nonumber\\
-  &= a(-uk^{*}\Gamma_{1} + ku^{*}\Gamma_{1}\Gamma_{2}) \label{nss-g2x}
-\end{align}
-\begin{align}
+  &= a(-uk^{*}\Gamma_{1} + ku^{*}\Gamma_{1}\Gamma_{2}) \label{nss-g2x} \\
   \Gamma_{1t} &= \left(\frac{\phi_1}{\phi_3}\right)_t=\frac{\phi_{1t}\phi_3-\phi_1\phi_{3t}}{\phi_3^2} \notag \\
   &= \left[\frac{2}{3}\lambda^{2}k^{*}u - \lambda k^{*}A_{2}^{*} + k^{*}A_{4}^{*} - \lambda k^{2}A_{3}\Gamma_{1}\Gamma_{2} + (-\frac{4}{3}\mathrm{i}\lambda^{3} + 2\lambda A_{1} - \lambda A_{1}^{*} - A_{5}^{*})\Gamma_{1} + (\lambda kA_{2} \right. \notag\\
   & \left. + kA_{4} + \frac{2}{3}\lambda^{2}ku^{*})\Gamma_{2} + (-\lambda kA_{2} + kA_{4} + \frac{2}{3}\lambda^{2}ku^{*})\Gamma_{1}^{2}\right] b(t)  \label{nss-g1t} \\
@@ -127,7 +130,7 @@ U_{t} - V_{x} + UV - VU = 0
   &= \left[ -\lambda(k^{*})^{2}A_{3}^{*} + (-\frac{2}{3}\lambda^{2}uk^{*} - \lambda k^{*}A_{2}^{*} - k^{*}A_{4}^{*})\Gamma_{1} + (A_{5}+A_{5}^{*})\Gamma_{2} + (-\lambda kA_{2} +kA_{4} \right. \notag\\
   & \left. + \frac{2}{3}\lambda^{2}ku^{*})\Gamma_{1}\Gamma_{2} - \lambda k^{2}A_{3}\Gamma_{2}^{2} \right] b(t) \label{nss-g2t}
 \end{align}
-由上述的计算结果可以得知方程 $\ref{ss-2}$ 可以表示为如下的 $\Gamma$-Riccati 形式
+由上述的计算结果可以得知方程 ($\ref{nss-2}$) 可以表示为如下的 $\Gamma$-Riccati 形式
 \begin{align}
   & \Gamma_{1x} = a(k^{*}u - 2\mathrm{i}\lambda \Gamma_{1} + ku^{*}\Gamma_{2} + ku^{*}\Gamma_{1}^{2}), \label{nss-4} \\
   & \Gamma_{2x} = a(-uk^{*}\Gamma_{1} + ku^{*}\Gamma_{1}\Gamma_{2}), \label{nss-5}
@@ -150,7 +153,7 @@ U_{t} - V_{x} + UV - VU = 0
 \begin{equation}
   u^{'} - u = \frac{2\mathrm{i}\Gamma_{1}\Gamma_{2}(\lambda^{*}-\lambda)}{2k^{*}\Gamma_{2} + k^{*}\Gamma_{1}^{2}} \label{nss-backlund}
 \end{equation}
-(\ref{nss-backlund}) 式即为方程 (\ref{nss-1}) 的 B\"acklund 变换
+(\ref{nss-backlund}) 式即为方程 (\ref{nss-1}) 的 B\"acklund 变换。
 
 \subsection{单孤子解}
 我们使用上一节得到的 B\"acklund 变换，从零解出发得到方程 (\ref{nss-1}) 的单孤子解\upcite{nss-5,nss-6,nss-7,nss-8}。
@@ -203,7 +206,9 @@ U_{t} - V_{x} + UV - VU = 0
   &= a(-ku^{*} + 2\mathrm{i}\lambda T_{2} - k^{*}uT_{2}^{2} - ku^{*}T_{1}T_{2}) \label{nss-t2x} \\
   T_{1t}  &=\left(\frac{\phi_2}{\phi_1}\right)_t=\frac{\phi_{2t}\phi_1-\phi_2\phi_{1t}}{\phi_1^2}\nonumber\\
   &= \left[-\frac{2}{3}\lambda^{2}k^{*}u - \lambda k^{*}A_{2}^{*} - k^{*}A_{4}^{*} + (\frac{4}{3}\mathrm{i}\lambda^{3}-2\lambda A_{1}+A_{5}+\lambda A_{1}^{*})T_{1} - \lambda (k^{*})^{2}A_{3}^{*}T_{2} + (-\lambda kA_{2} \right.\notag\\
-  & \left. - kA_{4} - \frac{2}{3}\lambda ku^{*})T_{1}^{2} + (-\frac{2}{3}\lambda^{2}k^{*}u+\lambda k^{*}A_{2}^{*}-k^{*}A_{4}^{*})T_{1}T_{2} \right]b(t) \\
+  & \left. - kA_{4} - \frac{2}{3}\lambda ku^{*})T_{1}^{2} + (-\frac{2}{3}\lambda^{2}k^{*}u+\lambda k^{*}A_{2}^{*}-k^{*}A_{4}^{*})T_{1}T_{2} \right]b(t) 
+\end{align}
+\begin{align}
   T_{2t} &=\left(\frac{\phi_3}{\phi_1}\right)_t=\frac{\phi_{3t}\phi_1-\phi_3\phi_{1t}}{\phi_1^2}\nonumber\\
   &= \left[-\frac{2}{3}\lambda^{2}ku^{*} + \lambda kA_{2} - kA_{4} + \lambda k^{2}A_{3}T_{1} + (\frac{4}{3}\mathrm{i}\lambda^{3}-2\lambda A_{1}+\lambda A_{1}^{*}-A_{5}^{*})T_{2} + (-\frac{2}{3}\lambda^{2}uk^{*} \right. \notag\\
   & \left. +\lambda k^{*}A_{2}^{*}-k^{*}A_{4}^{*})T_{2}^{2} + (-\lambda kA_{2}-kA_{4}-\frac{2}{3}\lambda^{2}ku^{*})T_{1}T_{2} \right]b(t)
