@@ -1,10 +1,12 @@
-\chapter{变系数的非局域  Sasa-Satsuma 方程}
+\chapter{非局域变系数的  Sasa-Satsuma 方程}
+最近几年，许多非局域可积方程被提出，关于相应的可积非局域模型的研究得到了极大的发展。在适当的PT对称设置下，可以在各种波混合现象中找到这些模型的物理应用\upcite{nss-1,nss-2}。一般非局域指的是空间非局域性和时间非局域性，而本节只关注空间非局域性的情况。
 
 本节我们要研究的方程是非局域情况下的 Sasa-Satsuma 方程
 \begin{align}
 & \mathrm{i}u_{t} + \alpha_1(t) u_{xx} + \alpha_2(t)u^2u^*(-x,t) + \mathrm{i}\left[\alpha_3(t)u_{xxx} + \alpha_{4}(t)[u^{2}u^*(-x,t)]_{x}  \right. \notag\\
 & \left. + \alpha_{5}(t)[uu^*(-x,t)]_{x}u + \alpha_{6}(t)u + \alpha_{7}(t)u_x\right] = 0 \label{nss-1}
 \end{align}
+其中 $u$ 表示关于变量 $x, t$ 的复函数， $u^*(-x,t)$ 表示 $u$ 函数的共轭函数且空间变量取反，方程中各项的系数 $\alpha_1(t) - \alpha_7(t)$ 是关于变量 $t$ 的实函数。
 
 方程 (\ref{nss-1}) 的许多简化形式已经被很多学者研究过，例如
 \begin{itemize}
@@ -28,7 +30,7 @@
 本章将继续按照以上文献的基础上和上一节的内容对方程 (\ref{nss-1}) 进行进一步的研究，研究主要内容和之前的研究大体相同，其主要内容包括 AKNS、B\"{a}cklund 变换、孤子解和无穷守恒律。
 
 \section{Lax 对}
-在本小节中，我们仍将采用扩展的 AKNS 方法来构造方程 (\ref{nss-1}) 的 Lax 对\upcite{ss-58,ss-60,ss-61,ss-62,ss-63,ss-64,ss-65}。根据方程 (\ref{nss-1}) 变系数以及空间部分局域性的特点，我们假设其 Lax 对具有以下的形式
+在本小节中，我们仍将采用扩展的 AKNS 方法来构造方程 (\ref{nss-1}) 的 Lax 对\upcite{ss-58,ss-60,ss-61,ss-62,ss-63,ss-64,ss-65}。根据方程 (\ref{nss-1}) 变系数以及空间部分非局域性的特点，我们假设其 Lax 对具有以下的形式
 \begin{align}
   & \Phi_{x} = U\Phi = a(t)(\lambda U_{0} + U_{1})\Phi, \label{nss-2} \\
   & \Phi_{t} = V\Phi = b(t)(\lambda^{3}V_{0} + \lambda^{2}V_{1} + \lambda V_{2} + V_{3})\Phi, \label{nss-3}
@@ -50,17 +52,19 @@
   & V_{0} = \frac{2}{3}U_{0} \\
   & V_{1} = \frac{2}{3}U_{1} \\
   & V_{2} = \begin{pmatrix}
-              2A_{1} & kA_{2} & -k^{*}(-x,t)A_{2}^{*}(-x,t) \\
-              -k^{*}(-x,t)A_{2}^{*}(-x,t) & A_{1}^{*}(-x,t) & -k^{*}(-x,t)^{2}A_{3}^{*}(-x,t) \\
+              2A_{1} & kA_{2} & -k^{*}(-x,t)A_{6}^{*}(-x,t) \\
+              -k^{*}(-x,t)A_{6}^{*}(-x,t) & A_{1}^{*}(-x,t) & -k^{*}(-x,t)^{2}A_{3}^{*}(-x,t) \\
               kA_{2} & k^{2}A_{3} & A_{1}^{*}(-x,t)
-            \end{pmatrix} \\
-  & V_{3} = \begin{pmatrix}
+            \end{pmatrix}
+\end{align}
+\begin{align}
+   & V_{3} = \begin{pmatrix}
               0 & kA_{4} & k^{*}(-x,t)A_{4}^{*}(-x,t) \\
               -k^{*}(-x,t)A_{4}^{*}(-x,t) & A_{5} & 0 \\
               -kA_{4} & 0 & -A_{5}^{*}(-x,t)
             \end{pmatrix}
 \end{align}
-其中$k(x,t)= e^{\left[\mathrm{i}k_{1}(t) + k_2(t)\right]x + \mathrm{i}k_{3}(t) + k_4(t)}$，  * 表示对应函数表达式的共轭形式，$A_1, A_2, A_3, A_4, A_5$ 是关于 $x$ 和 $t$ 的函数。
+其中$k(x,t)= e^{\left[\mathrm{i}k_{1}(t) + k_2(t)\right]x + \mathrm{i}k_{3}(t) + k_4(t)}$，  * 表示对应函数表达式的共轭形式，$A_1, A_2, A_3, A_4, A_5, A_6$ 是关于 $x$ 和 $t$ 的函数。
 
 方程 (\ref{nss-2}) 和方程 (\ref{nss-3}) 要求相容，所以 $U$ 和 $V$ 应该满足以下相容条件
 \begin{align}
@@ -73,20 +77,21 @@ U_{t} - V_{x} + UV - VU = 0
   & \delta(t) = e^{\int \alpha_6(t)dt} \\
   & k =\mathrm{Exp}\left[\beta x + \int \alpha_6(t)dt \right] \\
   & A_{1} =  \mathrm{i}\gamma + \frac{1}{3}\mathrm{i}\delta(t)^2u(x,t)u^*(-x,t) \\
-  & A_{2} = \frac{\mathrm{i}\left[\beta u^*(-x,t) - u^*_x(-x,t)\right]}{3a}  \\
+  & A_{2} = -A_6 = \frac{\mathrm{i}\left[\beta u^*(-x,t) - u^*_x(-x,t)\right]}{3a}  \\
   & A_{3} = -\frac{\mathrm{i}}{3}u^{*}(-x,t)^{2}  \\
   & A_{4} = -\frac{(9a^2\gamma+\beta^2)u^*(-x,t)}{6a^2}-\frac{2}{3}\delta(t)^2uu^*(-x,t)^2 +\frac{2\beta u^*_x(-x,t) - u^*_{xx}(-x,t)}{6a^2} \\
   & A_{5} = \frac{-9a^2\beta \gamma - \beta^3}{6a^3} + \frac{\delta(t)^2\left[2\beta uu^*(-x,t) - u_xu^*(-x,t) - uu^*_x(-x,t)\right]}{6a}
 \end{align}
-其中$\beta, \gamma, a$为自由变量，并且$\alpha_{3}(t), \alpha_{4}(t), \alpha_{7}(t)$需要满足以下的约束条件
+其中$\beta, \gamma, a$为自由变量，并且$\alpha_{3}(t), \alpha_{4}(t), \alpha_5(t), \alpha_{7}(t)$需要满足以下的约束条件
 \begin{align}
+  & \alpha_4(t) = -2\alpha_5(t) \\
   & \alpha_{4}(t) = 6a^{2}\delta(t)^{2}\alpha_{3}(t) \\
   & \alpha_{7}(t) = 9a^2\gamma\alpha_3(t) + 3\beta^2\alpha_3(t)
 \end{align}
 
 \section{B\"acklund变换和孤子解}
 \subsection{B\"acklund变换}
-根据上一节得到的 Lax 对，可以据此来去构造方程 (\ref{nss-1}) 的 Riccati 形式的 B\"acklund 变换。进一步的可以根据此变换求得方程 (\ref{nss-1}) 的孤子解\upcite{ss-68,ss-69,nss-1,nss-2,nss-3}。
+根据上一节得到的 Lax 对，可以据此来去构造方程 (\ref{nss-1}) 的 Riccati 形式的 B\"acklund 变换。进一步的可以根据此变换求得方程 (\ref{nss-1}) 的孤子解\upcite{ss-68,ss-69,nss-1,nss-2,nss-3,nss-4}。
 
 为了构造方程 (\ref{nss-1}) 的 Riccati 形式的 B\"acklund变换，将 $U_{0}$ 和 $U_{1}$ 代入 (\ref{nss-2}) 式中有
 \begin{equation}
@@ -114,12 +119,10 @@ U_{t} - V_{x} + UV - VU = 0
 \end{equation}
 则有
 \begin{align}
-   \Gamma_{1x} &= \left(\frac{\phi_1}{\phi_3}\right)_x=\frac{\phi_{1x}\phi_3-\phi_1\phi_{3x}}{\phi_3^2}=\frac{a(-\mathrm{i}\lambda\phi_1+ku^*\phi_2+k^*u\phi_3)}{\phi_3}-\frac{\phi_1a(-ku^*\phi_1+\mathrm{i}\lambda\phi_3)}{\phi_3^2} \nonumber\\
+\Gamma_{1x} &= \left(\frac{\phi_1}{\phi_3}\right)_x=\frac{\phi_{1x}\phi_3-\phi_1\phi_{3x}}{\phi_3^2}=\frac{a(-\mathrm{i}\lambda\phi_1+ku^*\phi_2+k^*u\phi_3)}{\phi_3}-\frac{\phi_1a(-ku^*\phi_1+\mathrm{i}\lambda\phi_3)}{\phi_3^2} \nonumber\\
   &= a(k^{*}u - 2\mathrm{i}\lambda \Gamma_{1} + ku^{*}\Gamma_{2} + ku^{*}\Gamma_{1}^{2}) \label{nss-g1x} \\
   \Gamma_{2x} &=\left(\frac{\phi_2}{\phi_3}\right)_x=\frac{\phi_{2x}\phi_3-\phi_2\phi_{3x}}{\phi_3^2}=\frac{a(\mathrm{i}\lambda\phi_2-uk^*\phi_1)}{\phi_3}-\frac{\phi_2a(-ku^*\phi_1+\mathrm{i}\lambda\phi_3)}{\phi_3^2}\nonumber\\
-  &= a(-uk^{*}\Gamma_{1} + ku^{*}\Gamma_{1}\Gamma_{2}) \label{nss-g2x}
-\end{align}
-\begin{align}
+  &= a(-uk^{*}\Gamma_{1} + ku^{*}\Gamma_{1}\Gamma_{2}) \label{nss-g2x} \\
   \Gamma_{1t} &= \left(\frac{\phi_1}{\phi_3}\right)_t=\frac{\phi_{1t}\phi_3-\phi_1\phi_{3t}}{\phi_3^2} \notag \\
   &= \left[\frac{2}{3}\lambda^{2}k^{*}u - \lambda k^{*}A_{2}^{*} + k^{*}A_{4}^{*} - \lambda k^{2}A_{3}\Gamma_{1}\Gamma_{2} + (-\frac{4}{3}\mathrm{i}\lambda^{3} + 2\lambda A_{1} - \lambda A_{1}^{*} - A_{5}^{*})\Gamma_{1} + (\lambda kA_{2} \right. \notag\\
   & \left. + kA_{4} + \frac{2}{3}\lambda^{2}ku^{*})\Gamma_{2} + (-\lambda kA_{2} + kA_{4} + \frac{2}{3}\lambda^{2}ku^{*})\Gamma_{1}^{2}\right] b(t)  \label{nss-g1t} \\
@@ -127,7 +130,7 @@ U_{t} - V_{x} + UV - VU = 0
   &= \left[ -\lambda(k^{*})^{2}A_{3}^{*} + (-\frac{2}{3}\lambda^{2}uk^{*} - \lambda k^{*}A_{2}^{*} - k^{*}A_{4}^{*})\Gamma_{1} + (A_{5}+A_{5}^{*})\Gamma_{2} + (-\lambda kA_{2} +kA_{4} \right. \notag\\
   & \left. + \frac{2}{3}\lambda^{2}ku^{*})\Gamma_{1}\Gamma_{2} - \lambda k^{2}A_{3}\Gamma_{2}^{2} \right] b(t) \label{nss-g2t}
 \end{align}
-由上述的计算结果可以得知方程 $\ref{ss-2}$ 可以表示为如下的 $\Gamma$-Riccati 形式
+由上述的计算结果可以得知方程 ($\ref{nss-2}$) 可以表示为如下的 $\Gamma$-Riccati 形式
 \begin{align}
   & \Gamma_{1x} = a(k^{*}u - 2\mathrm{i}\lambda \Gamma_{1} + ku^{*}\Gamma_{2} + ku^{*}\Gamma_{1}^{2}), \label{nss-4} \\
   & \Gamma_{2x} = a(-uk^{*}\Gamma_{1} + ku^{*}\Gamma_{1}\Gamma_{2}), \label{nss-5}
@@ -150,7 +153,7 @@ U_{t} - V_{x} + UV - VU = 0
 \begin{equation}
   u^{'} - u = \frac{2\mathrm{i}\Gamma_{1}\Gamma_{2}(\lambda^{*}-\lambda)}{2k^{*}\Gamma_{2} + k^{*}\Gamma_{1}^{2}} \label{nss-backlund}
 \end{equation}
-(\ref{nss-backlund}) 式即为方程 (\ref{nss-1}) 的 B\"acklund 变换
+(\ref{nss-backlund}) 式即为方程 (\ref{nss-1}) 的 B\"acklund 变换。
 
 \subsection{单孤子解}
 我们使用上一节得到的 B\"acklund 变换，从零解出发得到方程 (\ref{nss-1}) 的单孤子解\upcite{nss-5,nss-6,nss-7,nss-8}。
@@ -181,7 +184,7 @@ U_{t} - V_{x} + UV - VU = 0
 \end{align}
 将得到的单孤子解 (\ref{nss-soliton1}) 式代入到方程 (\ref{nss-1}) 进行验证可以的到约束关系
 \begin{equation}
-  \gamma = -\dfrac{4}{9}\eta^2
+  \gamma = -\dfrac{4}{9}\eta^2 \label{nss-yuesu}
 \end{equation}
 因此得到的 (\ref{nss-soliton1}) 可以进一步的简化为
 \begin{equation}
@@ -203,7 +206,9 @@ U_{t} - V_{x} + UV - VU = 0
   &= a(-ku^{*} + 2\mathrm{i}\lambda T_{2} - k^{*}uT_{2}^{2} - ku^{*}T_{1}T_{2}) \label{nss-t2x} \\
   T_{1t}  &=\left(\frac{\phi_2}{\phi_1}\right)_t=\frac{\phi_{2t}\phi_1-\phi_2\phi_{1t}}{\phi_1^2}\nonumber\\
   &= \left[-\frac{2}{3}\lambda^{2}k^{*}u - \lambda k^{*}A_{2}^{*} - k^{*}A_{4}^{*} + (\frac{4}{3}\mathrm{i}\lambda^{3}-2\lambda A_{1}+A_{5}+\lambda A_{1}^{*})T_{1} - \lambda (k^{*})^{2}A_{3}^{*}T_{2} + (-\lambda kA_{2} \right.\notag\\
-  & \left. - kA_{4} - \frac{2}{3}\lambda ku^{*})T_{1}^{2} + (-\frac{2}{3}\lambda^{2}k^{*}u+\lambda k^{*}A_{2}^{*}-k^{*}A_{4}^{*})T_{1}T_{2} \right]b(t) \\
+  & \left. - kA_{4} - \frac{2}{3}\lambda ku^{*})T_{1}^{2} + (-\frac{2}{3}\lambda^{2}k^{*}u+\lambda k^{*}A_{2}^{*}-k^{*}A_{4}^{*})T_{1}T_{2} \right]b(t)
+\end{align}
+\begin{align}
   T_{2t} &=\left(\frac{\phi_3}{\phi_1}\right)_t=\frac{\phi_{3t}\phi_1-\phi_3\phi_{1t}}{\phi_1^2}\nonumber\\
   &= \left[-\frac{2}{3}\lambda^{2}ku^{*} + \lambda kA_{2} - kA_{4} + \lambda k^{2}A_{3}T_{1} + (\frac{4}{3}\mathrm{i}\lambda^{3}-2\lambda A_{1}+\lambda A_{1}^{*}-A_{5}^{*})T_{2} + (-\frac{2}{3}\lambda^{2}uk^{*} \right. \notag\\
   & \left. +\lambda k^{*}A_{2}^{*}-k^{*}A_{4}^{*})T_{2}^{2} + (-\lambda kA_{2}-kA_{4}-\frac{2}{3}\lambda^{2}ku^{*})T_{1}T_{2} \right]b(t)
@@ -283,5 +288,49 @@ U_{t} - V_{x} + UV - VU = 0
   & \left. -\frac{u_{xx}u^*_{xx}}{24a^4} + \frac{5\beta u^*u_{xxx}}{48a^4} - \frac{u^*_xu_{xxx}}{48a^4} + \frac{5\beta uu^*_{xxx}}{48a^4} - \frac{u_xu^*_{xxx}}{48a^4} -\frac{u^*u_{xxxx}}{48a^4} -\frac{uu^*_{xxxx}}{48a^4}\right]
 \end{align}
 
+\section{孤子解的模拟}
+本小节主要分析方程 (\ref{nss-1}) 所求得的单孤子解的特性。与第三章所求得的单孤子解 (\ref{ss-single-soliton}) 形式不同，本章中所求得的单孤子解 (\ref{nss-soliton2}) 得形式要简单许多。两者相对比可以发现，孤子解 (\ref{nss-soliton2}) 中不包含虚数单位 $\mathrm{i}$，也就是说本章所求得的是一个实解，这是与第三章中所得到单孤子解一个很重要的不同地方，同时也是非局域的 Sasa-Satsuma 方程与局域的 Sasa-Satsuma 方程一个很重要的区别。另外我们可以看到单孤子解 (\ref{nss-soliton2}) 中只有分子部分包含关于 $\mathrm{e}$ 的指数形式，也就是该解不能够转化为双曲函数的形式，就是一个相对简单关于 $\mathrm{e}$ 指数的函数，因此该单孤子解的波形的模拟就会变得十分的简单并且没有特别多的意义。而如果我们忽略掉条件 (\ref{nss-yuesu}) 后，单孤子解才能够转换成双线性的形式，因此我们按照单孤子解的原始形式 (\ref{nss-soliton1})，并令 $d_1=1, d_2=1, a=1, \beta=1, \gamma=1,\eta=1$，然后并让系数 $\alpha_3(t)$ 和 $\alpha_6(t)$ 取不同的数值或者函数时，得到如图 (\ref{picture-nss-1}) 所示的单孤子波的波形图和密度图。可以从图中看到，系数 $\alpha_3(t)$ 和 $\alpha_6(t)$ 的取值不同会对单孤子波的波形产生不同的影响，因此也可以更好的模拟非线性的现象。
+
+
+\begin{figure}[!htp]
+	\centering
+	\subfigure[$\alpha_3(t) = t, \alpha_6(t) = -t$]{
+		\includegraphics[width=0.4\linewidth]{figure/nss_11.pdf}
+		%\label{a21}
+		%}
+		%\ \
+		%\subfigure[]{
+		\hspace{5mm}
+		\vspace{3mm}
+		\includegraphics[width=0.22\linewidth]{figure/nss_12.pdf}
+		\label{nss-a22}
+	}
+	\ \
+	\subfigure[$\alpha_3(t) = t^2, \alpha_6(t) = -t^2$]{
+		\includegraphics[width=0.4\linewidth]{figure/nss_21.pdf}
+		%\label{a23}
+		%}
+		%\ \
+		%\subfigure[]{
+		\hspace{5mm}
+		\includegraphics[width=0.22\linewidth]{figure/nss_22.pdf}
+		\label{nss-a24}
+	}
+	\ \
+	\subfigure[$\alpha_3(t) = \sin t, \alpha_6(t) = -\sin t$]{
+		\includegraphics[width=0.4\linewidth]{figure/nss_31.pdf}
+		%\label{a25}
+		%}
+		%\ \
+		%\subfigure[]{
+		\hspace{5mm}
+		\includegraphics[width=0.22\linewidth]{figure/nss_32.pdf}
+		\label{nss-a26}
+	}
+	
+	\caption{$d_1=1, d_2=1, a=1, \beta=1, \gamma=1,\eta=1$, 方程 (\ref{nss-soliton1}) 表示的怪波波形}
+	\label{picture-nss-1}
+\end{figure}
+
 \section{本章小结}
-本章研究一个含有 7 项关于 $t$ 函数的变系数的 非局域 Sasa-Satsuma 方程 (\ref{nss-1})。首先通过 扩展的 AKNS 系统得到了方程 (\ref{nss-1}) 的 Lax 对，在此基础上通过引入辅助函数求得了方程自 B\"{a}cklund 变换，并通过种子零解和之前的 B\"{a}cklund 变换得到了方程 (\ref{nss-1})的单孤子解，然后通过引入 Riccati 形式的变量推导得出方程的无穷守恒律，列出并验证了前三组的守恒律。本章与之前的研究内容最大的区别有两点，一是方程的项数较多且是变系数，而且方程的空间变量 $x$ 是局域的，因此本章对方程 (\ref{nss-1}) 的研究有很大的意义，相信研究结果将有助于更好认识 ss 方程以及其它方程的研究。
+本章研究一个含有 7 项关于 $t$ 函数的变系数的 非局域 Sasa-Satsuma 方程 (\ref{nss-1})。首先通过 扩展的 AKNS 系统得到了方程 (\ref{nss-1}) 的 Lax 对，在此基础上通过引入辅助函数求得了方程自 B\"{a}cklund 变换，并通过种子零解和之前的 B\"{a}cklund 变换得到了方程 (\ref{nss-1})的单孤子解，然后通过引入 Riccati 形式的变量推导得出方程的无穷守恒律，列出并验证了前三组的守恒律。最后借助得到方程的单孤子解，对孤立波的传播性质进行了模拟，并分析讨论了方程各项的变系数对于孤立波传播的影响。本章与之前的研究内容最大的区别有两点，一是方程的项数较多且是变系数，而且方程的空间变量 $x$ 是局域的，因此本章对方程 (\ref{nss-1}) 的研究有很大的意义，相信研究结果将有助于更好认识 ss 方程以及其它方程的研究。

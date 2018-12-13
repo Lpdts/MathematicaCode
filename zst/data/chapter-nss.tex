@@ -1,5 +1,5 @@
-\chapter{变系数的非局域  Sasa-Satsuma 方程}
-最近几年，许多非局域可积方程被提出，关于相应的可积非局域模型的研究得到了极大的发展。在适当的PT对称设置下，可以在各种波混合现象中找到这些模型的物理应用\upcite{nss-1,nss-2}。一般非局域指的是空间局域性和时间局域性，而本节只关注空间局域性的情况。
+\chapter{非局域变系数的  Sasa-Satsuma 方程}
+最近几年，许多非局域可积方程被提出，关于相应的可积非局域模型的研究得到了极大的发展。在适当的PT对称设置下，可以在各种波混合现象中找到这些模型的物理应用\upcite{nss-1,nss-2}。一般非局域指的是空间非局域性和时间非局域性，而本节只关注空间非局域性的情况。
 
 本节我们要研究的方程是非局域情况下的 Sasa-Satsuma 方程
 \begin{align}
@@ -30,7 +30,7 @@
 本章将继续按照以上文献的基础上和上一节的内容对方程 (\ref{nss-1}) 进行进一步的研究，研究主要内容和之前的研究大体相同，其主要内容包括 AKNS、B\"{a}cklund 变换、孤子解和无穷守恒律。
 
 \section{Lax 对}
-在本小节中，我们仍将采用扩展的 AKNS 方法来构造方程 (\ref{nss-1}) 的 Lax 对\upcite{ss-58,ss-60,ss-61,ss-62,ss-63,ss-64,ss-65}。根据方程 (\ref{nss-1}) 变系数以及空间部分局域性的特点，我们假设其 Lax 对具有以下的形式
+在本小节中，我们仍将采用扩展的 AKNS 方法来构造方程 (\ref{nss-1}) 的 Lax 对\upcite{ss-58,ss-60,ss-61,ss-62,ss-63,ss-64,ss-65}。根据方程 (\ref{nss-1}) 变系数以及空间部分非局域性的特点，我们假设其 Lax 对具有以下的形式
 \begin{align}
   & \Phi_{x} = U\Phi = a(t)(\lambda U_{0} + U_{1})\Phi, \label{nss-2} \\
   & \Phi_{t} = V\Phi = b(t)(\lambda^{3}V_{0} + \lambda^{2}V_{1} + \lambda V_{2} + V_{3})\Phi, \label{nss-3}
@@ -206,7 +206,7 @@ U_{t} - V_{x} + UV - VU = 0
   &= a(-ku^{*} + 2\mathrm{i}\lambda T_{2} - k^{*}uT_{2}^{2} - ku^{*}T_{1}T_{2}) \label{nss-t2x} \\
   T_{1t}  &=\left(\frac{\phi_2}{\phi_1}\right)_t=\frac{\phi_{2t}\phi_1-\phi_2\phi_{1t}}{\phi_1^2}\nonumber\\
   &= \left[-\frac{2}{3}\lambda^{2}k^{*}u - \lambda k^{*}A_{2}^{*} - k^{*}A_{4}^{*} + (\frac{4}{3}\mathrm{i}\lambda^{3}-2\lambda A_{1}+A_{5}+\lambda A_{1}^{*})T_{1} - \lambda (k^{*})^{2}A_{3}^{*}T_{2} + (-\lambda kA_{2} \right.\notag\\
-  & \left. - kA_{4} - \frac{2}{3}\lambda ku^{*})T_{1}^{2} + (-\frac{2}{3}\lambda^{2}k^{*}u+\lambda k^{*}A_{2}^{*}-k^{*}A_{4}^{*})T_{1}T_{2} \right]b(t) 
+  & \left. - kA_{4} - \frac{2}{3}\lambda ku^{*})T_{1}^{2} + (-\frac{2}{3}\lambda^{2}k^{*}u+\lambda k^{*}A_{2}^{*}-k^{*}A_{4}^{*})T_{1}T_{2} \right]b(t)
 \end{align}
 \begin{align}
   T_{2t} &=\left(\frac{\phi_3}{\phi_1}\right)_t=\frac{\phi_{3t}\phi_1-\phi_3\phi_{1t}}{\phi_1^2}\nonumber\\
