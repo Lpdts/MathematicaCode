@@ -93,44 +93,8 @@ $\mathrm{CoefficientList[poly, var]}$   \quad  给出在 $poly$ 中 $var$ 的幂
 \subsection{依赖项系数的实现}
 如果知道一个微分方程的守恒律的表达式以及表达式依赖项的形式和起始项，那么我们就可以求出该方程任意一组的守恒律。当然首先是需要得到守恒律通项公式的依赖项系数的形式和起始项。从论文中的第三章和第四章内容我们发现依赖项系数很多但大部分的形式相似度很高，最主要是先获得依赖项 $c_n$ 和 $d_n$ 的形式。
 
-以下是相关函数的简单实现
-\begin{lstlisting}[language=Mathematica,caption=依赖项 $c_n$ 和 $d_n$ 的求解实现]
-(*
-	c1: 通项公式 cn 的首项内容
-	d1: 通项公式 dn 的首项内容
-	coe1: 对应系数的函数列表
-	coe2: 对应系数的函数其它形式(例如共轭)列表
-	n: 表示第 n 组的结果
-*)
-getGeneralTerm[c1_, d1_, coe1_, coe2_, n_]:=Module[{temp1, temp2, clist, dlist},
-	If[n <= 0, Print["n输入不合法"],
-	If[Length[coe1]!= Length[coe2], Print["系数列表长度不符合要求"],
-	
-	(*通项公式 C 的列表*)
-	clist = List[];
-	(*通项公式 d 的列表*)
-	dlist = List[];
-	(*列表 clist, dlist 的填充项，为保持长度统一*)
-	clist = Append[clist, 0];
-	dlist = Append[dlist, 0];
-	(*列表 clist, dlist 的首项内容*)
-	clist = Append[clist, c1];
-	dlist = Append[dlist, d1];
+以下是代码的简单实现
 
-	For[i=2, i <= n+3, i++,
-  temp1 = 1/(2aI)(D[clist[i],x]+a$\sum_{m=0}^{i-1}$(clist[[m+1]]clist[i-m]coe1[[1]]coe2[[2]]
-            +clist[[m+1]]dlist[[i-m]]coe2[[1]]coe1[[2]]));
-  temp2 = 1/(2aI)(D[dlist[i],x]+a$\sum_{m=0}^{i-1}$(dlist[[m+1]]dlist[[i-m]]coe2[[1]]coe1[[2]]
-            +dlist[[m+1]]clist[[i-m]]coe1[[1]]coe2[[2]]));
-	clist = Append[clist, temp1];
-	dlist = Append[dlist, temp2];
-	]
-	Print["第 ".n." 项 c 是："]
-	Print[Simplify[clist[[n+1]]]];
-	Print["第 ".n." 项 d 是："]
-	Print[Simplify[dlist[[n+1]]]];
-]]]
-\end{lstlisting}
 上述代码中 $getGeneralTerm$ 函数接收五个参数，$c1$ 是守恒律表达式所依赖项系数 $c_n$ 的第一项， $d1$ 是守恒律表达式所依赖项系数 $d_n$ 的第一项，$coe1$ 表示对应系数的函数列表，$co2$ 对应系数的函数其它形式列表，一般情况下是共轭形式，$n$ 表示想要得到第几组的序号。程序的内部过程是通项公式 $c_n$ 和 $d_n$ 的求解过程，在本论文中形式比较固定，它们的表达式的具体形式如下所示
 \begin{align}
   & c_{n+2} = \frac{1}{2a\mathrm{i}} \left[c_{n+1,x} + a\sum_{m=0}^{n+1}(c_{m}c_{n+1-m}ku^{*} + c_{m}d_{n+1-m}k^{*}u)\right] \\
@@ -151,43 +115,8 @@ getGeneralTerm[c1_, d1_, coe1_, coe2_, n_]:=Module[{temp1, temp2, clist, dlist},
 \subsection{守恒律求解的实现}
 在实现依赖项求解之后，接下来的问题就是如何求解方程的守恒律。和上一小节的过程类似，我们在得到方程守恒律的通项公式后，就可以很容易的求得任意项的守恒律，这些通项公式中的一些参数系数部分是上一小节求得的结果，另一部分是固定形式的参数，它们被当作变量传入到代码的函数中。
 
-以下是函数的简单实现
-\begin{lstlisting}[language=Mathematica,caption=守恒律求解的实现]
-(*
-	clist: 通项公式 cn 的前 n 项列表
-	dlist: 通项公式 dn 的前 n 项列表
-	coe1: 对应系数的函数列表
-	coe2: 对应系数的函数其它形式(例如共轭)列表
-	n: 表示第 n 组的结果
-*)
-Conservation[clist_, dlist_, coe1_, coe2_, n_]:=Module[{Dlist, Flist, dn, fn},
-	If[n <= 0, Print["n 输入不合法"],
-	If[Length[coe1]!= Length[coe2] || Length[clist] != Length[dlist],
-	Print["系数列表长度不符合要求"],
-	
-	(*守恒律 Dn 的列表*)
-	Dlist = List[];
-	(*守恒律 Fn 的列表*)
-	Flist = List[];
-	(*列表 Dlist, Flist 的首项内容*)
-	Dlist = Append[Dlist, 0];
-	Flist = Append[Flist, 0];
+以下是代码的简单实现
 
-	For[i=1, i <= n, i++,
-	dn = a(coe1[[1]]coe2[[2]] clist[[n+1]] + coe2[[1]]coe1[[2]] dlist[[n+1]]);
-	fn = b[t](coe1[[3]] coe1[[1]] clist[[n+2]] + coe1[[4]] coe1[[1]] clist[[n+1]] +  2/3 coe1[[1]]coe2[[2]] clist[[n+3]]+  2/3 coe1[[2]]coe2[[1]] dlist[[n+3]]-coe2[[3]] coe2[[1]] dlist[[n+2]]+coe2[[4]] coe2[[1]]dlist[[n+1]]);
-	Dlist = Append[Dlist, dn];
-	Flist = Append[Flist, fn];
-	]
-	Print["第 ".n." 项 D 是："]
-	Print[Expand[Dlist[[n+1]]]];
-	Print["第 ".n." 项 F 是："]
-	Print[Expand[Flist[[n+1]]]];
-]
-]
-]
-
-\end{lstlisting}
 上述代码中 $Conservation$ 函数接收五个参数，$clist$ 是上一小节得到的 $c_n$ 前 $n$ 项的列表，而$dlist$ 是则是上一小节中的得到的 $d_n$ 的前 $n$ 项列表，$coe1$ 表示对应系数的函数列表，$co2$ 对应系数的函数其它形式列表，一般情况下是共轭形式，$n$ 表示想要得到第几组守恒律。程序的内部过程是关于 Sasa-Satsuma 类型方程的守恒律的求解过程。其中守恒律中的 $D_n$ 和 $F_n$ 项的表达式如下所示,
 \begin{align}
   & D_{n} = a(ku^{*}c_{n} + k^{*}ud_{n}) \\
@@ -207,34 +136,7 @@ Conservation[clist_, dlist_, coe1_, coe2_, n_]:=Module[{Dlist, Flist, dn, fn},
 \section{验证守恒律}
 上一节实现了用于求解方程守恒律的程序，接下来这一节对得到的守恒律进行验证，然而不像求解守恒律那么般有规律，不同组的守恒律验证往往又不一样，因此目前程序只对前两组守恒律进行验证。
 
-\begin{lstlisting}[language=Mathematica,caption=验证守恒律]
-(*
-	equ1: 表示多研究的目标方程
-	equ2: 表示目标方程的共轭形式
-	d, f: 表示守恒律的表达式
-	u, v: 表示方程中的原子函数和其共轭函数
-	n: 表示第几组守恒律
-	c: 表示一个常数项
-*)
-validateConservation[equ1_, equ2_, u_, v_, d_, f_, n_, c_]:=Module[{result},
-	If[n != 1 && n != 2, Print["n 输入不合法"],
-	
-	result = 0;
 
-	If[n == 1,
-		result = Simplify[(D[d,t] - D[f, x]) / (v * equ1 - u * equ2) / c];
-	];
-	If[n == 2,
-		result = Simplify[(D[d,t] - D[f, x])/(D[equ2, x] * u -D[equ1, x] * v + D[v, x] * equ1 + D[u, x] * equ2) / c];
-	];
-	Print["结果为". result];
-	If[result == 1,
-		Print["验证成功"],
-		Print["验证失败"]
-	];
-	]
-];
-\end{lstlisting}
 $validateConservation$ 函数接收 8 个参数， $equ1, equ2$ 分别表示所研究的目标方程和目标方程的共轭形式，$u, v$ 分别是方程中的原子函数及其的共轭函数，即 $equ1, equ2$ 都是关于函数 $u, v$ 的非线性偏微分方程。$d, f$ 是前一步中求得的一组守恒律。$n$ 表示传入进来的守恒律是第几组，$c$ 表示一个不含函数 $u[x,t]$ 和其共轭函数的常数项。验证的思路如下：将守恒律中 $d$ 项函数对 $t$ 进行求导，对守恒律中 $f$ 项函数对 $x$ 求导，两者的结果相减，如果结果等于 0，那么守恒律就成立。但是一般相减后结果仍然是一个关于函数 $u$ 的多项式，如果它能与研究的目标方程等价，那么结果也就自然等于 0 了。这时，往往对原方程和其共轭方程进行各种形式的变形，使其能够与之前相减的结果等价。对于不同组的守恒律找到的变形往往是不同的，越是往后的守恒律往往形式越是复杂，因此该程序目前是能验证守恒律中前两组相对简单的形式。验证的结果如图  \ref{picture-5-3} 所示，从图中的运行结果我们可以看到方程的前两组的守恒律都成立。
 
 \begin{figure}[!htp]

@@ -1,0 +1,36 @@
+\chapter*{附录 A\markboth{附录 A}{}}
+\addcontentsline{toc}{chapter}{附录 A}
+\begin{lstlisting}[language=Mathematica]
+(*
+	c1: 通项公式 cn 的首项内容 
+	d1: 通项公式 dn 的首项内容
+	coe1: 对应系数的函数列表 
+	coe2: 对应系数的函数其它形式(例如共轭)列表
+	n: 表示第 n 组的结果
+*)
+getGeneralTerm[c1_, d1_, coe1_, coe2_, n_]:=Module[{temp1, temp2, clist, dlist},
+	If[n <= 0, Print["n输入不合法"],
+	If[Length[coe1]!= Length[coe2], Print["系数列表长度不符合要求"],
+	(*通项公式 C 的列表*)
+	clist = List[];
+	(*通项公式 d 的列表*)
+	dlist = List[];
+	(*列表 clist, dlist 的填充项，为保持长度统一*)
+	clist = Append[clist, 0];
+	dlist = Append[dlist, 0];
+	(*列表 clist, dlist 的首项内容*)
+	clist = Append[clist, c1];
+	dlist = Append[dlist, d1];
+	For[i=2, i <= n+3, i++,
+  temp1 = 1/(2aI)(D[clist[i],x]+a$\sum_{m=0}^{i-1}$(clist[[m+1]]clist[i-m]coe1[[1]]coe2[[2]]
+            +clist[[m+1]]dlist[[i-m]]coe2[[1]]coe1[[2]]));
+  temp2 = 1/(2aI)(D[dlist[i],x]+a$\sum_{m=0}^{i-1}$(dlist[[m+1]]dlist[[i-m]]coe2[[1]]coe1[[2]]
+            +dlist[[m+1]]clist[[i-m]]coe1[[1]]coe2[[2]]));
+	clist = Append[clist, temp1];
+	dlist = Append[dlist, temp2];]
+	Print["第 ".n." 项 c 是："]
+	Print[Simplify[clist[[n+1]]]];
+	Print["第 ".n." 项 d 是："]
+	Print[Simplify[dlist[[n+1]]]];
+]]]
+\end{lstlisting}

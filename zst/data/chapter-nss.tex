@@ -1,4 +1,4 @@
-\chapter{非局域变系数的  Sasa-Satsuma 方程}
+\chapter{非局域变系数 Sasa-Satsuma 方程解析研究}
 最近几年，许多非局域可积方程被提出，关于相应的可积非局域模型的研究得到了极大的发展。在适当的PT对称设置下，可以在各种波混合现象中找到这些模型的物理应用\upcite{nss-1,nss-2}。一般非局域指的是空间非局域性和时间非局域性，而本节只关注空间非局域性的情况。
 
 本节我们要研究的方程是非局域情况下的 Sasa-Satsuma 方程
@@ -12,28 +12,28 @@
 \begin{itemize}
   \item 当系数满足 $\alpha_1(t)=-1, \alpha_2(t)=\pm 2, \alpha_3(t)=0, \alpha_4(t)=0, \alpha_5(t)=0, \alpha_6(t) = 0, \alpha_7(t) = 0$ 时，方程 (\ref{nss-1}) 可以被简化为
       \begin{equation}
-        \mathrm{i}u_t(x,t) - u_{xx}(x,t) \pm 2u(x,t)^2u^*(-x,t) = 0,
+        \mathrm{i}u_t(x,t) - u_{xx}(x,t) \pm 2u(x,t)^2u^*(-x,t) = 0
       \end{equation}
       文献 \cite{nss-1} 研究了该方程的孤子解和无穷守恒律等性质。
   \item 当系数满足 $\alpha_1(t)=1, \alpha_2(t)=2\sigma, \alpha_3(t)=0, \alpha_4(t)=0, \alpha_5(t)=0, \alpha_6(t) = 0, \alpha_7(t)= 0$ 时，方程 (\ref{nss-1}) 的形式如下
       \begin{equation}
-         \mathrm{i}u_t(x,t) + u_{xx}(x,t) + 2\sigma u^2(x,t)u^*(-x,t) = 0,
+         \mathrm{i}u_t(x,t) + u_{xx}(x,t) + 2\sigma u^2(x,t)u^*(-x,t) = 0
       \end{equation}
       文献 \cite{nss-2} 研究了此方程与局域情况下方程之间的变换关系以及怪波解。
   \item 当系数满足 $\alpha_1(t)=1, \alpha_2(t)=0, \alpha_3(t)=1, \alpha_4(t)=6\sigma, \alpha_5(t)=-3\sigma, \alpha_6(t) = 0, \alpha_7(t) = 0$ 时，方程 (\ref{nss-1}) 变为
       \begin{equation}
-        u_t(x,t) + u_{xxx}(x,t) + 6\sigma u^*(-x,t)u(x,t)u_x(x,t) + 3\sigma u(x,t)[u^*(-x,t)u(x,t)]_x = 0,
+        u_t(x,t) + u_{xxx}(x,t) + 6\sigma u^*(-x,t)u(x,t)u_x(x,t) + 3\sigma u(x,t)[u^*(-x,t)u(x,t)]_x = 0
       \end{equation}
       文献 \cite{nss-3} 研究了该方程的可积性，汉密尔顿结构和各种非线性解。
 \end{itemize}
 
-本章将继续按照以上文献的基础上和上一节的内容对方程 (\ref{nss-1}) 进行进一步的研究，研究主要内容和之前的研究大体相同，其主要内容包括 AKNS、B\"{a}cklund 变换、孤子解和无穷守恒律。
+本章将继续按照以上文献的基础上和上一节的内容对方程 (\ref{nss-1}) 进行进一步的研究，其主要内容包括 Lax 对、B\"{a}cklund 变换、孤子解和无穷守恒律。
 
 \section{Lax 对}
 在本小节中，我们仍将采用扩展的 AKNS 方法来构造方程 (\ref{nss-1}) 的 Lax 对\upcite{ss-58,ss-60,ss-61,ss-62,ss-63,ss-64,ss-65}。根据方程 (\ref{nss-1}) 变系数以及空间部分非局域性的特点，我们假设其 Lax 对具有以下的形式
 \begin{align}
-  & \Phi_{x} = U\Phi = a(t)(\lambda U_{0} + U_{1})\Phi, \label{nss-2} \\
-  & \Phi_{t} = V\Phi = b(t)(\lambda^{3}V_{0} + \lambda^{2}V_{1} + \lambda V_{2} + V_{3})\Phi, \label{nss-3}
+  & \Phi_{x} = U\Phi = a(t)(\lambda U_{0} + U_{1})\Phi \label{nss-2} \\
+  & \Phi_{t} = V\Phi = b(t)(\lambda^{3}V_{0} + \lambda^{2}V_{1} + \lambda V_{2} + V_{3})\Phi \label{nss-3}
 \end{align}
 其中 $\lambda$ 是与 $x$ 和 $t$ 无关的复数参数，$U$ 和 $V$ 都是 $3\times3$ 阶矩阵，$a(t)$ 和 $b(t)$ 是关于 $t$ 的函数，$\Phi=(\phi_1, \phi_2, \phi_3)^T$, $\phi_1, \phi_2, \phi_3$ 是三个关于 $x$ 和 $t$ 的方程，$T$ 表示向量的转置。
 
@@ -132,8 +132,8 @@ U_{t} - V_{x} + UV - VU = 0
 \end{align}
 由上述的计算结果可以得知方程 ($\ref{nss-2}$) 可以表示为如下的 $\Gamma$-Riccati 形式
 \begin{align}
-  & \Gamma_{1x} = a(k^{*}u - 2\mathrm{i}\lambda \Gamma_{1} + ku^{*}\Gamma_{2} + ku^{*}\Gamma_{1}^{2}), \label{nss-4} \\
-  & \Gamma_{2x} = a(-uk^{*}\Gamma_{1} + ku^{*}\Gamma_{1}\Gamma_{2}), \label{nss-5}
+  & \Gamma_{1x} = a(k^{*}u - 2\mathrm{i}\lambda \Gamma_{1} + ku^{*}\Gamma_{2} + ku^{*}\Gamma_{1}^{2}) \label{nss-4} \\
+  & \Gamma_{2x} = a(-uk^{*}\Gamma_{1} + ku^{*}\Gamma_{1}\Gamma_{2}) \label{nss-5}
 \end{align}
 为了得到方程 (\ref{nss-1}) 的 $\Gamma$-Riccati 形式的 B\"acklund 变换，取另一组值 $\lambda = \lambda^{*}, u = u^{'}$，使得方程 (\ref{nss-4}) 和方程 (\ref{nss-5}) 的形式保持不变，则有
 \begin{align}

@@ -1,0 +1,34 @@
+\chapter*{附录 B\markboth{附录 B}{}}
+\addcontentsline{toc}{chapter}{附录 B}
+\begin{lstlisting}[language=Mathematica]
+(*
+	clist: 通项公式 cn 的前 n 项列表
+	dlist: 通项公式 dn 的前 n 项列表
+	coe1: 对应系数的函数列表
+	coe2: 对应系数的函数其它形式(例如共轭)列表
+	n: 表示第 n 组的结果
+*)
+Conservation[clist_, dlist_, coe1_, coe2_, n_]:=Module[{Dlist, Flist, dn, fn},
+	If[n <= 0, Print["n 输入不合法"],
+	If[Length[coe1]!= Length[coe2] || Length[clist] != Length[dlist],
+	Print["系数列表长度不符合要求"],
+	
+	(*守恒律 Dn 的列表*)
+	Dlist = List[];
+	(*守恒律 Fn 的列表*)
+	Flist = List[];
+	(*列表 Dlist, Flist 的首项内容*)
+	Dlist = Append[Dlist, 0];
+	Flist = Append[Flist, 0];
+	For[i=1, i <= n, i++,
+	dn = a(coe1[[1]]coe2[[2]] clist[[n+1]] + coe2[[1]]coe1[[2]] dlist[[n+1]]);
+	fn = b[t](coe1[[3]] coe1[[1]] clist[[n+2]] + coe1[[4]] coe1[[1]] clist[[n+1]] +  2/3 coe1[[1]]coe2[[2]] clist[[n+3]]+  2/3 coe1[[2]]coe2[[1]] dlist[[n+3]]-coe2[[3]] coe2[[1]] dlist[[n+2]]+coe2[[4]] coe2[[1]]dlist[[n+1]]);
+	Dlist = Append[Dlist, dn];
+	Flist = Append[Flist, fn];]
+	Print["第 ".n." 项 D 是："]
+	Print[Expand[Dlist[[n+1]]]];
+	Print["第 ".n." 项 F 是："]
+	Print[Expand[Flist[[n+1]]]];
+]]]
+\end{lstlisting}
+

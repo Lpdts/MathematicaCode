@@ -1,4 +1,4 @@
-\chapter{变系数的 Sasa-Satsuma 方程}
+\chapter{变系数 Sasa-Satsuma 方程的解析研究}
 Sasa-Satsuma 方程 (SSE) 是非线性薛定谔方程的一个重要的可积扩展，同时也是少数的可积模型之一，在非线性领域一直是研究的热点。该方程在经典的非线性薛定谔方程之外，还包括了三阶色散项、自陡峭项和自频率项，因此可以被用来描述更多的非线性的现象\upcite{ss-39,ss-40,ss-44,ss-45,ss-46,ss-47,ss-69}。当方程的系数满足一些约束条件时，可以将方程的解简化为有理解，从而可以用来应用于动力学问题的研究。此外，这些结果还有助于证明在海水、光纤和其它色散非线性介质中出现的怪波现象\upcite{ss-48,ss-49,ss-50,ss-52,ss-53,ss-54}。当传播介质不均匀时，变系数模型通常比常系数模型能描述更多的情况\upcite{ss-66}。
 
 本章我们要研究的方程是变系数的 Sasa-Satsuma 方程，具有如下的形式，
@@ -11,22 +11,22 @@ Sasa-Satsuma 方程 (SSE) 是非线性薛定谔方程的一个重要的可积扩
 \begin{itemize}
   \item 当系数满足 $\alpha_1(t)=\alpha_1, \alpha_2(t)=\alpha_2, \alpha_3(t)=\beta_1, \alpha_4(t)=\beta_2+2\beta_3, \alpha_5(t)=\beta_2+3\beta_3, \alpha_6(t) = 0$ 时，方程 (\ref{ss-1}) 可以被简化为
       \begin{equation}
-        \mathrm{i}u_t + \alpha_1 u_{xx} + \alpha_2 |u|^2u + \mathrm{i}\left[\beta_1u_{xxx} + \beta_2|u|^2u_x + \beta_3u(|u|^2)_x\right] = 0,
+        \mathrm{i}u_t + \alpha_1 u_{xx} + \alpha_2 |u|^2u + \mathrm{i}\left[\beta_1u_{xxx} + \beta_2|u|^2u_x + \beta_3u(|u|^2)_x\right] = 0
       \end{equation}
       文献 \cite{ss-46} 给出了该方程的双线性形式和多孤子解。
   \item 当系数满足 $\alpha_1(t)=\dfrac{1}{2}, \alpha_2(t)=1, \alpha_3(t)=\dfrac{1}{6\varepsilon}, \alpha_4(t)=\dfrac{1}{\varepsilon}, \alpha_5(t)=-\dfrac{1}{2\varepsilon}, \alpha_6(t) = 0$ 时，方程 (\ref{ss-1}) 的形式如下
       \begin{equation}
-        \mathrm{i}u_t + \frac{1}{2}u_{xx} + u^2u^* + \frac{\mathrm{i}}{6\varepsilon}\left[u_{xxx} + 6uu_xu^* + 3u(uu^*)_x\right] = 0,
+        \mathrm{i}u_t + \frac{1}{2}u_{xx} + u^2u^* + \frac{\mathrm{i}}{6\varepsilon}\left[u_{xxx} + 6uu_xu^* + 3u(uu^*)_x\right] = 0
       \end{equation}
       文献 \cite{ss-45} 研究了此方程的 Lax 对, Ba\"cklund 变换，单孤子解和无穷守恒律。
   \item 当系数满足 $\alpha_1(t)=\dfrac{1}{2}, \alpha_2(t)=1, \alpha_3(t)=\epsilon, \alpha_4(t)=6\epsilon, \alpha_5(t)=3\epsilon, \alpha_6(t) = 0$ 时，方程 (\ref{ss-1}) 变为
       \begin{equation}
-        \mathrm{i}u_t + \frac{1}{2}u_{xx} + |u|^2u + \mathrm{i}\epsilon\left[u_{xxx} + 3(|u|^2)_xu + 6|u|^2u_x \right] = 0,
+        \mathrm{i}u_t + \frac{1}{2}u_{xx} + |u|^2u + \mathrm{i}\epsilon\left[u_{xxx} + 3(|u|^2)_xu + 6|u|^2u_x \right] = 0
       \end{equation}
       文献 \cite{ss-40} 使用了达布变换的方式得到了此方程的怪波解。
   \item 当系数满足 $\alpha_1(t)=-1, \alpha_2(t)=-2, \alpha_3(t)=1, \alpha_4(t)=6, \alpha_5(t)=-3, \alpha_6(t) = 0$ 时，方程 (\ref{ss-1})可以简化为以下的项式
       \begin{equation}
-        \mathrm{i}u_t - u_{xx} - 2|u|^2u + \mathrm{i}\left[u_{xxx} + 6(|u|^2u)_x - 3(|u|^2)_xu \right] = 0,
+        \mathrm{i}u_t - u_{xx} - 2|u|^2u + \mathrm{i}\left[u_{xxx} + 6(|u|^2u)_x - 3(|u|^2)_xu \right] = 0
       \end{equation}
       文献 \cite{ss-39} 研究了此方程的高阶怪波解。
 \end{itemize}
@@ -35,8 +35,8 @@ Sasa-Satsuma 方程 (SSE) 是非线性薛定谔方程的一个重要的可积扩
 \section{Painlev\'{e} 分析}
 Painlev\'{e} 检验是用来研究给定非线性偏微分方程可积性的一个很有效的方法。为了得到方程 (\ref{ss-1}) Painlev\'{e} 可积性下的约束条件，我们使用  WTC 方法\upcite{ss-1,ss-2,ss-3,ss-4}，首先假设方程 (\ref{ss-1}) 的解具有以下的形式,
 \begin{align}
-  & u(x,t) = \phi^{-a}\sum_{j=0}^{\infty}u_j(x,t)\phi^j(x,t), \\
-  & v(x,t) = u^*(x,t) = \phi^{-b}\sum_{j=0}^{\infty}v_j(x,t)\phi^j(x,t),
+  & u(x,t) = \phi^{-a}\sum_{j=0}^{\infty}u_j(x,t)\phi^j(x,t) \\
+  & v(x,t) = u^*(x,t) = \phi^{-b}\sum_{j=0}^{\infty}v_j(x,t)\phi^j(x,t)
 \end{align}
 其中 $v(x,t)$ 为 $u(x,t)$ 的共轭函数，$u_j(x,t)$ 和 $v_j(x,t)$ 为任意函数， $p, q$ 为正整数。
 将上述 $u(x,t)$ 和 $v(x,t)$ 带入到方程 (\ref{ss-1}) 和其共轭形式
@@ -57,8 +57,8 @@ Painlev\'{e} 检验是用来研究给定非线性偏微分方程可积性的一�
 \end{equation}
 而使用 Kuskal 简化形式 $\phi(x,t) = x + \psi(t)$，并通过符号计算可以得到方程 (\ref{ss-1}) 的 Painlev\'{e} 的可积条件
 \begin{align}
-&a_4(t)+2a_5(t)=0,\\
-&3a_2(t)a_3(t)+2a_1(t)a_5(t)=0.
+&a_4(t)+2a_5(t)=0\\
+&3a_2(t)a_3(t)+2a_1(t)a_5(t)=0
 \end{align}
 也就是说方程 (\ref{ss-1})的系数在满足上述约束条件下才具有  Painlev\'{e} 可积性，而从后续的研究中我们也同样可以得到这些约束条件。
 
@@ -68,8 +68,8 @@ Painlev\'{e} 检验是用来研究给定非线性偏微分方程可积性的一�
 \section{Lax 对}
 Lax 对的本质是通过变换将一个非线性偏微分方程转变为多个常规的线性方程，不仅使得复杂的非线性偏微分方程的求解成为了可能，而且也有助于推导非线性方程的 Ba\"cklund 变换、孤子解和无穷守恒律等性质。在本小节中，我们采用扩展的 AKNS 方法来构造方程 (\ref{ss-1}) 的 Lax 对\upcite{ss-5,ss-6,ss-7,ss-8,ss-9}。根据方程 (\ref{ss-1}) 变系数的特点，我们假设其 Lax 对的形式如下所示
 \begin{align}
-  & \Phi_{x} = U\Phi = a(t)(\lambda U_{0} + U_{1})\Phi, \label{ss-2}\\
-  & \Phi_{t} = V\Phi = b(t)(\lambda^{3}V_{0} + \lambda^{2}V_{1} + \lambda V_{2} + V_{3})\Phi,  \label{ss-3}
+  & \Phi_{x} = U\Phi = a(t)(\lambda U_{0} + U_{1})\Phi \label{ss-2}\\
+  & \Phi_{t} = V\Phi = b(t)(\lambda^{3}V_{0} + \lambda^{2}V_{1} + \lambda V_{2} + V_{3})\Phi  \label{ss-3}
 \end{align}
 其中 $U$ 和 $V$ 均是一个 $3 \times 3$ 的矩阵，$\lambda$ 是一个独立于 $x$ 和 $t$ 的复数参数，$a(t)$ 和 $b(t)$ 是两个关于 $t$ 的函数，$\Phi$ 是引入的一个辅助函数，且 $\Phi = (\phi_1, \phi_2, \phi_3)^T$， $\phi_1, \phi_2, \phi_3$ 是三个关于自变量 $x$ 和 $t$ 的方程，$T$ 表示向量的转置。$U_{0}, U_{1}, V_{0}, V_{1}, V_{2}, V_{3}$ 同为 $3 \times 3$ 阶的矩阵，且具有以下的形式
 \begin{align}
@@ -77,57 +77,57 @@ Lax 对的本质是通过变换将一个非线性偏微分方程转变为多个�
              -\mathrm{i} & 0 & 0 \\
               0 & \mathrm{i} & 0 \\
               0 & 0 & \mathrm{i}
-            \end{pmatrix}, \label{ss-lax1} \\
+            \end{pmatrix} \label{ss-lax1} \\
   & U_{1} = \begin{pmatrix}
               0 & ku^{*} & k^{*}u \\
               -k^{*}u & 0 & 0 \\
               -ku^{*} & 0 & 0
-            \end{pmatrix},  \\
-  & V_{0} = \frac{2}{3}U_{0}, \\
-  & V_{1} = \frac{2}{3}U_{1}, \\
+            \end{pmatrix}  \\
+  & V_{0} = \frac{2}{3}U_{0} \\
+  & V_{1} = \frac{2}{3}U_{1} \\
   & V_{2} = \begin{pmatrix}
               2A_{1} & kA_{2} & -k^{*}A_{2}^{*} \\
               -k^{*}A_{2}^{*} & A_{1}^{*} & -(k^{*})^{2}A_{3}^{*} \\
               kA_{2} & k^{2}A_{3} & A_{1}^{*}
-            \end{pmatrix}, \\
+            \end{pmatrix}  \\
   & V_{3} = \begin{pmatrix}
               0 & kA_{4} & k^{*}A_{4}^{*} \\
               -k^{*}A_{4}^{*} & A_{5} & 0 \\
               -kA_{4} & 0 & A_{5}^{*}
-            \end{pmatrix}, \label{ss-lax2}
+            \end{pmatrix}  \label{ss-lax2}
 \end{align}
-其中 $k=k_{3}(t)e^{\mathrm{i}[k_{1}(t)x + k_{2}(t)]}$，$A_1, A_2, A_3, A_4, A_5$ 是关于 $x$ 和 $t$ 的函数，  * 表示对应函数的共轭形式。
+其中 $k=k_{3}(t)e^{\mathrm{i}[k_{1}(t)x + k_{2}(t)]}$，$A_1, A_2, A_3, A_4, A_5$ 是关于 $x$ 和 $t$ 的函数，  符号 $*$ 表示对应函数的共轭形式。
 为了使上述 Lax 对成立，方程 (\ref{ss-2}) 和方程 (\ref{ss-3}) 要求相容，因此 $U$ 和 $V$ 需要满足以下的相容条件
 \begin{equation}
-  U_t - V_x + UV - VU = 0.
+  U_t - V_x + UV - VU = 0
 \end{equation}
 为了得到矩阵 $U$ 和 $V$ 具体的表达形式，令矩阵 $M (M = U_t - V_x + UV - VU)$ 的每一个元素表达式都为0，以矩阵 $M$ 的第一行第二列的元素为例
 \begin{align}
   M(1,2)&=  \lambda^2\left[-\frac{2}{3}\mathrm{i}e^{\mathrm{i}(k_1(t)x+k_2(t))}b(t)k_3(t)\left(3a(t)A_2+k_1(t)u^*-\mathrm{i}u^*_x\right)\right] + \lambda \left[e^{\mathrm{i}(k_1(t)x+ k_2^{'}(t))}b(t)k_3(t) \right.  \notag\\
   & \left. \left(-\mathrm{i}A_2k_1(t)+a(t)(-2\mathrm{i}A_4+uA_3k_3(t)^2+u^*(-2A_1+A_1^*))-A_2x\right)\right] + \lambda^0 \left[e^{\mathrm{i}(k_1(t)x+k_2(t))} \right. \notag \\
   & \left. + \left(a(t)u^*k_3^{'}(t)+k_3(t)(u^*)(a^{'}(t)+ \mathrm{i}a(t)(xk_1^{'}(t)+ k_2^{'}(t)))+a(t)u^*_t\right)+b(t)k_3(t)\left(-\mathrm{i}A_4 \right. \right. \notag \\
-  & \left. \left.k_1(t) +a(t)A_5u^*-A_4x\right)\right],
+  & \left. \left.k_1(t) +a(t)A_5u^*-A_4x\right)\right]
 \end{align}
 令它的 $\lambda$ 的各次幂系数都为0，可以解得
 \begin{equation}
-  A_2 = \frac{-k_1(t)u^*+\mathrm{i}u^*_x}{3a(t)},
+  A_2 = \frac{-k_1(t)u^*+\mathrm{i}u^*_x}{3a(t)}
 \end{equation}
 同样的令 $M$ 的每一个元素表达式的 $\lambda$ 的各次幂的系数为 0 得到的方程组，并结合原方程 (\ref{ss-1})使得 $U, V$ 满足相容条件，经过计算可以得到
 \begin{align}
-  & \beta = \pm \sqrt{3C_{2}}a, \label{ss-ys1}\\
-  & a(t) = a, \\
-  & b(t) = 6a^{3}\alpha_{3}(t), \\
-  & k_{3}(t) = C_1e^{\int \alpha_{6}(t)dt},   \\
-  & k = k_{3}(t)\mathrm{Exp}\left[\mathrm{i}\left(\beta x - (2\beta^{3} + 6a^{3}C_{3})\int \alpha_{3}(t)dt \right)\right], \\
-  & A_{1} = \mathrm{i}C_{2} + \frac{\mathrm{i}}{3}k_{3}(t)^{2}uu^{*}, \\
-  & A_{2} = \frac{-\beta u^{*} + \mathrm{i}u^{*}_{x}}{3a},   \\
-  & A_{3} = -\frac{\mathrm{i}}{3}(u^{*})^{2},  \\
-  & A_{4} = -C_{2}u^{*} - \frac{2}{3}k_{3}(t)^{2}u(u^{*})^{2} - \frac{2\mathrm{i}\beta u^{*}_{x} + u^{*}_{xx}}{6a^{2}}, \\
-  & A_{5} = \mathrm{i}C_{3} + \frac{k_{3}(t)^{2}(2\mathrm{i}\beta uu^{*} + uu^{*}_{x} - u^{*}u_{x})}{6a}, \label{ss-ys2}
+  & \beta = \pm \sqrt{3C_{2}}a \label{ss-ys1}\\
+  & a(t) = a \\
+  & b(t) = 6a^{3}\alpha_{3}(t) \\
+  & k_{3}(t) = C_1e^{\int \alpha_{6}(t)dt}   \\
+  & k = k_{3}(t)\mathrm{Exp}\left[\mathrm{i}\left(\beta x - (2\beta^{3} + 6a^{3}C_{3})\int \alpha_{3}(t)dt \right)\right] \\
+  & A_{1} = \mathrm{i}C_{2} + \frac{\mathrm{i}}{3}k_{3}(t)^{2}uu^{*} \\
+  & A_{2} = \frac{-\beta u^{*} + \mathrm{i}u^{*}_{x}}{3a}   \\
+  & A_{3} = -\frac{\mathrm{i}}{3}(u^{*})^{2}  \\
+  & A_{4} = -C_{2}u^{*} - \frac{2}{3}k_{3}(t)^{2}u(u^{*})^{2} - \frac{2\mathrm{i}\beta u^{*}_{x} + u^{*}_{xx}}{6a^{2}} \\
+  & A_{5} = \mathrm{i}C_{3} + \frac{k_{3}(t)^{2}(2\mathrm{i}\beta uu^{*} + uu^{*}_{x} - u^{*}u_{x})}{6a} \label{ss-ys2}
 \end{align}
 其中$C_1, C_{2}, C_{3}, a$为自由变量，并且$\alpha_{3}(t), \alpha_{4}(t)$需要满足以下的约束条件
 \begin{align}
-  \alpha_{4}(t) = 6a^{2}k_{3}(t)^{2}\alpha_{3}(t),
+  \alpha_{4}(t) = 6a^{2}k_{3}(t)^{2}\alpha_{3}(t)
 \end{align}
 可以证明在 (\ref{ss-ys1})-(\ref{ss-ys2})约束条件下，将表达式 (\ref{ss-lax1})-(\ref{ss-lax2}) 代入到相容条件  $\phi_{xt} = \phi_{tx}$ 能够推出方程 (\ref{ss-1}) 和其共轭形式。
 
@@ -137,63 +137,63 @@ B\"acklund 变换是根据方程的已知解推导出新解的一种有效的方
 
 为了求出方程 (\ref{ss-1}) 的 Riccati 形式的自 B\"{a}cklund 变换，将矩阵 $U_0$ 和 $U_1$ 代入到方程 (\ref{ss-2}) 中有
 \begin{equation}
-  (\phi_{1}\quad \phi_{2}\quad \phi_{3})_{x}^{T} = a(\lambda U_{0} + U_{1})(\phi_{1}\quad \phi_{2}\quad \phi_{3})^{T},
+  (\phi_{1}\quad \phi_{2}\quad \phi_{3})_{x}^{T} = a(\lambda U_{0} + U_{1})(\phi_{1}\quad \phi_{2}\quad \phi_{3})^{T}
 \end{equation}
 即可详细的表示为
 \begin{align}
-  & \phi_{1x} = a(-\mathrm{i}\lambda\phi_{1} + ku^{*}\phi_{2} +k^{*}u\phi_{3}), \label{ss-p1}\\
-  & \phi_{2x} = a(-k^{*}u\phi_{1} + \mathrm{i}\lambda\phi_{2}), \\
-  & \phi_{3x} = a(-ku^{*}\phi_{1} + \mathrm{i}\lambda\phi_{3}), \label{ss-p2}
+  & \phi_{1x} = a(-\mathrm{i}\lambda\phi_{1} + ku^{*}\phi_{2} +k^{*}u\phi_{3}) \label{ss-p1}\\
+  & \phi_{2x} = a(-k^{*}u\phi_{1} + \mathrm{i}\lambda\phi_{2}) \\
+  & \phi_{3x} = a(-ku^{*}\phi_{1} + \mathrm{i}\lambda\phi_{3}) \label{ss-p2}
 \end{align}
 同样的，将 $V_{0}, V_{1}, V_{2}, V_{3}$ 代入 (\ref{ss-3}) 式中有
 \begin{equation}
-  (\phi_{1}\quad \phi_{2} \quad \phi_{3})^{T}_{t} = b(t)(\lambda^{3}V_{0} + \lambda^{2}V_{1} + \lambda V_{1} + V_{3})(\phi_{1}\quad \phi_{2} \quad \phi_{3})^{T},
+  (\phi_{1}\quad \phi_{2} \quad \phi_{3})^{T}_{t} = b(t)(\lambda^{3}V_{0} + \lambda^{2}V_{1} + \lambda V_{1} + V_{3})(\phi_{1}\quad \phi_{2} \quad \phi_{3})^{T}
 \end{equation}
 即为
 \begin{align}
-  & \phi_{1t} = \left[\left(-\frac{2\mathrm{i}\lambda^{3}}{3}+2\lambda A_{1}\right)\phi_{1} + \left(\lambda A_{2}k+A_{4}k+\frac{2}{3}\lambda^{2}ku^{*}\right)\phi_{2} + \left(\frac{2}{3}\lambda^{2}uk^{*}-\lambda A_{2}^{*}k^{*}+A_{4}^{*}k^{*}\right)\phi_{3}\right]b(t), \label{ss-p3} \\
-  & \phi_{2t} = \left[\left(-\frac{2}{3}\lambda^{2}uk^{*}-\lambda A_{2}^{*}k^{*}-A_{4}^{*}k^{*}\right)\phi_{1} + \left(\frac{2\mathrm{i}\lambda^{3}}{3}+A_{5}+\lambda A_{1}^{*}\right)\phi_{2} - \lambda A_{3}^{*}(k^{*})^{2}\phi_{3}\right]b(t), \\
-  & \phi_{3t} = \left[\left(\lambda A_{2}k-A_{4}k-\frac{2}{3}\lambda^{2}ku^{*}\right)\phi_{1} + \lambda A_{3}k^{2}\phi_{2} + \left(\frac{2\mathrm{i}\lambda^{3}}{3}+\lambda A_{1}^{*} + A_{5}^{*}\right)\phi_{3}\right]b(t), \label{ss-p4}
+  & \phi_{1t} = \left[\left(-\frac{2\mathrm{i}\lambda^{3}}{3}+2\lambda A_{1}\right)\phi_{1} + \left(\lambda A_{2}k+A_{4}k+\frac{2}{3}\lambda^{2}ku^{*}\right)\phi_{2} + \left(\frac{2}{3}\lambda^{2}uk^{*}-\lambda A_{2}^{*}k^{*}+A_{4}^{*}k^{*}\right)\phi_{3}\right]b(t) \label{ss-p3} \\
+  & \phi_{2t} = \left[\left(-\frac{2}{3}\lambda^{2}uk^{*}-\lambda A_{2}^{*}k^{*}-A_{4}^{*}k^{*}\right)\phi_{1} + \left(\frac{2\mathrm{i}\lambda^{3}}{3}+A_{5}+\lambda A_{1}^{*}\right)\phi_{2} - \lambda A_{3}^{*}(k^{*})^{2}\phi_{3}\right]b(t) \\
+  & \phi_{3t} = \left[\left(\lambda A_{2}k-A_{4}k-\frac{2}{3}\lambda^{2}ku^{*}\right)\phi_{1} + \lambda A_{3}k^{2}\phi_{2} + \left(\frac{2\mathrm{i}\lambda^{3}}{3}+\lambda A_{1}^{*} + A_{5}^{*}\right)\phi_{3}\right]b(t) \label{ss-p4}
 \end{align}
 引入函数
 \begin{equation}
-  \Gamma_{1} = \frac{\phi_{1}}{\phi_{3}}, \quad \Gamma_{2} = \frac{\phi_{2}}{\phi_{3}},
+  \Gamma_{1} = \frac{\phi_{1}}{\phi_{3}}, \quad \Gamma_{2} = \frac{\phi_{2}}{\phi_{3}}
 \end{equation}
 则有
 \begin{align}
  \Gamma_{1x} &= \left(\frac{\phi_1}{\phi_3}\right)_x=\frac{\phi_{1x}\phi_3-\phi_1\phi_{3x}}{\phi_3^2}=\frac{a(-\mathrm{i}\lambda\phi_1+ku^*\phi_2+k^*u\phi_3)}{\phi_3}-\frac{\phi_1a(-ku^*\phi_1+\mathrm{i}\lambda\phi_3)}{\phi_3^2} \nonumber\\
-  &= a(k^{*}u - 2\mathrm{i}\lambda \Gamma_{1} + ku^{*}\Gamma_{2} + ku^{*}\Gamma_{1}^{2}), \\
+  &= a(k^{*}u - 2\mathrm{i}\lambda \Gamma_{1} + ku^{*}\Gamma_{2} + ku^{*}\Gamma_{1}^{2}) \\
   \Gamma_{2x} &=\left(\frac{\phi_2}{\phi_3}\right)_x=\frac{\phi_{2x}\phi_3-\phi_2\phi_{3x}}{\phi_3^2}=\frac{a(\mathrm{i}\lambda\phi_2-uk^*\phi_1)}{\phi_3}-\frac{\phi_2a(-ku^*\phi_1+\mathrm{i}\lambda\phi_3)}{\phi_3^2}\nonumber\\
-  &= a(-uk^{*}\Gamma_{1} + ku^{*}\Gamma_{1}\Gamma_{2}), \\
+  &= a(-uk^{*}\Gamma_{1} + ku^{*}\Gamma_{1}\Gamma_{2}) \\
   \Gamma_{1t} &= \left(\frac{\phi_1}{\phi_3}\right)_t=\frac{\phi_{1t}\phi_3-\phi_1\phi_{3t}}{\phi_3^2} \notag \\
   &= \left[\frac{2}{3}\lambda^{2}k^{*}u - \lambda k^{*}A_{2}^{*} + k^{*}A_{4}^{*} - \lambda k^{2}A_{3}\Gamma_{1}\Gamma_{2} + (-\frac{4}{3}\mathrm{i}\lambda^{3} + 2\lambda A_{1} - \lambda A_{1}^{*} - A_{5}^{*})\Gamma_{1} + (\lambda kA_{2} \right. \notag\\
-  & \left. + kA_{4} + \frac{2}{3}\lambda^{2}ku^{*})\Gamma_{2} + (-\lambda kA_{2} + kA_{4} + \frac{2}{3}\lambda^{2}ku^{*})\Gamma_{1}^{2}\right] b(t), \label{ss-gt1}\\
+  & \left. + kA_{4} + \frac{2}{3}\lambda^{2}ku^{*})\Gamma_{2} + (-\lambda kA_{2} + kA_{4} + \frac{2}{3}\lambda^{2}ku^{*})\Gamma_{1}^{2}\right] b(t) \label{ss-gt1}\\
   \Gamma_{2t} &=\left(\frac{\phi_2}{\phi_3}\right)_t=\frac{\phi_{2t}\phi_3-\phi_2\phi_{3t}}{\phi_3^2} \notag \\
   &= \left[ -\lambda(k^{*})^{2}A_{3}^{*} + (-\frac{2}{3}\lambda^{2}uk^{*} - \lambda k^{*}A_{2}^{*} - k^{*}A_{4}^{*})\Gamma_{1} + (A_{5}-A_{5}^{*})\Gamma_{2} + (-\lambda kA_{2} +kA_{4} \right. \notag\\
-  & \left. + \frac{2}{3}\lambda^{2}ku^{*})\Gamma_{1}\Gamma_{2} - \lambda k^{2}A_{3}\Gamma_{2}^{2} \right] b(t), \label{ss-gt2}
+  & \left. + \frac{2}{3}\lambda^{2}ku^{*})\Gamma_{1}\Gamma_{2} - \lambda k^{2}A_{3}\Gamma_{2}^{2} \right] b(t) \label{ss-gt2}
 \end{align}
 由上述的计算结果可以得知方程 ($\ref{ss-2}$) 可以表示为如下的 $\Gamma$-Riccati 形式
 \begin{align}
-  & \Gamma_{1x} = a(k^{*}u - 2\mathrm{i}\lambda \Gamma_{1} + ku^{*}\Gamma_{2} + ku^{*}\Gamma_{1}^{2}), \label{ss-4} \\
-  & \Gamma_{2x} = a(-uk^{*}\Gamma_{1} + ku^{*}\Gamma_{1}\Gamma_{2}), \label{ss-5}
+  & \Gamma_{1x} = a(k^{*}u - 2\mathrm{i}\lambda \Gamma_{1} + ku^{*}\Gamma_{2} + ku^{*}\Gamma_{1}^{2}) \label{ss-4} \\
+  & \Gamma_{2x} = a(-uk^{*}\Gamma_{1} + ku^{*}\Gamma_{1}\Gamma_{2}) \label{ss-5}
 \end{align}
 为了得到方程 (\ref{ss-1}) 的 $\Gamma$-Riccati 形式的 B\"acklund 变换，取另一组值 $\lambda = \lambda^{*}, u = u^{'}$，使得方程 (\ref{ss-4}) 和方程 (\ref{ss-5}) 的形式保持不变，则有
 \begin{align}
-  & \Gamma_{1x} = a\left[k^{*}u^{'} - 2\mathrm{i}\lambda^{*}\Gamma_{1} + k(u^{'})^{*}\Gamma_{2} + k(u^{'})^{*}\Gamma_{1}^{2}\right], \label{ss-6} \\
-  & \Gamma_{2x} = a\left[-k^{*}u^{'}\Gamma_{1} + k(u^{'})^{*}\Gamma_{1}\Gamma_{2}\right], \label{ss-7}
+  & \Gamma_{1x} = a\left[k^{*}u^{'} - 2\mathrm{i}\lambda^{*}\Gamma_{1} + k(u^{'})^{*}\Gamma_{2} + k(u^{'})^{*}\Gamma_{1}^{2}\right] \label{ss-6} \\
+  & \Gamma_{2x} = a\left[-k^{*}u^{'}\Gamma_{1} + k(u^{'})^{*}\Gamma_{1}\Gamma_{2}\right] \label{ss-7}
 \end{align}
 由方程 (\ref{ss-4}) 和方程 (\ref{ss-6}) 可得
 \begin{equation}
-  k^{*}(u^{'}-u) - 2\mathrm{i}\Gamma_{1}(\lambda^{*}-\lambda) + k\Gamma_{2}((u^{'})^{*}-u^{*}) + k\Gamma_{1}^{2}((u^{'})^{*}-u^{*}) = 0, \label{ss-8}
+  k^{*}(u^{'}-u) - 2\mathrm{i}\Gamma_{1}(\lambda^{*}-\lambda) + k\Gamma_{2}((u^{'})^{*}-u^{*}) + k\Gamma_{1}^{2}((u^{'})^{*}-u^{*}) = 0 \label{ss-8}
 \end{equation}
 同样的，由方程 (\ref{ss-5})和方程 (\ref{ss-7})可得
 \begin{align}
-  & k^{*}\Gamma_{1}(u^{'}-u) - k\Gamma_{1}\Gamma_{2}((u^{'})^{*}-u^{*}) = 0, \\
-  & (u^{'})^{*} - u^{*} = \frac{k^{*}(u^{'}-u)}{k\Gamma_{2}}, \label{ss-9}
+  & k^{*}\Gamma_{1}(u^{'}-u) - k\Gamma_{1}\Gamma_{2}((u^{'})^{*}-u^{*}) = 0 \\
+  & (u^{'})^{*} - u^{*} = \frac{k^{*}(u^{'}-u)}{k\Gamma_{2}} \label{ss-9}
 \end{align}
 将方程 (\ref{ss-9}) 代入方程 (\ref{ss-8})可得
 \begin{equation}
-  u^{'} - u = \frac{2\mathrm{i}\Gamma_{1}\Gamma_{2}(\lambda^{*}-\lambda)}{2k^{*}\Gamma_{2} + k^{*}\Gamma_{1}^{2}}. \label{ss-backlund}
+  u^{'} - u = \frac{2\mathrm{i}\Gamma_{1}\Gamma_{2}(\lambda^{*}-\lambda)}{2k^{*}\Gamma_{2} + k^{*}\Gamma_{1}^{2}} \label{ss-backlund}
 \end{equation}
 (\ref{ss-backlund}) 式即为方程 (\ref{ss-1}) 的 B\"acklund 变换。B\"acklund 变换揭示方程解与解之间的关系，即可以从给出的已知解得到另外一个解。
 
@@ -202,23 +202,23 @@ B\"acklund 变换是根据方程的已知解推导出新解的一种有效的方
 
 令 $u_{0} = 0, \lambda = i\eta$ ($\eta$ 是常数), 代入 (\ref{ss-4}) 和  (\ref{ss-5})式可得
 \begin{align}
-  & \Gamma_{1x} = 2a\eta\Gamma_{1}, \\
-  & \Gamma_{2x} = 0,
+  & \Gamma_{1x} = 2a\eta\Gamma_{1} \\
+  & \Gamma_{2x} = 0
 \end{align}
 解得
 \begin{align}
-  & \Gamma_{1} = f(t)e^{2a\eta x},  \label{ss-10}\\
-  & \Gamma_{2} = g(t), \label{ss-11}
+  & \Gamma_{1} = f(t)e^{2a\eta x}  \label{ss-10}\\
+  & \Gamma_{2} = g(t) \label{ss-11}
 \end{align}
 其中 $f(t)$ 和 $g(t)$ 是两个任意关于  $t$ 的函数，将 (\ref{ss-10}) 和 (\ref{ss-11}) 式代入到方程 (\ref{ss-gt1}) 和 (\ref{ss-gt2}) 可以得到
 \begin{align}
-  & f(t) = d_{1}\mathrm{Exp}\left[(6\mathrm{i}a^{3}C_{3} - 8a^{3}\eta^{3} - 18a^{3}\eta C_{2})\int \alpha_{3}(t)dt\right], \\
-  & g(t) = d_{2}\mathrm{Exp}\left[12\mathrm{i}a^{3}C_{3}\int \alpha_{3}(t)dt\right],
+  & f(t) = d_{1}\mathrm{Exp}\left[(6\mathrm{i}a^{3}C_{3} - 8a^{3}\eta^{3} - 18a^{3}\eta C_{2})\int \alpha_{3}(t)dt\right] \\
+  & g(t) = d_{2}\mathrm{Exp}\left[12\mathrm{i}a^{3}C_{3}\int \alpha_{3}(t)dt\right]
 \end{align}
 从而可以得到
 \begin{align}
-  & \Gamma_{1} = d_{1}\mathrm{Exp}\left[2a\eta x + (6\mathrm{i}a^{3}C_{3} - 8a^{3}\eta^{3} - 18a^{3}\eta C_{2})\int \alpha_{3}(t)dt\right], \label{ss-g1} \\
-  & \Gamma_{2} = d_{2}\mathrm{Exp}\left[12\mathrm{i}a^{3}C_{3}\int \alpha_{3}(t)dt\right], \label{ss-g2}
+  & \Gamma_{1} = d_{1}\mathrm{Exp}\left[2a\eta x + (6\mathrm{i}a^{3}C_{3} - 8a^{3}\eta^{3} - 18a^{3}\eta C_{2})\int \alpha_{3}(t)dt\right] \label{ss-g1} \\
+  & \Gamma_{2} = d_{2}\mathrm{Exp}\left[12\mathrm{i}a^{3}C_{3}\int \alpha_{3}(t)dt\right] \label{ss-g2}
 \end{align}
 其中$d_{1}, d_{2}$是复常数， 将  (\ref{ss-g1})， (\ref{ss-g2}) 代入到  (\ref{ss-backlund}) 式可得到单孤子解，并将得到的解代入到原方程验证可以得到 $d_{2} = 1$，因此方程 (\ref{ss-1}) 的单孤子解如下
 \begin{align}
@@ -230,7 +230,7 @@ B\"acklund 变换是根据方程的已知解推导出新解的一种有效的方
 
 引入两个相关的 Riccati 变量
 \begin{equation}
-  T_{1} = \frac{\phi_{2}}{\phi_{1}}, \quad T_{2} = \frac{\phi_{3}}{\phi_{1}},
+  T_{1} = \frac{\phi_{2}}{\phi_{1}}, \quad T_{2} = \frac{\phi_{3}}{\phi_{1}}
 \end{equation}，
 代入 (\ref{ss-p1})-(\ref{ss-p2}) 式和 (\ref{ss-p3})-(\ref{ss-p4}) 式可得以下 Riccati 方程
 \begin{align}
@@ -240,7 +240,7 @@ B\"acklund 变换是根据方程的已知解推导出新解的一种有效的方
   &= a(-ku^{*} + 2\mathrm{i}\lambda T_{2} - k^{*}uT_{2}^{2} - ku^{*}T_{1}T_{2}) \label{ss-t2x} \\
   T_{1t} &=\left(\frac{\phi_2}{\phi_1}\right)_t=\frac{\phi_{2t}\phi_1-\phi_2\phi_{1t}}{\phi_1^2}\nonumber\\
   &= \left[-\frac{2}{3}\lambda^{2}k^{*}u - \lambda k^{*}A_{2}^{*} - k^{*}A_{4}^{*} + (\frac{4}{3}\mathrm{i}\lambda^{3}-2\lambda A_{1}+A_{5}+\lambda A_{1}^{*})T_{1} - \lambda (k^{*})^{2}A_{3}^{*}T_{2} + (-\lambda kA_{2} \right.\notag\\
-  & \left. - kA_{4} - \frac{2}{3}\lambda ku^{*})T_{1}^{2} + (-\frac{2}{3}\lambda^{2}k^{*}u+\lambda k^{*}A_{2}^{*}-k^{*}A_{4}^{*})T_{1}T_{2} \right]b(t) 
+  & \left. - kA_{4} - \frac{2}{3}\lambda ku^{*})T_{1}^{2} + (-\frac{2}{3}\lambda^{2}k^{*}u+\lambda k^{*}A_{2}^{*}-k^{*}A_{4}^{*})T_{1}T_{2} \right]b(t)
 \end{align}
 \begin{align}
   T_{2t} &=\left(\frac{\phi_3}{\phi_1}\right)_t=\frac{\phi_{3t}\phi_1-\phi_3\phi_{1t}}{\phi_1^2}\nonumber\\
@@ -409,7 +409,7 @@ B\"acklund 变换是根据方程的已知解推导出新解的一种有效的方
 		\includegraphics[width=0.4\linewidth]{figure/a36_4.pdf}
 		\label{ss-a22}
 	}
-   
+
 	\label{a1}
 
     \centering
