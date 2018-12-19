@@ -1,10 +1,31 @@
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Mathematica,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
+
 \chapter*{附录 A\markboth{附录 A}{}}
 \addcontentsline{toc}{chapter}{附录 A}
 \begin{lstlisting}[language=Mathematica]
 (*
-	c1: 通项公式 cn 的首项内容 
+	c1: 通项公式 cn 的首项内容
 	d1: 通项公式 dn 的首项内容
-	coe1: 对应系数的函数列表 
+	coe1: 对应系数的函数列表
 	coe2: 对应系数的函数其它形式(例如共轭)列表
 	n: 表示第 n 组的结果
 *)
@@ -33,4 +54,4 @@ getGeneralTerm[c1_, d1_, coe1_, coe2_, n_]:=Module[{temp1, temp2, clist, dlist},
 	Print["第 ".n." 项 d 是："]
 	Print[Simplify[dlist[[n+1]]]];
 ]]]
-\end{lstlisting}
+\end{lstlisting} 
