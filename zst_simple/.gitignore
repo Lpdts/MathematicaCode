@@ -1,0 +1,12 @@
+*.*
+*.aux
+*.log
+*.lof
+*.out
+*.synctex
+*.thm
+*.toc
+*.pdf
+reference/
+!.gitignore
+!*.tex
