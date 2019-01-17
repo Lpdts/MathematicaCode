@@ -42,15 +42,13 @@ getGeneralTerm[c1_, d1_, coe1_, coe2_, n_]:=Module[{temp1, temp2, clist, dlist},
 	clist = Append[clist, temp1];
 	dlist = Append[dlist, temp2];
 	]
-	(*Print["\:7b2c ".n." \:9879 c \:662f\:ff1a"]
+	Print["\:7b2c ".n." \:9879 c \:662f\:ff1a"]
 	Print[Simplify[clist[[n+1]]]];
 	Print["\:7b2c ".n." \:9879 d \:662f\:ff1a"]
-	Print[Simplify[dlist[[n+1]]]];*)
+	Print[Simplify[dlist[[n+1]]]];
 
-	Conservation[clist, dlist, coe1, coe2, n]
-]
-]
-]
+	Conservation[clist, dlist, coe1, coe2, n];
+]]]
 
 (*
 	clist: \:901a\:9879\:516c\:5f0f cn \:7684\:524d n \:9879\:5217\:8868
@@ -111,9 +109,10 @@ validateConservation[equ1_, equ2_, u_, v_, d_, f_, n_, c_]:=Module[{result},
 		result = Simplify[(D[d,t] - D[f, x]) / (v * equ1 - u * equ2) / c];
 	];
 	If[n == 2,
-		result = Simplify[(D[d,t] - D[f, x])/(D[equ2, x] * u -D[equ1, x] * v + D[v, x] * equ1 + D[u, x] * equ2) / c];
+		result = Simplify[(D[d,t] - D[f, x]) / ((D[equ2, x] * u - D[equ1, x] * v - D[v, x] * equ1 + D[u, x] * equ2)) / c];
 	];
-	Print["\:7ed3\:679c\:4e3a". result];
+	Print["\:7ed3\:679c\:4e3a". Expand[result]];
+	(*Print[Expand[(-D[v, x] * equ1 + D[u, x] * equ2)*c]];*)
 	If[result == 1,
 		Print["\:9a8c\:8bc1\:6210\:529f"],
 		Print["\:9a8c\:8bc1\:5931\:8d25"]

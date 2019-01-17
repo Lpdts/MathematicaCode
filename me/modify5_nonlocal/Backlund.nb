@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    115440,       3263]
-NotebookOptionsPosition[    113340,       3196]
-NotebookOutlinePosition[    113727,       3213]
-CellTagsIndexPosition[    113684,       3210]
+NotebookDataLength[    115207,       3255]
+NotebookOptionsPosition[    113147,       3189]
+NotebookOutlinePosition[    113535,       3206]
+CellTagsIndexPosition[    113492,       3203]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -3185,17 +3185,10 @@ Cell[BoxData["0"], "Output",
    3.750737380608302*^9}, {3.751006194893863*^9, 3.7510062163826113`*^9}, {
    3.751116103935212*^9, 3.751116120200998*^9}, {3.7519440264993896`*^9, 
    3.7519440583486648`*^9}, {3.751944316597122*^9, 3.7519443994928246`*^9}}]
-}, Open  ]],
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{
-   RowBox[{"Clear", "[", "\"\<*\>\"", "]"}], ";"}], 
-  "\[IndentingNewLine]"}]], "Input",
- CellChangeTimes->{{3.751944695367833*^9, 3.751944704692799*^9}}]
+}, Open  ]]
 },
-WindowSize->{1920, 997},
-WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+WindowSize->{1481, 737},
+WindowMargins->{{201, Automatic}, {63, Automatic}},
 Magnification:>1.2 Inherited,
 FrontEndVersion->"10.3 for Microsoft Windows (64-bit) (2015\:5e7411\:67084\
 \:65e5)",
@@ -3237,7 +3230,7 @@ Cell[52927, 1495, 2645, 73, 58, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[55609, 1573, 11204, 316, 1003, "Input"],
-Cell[66816, 1891, 1708, 52, 73, "Output"],
+Cell[66816, 1891, 1708, 52, 61, "Output"],
 Cell[68527, 1945, 1306, 39, 59, "Output"],
 Cell[69836, 1986, 5313, 167, 184, "Output"],
 Cell[75152, 2155, 4540, 144, 126, "Output"]
@@ -3259,12 +3252,11 @@ Cell[94840, 2676, 1111, 26, 42, "Output"],
 Cell[95954, 2704, 2360, 64, 74, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[98351, 2773, 11293, 322, 716, "Input"],
+Cell[98351, 2773, 11293, 322, 717, "Input"],
 Cell[109647, 3097, 1492, 39, 69, "Output"],
 Cell[111142, 3138, 1494, 39, 69, "Output"],
 Cell[112639, 3179, 492, 7, 36, "Output"]
-}, Open  ]],
-Cell[113146, 3189, 190, 5, 81, "Input"]
+}, Open  ]]
 }
 ]
 *)
